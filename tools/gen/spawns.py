@@ -307,7 +307,7 @@ add("1037_gargoylbatre.json",
           C(SKY, B("#normandy:falaises", "#normandy:cote_albatre", "#cobblemon:is_peak", "#cobblemon:is_mountain")),
           presets=("natural", "treetop"), anti=B("#cobblemon:is_volcanic", "#cobblemon:is_tropical_island"),
           mult=[IN(2.0, "#normandy:cote_albatre"), STORM(2.0), NIGHT(1.5), SNACK]),
-    spawn("gargoylbatre", 2, "rare", "40-60", 25.0, B("#cobblemon:is_end"), presets=("end_city",)))
+    spawn("gargoylbatre", 2, "rare", "40-60", 25.0, C(B("#cobblemon:is_end"), structures=["minecraft:end_city"])))
 add("herds/1037_gargoylbatre_alpha.json",
     herd("gargoylbatre-alpha-1", "gargoylbatre", "boss", "34-100", 30.0, 7, CLIFFS, [
         member(alpha("gargoylbatre", "rock"), 30.0, "1-100", None, 1, leader=True),

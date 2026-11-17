@@ -1,7 +1,6 @@
 ancient_city
 derelict
 desert_pyramid
-end_city
 foliage
 illager_structures
 jungle_pyramid
