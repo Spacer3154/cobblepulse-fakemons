@@ -1,0 +1,102 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "alchibec-1",
+      "pokemon": "alchibec",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "54-65",
+      "weight": 4.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 3.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:barrel"
+            ]
+          }
+        }
+      ],
+      "condition": {
+        "canSeeSky": false,
+        "maxY": 0,
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:lava"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "semi_legendary"
+      ]
+    },
+    {
+      "id": "alchibec-2",
+      "pokemon": "alchibec",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "54-65",
+      "weight": 3.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:vergers",
+              "#normandy:bocage"
+            ]
+          }
+        }
+      ],
+      "condition": {
+        "canSeeSky": false,
+        "maxY": 50,
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:barrel"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "semi_legendary"
+      ]
+    },
+    {
+      "id": "alchibec-3",
+      "pokemon": "alchibec",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "54-65",
+      "weight": 5.0,
+      "condition": {
+        "biomes": [
+          "#normandy:nether_brasier"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "semi_legendary"
+      ]
+    }
+  ]
+}

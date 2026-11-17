@@ -1,0 +1,73 @@
+{
+  "portraitScale": 1.82,
+  "portraitTranslation": [
+    -0.47,
+    -0.13,
+    0
+  ],
+  "profileScale": 1.0,
+  "profileTranslation": [
+    -0.1,
+    0.24,
+    0
+  ],
+  "rootBone": "rousselin",
+  "animations": {
+    "cry": "q.bedrock_stateful('rousselin', 'cry')",
+    "faint": "q.bedrock_primary('rousselin', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('rousselin', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('rousselin', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('rousselin', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('rousselin', 'blink')",
+        "q.bedrock_quirk('rousselin', 'graze')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('rousselin', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('rousselin', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('rousselin', 'sleep')"
+      ]
+    }
+  }
+}

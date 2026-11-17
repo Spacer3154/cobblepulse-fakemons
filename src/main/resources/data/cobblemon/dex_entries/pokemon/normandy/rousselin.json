@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:rousselin",
+  "speciesId": "cobblemon:rousselin",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

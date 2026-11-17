@@ -1,0 +1,83 @@
+{
+  "portraitScale": 0.62,
+  "portraitTranslation": [
+    -0.2,
+    2.25,
+    0
+  ],
+  "profileScale": 0.26,
+  "profileTranslation": [
+    -0.15,
+    1.35,
+    0
+  ],
+  "rootBone": "alchibec",
+  "animations": {
+    "cry": "q.bedrock_stateful('alchibec', 'cry')",
+    "faint": "q.bedrock_primary('alchibec', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "portrait": {
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.bedrock('alchibec', 'portrait')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('alchibec', 'blink')"
+      ]
+    },
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('alchibec', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('alchibec', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('alchibec', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('alchibec', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('alchibec', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('alchibec', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('alchibec', 'sleep')"
+      ]
+    }
+  }
+}

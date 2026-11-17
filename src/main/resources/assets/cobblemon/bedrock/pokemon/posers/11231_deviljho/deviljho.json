@@ -1,0 +1,76 @@
+{
+  "portraitScale": 0.5,
+  "portraitTranslation": [
+    -0.48,
+    1.22,
+    0
+  ],
+  "profileScale": 0.29,
+  "profileTranslation": [
+    0.05,
+    1.31,
+    0
+  ],
+  "rootBone": "deviljho",
+  "animations": {
+    "cry": "q.bedrock_stateful('deviljho', 'cry')",
+    "faint": "q.bedrock_primary('deviljho', 'faint', q.curve('one'))",
+    "physical": "q.bedrock_primary('deviljho', 'physical', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('deviljho', 'special', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('deviljho', 'status', q.curve('symmetrical_wide'))",
+    "recoil": "q.bedrock_stateful('deviljho', 'recoil')"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('deviljho', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('deviljho', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('deviljho', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('deviljho', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('deviljho', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('deviljho', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('deviljho', 'sleep')"
+      ]
+    }
+  }
+}

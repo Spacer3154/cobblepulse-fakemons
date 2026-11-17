@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:arboverger",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:arboverger",
+      "model": "cobblemon:arboverger.geo",
+      "texture": "cobblemon:textures/pokemon/1027_arboverger/arboverger.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1027_arboverger/arboverger_shiny.png"
+    }
+  ]
+}

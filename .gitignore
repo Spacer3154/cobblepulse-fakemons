@@ -1,0 +1,11 @@
+.gradle/
+build/
+out/
+run/
+run-server/
+*.iml
+.idea/
+__pycache__/
+node_modules/
+tools/models/tmp/
+tools/models/frames/

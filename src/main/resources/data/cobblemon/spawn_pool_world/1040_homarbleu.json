@@ -1,0 +1,150 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "homarbleu-1",
+      "pokemon": "homarbleu",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "5-28",
+      "weight": 14.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "structures": [
+              "#minecraft:ocean_ruin",
+              "#minecraft:shipwreck"
+            ]
+          }
+        },
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "timeRange": "night"
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_cold_and_temperate_ocean",
+          "#cobblemon:is_cold_ocean",
+          "#normandy:cote_albatre",
+          "#cobblemon:is_coast"
+        ],
+        "canSeeSky": true
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_frozen_ocean",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    },
+    {
+      "id": "homarbleu-2",
+      "pokemon": "homarbleu",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "5-28",
+      "weight": 10.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "isRaining": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:cote_albatre",
+          "#cobblemon:is_coast"
+        ],
+        "timeRange": "night"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    },
+    {
+      "id": "homarbleu-3",
+      "pokemon": "homarbleu",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "5-28",
+      "weight": 30.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "minLureLevel": 2,
+            "maxLureLevel": 2
+          }
+        },
+        {
+          "multiplier": 3.0,
+          "condition": {
+            "minLureLevel": 3
+          }
+        }
+      ],
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_cold_and_temperate_ocean",
+          "#cobblemon:is_cold_ocean",
+          "#normandy:cote_albatre",
+          "#cobblemon:is_coast"
+        ],
+        "canSeeSky": true
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_frozen_ocean",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

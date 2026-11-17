@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " f ",
+    "bmb",
+    " g "
+  ],
+  "key": {
+    "f": {
+      "item": "cobblemon:dragon_fang"
+    },
+    "b": {
+      "item": "minecraft:bone_block"
+    },
+    "m": {
+      "item": "mega_showdown:mega_stone"
+    },
+    "g": {
+      "item": "cobblemon:black_glasses"
+    }
+  },
+  "result": {
+    "id": "normandy_fakemons:deviljhonite",
+    "count": 1
+  }
+}

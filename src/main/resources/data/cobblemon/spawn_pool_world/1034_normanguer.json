@@ -1,0 +1,74 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "normanguer-1",
+      "pokemon": "normanguer",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "36-60",
+      "weight": 3.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:bocage"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:hay_block"
+            ]
+          }
+        },
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "moonPhase": "full"
+          }
+        },
+        {
+          "multiplier": 0.5,
+          "condition": {
+            "timeRange": "night"
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:bocage",
+          "#cobblemon:is_plains"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_arid",
+          "#cobblemon:is_savanna",
+          "#cobblemon:is_jungle"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

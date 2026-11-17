@@ -1,0 +1,73 @@
+{
+  "portraitScale": 1.24,
+  "portraitTranslation": [
+    -0.84,
+    0.37,
+    0
+  ],
+  "profileScale": 0.67,
+  "profileTranslation": [
+    -0.23,
+    0.73,
+    0
+  ],
+  "rootBone": "bovecume",
+  "animations": {
+    "cry": "q.bedrock_stateful('bovecume', 'cry')",
+    "faint": "q.bedrock_primary('bovecume', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('bovecume', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bovecume', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('bovecume', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bovecume', 'blink')",
+        "q.bedrock_quirk('bovecume', 'graze')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('bovecume', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bovecume', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('bovecume', 'sleep')"
+      ]
+    }
+  }
+}

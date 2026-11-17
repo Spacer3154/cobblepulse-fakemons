@@ -1,0 +1,73 @@
+{
+  "portraitScale": 1.49,
+  "portraitTranslation": [
+    -0.53,
+    0.2,
+    0
+  ],
+  "profileScale": 0.97,
+  "profileTranslation": [
+    -0.15,
+    0.28,
+    0
+  ],
+  "rootBone": "meuhgousse",
+  "animations": {
+    "cry": "q.bedrock_stateful('meuhgousse', 'cry')",
+    "faint": "q.bedrock_primary('meuhgousse', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('meuhgousse', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('meuhgousse', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('meuhgousse', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('meuhgousse', 'blink')",
+        "q.bedrock_quirk('meuhgousse', 'graze')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('meuhgousse', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('meuhgousse', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('meuhgousse', 'sleep')"
+      ]
+    }
+  }
+}

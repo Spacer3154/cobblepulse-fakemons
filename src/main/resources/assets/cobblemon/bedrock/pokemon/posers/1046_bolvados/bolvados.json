@@ -1,0 +1,83 @@
+{
+  "portraitScale": 0.69,
+  "portraitTranslation": [
+    0.08,
+    0.16,
+    0
+  ],
+  "profileScale": 0.96,
+  "profileTranslation": [
+    -0.0,
+    0.3,
+    0
+  ],
+  "rootBone": "bolvados",
+  "animations": {
+    "cry": "q.bedrock_stateful('bolvados', 'cry')",
+    "faint": "q.bedrock_primary('bolvados', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "portrait": {
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.bedrock('bolvados', 'portrait')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bolvados', 'blink')"
+      ]
+    },
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('bolvados', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bolvados', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('bolvados', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bolvados', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('bolvados', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('bolvados', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('bolvados', 'sleep')"
+      ]
+    }
+  }
+}

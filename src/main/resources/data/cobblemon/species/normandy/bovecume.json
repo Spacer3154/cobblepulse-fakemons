@@ -1,0 +1,167 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1033,
+  "name": "Bovecume",
+  "primaryType": "water",
+  "secondaryType": "ground",
+  "maleRatio": 0.875,
+  "height": 13,
+  "weight": 620,
+  "pokedex": [
+    "cobblemon.species.bovecume.desc"
+  ],
+  "labels": [
+    "normandy",
+    "starter"
+  ],
+  "aspects": [],
+  "abilities": [
+    "torrent",
+    "h:sapsipper"
+  ],
+  "eggGroups": [
+    "field",
+    "water_1"
+  ],
+  "baseStats": {
+    "hp": 80,
+    "attack": 65,
+    "defence": 70,
+    "special_attack": 75,
+    "special_defence": 75,
+    "speed": 40
+  },
+  "evYield": {
+    "hp": 2,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 142,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.69,
+  "hitbox": {
+    "width": 1.16,
+    "height": 1.88,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.24
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.2
+      }
+    },
+    "herd": {
+      "maxSize": 7,
+      "toleratedLeaders": [
+        {
+          "pokemon": "bovecume",
+          "tier": 1
+        },
+        {
+          "pokemon": "normanguer",
+          "tier": 2
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:leather",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:soft_sand",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:tackle",
+    "1:growl",
+    "1:watergun",
+    "1:mudslap",
+    "6:babydolleyes",
+    "9:stomp",
+    "12:waterpulse",
+    "15:mudshot",
+    "20:aquaring",
+    "24:bubblebeam",
+    "28:bodyslam",
+    "32:milkdrink",
+    "36:muddywater",
+    "40:earthpower",
+    "44:surf",
+    "48:hydropump",
+    "egg:yawn",
+    "egg:amnesia",
+    "egg:curse",
+    "egg:doubleedge",
+    "tm:bodyslam",
+    "tm:bulldoze",
+    "tm:charm",
+    "tm:chillingwater",
+    "tm:doubleedge",
+    "tm:drainingkiss",
+    "tm:earthpower",
+    "tm:earthquake",
+    "tm:endure",
+    "tm:facade",
+    "tm:helpinghand",
+    "tm:highhorsepower",
+    "tm:hydropump",
+    "tm:icywind",
+    "tm:liquidation",
+    "tm:muddywater",
+    "tm:mudshot",
+    "tm:mudslap",
+    "tm:protect",
+    "tm:raindance",
+    "tm:rest",
+    "tm:sandstorm",
+    "tm:sleeptalk",
+    "tm:stompingtantrum",
+    "tm:substitute",
+    "tm:surf",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:waterpulse",
+    "tm:whirlpool"
+  ],
+  "preEvolution": "meuhgousse",
+  "evolutions": [
+    {
+      "id": "bovecume_normanguer",
+      "variant": "level_up",
+      "result": "normanguer",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "laitfeerique"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 36
+        }
+      ]
+    }
+  ]
+}

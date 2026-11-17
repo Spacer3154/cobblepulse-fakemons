@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:bolvados",
+  "speciesId": "cobblemon:bolvados",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

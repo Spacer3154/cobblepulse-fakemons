@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:archeolithe",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:archeolithe",
+      "model": "cobblemon:archeolithe.geo",
+      "texture": "cobblemon:textures/pokemon/1036_archeolithe/archeolithe.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1036_archeolithe/archeolithe_shiny.png"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:arboverger",
+  "speciesId": "cobblemon:arboverger",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

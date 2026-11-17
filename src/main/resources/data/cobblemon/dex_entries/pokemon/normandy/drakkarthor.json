@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:drakkarthor",
+  "speciesId": "cobblemon:drakkarthor",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

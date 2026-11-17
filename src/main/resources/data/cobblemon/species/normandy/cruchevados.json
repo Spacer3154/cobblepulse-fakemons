@@ -1,0 +1,133 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1047,
+  "name": "Cruchevados",
+  "primaryType": "water",
+  "secondaryType": "fire",
+  "maleRatio": -1,
+  "height": 13,
+  "weight": 260,
+  "pokedex": [
+    "cobblemon.species.cruchevados.desc"
+  ],
+  "labels": [
+    "normandy",
+    "semi_legendary"
+  ],
+  "aspects": [],
+  "abilities": [
+    "flashfire",
+    "flamebody",
+    "h:powerofalchemy"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "baseStats": {
+    "hp": 70,
+    "attack": 60,
+    "defence": 70,
+    "special_attack": 95,
+    "special_defence": 85,
+    "speed": 70
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 2,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 150,
+  "experienceGroup": "slow",
+  "catchRate": 30,
+  "eggCycles": 40,
+  "baseFriendship": 50,
+  "baseScale": 0.5,
+  "hitbox": {
+    "width": 1.31,
+    "height": 2.62,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.18
+      }
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:brick",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:ember",
+    "1:watergun",
+    "1:smokescreen",
+    "10:waterpulse",
+    "15:incinerate",
+    "20:clearsmog",
+    "25:scald",
+    "30:willowisp",
+    "36:lavaplume",
+    "42:flamethrower",
+    "48:overheat",
+    "tm:calmmind",
+    "tm:chillingwater",
+    "tm:doubleedge",
+    "tm:endure",
+    "tm:facade",
+    "tm:fireblast",
+    "tm:flamecharge",
+    "tm:flamethrower",
+    "tm:heatwave",
+    "tm:helpinghand",
+    "tm:hex",
+    "tm:hydropump",
+    "tm:overheat",
+    "tm:protect",
+    "tm:raindance",
+    "tm:rest",
+    "tm:scald",
+    "tm:sleeptalk",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:surf",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:waterpulse",
+    "tm:willowisp"
+  ],
+  "preEvolution": "bolvados",
+  "evolutions": [
+    {
+      "id": "cruchevados_alchibec",
+      "variant": "level_up",
+      "result": "alchibec",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "flambeedeaudevie"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 54
+        }
+      ]
+    }
+  ]
+}

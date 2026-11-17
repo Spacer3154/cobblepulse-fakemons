@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:archangelis",
+  "speciesId": "cobblemon:archangelis",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

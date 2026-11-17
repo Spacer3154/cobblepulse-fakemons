@@ -1,0 +1,157 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1034,
+  "name": "Normanguer",
+  "primaryType": "water",
+  "secondaryType": "fairy",
+  "maleRatio": 0.875,
+  "height": 16,
+  "weight": 980,
+  "pokedex": [
+    "cobblemon.species.normanguer.desc"
+  ],
+  "labels": [
+    "normandy",
+    "starter"
+  ],
+  "aspects": [],
+  "abilities": [
+    "torrent",
+    "h:naturalcure"
+  ],
+  "eggGroups": [
+    "field",
+    "water_1"
+  ],
+  "baseStats": {
+    "hp": 110,
+    "attack": 75,
+    "defence": 90,
+    "special_attack": 105,
+    "special_defence": 95,
+    "speed": 55
+  },
+  "evYield": {
+    "hp": 1,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 2,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 265,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.73,
+  "hitbox": {
+    "width": 1.38,
+    "height": 2.2,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.25
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.2
+      }
+    },
+    "herd": {
+      "maxSize": 9,
+      "toleratedLeaders": [
+        {
+          "pokemon": "normanguer",
+          "tier": 1
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:leather",
+        "quantityRange": "1-2"
+      },
+      {
+        "item": "cobblemon:fairy_feather",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:laitfeerique",
+    "1:drainingkiss",
+    "1:tackle",
+    "1:growl",
+    "1:watergun",
+    "1:mudslap",
+    "6:babydolleyes",
+    "9:stomp",
+    "12:waterpulse",
+    "15:mudshot",
+    "20:aquaring",
+    "24:bubblebeam",
+    "28:bodyslam",
+    "32:milkdrink",
+    "36:muddywater",
+    "40:dazzlinggleam",
+    "46:earthpower",
+    "52:moonblast",
+    "58:calmmind",
+    "64:hydropump",
+    "egg:yawn",
+    "egg:amnesia",
+    "egg:curse",
+    "egg:doubleedge",
+    "tm:blizzard",
+    "tm:bodyslam",
+    "tm:bulldoze",
+    "tm:calmmind",
+    "tm:charm",
+    "tm:chillingwater",
+    "tm:dazzlinggleam",
+    "tm:doubleedge",
+    "tm:drainingkiss",
+    "tm:earthpower",
+    "tm:earthquake",
+    "tm:endure",
+    "tm:facade",
+    "tm:gigaimpact",
+    "tm:helpinghand",
+    "tm:highhorsepower",
+    "tm:hydropump",
+    "tm:hyperbeam",
+    "tm:icebeam",
+    "tm:icywind",
+    "tm:liquidation",
+    "tm:mistyterrain",
+    "tm:muddywater",
+    "tm:mudshot",
+    "tm:mudslap",
+    "tm:protect",
+    "tm:raindance",
+    "tm:rest",
+    "tm:sandstorm",
+    "tm:sleeptalk",
+    "tm:stompingtantrum",
+    "tm:substitute",
+    "tm:surf",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:waterpulse",
+    "tm:whirlpool"
+  ],
+  "preEvolution": "bovecume"
+}

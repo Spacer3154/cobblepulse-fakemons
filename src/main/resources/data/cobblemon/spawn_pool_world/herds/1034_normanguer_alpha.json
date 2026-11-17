@@ -1,0 +1,93 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "normanguer-alpha-1",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 8,
+      "levelRange": "36-100",
+      "weight": 30.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:bocage"
+            ]
+          }
+        },
+        {
+          "multiplier": 0.25,
+          "condition": {
+            "timeRange": "night"
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:bocage",
+          "#normandy:marais",
+          "#cobblemon:is_plains",
+          "#cobblemon:is_river"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_arid",
+          "#cobblemon:is_savanna",
+          "#cobblemon:is_jungle"
+        ]
+      },
+      "herdablePokemon": [
+        {
+          "pokemon": "normanguer held_item=cobblemon:water_gem alpha=true",
+          "weight": 30.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "meuhgousse",
+          "weight": 80.0,
+          "levelRange": "8-27",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "bovecume",
+          "weight": 70.0,
+          "levelRange": "18-37",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 5,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "normanguer",
+          "weight": 50.0,
+          "levelRange": "36-48",
+          "levelRangeOffset": "-1-5",
+          "maxTimes": 2,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ],
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

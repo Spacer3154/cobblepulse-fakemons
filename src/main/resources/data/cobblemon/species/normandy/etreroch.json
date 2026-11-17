@@ -1,0 +1,150 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1035,
+  "name": "Etreroch",
+  "primaryType": "rock",
+  "secondaryType": "flying",
+  "maleRatio": 0.5,
+  "height": 4,
+  "weight": 30,
+  "pokedex": [
+    "cobblemon.species.etreroch.desc"
+  ],
+  "labels": [
+    "normandy"
+  ],
+  "aspects": [],
+  "abilities": [
+    "keeneye",
+    "bigpecks",
+    "h:sturdy"
+  ],
+  "eggGroups": [
+    "flying",
+    "mineral"
+  ],
+  "baseStats": {
+    "hp": 45,
+    "attack": 55,
+    "defence": 50,
+    "special_attack": 35,
+    "special_defence": 35,
+    "speed": 55
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 1
+  },
+  "baseExperienceYield": 49,
+  "experienceGroup": "medium_slow",
+  "catchRate": 255,
+  "eggCycles": 15,
+  "baseFriendship": 50,
+  "baseScale": 0.32,
+  "hitbox": {
+    "width": 1.0,
+    "height": 1.25,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.3
+      },
+      "fly": {
+        "canFly": true
+      }
+    },
+    "herd": {
+      "maxSize": 6,
+      "toleratedLeaders": [
+        {
+          "pokemon": "etreroch",
+          "tier": 1
+        },
+        {
+          "pokemon": "archeolithe",
+          "tier": 2
+        },
+        {
+          "pokemon": "gargoylbatre",
+          "tier": 3
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "minecraft:flint",
+        "quantityRange": "0-1"
+      }
+    ]
+  },
+  "moves": [
+    "1:peck",
+    "1:sandattack",
+    "4:rockthrow",
+    "8:quickattack",
+    "12:wingattack",
+    "16:rocktomb",
+    "20:aerialace",
+    "24:rockslide",
+    "28:drillpeck",
+    "32:agility",
+    "egg:skyattack",
+    "egg:uturn",
+    "egg:defog",
+    "egg:roost",
+    "tm:acrobatics",
+    "tm:aerialace",
+    "tm:agility",
+    "tm:aircutter",
+    "tm:dig",
+    "tm:doubleedge",
+    "tm:dualwingbeat",
+    "tm:endure",
+    "tm:facade",
+    "tm:helpinghand",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockslide",
+    "tm:rocktomb",
+    "tm:sandstorm",
+    "tm:sleeptalk",
+    "tm:smackdown",
+    "tm:stealthrock",
+    "tm:substitute",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:uturn"
+  ],
+  "evolutions": [
+    {
+      "id": "etreroch_archeolithe",
+      "variant": "level_up",
+      "result": "archeolithe",
+      "consumeHeldItem": false,
+      "learnableMoves": [],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 17
+        }
+      ]
+    }
+  ]
+}

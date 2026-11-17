@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:cruchevados",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:cruchevados",
+      "model": "cobblemon:cruchevados.geo",
+      "texture": "cobblemon:textures/pokemon/1047_cruchevados/cruchevados.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1047_cruchevados/cruchevados_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1047_cruchevados/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

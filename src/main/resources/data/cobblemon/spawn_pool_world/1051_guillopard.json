@@ -1,0 +1,54 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "guillopard-1",
+      "pokemon": "guillopard min_perfect_ivs=3",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "70",
+      "weight": 4.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 3.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:lightning_rod"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "#minecraft:banners"
+            ]
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:bocage",
+          "#normandy:falaises",
+          "#cobblemon:is_hills"
+        ],
+        "canSeeSky": true,
+        "isThundering": true
+      },
+      "labels": [
+        "normandy",
+        "legendary",
+        "restricted"
+      ]
+    }
+  ]
+}

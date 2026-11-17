@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:normanguer",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:normanguer",
+      "model": "cobblemon:normanguer.geo",
+      "texture": "cobblemon:textures/pokemon/1034_normanguer/normanguer.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1034_normanguer/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1034_normanguer/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1034_normanguer/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1034_normanguer/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1034_normanguer/normanguer_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1034_normanguer/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1034_normanguer/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1034_normanguer/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1034_normanguer/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

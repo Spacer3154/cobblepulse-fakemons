@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:noroimard",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:noroimard",
+      "model": "cobblemon:noroimard.geo",
+      "texture": "cobblemon:textures/pokemon/1041_noroimard/noroimard.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1041_noroimard/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1041_noroimard/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1041_noroimard/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1041_noroimard/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1041_noroimard/noroimard_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1041_noroimard/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1041_noroimard/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1041_noroimard/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1041_noroimard/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

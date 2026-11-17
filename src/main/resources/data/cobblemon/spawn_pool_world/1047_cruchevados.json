@@ -1,0 +1,86 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "cruchevados-1",
+      "pokemon": "cruchevados",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "30-50",
+      "weight": 10.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 4.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:barrel"
+            ]
+          }
+        },
+        {
+          "multiplier": 3.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:decorated_pot"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:vergers",
+              "#normandy:bocage"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "canSeeSky": false,
+        "maxY": 30,
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "semi_legendary"
+      ]
+    },
+    {
+      "id": "cruchevados-2",
+      "pokemon": "cruchevados",
+      "presets": [
+        "trail_ruins"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "30-50",
+      "weight": 15.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "semi_legendary"
+      ]
+    }
+  ]
+}

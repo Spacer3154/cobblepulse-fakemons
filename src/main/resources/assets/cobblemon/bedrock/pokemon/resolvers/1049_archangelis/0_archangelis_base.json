@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:archangelis",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:archangelis",
+      "model": "cobblemon:archangelis.geo",
+      "texture": "cobblemon:textures/pokemon/1049_archangelis/archangelis.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1049_archangelis/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1049_archangelis/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1049_archangelis/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1049_archangelis/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1049_archangelis/archangelis_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1049_archangelis/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1049_archangelis/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1049_archangelis/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1049_archangelis/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:bovecume",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:bovecume",
+      "model": "cobblemon:bovecume.geo",
+      "texture": "cobblemon:textures/pokemon/1033_bovecume/bovecume.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1033_bovecume/bovecume_shiny.png"
+    }
+  ]
+}

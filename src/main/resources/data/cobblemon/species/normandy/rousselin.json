@@ -1,0 +1,148 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1038,
+  "name": "Rousselin",
+  "primaryType": "rock",
+  "secondaryType": "normal",
+  "maleRatio": 0.5,
+  "height": 6,
+  "weight": 180,
+  "pokedex": [
+    "cobblemon.species.rousselin.desc"
+  ],
+  "labels": [
+    "normandy"
+  ],
+  "aspects": [],
+  "abilities": [
+    "fluffy",
+    "furcoat",
+    "h:steadfast"
+  ],
+  "eggGroups": [
+    "field"
+  ],
+  "baseStats": {
+    "hp": 60,
+    "attack": 55,
+    "defence": 65,
+    "special_attack": 30,
+    "special_defence": 50,
+    "speed": 30
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 1,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 64,
+  "experienceGroup": "medium_fast",
+  "catchRate": 190,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.5,
+  "hitbox": {
+    "width": 1.0,
+    "height": 1.19,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.22
+      },
+      "swim": {
+        "avoidsWater": true,
+        "canSwimInWater": false
+      }
+    },
+    "herd": {
+      "maxSize": 9,
+      "toleratedLeaders": [
+        {
+          "pokemon": "rousselin",
+          "tier": 1
+        },
+        {
+          "pokemon": "roussinage",
+          "tier": 2
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:white_wool",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "minecraft:mutton",
+        "quantityRange": "0-1"
+      }
+    ]
+  },
+  "moves": [
+    "1:tackle",
+    "1:defensecurl",
+    "4:rollout",
+    "8:rockthrow",
+    "12:headbutt",
+    "16:rocktomb",
+    "20:cottonguard",
+    "24:takedown",
+    "25:healbell",
+    "28:rockslide",
+    "32:doubleedge",
+    "egg:curse",
+    "egg:doublekick",
+    "egg:counter",
+    "egg:yawn",
+    "tm:bodypress",
+    "tm:bodyslam",
+    "tm:charm",
+    "tm:doubleedge",
+    "tm:endure",
+    "tm:facade",
+    "tm:helpinghand",
+    "tm:irondefense",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockslide",
+    "tm:rocktomb",
+    "tm:sandstorm",
+    "tm:sleeptalk",
+    "tm:smackdown",
+    "tm:stealthrock",
+    "tm:stompingtantrum",
+    "tm:substitute",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:zenheadbutt",
+    "egg:healbell",
+    "tutor:healbell"
+  ],
+  "evolutions": [
+    {
+      "id": "rousselin_roussinage",
+      "variant": "level_up",
+      "result": "roussinage",
+      "consumeHeldItem": false,
+      "learnableMoves": [],
+      "requirements": [
+        {
+          "variant": "has_move",
+          "move": "healbell"
+        }
+      ]
+    }
+  ]
+}

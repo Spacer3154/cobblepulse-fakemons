@@ -1,0 +1,73 @@
+{
+  "portraitScale": 1.26,
+  "portraitTranslation": [
+    -0.84,
+    1.03,
+    0
+  ],
+  "profileScale": 0.6,
+  "profileTranslation": [
+    -0.17,
+    0.84,
+    0
+  ],
+  "rootBone": "normanguer",
+  "animations": {
+    "cry": "q.bedrock_stateful('normanguer', 'cry')",
+    "faint": "q.bedrock_primary('normanguer', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('normanguer', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('normanguer', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('normanguer', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('normanguer', 'blink')",
+        "q.bedrock_quirk('normanguer', 'graze')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('normanguer', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('normanguer', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('normanguer', 'sleep')"
+      ]
+    }
+  }
+}

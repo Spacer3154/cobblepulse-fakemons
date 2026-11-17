@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:rousselin",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:rousselin",
+      "model": "cobblemon:rousselin.geo",
+      "texture": "cobblemon:textures/pokemon/1038_rousselin/rousselin.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1038_rousselin/rousselin_shiny.png"
+    }
+  ]
+}

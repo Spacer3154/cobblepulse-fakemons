@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:roussinage",
+  "speciesId": "cobblemon:roussinage",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "#cobblemon:nether/is_basalt",
+    "minecraft:basalt_deltas",
+    {
+      "id": "betternether:magma_land",
+      "required": false
+    },
+    {
+      "id": "betternether:flooded_deltas",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:erupting_inferno",
+      "required": false
+    }
+  ]
+}

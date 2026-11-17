@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:roussinage",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:roussinage",
+      "model": "cobblemon:roussinage.geo",
+      "texture": "cobblemon:textures/pokemon/1039_roussinage/roussinage.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1039_roussinage/roussinage_shiny.png"
+    }
+  ]
+}

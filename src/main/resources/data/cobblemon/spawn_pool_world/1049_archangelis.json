@@ -1,0 +1,79 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "archangelis-1",
+      "pokemon": "archangelis min_perfect_ivs=3",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "70",
+      "weight": 5.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "timeRange": "twilight"
+          }
+        },
+        {
+          "multiplier": 2.5,
+          "condition": {
+            "moonPhase": "full"
+          }
+        },
+        {
+          "multiplier": 2.5,
+          "condition": {
+            "moonPhase": "new"
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:baie_du_mont"
+        ],
+        "canSeeSky": true
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "legendary"
+      ]
+    },
+    {
+      "id": "archangelis-2",
+      "pokemon": "archangelis min_perfect_ivs=3",
+      "presets": [
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "70",
+      "weight": 4.0,
+      "condition": {
+        "biomes": [
+          "#normandy:cieux_de_l_end"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "legendary"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "archeolithe-1",
+      "pokemon": "archeolithe",
+      "presets": [
+        "natural",
+        "treetop"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "18-36",
+      "weight": 14.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:cote_albatre"
+            ]
+          }
+        },
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "isThundering": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:cote_albatre",
+          "#normandy:falaises",
+          "#cobblemon:is_coast"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    },
+    {
+      "id": "archeolithe-2",
+      "pokemon": "archeolithe",
+      "presets": [
+        "natural",
+        "treetop"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "18-36",
+      "weight": 6.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "isThundering": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_peak",
+          "#cobblemon:is_mountain"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

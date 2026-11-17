@@ -1,0 +1,29 @@
+{
+  "type": "cobblemon:simple_pokedex_def",
+  "id": "cobblemon:normandy",
+  "sortOrder": 12,
+  "entries": [
+    "cobblemon:pomdraco",
+    "cobblemon:arboverger",
+    "cobblemon:cidrac",
+    "cobblemon:drakflam",
+    "cobblemon:vikinav",
+    "cobblemon:drakkarthor",
+    "cobblemon:meuhgousse",
+    "cobblemon:bovecume",
+    "cobblemon:normanguer",
+    "cobblemon:etreroch",
+    "cobblemon:archeolithe",
+    "cobblemon:gargoylbatre",
+    "cobblemon:rousselin",
+    "cobblemon:roussinage",
+    "cobblemon:homarbleu",
+    "cobblemon:noroimard",
+    "cobblemon:bolvados",
+    "cobblemon:cruchevados",
+    "cobblemon:alchibec",
+    "cobblemon:archangelis",
+    "cobblemon:sleipcheron",
+    "cobblemon:guillopard"
+  ]
+}

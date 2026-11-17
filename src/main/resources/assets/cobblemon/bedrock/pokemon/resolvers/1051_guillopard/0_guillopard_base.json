@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:guillopard",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:guillopard",
+      "model": "cobblemon:guillopard.geo",
+      "texture": "cobblemon:textures/pokemon/1051_guillopard/guillopard.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1051_guillopard/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1051_guillopard/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1051_guillopard/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1051_guillopard/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1051_guillopard/guillopard_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1051_guillopard/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1051_guillopard/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1051_guillopard/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1051_guillopard/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

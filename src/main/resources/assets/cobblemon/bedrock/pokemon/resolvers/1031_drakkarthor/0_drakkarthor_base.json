@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:drakkarthor",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:drakkarthor",
+      "model": "cobblemon:drakkarthor.geo",
+      "texture": "cobblemon:textures/pokemon/1031_drakkarthor/drakkarthor.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1031_drakkarthor/drakkarthor_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1031_drakkarthor/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

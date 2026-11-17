@@ -1,0 +1,151 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1031,
+  "name": "Drakkarthor",
+  "primaryType": "fire",
+  "secondaryType": "ghost",
+  "maleRatio": 0.875,
+  "height": 22,
+  "weight": 1350,
+  "pokedex": [
+    "cobblemon.species.drakkarthor.desc"
+  ],
+  "labels": [
+    "normandy",
+    "starter"
+  ],
+  "aspects": [],
+  "abilities": [
+    "blaze",
+    "h:flamebody"
+  ],
+  "eggGroups": [
+    "monster",
+    "dragon"
+  ],
+  "baseStats": {
+    "hp": 80,
+    "attack": 115,
+    "defence": 80,
+    "special_attack": 85,
+    "special_defence": 70,
+    "speed": 100
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 2,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 1
+  },
+  "baseExperienceYield": 265,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.79,
+  "hitbox": {
+    "width": 1.19,
+    "height": 2.77,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.32
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.2
+      }
+    },
+    "herd": {
+      "maxSize": 7,
+      "toleratedLeaders": [
+        {
+          "pokemon": "drakkarthor",
+          "tier": 1
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:oak_planks",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:spell_tag",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:sillageardent",
+    "1:shadowsneak",
+    "1:scratch",
+    "1:leer",
+    "1:ember",
+    "1:metalclaw",
+    "6:smokescreen",
+    "9:flamecharge",
+    "12:bite",
+    "18:firefang",
+    "22:incinerate",
+    "26:scaryface",
+    "30:irondefense",
+    "34:ironhead",
+    "40:shadowclaw",
+    "44:firelash",
+    "48:phantomforce",
+    "54:flareblitz",
+    "60:poltergeist",
+    "egg:crunch",
+    "egg:counter",
+    "egg:dragontail",
+    "egg:willowisp",
+    "tm:doubleedge",
+    "tm:endure",
+    "tm:facade",
+    "tm:fireblast",
+    "tm:firefang",
+    "tm:firepunch",
+    "tm:flamecharge",
+    "tm:flamethrower",
+    "tm:flareblitz",
+    "tm:gigaimpact",
+    "tm:heatwave",
+    "tm:helpinghand",
+    "tm:hex",
+    "tm:hyperbeam",
+    "tm:ironhead",
+    "tm:metalclaw",
+    "tm:nightshade",
+    "tm:overheat",
+    "tm:phantomforce",
+    "tm:poltergeist",
+    "tm:protect",
+    "tm:rest",
+    "tm:scaryface",
+    "tm:shadowball",
+    "tm:shadowclaw",
+    "tm:sleeptalk",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:swordsdance",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:uturn",
+    "tm:willowisp"
+  ],
+  "preEvolution": "vikinav"
+}

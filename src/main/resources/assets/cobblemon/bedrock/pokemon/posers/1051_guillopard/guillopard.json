@@ -1,0 +1,141 @@
+{
+  "portraitScale": 0.92,
+  "portraitTranslation": [
+    -0.84,
+    1.86,
+    0
+  ],
+  "profileScale": 0.26,
+  "profileTranslation": [
+    0.04,
+    1.35,
+    0
+  ],
+  "rootBone": "guillopard",
+  "animations": {
+    "cry": "q.bedrock_stateful('guillopard', 'cry')",
+    "faint": "q.bedrock_primary('guillopard', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('guillopard', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('guillopard', 'blink')"
+      ]
+    },
+    "in-air": {
+      "poseTypes": [
+        "STAND",
+        "WALK",
+        "NONE",
+        "FLOAT"
+      ],
+      "condition": "q.is_ridden && q.in_air",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('guillopard', 'ride_jump')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('guillopard', 'blink')"
+      ],
+      "transformTicks": 5
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('guillopard', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('guillopard', 'blink')"
+      ],
+      "condition": "!q.is_ridden"
+    },
+    "mount_idle": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "condition": "q.is_ridden && !q.in_air",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('guillopard', 'mount_ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('guillopard', 'blink')"
+      ]
+    },
+    "running": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "condition": "q.is_sprinting && !(q.is_ridden && q.in_air)",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('guillopard', 'ground_run')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('guillopard', 'blink')"
+      ],
+      "transformTicks": 5
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('guillopard', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('guillopard', 'blink')"
+      ],
+      "condition": "!q.is_sprinting && !(q.is_ridden && q.in_air)"
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('guillopard', 'sleep')"
+      ]
+    }
+  },
+  "firstPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.45,
+      0
+    ]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.6,
+      0.5
+    ],
+    "seat_1_reverse": [
+      0,
+      0.6,
+      0.5
+    ]
+  }
+}

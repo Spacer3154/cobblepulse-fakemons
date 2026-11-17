@@ -1,0 +1,48 @@
+{
+  "replace": false,
+  "values": [
+    "#normandy:cote_albatre",
+    "minecraft:windswept_hills",
+    "minecraft:windswept_gravelly_hills",
+    {
+      "id": "terralith:granite_cliffs",
+      "required": false
+    },
+    {
+      "id": "terralith:basalt_cliffs",
+      "required": false
+    },
+    {
+      "id": "terralith:yosemite_cliffs",
+      "required": false
+    },
+    {
+      "id": "terralith:stony_spires",
+      "required": false
+    },
+    {
+      "id": "wythers:stony_canyon",
+      "required": false
+    },
+    {
+      "id": "wythers:cool_stony_canyons",
+      "required": false
+    },
+    {
+      "id": "wythers:andesite_crags",
+      "required": false
+    },
+    {
+      "id": "wythers:autumnal_crags",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:crag",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:dacite_ridges",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [
+    "biomesoplenty"
+  ],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "deviljho-1",
+      "pokemon": "deviljho",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "50-70",
+      "weight": 1.0,
+      "condition": {
+        "biomes": [
+          "#normandy:wastelands"
+        ],
+        "canSeeSky": true
+      },
+      "weightMultipliers": [
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "timeRange": "night"
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isThundering": true
+          }
+        }
+      ],
+      "labels": [
+        "monster_hunter"
+      ]
+    }
+  ]
+}

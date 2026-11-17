@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:bolvados",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:bolvados",
+      "model": "cobblemon:bolvados.geo",
+      "texture": "cobblemon:textures/pokemon/1046_bolvados/bolvados.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1046_bolvados/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1046_bolvados/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1046_bolvados/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1046_bolvados/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1046_bolvados/bolvados_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1046_bolvados/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1046_bolvados/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1046_bolvados/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1046_bolvados/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

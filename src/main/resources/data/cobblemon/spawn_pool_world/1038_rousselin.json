@@ -1,0 +1,78 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "rousselin-1",
+      "pokemon": "rousselin",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "3-24",
+      "weight": 20.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:landes_hague"
+            ]
+          }
+        },
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "biomes": [
+              "#normandy:cote_albatre"
+            ]
+          }
+        },
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "isThundering": true
+          }
+        },
+        {
+          "multiplier": 0.25,
+          "condition": {
+            "timeRange": "night"
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:landes_hague",
+          "#normandy:cote_albatre",
+          "#cobblemon:is_highlands",
+          "#cobblemon:is_hills",
+          "#cobblemon:is_coast"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_arid",
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_volcanic"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

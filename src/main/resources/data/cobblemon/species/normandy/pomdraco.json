@@ -1,0 +1,151 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1026,
+  "name": "Pomdraco",
+  "primaryType": "grass",
+  "maleRatio": 0.875,
+  "height": 5,
+  "weight": 85,
+  "pokedex": [
+    "cobblemon.species.pomdraco.desc"
+  ],
+  "labels": [
+    "normandy",
+    "starter"
+  ],
+  "aspects": [],
+  "abilities": [
+    "overgrow",
+    "h:harvest"
+  ],
+  "eggGroups": [
+    "dragon",
+    "grass"
+  ],
+  "baseStats": {
+    "hp": 56,
+    "attack": 65,
+    "defence": 55,
+    "special_attack": 44,
+    "special_defence": 50,
+    "speed": 40
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 1,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 62,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.63,
+  "hitbox": {
+    "width": 0.96,
+    "height": 0.8,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.27
+      }
+    },
+    "herd": {
+      "maxSize": 4,
+      "toleratedLeaders": [
+        {
+          "pokemon": "pomdraco",
+          "tier": 1
+        },
+        {
+          "pokemon": "arboverger",
+          "tier": 2
+        },
+        {
+          "pokemon": "cidrac",
+          "tier": 3
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:apple",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:miracle_seed",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:tackle",
+    "1:growl",
+    "3:leafage",
+    "6:sweetscent",
+    "9:bite",
+    "12:razorleaf",
+    "15:dragonbreath",
+    "18:bulletseed",
+    "21:growth",
+    "24:seedbomb",
+    "27:synthesis",
+    "30:gravapple",
+    "33:dragonclaw",
+    "egg:leechseed",
+    "egg:dragondance",
+    "egg:grassyglide",
+    "egg:worryseed",
+    "tm:bulletseed",
+    "tm:doubleedge",
+    "tm:dragontail",
+    "tm:endure",
+    "tm:energyball",
+    "tm:facade",
+    "tm:gigadrain",
+    "tm:grassknot",
+    "tm:grassyglide",
+    "tm:grassyterrain",
+    "tm:helpinghand",
+    "tm:magicalleaf",
+    "tm:protect",
+    "tm:rest",
+    "tm:seedbomb",
+    "tm:sleeptalk",
+    "tm:solarbeam",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:swordsdance",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:trailblaze"
+  ],
+  "evolutions": [
+    {
+      "id": "pomdraco_arboverger",
+      "variant": "level_up",
+      "result": "arboverger",
+      "consumeHeldItem": false,
+      "learnableMoves": [],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 16
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1036,
+  "name": "Archeolithe",
+  "primaryType": "rock",
+  "secondaryType": "flying",
+  "maleRatio": 0.5,
+  "height": 10,
+  "weight": 210,
+  "pokedex": [
+    "cobblemon.species.archeolithe.desc"
+  ],
+  "labels": [
+    "normandy"
+  ],
+  "aspects": [],
+  "abilities": [
+    "keeneye",
+    "bigpecks",
+    "h:sturdy"
+  ],
+  "eggGroups": [
+    "flying",
+    "mineral"
+  ],
+  "baseStats": {
+    "hp": 60,
+    "attack": 75,
+    "defence": 70,
+    "special_attack": 45,
+    "special_defence": 50,
+    "speed": 75
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 2
+  },
+  "baseExperienceYield": 119,
+  "experienceGroup": "medium_slow",
+  "catchRate": 120,
+  "eggCycles": 15,
+  "baseFriendship": 50,
+  "baseScale": 0.55,
+  "hitbox": {
+    "width": 1.0,
+    "height": 1.83,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.32
+      },
+      "fly": {
+        "canFly": true
+      }
+    },
+    "herd": {
+      "maxSize": 6,
+      "toleratedLeaders": [
+        {
+          "pokemon": "archeolithe",
+          "tier": 1
+        },
+        {
+          "pokemon": "gargoylbatre",
+          "tier": 2
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "minecraft:flint",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:hard_stone",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:peck",
+    "1:sandattack",
+    "1:rockthrow",
+    "8:quickattack",
+    "12:wingattack",
+    "16:rocktomb",
+    "18:ancientpower",
+    "22:aerialace",
+    "27:rockslide",
+    "32:drillpeck",
+    "37:agility",
+    "42:acrobatics",
+    "47:stoneedge",
+    "egg:skyattack",
+    "egg:uturn",
+    "egg:defog",
+    "egg:roost",
+    "tm:acrobatics",
+    "tm:aerialace",
+    "tm:agility",
+    "tm:aircutter",
+    "tm:airslash",
+    "tm:dig",
+    "tm:doubleedge",
+    "tm:dualwingbeat",
+    "tm:endure",
+    "tm:facade",
+    "tm:fly",
+    "tm:helpinghand",
+    "tm:powergem",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockblast",
+    "tm:rockslide",
+    "tm:rocktomb",
+    "tm:sandstorm",
+    "tm:sleeptalk",
+    "tm:smackdown",
+    "tm:stealthrock",
+    "tm:stoneedge",
+    "tm:substitute",
+    "tm:tailwind",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:uturn"
+  ],
+  "preEvolution": "etreroch",
+  "evolutions": [
+    {
+      "id": "archeolithe_gargoylbatre",
+      "variant": "level_up",
+      "result": "gargoylbatre",
+      "consumeHeldItem": false,
+      "learnableMoves": [],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 41
+        }
+      ]
+    }
+  ]
+}

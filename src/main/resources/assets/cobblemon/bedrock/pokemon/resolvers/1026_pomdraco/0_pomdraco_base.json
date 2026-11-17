@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:pomdraco",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:pomdraco",
+      "model": "cobblemon:pomdraco.geo",
+      "texture": "cobblemon:textures/pokemon/1026_pomdraco/pomdraco.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1026_pomdraco/pomdraco_shiny.png"
+    }
+  ]
+}

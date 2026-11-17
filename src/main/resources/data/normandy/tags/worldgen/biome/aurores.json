@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "biomesoplenty:auroral_garden",
+      "required": false
+    }
+  ]
+}

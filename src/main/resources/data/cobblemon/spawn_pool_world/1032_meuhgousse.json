@@ -1,0 +1,76 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "meuhgousse-1",
+      "pokemon": "meuhgousse",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "5-30",
+      "weight": 14.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:bocage"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:hay_block"
+            ]
+          }
+        },
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "isRaining": true
+          }
+        },
+        {
+          "multiplier": 0.25,
+          "condition": {
+            "timeRange": "night"
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:bocage",
+          "#normandy:marais",
+          "#cobblemon:is_plains",
+          "#cobblemon:is_river"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_arid",
+          "#cobblemon:is_savanna",
+          "#cobblemon:is_jungle"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

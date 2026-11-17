@@ -1,0 +1,126 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1051,
+  "name": "Guillopard",
+  "primaryType": "steel",
+  "secondaryType": "electric",
+  "maleRatio": -1,
+  "height": 24,
+  "weight": 4100,
+  "pokedex": [
+    "cobblemon.species.guillopard.desc"
+  ],
+  "labels": [
+    "normandy",
+    "legendary",
+    "restricted"
+  ],
+  "aspects": [],
+  "abilities": [
+    "aureoleroyale"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "baseStats": {
+    "hp": 100,
+    "attack": 135,
+    "defence": 110,
+    "special_attack": 130,
+    "special_defence": 95,
+    "speed": 110
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 1,
+    "defence": 0,
+    "special_attack": 1,
+    "special_defence": 0,
+    "speed": 1
+  },
+  "baseExperienceYield": 340,
+  "experienceGroup": "slow",
+  "catchRate": 3,
+  "eggCycles": 120,
+  "baseFriendship": 0,
+  "baseScale": 0.83,
+  "hitbox": {
+    "width": 2.2,
+    "height": 2.9,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.4
+      }
+    }
+  },
+  "moves": [
+    "1:eclairsouverain",
+    "1:metalclaw",
+    "1:thundershock",
+    "1:leer",
+    "9:spark",
+    "18:slash",
+    "27:thunderfang",
+    "36:ironhead",
+    "45:wildcharge",
+    "54:thunderbolt",
+    "63:flashcannon",
+    "72:shiftgear",
+    "81:thunder",
+    "tm:bulkup",
+    "tm:closecombat",
+    "tm:crunch",
+    "tm:doubleedge",
+    "tm:electricterrain",
+    "tm:endure",
+    "tm:facade",
+    "tm:flashcannon",
+    "tm:gigaimpact",
+    "tm:helpinghand",
+    "tm:hyperbeam",
+    "tm:ironhead",
+    "tm:nastyplot",
+    "tm:protect",
+    "tm:rest",
+    "tm:sleeptalk",
+    "tm:steelbeam",
+    "tm:substitute",
+    "tm:swordsdance",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:thunder",
+    "tm:thunderbolt",
+    "tm:thunderfang",
+    "tm:thunderpunch",
+    "tm:thunderwave",
+    "tm:voltswitch",
+    "tm:wildcharge"
+  ],
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "70-95",
+          "JUMP": "70-95",
+          "SKILL": "60-85",
+          "SPEED": "60-85",
+          "STAMINA": "45-70"
+        }
+      }
+    },
+    "seats": [
+      {
+        "locator": "seat_1"
+      }
+    ]
+  }
+}

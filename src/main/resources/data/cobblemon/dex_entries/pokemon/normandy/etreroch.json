@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:etreroch",
+  "speciesId": "cobblemon:etreroch",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

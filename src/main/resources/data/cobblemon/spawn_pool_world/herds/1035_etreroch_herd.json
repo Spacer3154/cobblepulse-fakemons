@@ -1,0 +1,74 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "etreroch-herd-1",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "common",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 6,
+      "levelRange": "2-40",
+      "weight": 30.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:cote_albatre"
+            ]
+          }
+        },
+        {
+          "multiplier": 0.5,
+          "condition": {
+            "isRaining": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:cote_albatre",
+          "#normandy:falaises",
+          "#cobblemon:is_coast"
+        ],
+        "timeRange": "day"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "herdablePokemon": [
+        {
+          "pokemon": "etreroch",
+          "weight": 80.0,
+          "levelRange": "5-24",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "archeolithe",
+          "weight": 20.0,
+          "levelRange": "20-35",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 2,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ],
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

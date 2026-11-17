@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:cidrac",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:cidrac",
+      "model": "cobblemon:cidrac.geo",
+      "texture": "cobblemon:textures/pokemon/1028_cidrac/cidrac.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1028_cidrac/cidrac_shiny.png"
+    }
+  ]
+}

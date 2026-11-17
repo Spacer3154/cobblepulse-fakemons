@@ -1,0 +1,119 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1050,
+  "name": "Sleipcheron",
+  "primaryType": "ice",
+  "secondaryType": "ground",
+  "maleRatio": -1,
+  "height": 26,
+  "weight": 2950,
+  "pokedex": [
+    "cobblemon.species.sleipcheron.desc"
+  ],
+  "labels": [
+    "normandy",
+    "legendary"
+  ],
+  "aspects": [],
+  "abilities": [
+    "sabotsdobsidienne"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "baseStats": {
+    "hp": 110,
+    "attack": 130,
+    "defence": 115,
+    "special_attack": 65,
+    "special_defence": 85,
+    "speed": 75
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 2,
+    "defence": 1,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 290,
+  "experienceGroup": "slow",
+  "catchRate": 3,
+  "eggCycles": 120,
+  "baseFriendship": 0,
+  "baseScale": 0.64,
+  "hitbox": {
+    "width": 2.4,
+    "height": 4.05,
+    "fixed": false
+  },
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.45
+      }
+    }
+  },
+  "moves": [
+    "1:stomp",
+    "1:powdersnow",
+    "1:doublekick",
+    "9:icywind",
+    "18:bulldoze",
+    "27:avalanche",
+    "36:agility",
+    "45:highhorsepower",
+    "54:iciclecrash",
+    "63:earthquake",
+    "72:swordsdance",
+    "81:doubleedge",
+    "tm:avalanche",
+    "tm:blizzard",
+    "tm:bodyslam",
+    "tm:bulldoze",
+    "tm:closecombat",
+    "tm:doubleedge",
+    "tm:earthquake",
+    "tm:endure",
+    "tm:facade",
+    "tm:gigaimpact",
+    "tm:helpinghand",
+    "tm:highhorsepower",
+    "tm:hyperbeam",
+    "tm:icefang",
+    "tm:iciclespear",
+    "tm:icywind",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockslide",
+    "tm:sleeptalk",
+    "tm:snowscape",
+    "tm:stompingtantrum",
+    "tm:stoneedge",
+    "tm:substitute",
+    "tm:swordsdance",
+    "tm:takedown",
+    "tm:terablast"
+  ],
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "50-70",
+          "JUMP": "50-75",
+          "SKILL": "35-60",
+          "SPEED": "65-90",
+          "STAMINA": "75-100"
+        }
+      }
+    },
+    "seats": [
+      {
+        "locator": "seat_1"
+      }
+    ]
+  }
+}

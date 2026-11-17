@@ -1,0 +1,83 @@
+{
+  "portraitScale": 0.94,
+  "portraitTranslation": [
+    0.07,
+    1.57,
+    0
+  ],
+  "profileScale": 0.43,
+  "profileTranslation": [
+    -0.0,
+    1.09,
+    0
+  ],
+  "rootBone": "cruchevados",
+  "animations": {
+    "cry": "q.bedrock_stateful('cruchevados', 'cry')",
+    "faint": "q.bedrock_primary('cruchevados', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "portrait": {
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.bedrock('cruchevados', 'portrait')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('cruchevados', 'blink')"
+      ]
+    },
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('cruchevados', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('cruchevados', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('cruchevados', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('cruchevados', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('cruchevados', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('cruchevados', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('cruchevados', 'sleep')"
+      ]
+    }
+  }
+}

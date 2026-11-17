@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:etreroch",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:etreroch",
+      "model": "cobblemon:etreroch.geo",
+      "texture": "cobblemon:textures/pokemon/1035_etreroch/etreroch.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1035_etreroch/etreroch_shiny.png"
+    }
+  ]
+}

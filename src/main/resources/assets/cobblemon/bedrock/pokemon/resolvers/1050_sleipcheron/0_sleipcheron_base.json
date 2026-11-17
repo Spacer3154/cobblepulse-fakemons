@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:sleipcheron",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:sleipcheron",
+      "model": "cobblemon:sleipcheron.geo",
+      "texture": "cobblemon:textures/pokemon/1050_sleipcheron/sleipcheron.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1050_sleipcheron/sleipcheron_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1050_sleipcheron/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

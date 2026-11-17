@@ -1,0 +1,164 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1039,
+  "name": "Roussinage",
+  "primaryType": "rock",
+  "secondaryType": "normal",
+  "maleRatio": 0.5,
+  "height": 13,
+  "weight": 960,
+  "pokedex": [
+    "cobblemon.species.roussinage.desc"
+  ],
+  "labels": [
+    "normandy"
+  ],
+  "aspects": [],
+  "abilities": [
+    "fluffy",
+    "stamina",
+    "h:reckless"
+  ],
+  "eggGroups": [
+    "field"
+  ],
+  "baseStats": {
+    "hp": 95,
+    "attack": 95,
+    "defence": 110,
+    "special_attack": 45,
+    "special_defence": 85,
+    "speed": 50
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 2,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 168,
+  "experienceGroup": "medium_fast",
+  "catchRate": 75,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.81,
+  "hitbox": {
+    "width": 1.0,
+    "height": 2.0,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.25
+      },
+      "swim": {
+        "avoidsWater": true,
+        "canSwimInWater": false
+      }
+    },
+    "herd": {
+      "maxSize": 9,
+      "toleratedLeaders": [
+        {
+          "pokemon": "roussinage",
+          "tier": 1
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:white_wool",
+        "quantityRange": "1-2"
+      },
+      {
+        "item": "minecraft:mutton",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:hard_stone",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:tackle",
+    "1:defensecurl",
+    "1:rollout",
+    "1:healbell",
+    "8:rockthrow",
+    "12:headbutt",
+    "16:rocktomb",
+    "20:cottonguard",
+    "24:takedown",
+    "28:rockslide",
+    "32:zenheadbutt",
+    "36:irondefense",
+    "40:bodypress",
+    "44:doubleedge",
+    "50:headsmash",
+    "egg:curse",
+    "egg:doublekick",
+    "egg:counter",
+    "egg:yawn",
+    "tm:bodypress",
+    "tm:bodyslam",
+    "tm:bulkup",
+    "tm:charm",
+    "tm:doubleedge",
+    "tm:earthquake",
+    "tm:endure",
+    "tm:facade",
+    "tm:gigaimpact",
+    "tm:helpinghand",
+    "tm:highhorsepower",
+    "tm:hyperbeam",
+    "tm:irondefense",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockblast",
+    "tm:rockslide",
+    "tm:rocktomb",
+    "tm:sandstorm",
+    "tm:sleeptalk",
+    "tm:smackdown",
+    "tm:stealthrock",
+    "tm:stompingtantrum",
+    "tm:stoneedge",
+    "tm:substitute",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:zenheadbutt",
+    "tutor:healbell"
+  ],
+  "preEvolution": "rousselin",
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "35-55",
+          "JUMP": "40-60",
+          "SKILL": "30-50",
+          "SPEED": "35-55",
+          "STAMINA": "60-85"
+        }
+      }
+    },
+    "seats": [
+      {
+        "locator": "seat_1"
+      }
+    ]
+  }
+}

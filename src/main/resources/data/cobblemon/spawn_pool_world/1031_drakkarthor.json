@@ -1,0 +1,113 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "drakkarthor-1",
+      "pokemon": "drakkarthor",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "36-60",
+      "weight": 4.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 4.0,
+          "condition": {
+            "structures": [
+              "#minecraft:shipwreck"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isRaining": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:cote_albatre",
+          "#cobblemon:is_coast"
+        ],
+        "timeRange": "night"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    },
+    {
+      "id": "drakkarthor-2",
+      "pokemon": "drakkarthor",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "surface",
+      "bucket": "ultra-rare",
+      "level": "36-60",
+      "weight": 3.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isRaining": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "moonPhase": "new"
+          }
+        }
+      ],
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_cold_and_temperate_ocean",
+          "#cobblemon:is_cold_ocean"
+        ],
+        "canSeeSky": true,
+        "timeRange": "night"
+      },
+      "labels": [
+        "normandy"
+      ]
+    },
+    {
+      "id": "drakkarthor-3",
+      "pokemon": "drakkarthor",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "36-60",
+      "weight": 6.0,
+      "condition": {
+        "biomes": [
+          "#normandy:nether_des_ames"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

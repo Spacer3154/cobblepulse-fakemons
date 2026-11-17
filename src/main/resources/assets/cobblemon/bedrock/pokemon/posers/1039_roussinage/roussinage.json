@@ -1,0 +1,124 @@
+{
+  "portraitScale": 1.47,
+  "portraitTranslation": [
+    -0.65,
+    0.98,
+    0
+  ],
+  "profileScale": 0.65,
+  "profileTranslation": [
+    -0.05,
+    0.76,
+    0
+  ],
+  "rootBone": "roussinage",
+  "animations": {
+    "cry": "q.bedrock_stateful('roussinage', 'cry')",
+    "faint": "q.bedrock_primary('roussinage', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('roussinage', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('roussinage', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('roussinage', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('roussinage', 'blink')",
+        "q.bedrock_quirk('roussinage', 'graze')"
+      ],
+      "condition": "!q.is_ridden"
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('roussinage', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('roussinage', 'blink')"
+      ],
+      "condition": "!q.is_sprinting"
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('roussinage', 'sleep')"
+      ]
+    },
+    "running": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "condition": "q.is_sprinting",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('roussinage', 'ground_run')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('roussinage', 'blink')"
+      ]
+    },
+    "mount_idle": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "condition": "q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('roussinage', 'mount_ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('roussinage', 'blink')"
+      ]
+    }
+  },
+  "firstPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.45,
+      0
+    ]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.5,
+      0
+    ],
+    "seat_1_reverse": [
+      0,
+      0.5,
+      0
+    ]
+  }
+}

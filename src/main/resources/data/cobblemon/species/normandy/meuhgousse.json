@@ -1,0 +1,153 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1032,
+  "name": "Meuhgousse",
+  "primaryType": "water",
+  "maleRatio": 0.875,
+  "height": 6,
+  "weight": 140,
+  "pokedex": [
+    "cobblemon.species.meuhgousse.desc"
+  ],
+  "labels": [
+    "normandy",
+    "starter"
+  ],
+  "aspects": [],
+  "abilities": [
+    "torrent",
+    "h:hydration"
+  ],
+  "eggGroups": [
+    "field",
+    "water_1"
+  ],
+  "baseStats": {
+    "hp": 60,
+    "attack": 48,
+    "defence": 55,
+    "special_attack": 55,
+    "special_defence": 57,
+    "speed": 35
+  },
+  "evYield": {
+    "hp": 1,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 62,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.44,
+  "hitbox": {
+    "width": 1.0,
+    "height": 1.35,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.26
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.2
+      }
+    },
+    "herd": {
+      "maxSize": 7,
+      "toleratedLeaders": [
+        {
+          "pokemon": "meuhgousse",
+          "tier": 1
+        },
+        {
+          "pokemon": "bovecume",
+          "tier": 2
+        },
+        {
+          "pokemon": "normanguer",
+          "tier": 3
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:leather",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:tackle",
+    "1:growl",
+    "3:watergun",
+    "6:babydolleyes",
+    "9:stomp",
+    "12:waterpulse",
+    "15:mudshot",
+    "18:aquaring",
+    "21:bubblebeam",
+    "24:bodyslam",
+    "27:milkdrink",
+    "30:surf",
+    "egg:yawn",
+    "egg:amnesia",
+    "egg:curse",
+    "egg:doubleedge",
+    "tm:bodyslam",
+    "tm:charm",
+    "tm:chillingwater",
+    "tm:doubleedge",
+    "tm:drainingkiss",
+    "tm:endure",
+    "tm:facade",
+    "tm:helpinghand",
+    "tm:icywind",
+    "tm:mudshot",
+    "tm:protect",
+    "tm:raindance",
+    "tm:rest",
+    "tm:sleeptalk",
+    "tm:substitute",
+    "tm:surf",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:waterpulse",
+    "tm:whirlpool"
+  ],
+  "evolutions": [
+    {
+      "id": "meuhgousse_bovecume",
+      "variant": "level_up",
+      "result": "bovecume",
+      "consumeHeldItem": false,
+      "learnableMoves": [],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 16
+        }
+      ]
+    }
+  ]
+}

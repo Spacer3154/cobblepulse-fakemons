@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:noroimard",
+  "speciesId": "cobblemon:noroimard",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

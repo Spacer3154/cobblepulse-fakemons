@@ -1,0 +1,62 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "arboverger-1",
+      "pokemon": "arboverger",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "16-40",
+      "weight": 7.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.5,
+          "condition": {
+            "biomes": [
+              "#normandy:vergers"
+            ]
+          }
+        },
+        {
+          "multiplier": 0.5,
+          "condition": {
+            "timeRange": "night"
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:vergers",
+          "#normandy:bocage",
+          "#cobblemon:is_forest"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_taiga",
+          "#cobblemon:is_spooky",
+          "#cobblemon:is_arid"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

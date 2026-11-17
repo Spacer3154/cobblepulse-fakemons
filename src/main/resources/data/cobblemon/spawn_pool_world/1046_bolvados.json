@@ -1,0 +1,57 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "bolvados-1",
+      "pokemon": "bolvados",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "rare",
+      "level": "15-30",
+      "weight": 40.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 4.0,
+          "condition": {
+            "neededNearbyBlocks": [
+              "minecraft:barrel"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:vergers",
+              "#normandy:bocage"
+            ]
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "canSeeSky": false,
+        "maxY": 50,
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      },
+      "labels": [
+        "normandy",
+        "semi_legendary"
+      ]
+    }
+  ]
+}

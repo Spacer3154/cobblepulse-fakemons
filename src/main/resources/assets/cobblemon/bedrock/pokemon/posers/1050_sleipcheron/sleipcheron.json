@@ -1,0 +1,142 @@
+{
+  "portraitScale": 0.67,
+  "portraitTranslation": [
+    -0.73,
+    2.13,
+    0
+  ],
+  "profileScale": 0.3,
+  "profileTranslation": [
+    -0.02,
+    1.29,
+    0
+  ],
+  "rootBone": "sleipcheron",
+  "animations": {
+    "cry": "q.bedrock_stateful('sleipcheron', 'cry')",
+    "faint": "q.bedrock_primary('sleipcheron', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('sleipcheron', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('sleipcheron', 'blink')"
+      ]
+    },
+    "in-air": {
+      "poseTypes": [
+        "STAND",
+        "WALK",
+        "NONE",
+        "FLOAT"
+      ],
+      "condition": "q.is_ridden && q.in_air",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('sleipcheron', 'ride_jump')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('sleipcheron', 'blink')"
+      ],
+      "transformTicks": 5
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('sleipcheron', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('sleipcheron', 'blink')",
+        "q.bedrock_quirk('sleipcheron', 'graze')"
+      ],
+      "condition": "!q.is_ridden"
+    },
+    "mount_idle": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "condition": "q.is_ridden && !q.in_air",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('sleipcheron', 'mount_ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('sleipcheron', 'blink')"
+      ]
+    },
+    "running": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "condition": "q.is_sprinting && !(q.is_ridden && q.in_air)",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('sleipcheron', 'ground_run')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('sleipcheron', 'blink')"
+      ],
+      "transformTicks": 5
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('sleipcheron', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('sleipcheron', 'blink')"
+      ],
+      "condition": "!q.is_sprinting && !(q.is_ridden && q.in_air)"
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('sleipcheron', 'sleep')"
+      ]
+    }
+  },
+  "firstPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.5,
+      0
+    ]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.7,
+      0.5
+    ],
+    "seat_1_reverse": [
+      0,
+      0.7,
+      0.5
+    ]
+  }
+}

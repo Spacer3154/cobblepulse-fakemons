@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#cobblemon:nether/is_soul_fire",
+    "minecraft:soul_sand_valley",
+    {
+      "id": "betternether:soul_plain",
+      "required": false
+    }
+  ]
+}

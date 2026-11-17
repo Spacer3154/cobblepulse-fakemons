@@ -1,0 +1,211 @@
+{
+  "portraitScale": 1.58,
+  "portraitTranslation": [
+    -0.06,
+    -0.54,
+    0
+  ],
+  "profileScale": 0.45,
+  "profileTranslation": [
+    -0.05,
+    1.06,
+    0
+  ],
+  "rootBone": "noroimard",
+  "firstPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.45,
+      0
+    ]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.5,
+      0
+    ],
+    "seat_1_reverse": [
+      0,
+      0.5,
+      0
+    ]
+  },
+  "animations": {
+    "cry": "q.bedrock_stateful('noroimard', 'cry')",
+    "faint": "q.bedrock_primary('noroimard', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "isUnderWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "underwater-battle": {
+      "poseTypes": [
+        "STAND",
+        "FLOAT"
+      ],
+      "isBattle": true,
+      "isUnderWater": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'water_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "portrait": {
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "animations": [
+        "q.bedrock('noroimard', 'portrait')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
+      "isBattle": false,
+      "isUnderWater": false,
+      "condition": "!q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "isUnderWater": false,
+      "condition": "!q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "float": {
+      "poseTypes": [
+        "FLOAT",
+        "STAND"
+      ],
+      "isTouchingWater": true,
+      "isUnderWater": true,
+      "condition": "!q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'water_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "swim": {
+      "poseTypes": [
+        "SWIM",
+        "WALK"
+      ],
+      "isTouchingWater": true,
+      "condition": "!q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'water_swim')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('noroimard', 'sleep')"
+      ]
+    },
+    "mount_idle": {
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
+      "isBattle": false,
+      "isUnderWater": false,
+      "condition": "q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "mount_walk": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "isUnderWater": false,
+      "condition": "q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "mount_float": {
+      "poseTypes": [
+        "FLOAT",
+        "STAND"
+      ],
+      "isTouchingWater": true,
+      "isUnderWater": true,
+      "condition": "q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('noroimard', 'water_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    },
+    "mount_swim": {
+      "poseTypes": [
+        "SWIM",
+        "WALK",
+        "FLOAT"
+      ],
+      "isTouchingWater": true,
+      "condition": "q.is_ridden",
+      "animations": [
+        "q.bedrock('noroimard', 'water_swim')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('noroimard', 'blink')"
+      ]
+    }
+  }
+}

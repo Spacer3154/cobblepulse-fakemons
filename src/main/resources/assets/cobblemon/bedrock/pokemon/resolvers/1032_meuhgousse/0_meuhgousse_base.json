@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:meuhgousse",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:meuhgousse",
+      "model": "cobblemon:meuhgousse.geo",
+      "texture": "cobblemon:textures/pokemon/1032_meuhgousse/meuhgousse.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1032_meuhgousse/meuhgousse_shiny.png"
+    }
+  ]
+}

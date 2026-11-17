@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:cruchevados",
+  "speciesId": "cobblemon:cruchevados",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

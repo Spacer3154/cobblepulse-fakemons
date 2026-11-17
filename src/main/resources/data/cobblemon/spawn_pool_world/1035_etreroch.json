@@ -1,0 +1,106 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "etreroch-1",
+      "pokemon": "etreroch",
+      "presets": [
+        "natural",
+        "treetop"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "2-20",
+      "weight": 22.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "biomes": [
+              "#normandy:cote_albatre"
+            ]
+          }
+        },
+        {
+          "multiplier": 0.5,
+          "condition": {
+            "isRaining": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#normandy:cote_albatre",
+          "#normandy:falaises",
+          "#cobblemon:is_coast"
+        ],
+        "timeRange": "day"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    },
+    {
+      "id": "etreroch-2",
+      "pokemon": "etreroch",
+      "presets": [
+        "natural",
+        "treetop"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "2-20",
+      "weight": 8.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 0.5,
+          "condition": {
+            "isRaining": true
+          }
+        },
+        {
+          "multiplier": 2.0,
+          "condition": {
+            "isPokeSnack": true
+          }
+        }
+      ],
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_hills",
+          "#cobblemon:is_mountain"
+        ],
+        "timeRange": "day"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_volcanic"
+        ]
+      },
+      "labels": [
+        "normandy"
+      ]
+    }
+  ]
+}

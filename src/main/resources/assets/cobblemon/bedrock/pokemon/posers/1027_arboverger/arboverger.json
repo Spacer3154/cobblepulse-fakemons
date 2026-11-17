@@ -1,0 +1,72 @@
+{
+  "portraitScale": 1.6,
+  "portraitTranslation": [
+    -0.41,
+    -0.51,
+    0
+  ],
+  "profileScale": 0.95,
+  "profileTranslation": [
+    0.09,
+    0.32,
+    0
+  ],
+  "rootBone": "arboverger",
+  "animations": {
+    "cry": "q.bedrock_stateful('arboverger', 'cry')",
+    "faint": "q.bedrock_primary('arboverger', 'faint', q.curve('one'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('arboverger', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('arboverger', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('arboverger', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('arboverger', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('arboverger', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('arboverger', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('arboverger', 'sleep')"
+      ]
+    }
+  }
+}

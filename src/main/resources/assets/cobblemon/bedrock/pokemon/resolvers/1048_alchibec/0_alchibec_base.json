@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:alchibec",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:alchibec",
+      "model": "cobblemon:alchibec.geo",
+      "texture": "cobblemon:textures/pokemon/1048_alchibec/alchibec.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1048_alchibec/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1048_alchibec/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1048_alchibec/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1048_alchibec/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1048_alchibec/alchibec_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1048_alchibec/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1048_alchibec/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1048_alchibec/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1048_alchibec/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

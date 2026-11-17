@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:drakflam",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:drakflam",
+      "model": "cobblemon:drakflam.geo",
+      "texture": "cobblemon:textures/pokemon/1029_drakflam/drakflam.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1029_drakflam/flame/normal/1.png",
+              "cobblemon:textures/pokemon/1029_drakflam/flame/normal/2.png",
+              "cobblemon:textures/pokemon/1029_drakflam/flame/normal/3.png",
+              "cobblemon:textures/pokemon/1029_drakflam/flame/normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1029_drakflam/drakflam_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1029_drakflam/flame/shiny/1.png",
+              "cobblemon:textures/pokemon/1029_drakflam/flame/shiny/2.png",
+              "cobblemon:textures/pokemon/1029_drakflam/flame/shiny/3.png",
+              "cobblemon:textures/pokemon/1029_drakflam/flame/shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

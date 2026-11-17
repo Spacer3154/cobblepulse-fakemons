@@ -1,0 +1,160 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 1030,
+  "name": "Vikinav",
+  "primaryType": "fire",
+  "secondaryType": "steel",
+  "maleRatio": 0.875,
+  "height": 12,
+  "weight": 520,
+  "pokedex": [
+    "cobblemon.species.vikinav.desc"
+  ],
+  "labels": [
+    "normandy",
+    "starter"
+  ],
+  "aspects": [],
+  "abilities": [
+    "blaze",
+    "h:rockhead"
+  ],
+  "eggGroups": [
+    "monster",
+    "dragon"
+  ],
+  "baseStats": {
+    "hp": 65,
+    "attack": 85,
+    "defence": 65,
+    "special_attack": 65,
+    "special_defence": 55,
+    "speed": 70
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 2,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 142,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.7,
+  "hitbox": {
+    "width": 1.0,
+    "height": 1.7,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "light": "0-4"
+    },
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.3
+      }
+    },
+    "herd": {
+      "maxSize": 5,
+      "toleratedLeaders": [
+        {
+          "pokemon": "vikinav",
+          "tier": 1
+        },
+        {
+          "pokemon": "drakkarthor",
+          "tier": 2
+        }
+      ]
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:iron_nugget",
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:scratch",
+    "1:leer",
+    "1:ember",
+    "1:metalclaw",
+    "6:smokescreen",
+    "9:flamecharge",
+    "12:bite",
+    "18:firefang",
+    "22:incinerate",
+    "26:scaryface",
+    "30:irondefense",
+    "34:ironhead",
+    "38:firelash",
+    "42:flareblitz",
+    "46:heavyslam",
+    "50:headsmash",
+    "egg:crunch",
+    "egg:counter",
+    "egg:dragontail",
+    "egg:willowisp",
+    "tm:bulldoze",
+    "tm:doubleedge",
+    "tm:endure",
+    "tm:facade",
+    "tm:fireblast",
+    "tm:firefang",
+    "tm:firepunch",
+    "tm:flamecharge",
+    "tm:flamethrower",
+    "tm:flareblitz",
+    "tm:flashcannon",
+    "tm:heatwave",
+    "tm:heavyslam",
+    "tm:helpinghand",
+    "tm:irondefense",
+    "tm:ironhead",
+    "tm:metalclaw",
+    "tm:overheat",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockslide",
+    "tm:scaryface",
+    "tm:sleeptalk",
+    "tm:steelbeam",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:willowisp"
+  ],
+  "preEvolution": "drakflam",
+  "evolutions": [
+    {
+      "id": "vikinav_drakkarthor",
+      "variant": "level_up",
+      "result": "drakkarthor",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "sillageardent"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 36
+        }
+      ]
+    }
+  ]
+}
