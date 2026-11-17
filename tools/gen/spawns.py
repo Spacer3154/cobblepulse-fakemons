@@ -434,10 +434,13 @@ def dump(path, obj):
         json.dump(obj, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
+# only the Normandie files are regenerated here (the Monster Hunter ones come from monster_hunter.py)
 for old in glob.glob(f"{POOL}/**/*.json", recursive=True):
-    os.remove(old)
+    if not os.path.basename(old).startswith("11231_"):
+        os.remove(old)
 for old in glob.glob(f"{TAGS}/*.json"):
-    os.remove(old)
+    if os.path.basename(old) != "wastelands.json":
+        os.remove(old)
 
 for name, values in GROUPS.items():
     dump(f"{TAGS}/{name}.json", {"replace": False, "values": [tag_entry(v) for v in values]})
