@@ -323,3 +323,9 @@ successeur, Oh The Biomes We've Gone, est couvert.
 - Fabrication : Pierre Feu en haut, Bloc de fer à gauche et à droite, Méga-Gemme brute (`mega_showdown:mega_stone`)
   au centre, Peau Métal en bas. Débloquée dans le livre de recettes en ramassant une Méga-Gemme.
 - Commandes : `/give @s cobblepulse_ecology:glavenusite` ou `/function normandy:give_glavenusite`.
+
+## Blocs d'apparition
+- Le preset `natural` de Cobblemon n'autorise l'apparition que sur les blocs du tag `#cobblemon:natural`. Le sol des
+  Wasteland de Biomes O' Plenty (`biomesoplenty:dried_salt`) n'en faisait pas partie : le mod l'ajoute au tag
+  (entrée facultative, sans effet sans Biomes O' Plenty), ce qui débloque Deviljho et toutes les apparitions
+  « naturelles » des Wasteland.
