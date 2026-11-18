@@ -72,7 +72,8 @@ open(os.path.join(SRV, "server.properties"), "w").write(
 
 COMMANDS = [
     "sleep 5",
-    "forceload add 0 0",
+    "forceload add 0 0 47 15",
+    "fillbiome 18 60 -6 29 140 6 minecraft:snowy_plains",
     "sleep 3",
     "summon minecraft:item 0 120 0 {Item:{id:\"cobblepulse_ecology:deviljhonite\",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}",
     "summon minecraft:item 2 120 0 {Item:{id:\"cobblepulse_ecology:glavenusite\",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}",
@@ -94,6 +95,7 @@ COMMANDS = [
     "execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Species",
     "execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.FormId",
     "sleep 5",
+    "say ZAMTRIOS CLIMATE CHECK (snowy_plains on x 18..29: the three Zamtrios should be armor)",
     "execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.FormId",
     "execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Features",
     "reload",
