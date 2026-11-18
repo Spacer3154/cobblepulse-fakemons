@@ -962,8 +962,13 @@ def status(mega=False):
         if bn == "jaw":
             continue
         d = 0.06 * ("tail", "tail2", "tail3", "blade").index(bn) if bn.startswith(("tail", "blade")) else 0
-        b[bn] = keys(rotation={0: [0, 0, 0], 0.35 + d: [v * 0.45 for v in r], t_in + d: r, t_out: r,
-                               t_out + 0.35 + d: [v * 0.25 for v in r], L: [0, 0, 0]})
+        b[bn] = keys(rotation={0: [0, 0, 0], 0.35 + d: [v * 0.45 for v in r], t_in + d: r, t_in + d + 0.1: r,
+                               t_out - 0.1: r, t_out: r, t_out + 0.35 + d: [v * 0.25 for v in r], L: [0, 0, 0]})
+        # (the duplicated keys keep the catmull-rom curve flat on the hold: no overshoot into the head)
+    # the blade rolls flat first, while still behind, then the tail brings it round to the jaws
+    r = SHARPEN["blade"]
+    b["blade"] = keys(rotation={0: [0, 0, 0], 0.3: r, 0.4: r, t_out - 0.1: r, t_out: r,
+                                t_out + 0.35: [v * 0.25 for v in r], L: [0, 0, 0]})
     # grinding: the tail draws the blade back and forth through the jaws, the head follows a little
     saw = lambda amp, ph=0: f"math.sin((q.anim_time-{t_in})*720+{ph})*{amp}"
     for bn in ("tail3",):
