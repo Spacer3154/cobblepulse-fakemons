@@ -390,7 +390,7 @@ species_file("zamtrios", {
     "primaryType": "water", "secondaryType": "ice", "maleRatio": 0.5,
     "height": Z_HEIGHT, "weight": 2150, "pokedex": ["cobblemon.species.zamtrios.desc"],
     "labels": ["monster_hunter", "custom"], "aspects": [], "abilities": Z_ABIL,
-    "eggGroups": ["water1", "monster"],
+    "eggGroups": ["water_1", "monster"],
     "baseStats": {"hp": 105, "attack": 100, "defence": 95, "special_attack": 75, "special_defence": 80, "speed": 60},
     "evYield": {"hp": 2, "attack": 0, "defence": 0, "special_attack": 0, "special_defence": 0, "speed": 0},
     "baseExperienceYield": 186, "experienceGroup": "slow", "catchRate": 75, "eggCycles": 20, "baseFriendship": 50,

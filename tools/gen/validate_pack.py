@@ -53,10 +53,14 @@ REQ = ["implemented", "nationalPokedexNumber", "name", "primaryType", "maleRatio
        "labels", "abilities", "eggGroups", "baseStats", "evYield", "baseExperienceYield", "experienceGroup",
        "catchRate", "eggCycles", "baseFriendship", "baseScale", "hitbox", "moves"]
 used_moves = set()
+EGG_GROUPS = {"monster", "water_1", "bug", "flying", "field", "fairy", "grass", "human_like", "water_3", "mineral",
+              "amorphous", "water_2", "ditto", "dragon", "undiscovered"}
 for sid, d in species.items():
     for k in REQ:
         if k not in d: E(f"{sid}: missing {k}")
     if d.get("implemented") is not True: E(f"{sid}: implemented != true")
+    for g in d["eggGroups"]:             # Cobblemon's EggGroup identifiers (enum name, lower case)
+        if g not in EGG_GROUPS: E(f"{sid}: unknown egg group {g}")
     if re.sub(r"[^a-z0-9]+", "", d["name"].lower()) != sid: E(f"{sid}: showdownId mismatch")
     ref = PDF.get(d["nationalPokedexNumber"])
     if not ref: E(f"{sid}: unexpected dex number"); continue

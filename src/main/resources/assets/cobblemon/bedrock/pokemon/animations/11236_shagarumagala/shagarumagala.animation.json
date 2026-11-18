@@ -983,14 +983,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -3479,14 +3479,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -4513,14 +4513,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -5823,14 +5823,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -8033,14 +8033,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -9342,14 +9342,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -10255,14 +10255,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -13003,7 +13003,7 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": {
       "0.0": [
        0,
@@ -13027,7 +13027,7 @@
       ]
      }
     },
-    "lid_right": {
+    "lid_left": {
      "scale": {
       "0.0": [
        0,
@@ -14425,14 +14425,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,
@@ -15495,14 +15495,14 @@
       ]
      }
     },
-    "lid_left": {
+    "lid_right": {
      "scale": [
       0,
       0,
       0
      ]
     },
-    "lid_right": {
+    "lid_left": {
      "scale": [
       0,
       0,

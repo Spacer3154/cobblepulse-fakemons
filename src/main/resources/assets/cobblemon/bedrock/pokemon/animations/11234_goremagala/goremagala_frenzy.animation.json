@@ -13161,18 +13161,18 @@
       0
      ]
     },
-    "antenna_left": {
-     "rotation": [
-      -50,
-      0,
-      20
-     ]
-    },
     "antenna_right": {
      "rotation": [
       -50,
       0,
       -20
+     ]
+    },
+    "antenna_left": {
+     "rotation": [
+      -50,
+      0,
+      20
      ]
     }
    },

@@ -24,8 +24,9 @@ apparitions, Pokédex, Showdown, recette…) et les ressources (modèles, textur
 - 6 capacités + 4 talents en JavaScript Showdown
 - 34 fichiers d'apparition (22 espèces + 12 hordes et Alphas) et 12 groupes de biomes (voir « Apparitions »)
 - Pokédex régional « Normandie », ajouté au Pokédex national
-- Catégorie **Monster Hunter** : Deviljho (méga : Deviljho Carnage, Deviljhonite) et Glavenus (méga : Glavenus
-  Lame-Chaos, Glavenusite), voir plus bas ; Pokédex « Monster Hunter » ajouté au national
+- Catégorie **Monster Hunter** : Deviljho (méga : Deviljho Carnage, Deviljhonite), Glavenus (méga : Glavenus
+  Lame-Chaos, Glavenusite), Zamtrios et la lignée Magala (3.1.0), voir plus bas ; Pokédex « Monster Hunter » ajouté
+  au national
 - Langue `fr_fr` (et `en_us`, identique, en solution de repli)
 
 ## Changements par rapport à la v1
@@ -329,3 +330,83 @@ successeur, Oh The Biomes We've Gone, est couvert.
   Wasteland de Biomes O' Plenty (`biomesoplenty:dried_salt`) n'en faisait pas partie : le mod l'ajoute au tag
   (entrée facultative, sans effet sans Biomes O' Plenty), ce qui débloque Deviljho et toutes les apparitions
   « naturelles » des Wasteland.
+
+# Zamtrios et la lignée Magala (3.1.0)
+
+D'après le cahier des charges « CobblePulse-Ecology — 4 Fakemons ». Numéros 11233 à 11236 (à la suite de Deviljho et
+Glavenus, catégorie Monster Hunter). Écarts assumés avec le cahier : version 3.1.0 (le mod était déjà en 3.0.0),
+identifiants Cobblemon sans tiret bas (`zamtrios`, `goremagala`, `chaoticgoremagala`, `shagarumagala`, comme toutes
+les espèces ; les noms affichés restent « Gore Magala »…), pas de dépendance obligatoire à Cobblepulse-utils 1.2.0,
+pas encore de cris sonores (animation de cri seulement), movepools refaits avec de vraies capacités (les capacités
+inventées de la fiche — Jugement Céleste, Frénésie Impure… — sont remplacées par des capacités officielles proches),
+textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de 100 unités de long). Le biome
+`terralith:shadow_lands` n'existe pas : Gore Magala utilise les Moonlight Grove / Valley de Terralith à la place.
+
+## Zamtrios (n° 11233, Eau / Glace)
+- 2,9 m, 215 kg, total 515 (PV 105, Att 100, Déf 95, Att Spé 75, Déf Spé 80, Vit 60), +2 PV. Talents **Toison
+  Épaisse**, **Prognathe**, caché **Glissade**. Taux de capture 75, 50 % mâles, groupes Aquatique 1 et Monstre,
+  20 cycles. Nage et respire sous l'eau.
+- Trois formes (caractéristique d'espèce `zamtrios_form` = `normal` / `armor` / `inflated`) :
+  - **Armure de Glace** (forme du monde et de combat) : PV 105, Att 120, Déf 125, Att Spé 70, Déf Spé 85, Vit 40.
+    Dans le monde, le mod la met automatiquement à tout Zamtrios (sauvage ou sorti par un dresseur) qui se trouve dans
+    un biome gelé — là où il neige à sa hauteur — et la retire ailleurs (vérification toutes les 2 s, hors combat).
+    En combat, un Zamtrios normal la prend dès qu'il utilise une capacité Glace. Les pics de glace luisent la nuit
+    (couche émissive), et s'éteignent quand il dort.
+  - **Gonflée** (combat uniquement) : PV 105, Att 90, Déf 115, Att Spé 85, Déf Spé 115, Vit 25. Prise à mi-PV ou
+    moins, ou après Stockage ; elle reste jusqu'à la fin du combat (même après un changement). Le modèle devient une
+    énorme boule (sac gonflé), la tête et les pattes dépassent.
+  - Mécanique : une condition d'espèce Showdown (`mega_showdown/showdown/conditions/zamtrios.js`, ses gestionnaires
+    s'appliquent à tout Zamtrios quel que soit son talent) change la forme (changement permanent qui garde le talent
+    du Pokémon) ; le registre `battle_form` de Mega Showdown en fait l'aspect côté Cobblemon, remis à `normal` à la
+    fin du combat (puis le biome décide).
+- Capacités par niveau (fortes, moyennes et faibles) : 1 Trempette, Charge, Poudreuse, Pistolet à O ; 5 Morsure ;
+  9 Grincement ; 12 Armure ; 15 Vent Glace ; 18 Aqua-Jet ; 21 Stockage, Avale, Relâche ; 24 Crocs Givre ; 27 Buée
+  Noire ; 30 Roulade ; 33 Aqua-Brèche ; 36 Laser Glace ; 39 Mâchouille ; 42 Tacle Lourd ; 45 Hydrocanon ; 48 Chute
+  Glace ; 52 Séisme ; 56 Blizzard ; 60 Vague à Lame ; 64 Glaciation. CT, œufs et Maître des capacités dans le fichier.
+- Apparitions (**rare**, niveau 35-55) : sous l'eau des océans gelés (en armure), des océans froids (normal), et à
+  terre sur les plages enneigées, les pics de glace et les rivières gelées (en armure, ×1,5 sous la pluie).
+  Butin : glace compactée, cabillaud, Glace Éternelle (15 %).
+- Modèle : celui fourni, converti pour Cobblemon (UV par face → UV en boîte, tailles arrondies à l'unité, atlas
+  1024x512 refait à partir des deux textures fournies), trois modèles (`zamtrios`, `zamtrios_armor`,
+  `zamtrios_inflated`), chromatique bleu-violet (nageoires dorées, armure lavande). Animations fournies converties
+  (attente, marche, course, sommeil, K.O. dressé en rugissant puis retourné, cri avec onde de choc au sol) ;
+  écrites : attente de combat, morsure (physique), jet de glace (spéciale), piétinement (statut), nage. Forme
+  Gonflée : sa propre série (balancement, plaquage, jet d'eau, roulade, K.O. qui se dégonfle).
+
+## Gore Magala (n° 11234, Ténèbres / Dragon, légendaire)
+- 4,2 m, 230 kg, total 580 (PV 95, Att 115, Déf 85, Att Spé 115, Déf Spé 85, Vit 85), +1 Att +1 Att Spé. Talents
+  **Corps Maudit**, **Tension**, caché **Infiltration**. Capture 5, asexué, groupe Inconnu, 30 cycles. Nocturne
+  (dort le jour).
+- **Mode Furie** (forme de combat, aspect `magala_frenzy`) : à mi-PV ou moins, ses antennes se déploient et luisent
+  en violet, les nervures des ailes aussi ; PV 95, Att 130, Déf 75, Att Spé 130, Déf Spé 75, Vit 95.
+- Évolution au niveau 69 : en **Shagaru Magala** s'il n'y a pas de Shagaru Magala dans l'équipe, en **Gore Magala du
+  Chaos** s'il y en a un (conditions `party_member`).
+- Apparitions (**ultra-rare**, niveau 48-65, étiquettes `monster_hunter` et `legendary`) : forêts sombres, bosquets
+  (grove), Moonlight Grove / Valley de Terralith, la nuit ou pendant un orage ; et dans les Deep Dark à toute heure.
+- Modèle : dragon aveugle (masque lisse, aucun œil), noir à reflets violets, marche sur ses ailes-bras (coudes hauts,
+  poignets griffus au sol), ailes repliées en voile déchiré le long des flancs, crinière de plumes noires, antennes
+  couchées sur le crâne, queue à épines. Chromatique gris cendre à antennes sarcelle.
+
+## Gore Magala du Chaos (n° 11235, Ténèbres / Dragon, légendaire)
+- 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
+  Maudit**, **Téméraire**, caché **Infiltration**. Capture 3, 35 cycles. Pas d'apparition sauvage.
+- Modèle asymétrique : moitié droite dorée de Shagaru (corne en croissant, seul œil), moitié gauche noire et violette
+  de Gore Magala (antenne, aveugle) ; lueur bicolore or / violet.
+
+## Shagaru Magala (n° 11236, Dragon / Fée, légendaire)
+- 4,6 m, 250 kg, total 650 (PV 105, Att 110, Déf 100, Att Spé 145, Déf Spé 105, Vit 85), +3 Att Spé. Capture 3,
+  40 cycles. Diurne, vole. Pas d'apparition sauvage.
+- Talents : **Écailles en furie dorée** (signature) — +25 % aux capacités Dragon et Fée, chances d'effet doublées
+  pour ses attaques de lumière (Pouvoir Lunaire, Éclat Magique, Luminocanon, Lumière du Néant…), mais +25 % de dégâts
+  subis des capacités Poison et de l'empoisonnement ; caché **Multiécaille**.
+- Modèle : écailles or blanc, membranes dorées à nervures lumineuses, deux grandes cornes en croissant, deux yeux
+  lumineux (fermés quand il dort), épines dorées. Animations de vol (sur place et en déplacement). Chromatique platine
+  et bleu pâle.
+
+## Commun
+- Animations de la lignée : attente, marche (pattes en diagonale), attente de combat (ailes entrouvertes), cri (cou
+  dressé, ailes déployées), attaque physique (se cabre puis abat ses griffes et mord), spéciale (tête rejetée puis
+  projection), statut (secoue ses ailes), K.O. (tête en l'air, dernier cri tremblant, s'effondre sur le flanc),
+  sommeil (couché, ailes repliées, yeux fermés).
+- Icônes 32x32 : `assets/cobblepulse_ecology/textures/gui/sprites/<espèce>.png`.
+- Tests Showdown : `tools/showdown/test_magala_zamtrios.js` (formes de Zamtrios, Mode Furie, Écailles en furie dorée).

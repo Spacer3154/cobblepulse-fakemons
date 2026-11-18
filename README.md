@@ -2,7 +2,8 @@
 
 Mod Fabric (Minecraft 1.21.1) de fakemons pour **Cobblemon 1.8.4**, avec **Mega Showdown** :
 la région de **Normandie** (22 espèces) et la catégorie **Monster Hunter** : Deviljho (méga : Deviljho Carnage,
-Deviljhonite) et Glavenus (méga : Glavenus Lame-Chaos, Glavenusite).
+Deviljhonite), Glavenus (méga : Glavenus Lame-Chaos, Glavenusite), Zamtrios (formes Armure de Glace et Gonflée) et
+la lignée Magala (Gore Magala et son Mode Furie, Gore Magala du Chaos, Shagaru Magala).
 
 - Contenu détaillé (espèces, modèles, animations, apparitions, talents, capacités, montures) : [docs/CONTENU.md](docs/CONTENU.md)
 - Jar compilé par la CI : branche [`ci-output`](../../tree/ci-output) (`cobblepulse-ecology-<version>+mc1.21.1.jar`)
@@ -20,7 +21,7 @@ restent valables.
 ## Organisation du dépôt
 | Dossier | Rôle |
 | --- | --- |
-| `src/main/java/fr/cobblepulse/ecology/` | Code : objets du mod (méga-gemmes), onglet créatif, auto-vérification au démarrage du serveur |
+| `src/main/java/fr/cobblepulse/ecology/` | Code : objets du mod (méga-gemmes), onglet créatif, forme Armure de Zamtrios dans les biomes gelés, auto-vérification au démarrage du serveur |
 | `src/main/resources/` | Données et ressources : `data/cobblemon/…` (espèces, apparitions, Pokédex), `data/normandy/mega_showdown/…` (talents, capacités, objets Showdown, méga), `assets/cobblemon/bedrock/…` (modèles, animations, posers, resolvers), textures, langue |
 | `tools/models/` | Générateur Python des modèles Bedrock, textures et animations (une espèce = `species/<id>.py`) |
 | `tools/gen/` | Générateurs de données (apparitions, Monster Hunter) et validateur du pack |
@@ -33,7 +34,8 @@ restent valables.
 ```
 La CI (GitHub Actions, à chaque push sur `main`) : validateur du pack, tests Showdown, compilation, puis un vrai
 serveur Fabric avec Cobblemon et Mega Showdown qui charge le mod (auto-test `-Dcobblepulse_ecology.selftest=true`,
-apparition de Deviljho, de Glavenus et de leurs formes Méga, méga-gemmes et leurs composants, recettes). Résultats et
+apparition de Deviljho, de Glavenus et de leurs formes Méga, de Zamtrios et de la lignée Magala avec leurs formes,
+registre `battle_form`, méga-gemmes et leurs composants, recettes). Résultats et
 jar : branche `ci-output` (`CHECKS`, `server-summary.txt`, `server-errors.txt`, `server.log`).
 
 ## Régénérer un modèle
@@ -43,6 +45,10 @@ bash iter.sh guillopard                                              # une espè
 python3 -I build_mh.py . deviljho ../../src/main/resources tmp       # Monster Hunter : espèce + forme Méga
 python3 -I build_mh.py . glavenus ../../src/main/resources tmp       # (écrit aussi tmp/<espèce>_tops.json)
 cp tmp/glavenus_tops.json ../gen/                                    # hauteurs du modèle -> baseScale
+python3 -I zamtrios_import.py . ../../src/main/resources tmp/zam     # Zamtrios (modèle fourni, src/zamtrios/)
+python3 -I build_magala.py . ../../src/main/resources tmp/mag        # Gore Magala (+ Furie), du Chaos, Shagaru
+cp tmp/zam/*_tops.json tmp/mag/*_tops.json ../gen/
+python3 -I dex_icons.py . ../../src/main/resources                   # icônes 32x32
 python3 -I check_ground.py . guillopard                              # aucune partie sous le sol
 python3 preview_anim.py guillopard tmp/apercu ground_walk:12         # GIF d'aperçu
 cd ../.. && python3 tools/gen/monster_hunter.py                       # données Monster Hunter (espèces, méga-gemmes)

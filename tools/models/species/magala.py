@@ -33,7 +33,7 @@ GORE = {
     "horn": rgb("#2A2236"), "horn_tip": rgb("#7A60A0"),
     "antenna": rgb("#5E3A86"), "antenna_tip": rgb("#C890F0"), "antenna_glow": rgb("#D070FF"),
     "mouth": rgb("#5A2040"), "tooth": rgb("#D8D0C8"),
-    "eye": rgb("#FFE8A0"), "eye_glow": rgb("#FFD860"), "lid": rgb("#262030"),
+    "eye": rgb("#FFE8A0"), "eye_glow": rgb("#FFD860"), "lid": rgb("#262030"), "pupil": rgb("#2A1A08"),
 }
 GORE_SHINY = dict(GORE, **{           # ash grey with teal antennae
     "scale": rgb("#3A3E44"), "scale_dark": rgb("#24272C"), "scale_light": rgb("#5A6068"), "scale_sheen": rgb("#4E8A90"),
@@ -51,7 +51,7 @@ SHAGARU = {
     "horn": rgb("#C8A450"), "horn_tip": rgb("#FFF4C8"),
     "antenna": rgb("#5E3A86"), "antenna_tip": rgb("#C890F0"), "antenna_glow": rgb("#D070FF"),
     "mouth": rgb("#8A4A3A"), "tooth": rgb("#FFFFF0"),
-    "eye": rgb("#FFF6C0"), "eye_glow": rgb("#FFE070"), "lid": rgb("#D8C690"),
+    "eye": rgb("#FFF6C0"), "eye_glow": rgb("#FFE070"), "lid": rgb("#D8C690"), "pupil": rgb("#3A240A"),
 }
 SHAGARU_SHINY = dict(SHAGARU, **{     # platinum and pale blue
     "scale": rgb("#D4DCE4"), "scale_dark": rgb("#B0BCC8"), "scale_light": rgb("#EAF0F6"), "scale_sheen": rgb("#9CC4E8"),
@@ -126,6 +126,8 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None):
         if kind in ("claw", "horn", "antenna"):
             t = 1 - j / max(h - 1, 1) if face not in ("up", "down") else (1.0 if face == "up" else 0.0)
             return mix(P[kind], P[kind + "_tip"], t ** 1.5), n * 0.5
+        if kind == "eye" and abs(z + 56.5) < 0.6 and face in ("east", "west"):
+            return P["pupil"], 0.0
         if kind in ("mouth", "tooth", "eye", "lid"):
             return P[kind], n * 0.4
         raise ValueError(kind)
@@ -165,6 +167,8 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None):
                 col = P["antenna_glow"]
                 px[X, Y] = col[:3] + (int(120 + 135 * t),)
             elif glow == "eye":
+                if abs(z + 56.5) < 0.6 and face in ("east", "west"):
+                    continue
                 px[X, Y] = P["eye_glow"][:3] + (255,)
             elif glow == "horn":
                 if not pal.get("_horn"):
@@ -260,7 +264,8 @@ def build(name):
         Cube([-3, H + 9.5, -69], [6, 2, 8], PLATE)])                       # nose ridge
     # cheek armour (the blind face of Gore Magala is a smooth armoured mask)
     for sx in (1, -1):
-        head.cubes += [Cube([5.0 * sx - (2 if sx < 0 else 0), H + 5, -60], [2, 7, 12], PLATE)]
+        if not (gold or (chaos and sx < 0)):
+            head.cubes += [Cube([5.0 * sx - (2 if sx < 0 else 0), H + 5, -60], [2, 7, 12], PLATE)]
     m.bone("jaw", "head", [0, H + 5, -47], cubes=[
         Cube([-4.5, H + 1, -68], [9, 4, 21], surf("scale", belly_below=H + 3)),
         Cube([-3.5, H + 4.6, -67], [7, 1, 18], MOUTH)])
@@ -278,9 +283,9 @@ def build(name):
             hb.cubes += crescent(sx, [4 * sx, H + 14, -50])
             hb.cubes += chain([5.5 * sx, H + 13, -46], [(0.6 * sx, 0.5, 1), (0.4 * sx, 0.2, 1)], [5, 5], [(2, 2), (1, 1)], HORN)
             eb = m.bone(f"eye_{side}", "head", [5.5 * sx, H + 9, -56])
-            eb.cubes += [Cube([5.5 * sx - (1 if sx < 0 else 0), H + 8, -58], [1, 2, 4], surf("eye", glow="eye"))]
+            eb.cubes += [Cube([5.5 * sx - (1 if sx < 0 else 0), H + 8, -59], [1, 3, 5], surf("eye", glow="eye"))]
             m.bone(f"lid_{side}", "head", [5.5 * sx, H + 9, -56], cubes=[
-                Cube([5.4 * sx - (1 if sx < 0 else 0), H + 8, -58], [1, 2, 4], surf("lid"), inflate=0.05)])
+                Cube([5.4 * sx - (1 if sx < 0 else 0), H + 8, -59], [1, 3, 5], surf("lid"), inflate=0.05)])
         else:
             ab = m.bone(f"antenna_{side}", "head", [3.5 * sx, H + 14.5, -52],
                         rotation=([62, 0, -24 * sx] if frenzy else None))
