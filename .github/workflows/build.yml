@@ -60,6 +60,10 @@ jobs:
         timeout-minutes: 30
         run: python3 ci/server_test.py out || true
 
+      - name: References (diagnostic)
+        if: always()
+        run: python3 ci/dump_refs.py out || true
+
       - name: Publish CI outputs to branch ci-output
         if: always()
         run: |
