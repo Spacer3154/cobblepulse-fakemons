@@ -1,0 +1,169 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 11236,
+  "name": "Shagaru Magala",
+  "primaryType": "dragon",
+  "secondaryType": "fairy",
+  "maleRatio": -1,
+  "height": 46,
+  "weight": 2500,
+  "pokedex": [
+    "cobblemon.species.shagarumagala.desc"
+  ],
+  "labels": [
+    "monster_hunter",
+    "custom",
+    "legendary"
+  ],
+  "aspects": [],
+  "abilities": [
+    "goldenfrenzy",
+    "h:multiscale"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "preEvolution": "goremagala",
+  "baseStats": {
+    "hp": 105,
+    "attack": 110,
+    "defence": 100,
+    "special_attack": 145,
+    "special_defence": 105,
+    "speed": 85
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 3,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 320,
+  "experienceGroup": "slow",
+  "catchRate": 3,
+  "eggCycles": 40,
+  "baseFriendship": 0,
+  "shoulderMountable": false,
+  "baseScale": 1.48,
+  "hitbox": {
+    "width": 2.3,
+    "height": 3.12,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-15",
+      "drowsyChance": 0.02,
+      "rouseChance": 0.006,
+      "times": "night"
+    },
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.32
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.15
+      },
+      "fly": {
+        "canFly": true,
+        "flySpeedHorizontal": 0.45
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willDefendSelf": true,
+      "willFlee": false
+    }
+  },
+  "lightingData": {
+    "lightLevel": 9,
+    "liquidGlowMode": "LAND"
+  },
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:gold_nugget",
+        "quantityRange": "2-5"
+      },
+      {
+        "item": "minecraft:glowstone_dust",
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "minecraft:gold_ingot",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:dragon_scale",
+        "percentage": 6.0
+      }
+    ]
+  },
+  "moves": [
+    "1:leer",
+    "1:fairywind",
+    "1:dragonbreath",
+    "1:ominouswind",
+    "1:confuseray",
+    "5:sweetkiss",
+    "9:swift",
+    "13:disarmingvoice",
+    "17:aurorabeam",
+    "21:darkpulse",
+    "25:dragonpulse",
+    "29:extrasensory",
+    "33:dragonclaw",
+    "37:charm",
+    "41:moonblast",
+    "45:dazzlinggleam",
+    "49:calmmind",
+    "53:airslash",
+    "57:moonlight",
+    "61:dracometeor",
+    "66:hurricane",
+    "69:lightofruin",
+    "75:mistball",
+    "tm:dragonclaw",
+    "tm:calmmind",
+    "tm:lightscreen",
+    "tm:protect",
+    "tm:roost",
+    "tm:aerialace",
+    "tm:uturn",
+    "tm:dazzlinggleam",
+    "tm:reflect",
+    "tm:psychic",
+    "tm:fly",
+    "tm:hurricane",
+    "tm:tailwind",
+    "tm:mistyterrain",
+    "tm:rest",
+    "tm:sleeptalk",
+    "tm:substitute",
+    "tm:hyperbeam",
+    "tm:gigaimpact",
+    "tm:focusblast",
+    "tm:flamethrower",
+    "tm:dragonpulse",
+    "tm:airslash",
+    "tm:endure",
+    "tm:facade",
+    "tm:drainingkiss",
+    "tm:playrough",
+    "tutor:aromaticmist",
+    "tutor:healpulse",
+    "tutor:aeroblast",
+    "tutor:mistball",
+    "tutor:dracometeor"
+  ],
+  "evolutions": [],
+  "forms": []
+}

@@ -19,8 +19,12 @@ PDF = {
  # Monster Hunter category (not in the PDF): data given with the original Deviljho files
  11231: ("Deviljho", ["dragon", "dark"], 600),
  11232: ("Glavenus", ["fire", "steel"], 540),          # Fiche Fakemon - Glavenus & Méga-Glavenus
+ # Cahier des Charges - CobblePulse-Ecology, 4 Fakemons (dex numbers 11233-11236 chosen with the user)
+ 11233: ("Zamtrios", ["water", "ice"], 515), 11234: ("Gore Magala", ["dark", "dragon"], 580),
+ 11235: ("Gore Magala du Chaos", ["dark", "dragon"], 620), 11236: ("Shagaru Magala", ["dragon", "fairy"], 650),
 }
-CATEGORY = {11231: "monster_hunter", 11232: "monster_hunter"}
+CATEGORY = {n: "monster_hunter" for n in range(11231, 11237)}
+NO_SPAWN = {11235, 11236}          # obtained only by evolving Gore Magala (cahier des charges: "aucun spawn naturel")
 
 for f in glob.glob(os.path.join(pack, "**/*"), recursive=True):
     if os.path.isdir(f): continue
@@ -135,12 +139,28 @@ def check_cond(where, c):
     for b in c.get("neededNearbyBlocks", []):
         if b not in BLOCKS: E(f"{where}: unverified block {b}")
 
+features = {}
+for f in glob.glob(f"{pack}/data/cobblemon/species_features/*.json"):
+    fd = json.load(open(f))
+    for k in fd["keys"]:
+        features[k] = fd
+assigned = {}
+for f in glob.glob(f"{pack}/data/cobblemon/species_feature_assignments/*.json"):
+    fd = json.load(open(f))
+    for sp_ in fd["pokemon"]:
+        assigned.setdefault(sp_, set()).update(fd["features"])
+
 def check_props(where, props):
     toks = props.split()
     if toks[0] not in species: E(f"{where}: unknown pokemon {toks[0]}")
     for t in toks[1:]:
         k, _, v = t.partition("=")
-        if k == "held_item":
+        if k in features:                      # a species feature of the pack (e.g. zamtrios_form=armor)
+            fd = features[k]
+            if k not in assigned.get(toks[0], ()): E(f"{where}: feature {k} not assigned to {toks[0]}")
+            if fd["type"] == "choice" and v not in fd["choices"]: E(f"{where}: {k}={v} not a choice")
+            if fd["type"] == "flag" and v not in ("true", "false"): E(f"{where}: {k}={v}")
+        elif k == "held_item":
             if v not in GEMS: E(f"{where}: unknown held item {v}")
         elif k == "alpha":
             if v != "true": E(f"{where}: alpha={v}")
@@ -209,7 +229,36 @@ for sid, d in species.items():
     for l in d.get("behaviour", {}).get("herd", {}).get("toleratedLeaders", []):
         if l["pokemon"].split()[0] not in species: E(f"{sid}: unknown herd leader {l['pokemon']}")
 for sid in species:
-    if sid not in spawned_any: E(f"{sid}: no spawn at all")
+    if species[sid]["nationalPokedexNumber"] in NO_SPAWN:
+        if sid in spawned_any: E(f"{sid}: should not spawn (evolution only)")
+        if not species[sid].get("preEvolution"): E(f"{sid}: no spawn and no pre-evolution")
+    elif sid not in spawned_any: E(f"{sid}: no spawn at all")
+# forms: aspects come from an assigned species feature, battle forms have a Mega Showdown battle_form entry
+choice_aspects = {}
+for k, fd in features.items():
+    if fd["type"] == "choice":
+        for c in fd["choices"]:
+            choice_aspects[fd.get("aspectFormat", "{{choice}}").replace("{{choice}}", c)] = k
+    else:
+        choice_aspects[k] = k
+battle_forms = {}
+for f in glob.glob(f"{pack}/data/*/mega_showdown/battle_form/*.json"):
+    bf = json.load(open(f))
+    for p_ in bf["pokemons"]:
+        battle_forms.setdefault(p_, set()).add(bf["showdown_form_change_id"])
+        for part in ("apply", "revert"):
+            for a in bf["aspect_conditions"].get(part, {}).get("aspects", []):
+                fk, _, fv = a.partition("=")
+                if fk not in features: E(f"battle_form {f}: unknown feature {fk}")
+for sid, d in species.items():
+    for form in d.get("forms", []):
+        if form["name"] == "Mega":
+            continue
+        for a in form.get("aspects", []):
+            if a not in choice_aspects: E(f"{sid} form {form['name']}: aspect {a} comes from no species feature")
+            elif choice_aspects[a] not in assigned.get(sid, ()): E(f"{sid}: feature {choice_aspects[a]} not assigned")
+        if form["name"].lower() not in battle_forms.get(d["name"], ()):
+            E(f"{sid} form {form['name']}: no Mega Showdown battle_form entry")
 info.append(f"species with wild spawns: {len(spawned)}/{len(PDF)} (prepared but disabled: "
             f"{sorted(spawned_any - spawned)}), biome groups: {len(pack_tags)}, spawn ids: {len(ids)}")
 

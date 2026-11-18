@@ -1,0 +1,15 @@
+{
+  "id": "cobblemon:shagarumagala",
+  "speciesId": "cobblemon:shagarumagala",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    }
+  ],
+  "variations": []
+}

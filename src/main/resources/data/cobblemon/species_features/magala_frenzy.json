@@ -1,0 +1,8 @@
+{
+  "type": "flag",
+  "keys": [
+    "magala_frenzy"
+  ],
+  "default": false,
+  "isAspect": true
+}

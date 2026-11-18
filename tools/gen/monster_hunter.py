@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Monster Hunter category data: Deviljho (+ Deviljho Carnage) and Glavenus (+ Glavenus Lame-Chaos): species with their
-mega form, Pokédex, spawns, Mega Showdown data (mega registry entries, mega stones, custom abilities and moves), the
-mega stones' recipes, item models and texts.
+"""Monster Hunter category data: Deviljho (+ Deviljho Carnage), Glavenus (+ Glavenus Lame-Chaos), Zamtrios (Ice Armour
+and Inflated forms), Gore Magala (+ Frenzy), Chaotic Gore Magala and Shagaru Magala: species and forms, Pokédex,
+spawns, Mega Showdown data (mega and battle_form registry entries, mega stones, custom abilities, moves and species
+conditions), species features, the mega stones' recipes, item models and texts.
 Usage (from the repository root): python3 tools/gen/monster_hunter.py [pack_dir]
 Reads tools/gen/<species>_tops.json (model heights, written by tools/models/build_mh.py) and <stone>.png (item icons)."""
 import json, os, shutil, sys
@@ -34,16 +35,18 @@ def scale_for(height_dm, top_px):
 
 LANG = {}          # fr_fr entries (en_us = the same texts: this pack shows French on every client)
 SPECIES_IDS = []
+MEGA_IDS = []      # species that mega-evolve (Mega Showdown's mega_evolution feature)
 
 
-def species_file(sid, d):
+def species_file(sid, d, forms=("Normal", "Mega")):
     dump(f"{D}/cobblemon/species/monster_hunter/{sid}.json", d)
     dump(f"{D}/cobblemon/dex_entries/pokemon/monster_hunter/{sid}.json", {
         "id": f"cobblemon:{sid}", "speciesId": f"cobblemon:{sid}", "displayAspects": [], "conditionAspects": [],
-        "forms": [{"displayForm": "Normal", "unlockForms": ["Normal"]},
-                  {"displayForm": "Mega", "unlockForms": ["Mega"]}],
+        "forms": [{"displayForm": f, "unlockForms": [f]} for f in forms],
         "variations": []})
     SPECIES_IDS.append(sid)
+    if "Mega" in forms:
+        MEGA_IDS.append(sid)
 
 
 def mega_stone(stone, species_name, *, num, recipe, lore, lore2, legacy=False):
@@ -373,9 +376,353 @@ LANG.update({
     f"itemGroup.{MOD}.fakemons": "CobblePulse-Ecology",
 })
 
+# ================================================================================================ Zamtrios
+# Water/Ice, three forms: Normal, Ice Armour (in frozen biomes, or in battle after using an Ice move) and Inflated
+# (in battle, at half HP or less, or after Stockpile). The forms are an aspect of the zamtrios_form species feature:
+# the mod sets it from the biome in the world, Showdown changes the forme in battle (species condition, below) and
+# Mega Showdown's battle_form registry turns the forme change into the aspect (reverted at the end of the battle).
+Z_HEIGHT = 29
+t = tops("zamtrios")
+Z_SCALE = scale_for(Z_HEIGHT, t["top_base"])
+Z_ABIL = ["furcoat", "strongjaw", "h:swiftswim"]                     # Toison Épaisse, Prognathe, Glissade (caché)
+species_file("zamtrios", {
+    "implemented": True, "nationalPokedexNumber": 11233, "name": "Zamtrios",
+    "primaryType": "water", "secondaryType": "ice", "maleRatio": 0.5,
+    "height": Z_HEIGHT, "weight": 2150, "pokedex": ["cobblemon.species.zamtrios.desc"],
+    "labels": ["monster_hunter", "custom"], "aspects": [], "abilities": Z_ABIL,
+    "eggGroups": ["water1", "monster"],
+    "baseStats": {"hp": 105, "attack": 100, "defence": 95, "special_attack": 75, "special_defence": 80, "speed": 60},
+    "evYield": {"hp": 2, "attack": 0, "defence": 0, "special_attack": 0, "special_defence": 0, "speed": 0},
+    "baseExperienceYield": 186, "experienceGroup": "slow", "catchRate": 75, "eggCycles": 20, "baseFriendship": 50,
+    "shoulderMountable": False, "baseScale": Z_SCALE,
+    "hitbox": {"width": 3.0, "height": round(t["top_base"] / 16, 2), "fixed": False},
+    "behaviour": {
+        "resting": {"canSleep": True, "light": "0-4", "drowsyChance": 0.02, "rouseChance": 0.006},
+        "moving": {"canLook": True, "walk": {"walkSpeed": 0.26},
+                   "swim": {"canSwimInWater": True, "canBreatheUnderwater": True, "canSwimInLava": False,
+                            "swimSpeed": 0.42}},
+        "combat": {"willDefendOwner": True, "willDefendSelf": True, "willFlee": False}},
+    "drops": {"amount": 2, "entries": [
+        {"item": "minecraft:packed_ice", "quantityRange": "1-4"}, {"item": "minecraft:cod", "quantityRange": "0-2"},
+        {"item": "cobblemon:never_melt_ice", "percentage": 15.0}]},
+    # level-up: a few strong moves (Liquidation, Icicle Crash, Wave Crash...), average ones and some poor ones
+    # (Splash, Harden, Rollout, Powder Snow...)
+    "moves": ["1:splash", "1:tackle", "1:powdersnow", "1:watergun", "5:bite", "9:screech", "12:harden",
+              "15:icywind", "18:aquajet", "21:stockpile", "21:swallow", "21:spitup", "24:icefang", "27:haze",
+              "30:rollout", "33:liquidation", "36:icebeam", "39:crunch", "42:heavyslam", "45:hydropump",
+              "48:iciclecrash", "52:earthquake", "56:blizzard", "60:wavecrash", "64:sheercold"]
+             + [f"tm:{m}" for m in ("aquatail", "protect", "icebeam", "blizzard", "earthquake", "rocktomb", "scald",
+                                    "icywind", "waterfall", "surf", "avalanche", "iciclespear", "bulldoze", "rest",
+                                    "sleeptalk", "substitute", "facade", "snowscape", "raindance", "chillingwater",
+                                    "takedown", "bodyslam", "endure", "liquidation", "hydropump", "icepunch",
+                                    "whirlpool", "brine", "waterpulse", "amnesia", "snore", "ironhead", "icefang")]
+             + [f"egg:{m}" for m in ("avalanche", "iciclespear", "ironhead", "flipturn", "mudbomb", "bounce",
+                                     "aquatail", "psychicfangs", "jawlock")]
+             + [f"tutor:{m}" for m in ("wavecrash", "stompingtantrum", "freezedry", "disable", "fishiousrend")],
+    "evolutions": [],
+    "forms": [
+        {"name": "Armor", "primaryType": "water", "secondaryType": "ice", "maleRatio": 0.5, "height": Z_HEIGHT,
+         "weight": 2600, "pokedex": ["cobblemon.species.zamtrios-armor.desc"], "labels": ["monster_hunter", "custom"],
+         "aspects": ["zamtrios-armor"], "abilities": Z_ABIL,
+         "baseStats": {"hp": 105, "attack": 120, "defence": 125, "special_attack": 70, "special_defence": 85, "speed": 40},
+         "baseScale": Z_SCALE, "hitbox": {"width": 3.0, "height": round(t["top_armor"] / 16, 2), "fixed": False},
+         "lightingData": {"lightLevel": 7, "liquidGlowMode": "BOTH"}},
+        {"name": "Inflated", "primaryType": "water", "secondaryType": "ice", "maleRatio": 0.5, "height": 36,
+         "weight": 3100, "pokedex": ["cobblemon.species.zamtrios-inflated.desc"], "labels": ["monster_hunter", "custom"],
+         "aspects": ["zamtrios-inflated"], "abilities": Z_ABIL,
+         "baseStats": {"hp": 105, "attack": 90, "defence": 115, "special_attack": 85, "special_defence": 115, "speed": 25},
+         "baseScale": Z_SCALE, "hitbox": {"width": 4.6, "height": 5.0, "fixed": False},
+         "battleOnly": True, "dynamaxBlocked": True}],
+}, forms=("Normal", "Armor", "Inflated"))
+dump(f"{D}/cobblemon/species_features/zamtrios_form.json", {
+    "type": "choice", "keys": ["zamtrios_form"], "default": "normal", "choices": ["normal", "armor", "inflated"],
+    "isAspect": True, "aspectFormat": "zamtrios-{{choice}}"})
+for forme, choice in (("armor", "armor"), ("inflated", "inflated")):
+    dump(f"{D}/normandy/mega_showdown/battle_form/zamtrios_{forme}.json", {
+        "pokemons": ["Zamtrios"], "showdown_form_change_id": forme,
+        "aspect_conditions": {"apply": {"aspects": [f"zamtrios_form={choice}"]},
+                              "revert": {"aspects": ["zamtrios_form=normal"]}}})
+# frozen seas (armoured), cold seas, snowy shores and ice fields (armoured), rare
+dump(f"{D}/cobblemon/spawn_pool_world/11233_zamtrios.json", {
+    "enabled": True, "neededInstalledMods": [], "neededUninstalledMods": [],
+    "spawns": [
+        {"id": "zamtrios-1", "pokemon": "zamtrios zamtrios_form=armor", "presets": ["water"], "type": "pokemon",
+         "spawnablePositionType": "submerged", "bucket": "rare", "level": "35-55", "weight": 6.0,
+         "condition": {"biomes": ["#cobblemon:is_frozen_ocean"]}, "labels": ["monster_hunter"]},
+        {"id": "zamtrios-2", "pokemon": "zamtrios", "presets": ["water"], "type": "pokemon",
+         "spawnablePositionType": "submerged", "bucket": "rare", "level": "35-55", "weight": 3.0,
+         "condition": {"biomes": ["#cobblemon:is_cold_ocean"]}, "labels": ["monster_hunter"]},
+        {"id": "zamtrios-3", "pokemon": "zamtrios zamtrios_form=armor", "presets": ["natural", "wild"],
+         "type": "pokemon", "spawnablePositionType": "grounded", "bucket": "rare", "level": "35-55", "weight": 2.5,
+         "condition": {"biomes": ["minecraft:snowy_beach", "minecraft:ice_spikes", "minecraft:frozen_river"],
+                       "canSeeSky": True},
+         "weightMultipliers": [{"multiplier": 1.5, "condition": {"isRaining": True}}],
+         "labels": ["monster_hunter"]}]})
+# Zamtrios' forme changes in battle: a Showdown species condition (Conditions[toID(baseSpecies)] is merged into the
+# species by Showdown, so these handlers run for every Zamtrios whatever its ability). The forme change is permanent
+# (details change: it keeps it when switching) and keeps the Pokemon's own ability. The species cache is cleared in
+# case the species was read before this file was loaded (MSD evaluates the file in Showdown's index.js scope).
+write(f"{D}/normandy/mega_showdown/showdown/conditions/zamtrios.js", """(function () {
+  try {
+    const dexes = Dex.dexes || {};
+    for (const k in dexes) {
+      const s = dexes[k] && dexes[k].species;
+      if (s && s.speciesCache) ['zamtrios', 'zamtriosarmor', 'zamtriosinflated'].forEach(id => s.speciesCache.delete(id));
+    }
+  } catch (e) {}
+  const shift = function (battle, pokemon, forme) {
+    if (!pokemon.hp || pokemon.transformed || pokemon.species.name === forme) return;
+    const abilities = pokemon.species.abilities;
+    let slot = '0';
+    for (const k in abilities) if (battle.toID(abilities[k]) === pokemon.baseAbility) slot = k;
+    pokemon.formeChange(forme, battle.effect, true, slot);
+  };
+  return {
+    name: 'Zamtrios',
+    onAfterMove(pokemon, target, move) {
+      if (pokemon.species.name === 'Zamtrios-Inflated') return;
+      if (move.id === 'stockpile') shift(this, pokemon, 'Zamtrios-Inflated');
+      else if (move.type === 'Ice' && pokemon.species.name === 'Zamtrios') shift(this, pokemon, 'Zamtrios-Armor');
+    },
+    onUpdate(pokemon) {
+      if (pokemon.species.name !== 'Zamtrios-Inflated' && pokemon.hp && pokemon.hp <= pokemon.maxhp / 2) {
+        shift(this, pokemon, 'Zamtrios-Inflated');
+      }
+    }
+  };
+})()
+""")
+LANG.update({
+    "cobblemon.species.zamtrios.name": "Zamtrios",
+    "cobblemon.species.zamtrios.desc": "Un requin amphibie des mers glacées. Il gèle l'eau sur ses écailles pour se couvrir d'une armure de glace et peut gonfler son corps d'eau jusqu'à devenir une énorme boule qui écrase tout.",
+    "cobblemon.species.zamtrios-armor.desc": "Zamtrios en Armure de Glace. Dans le froid ou après une attaque de glace, l'eau gèle sur sa peau en piques acérées qui luisent dans l'obscurité.",
+    "cobblemon.species.zamtrios-inflated.desc": "Zamtrios gonflé. Blessé ou après avoir fait des réserves, il avale tant d'eau que son corps devient une boule géante qu'il fait rouler sur ses ennemis.",
+    "cobblemon.ui.pokedex.info.form.zamtrios-armor": "Armure de Glace",
+    "cobblemon.ui.pokedex.info.form.zamtrios-inflated": "Gonflée",
+})
+
+# ================================================================================================ the Magala line
+# Gore Magala (Dark/Dragon, blind, wing-arms, antennae) evolves at level 69 into Shagaru Magala (Dragon/Fairy) or,
+# when a Shagaru Magala is in the party, into Chaotic Gore Magala (Dark/Dragon, half moulted). All three are
+# legendary (label "legendary"); only Gore Magala spawns. Gore Magala has a battle form, Frenzy (Mode Furie): at half
+# HP or less its antennae unfold and glow purple.
+M_LABELS = ["monster_hunter", "custom", "legendary"]
+NO_EGG = ["undiscovered"]
+def magala_behaviour(times, fly):
+    b = {"resting": {"canSleep": True, "light": "0-15", "drowsyChance": 0.02, "rouseChance": 0.006, "times": times},
+         "moving": {"canLook": True, "walk": {"walkSpeed": 0.32},
+                    "swim": {"canSwimInWater": True, "canBreatheUnderwater": False, "canSwimInLava": False,
+                             "swimSpeed": 0.15}},
+         "combat": {"willDefendOwner": True, "willDefendSelf": True, "willFlee": False}}
+    if fly:
+        b["moving"]["fly"] = {"canFly": True, "flySpeedHorizontal": 0.45}
+    return b
+
+def lv(*pairs):
+    return [f"{l}:{m}" for l, ms in pairs for m in ms.split()]
+
+GM_HEIGHT = 42
+t = tops("goremagala")
+GM_SCALE = scale_for(GM_HEIGHT, t["top_base"])
+species_file("goremagala", {
+    "implemented": True, "nationalPokedexNumber": 11234, "name": "Gore Magala",
+    "primaryType": "dark", "secondaryType": "dragon", "maleRatio": -1,
+    "height": GM_HEIGHT, "weight": 2300, "pokedex": ["cobblemon.species.goremagala.desc"],
+    "labels": M_LABELS, "aspects": [], "abilities": ["cursedbody", "unnerve", "h:infiltrator"],
+    "eggGroups": NO_EGG,
+    "baseStats": {"hp": 95, "attack": 115, "defence": 85, "special_attack": 115, "special_defence": 85, "speed": 85},
+    "evYield": {"hp": 0, "attack": 1, "defence": 0, "special_attack": 1, "special_defence": 0, "speed": 0},
+    "baseExperienceYield": 260, "experienceGroup": "slow", "catchRate": 5, "eggCycles": 30, "baseFriendship": 0,
+    "shoulderMountable": False, "baseScale": GM_SCALE,
+    "hitbox": {"width": 2.2, "height": round(t["top_base"] / 16, 2), "fixed": False},
+    "behaviour": magala_behaviour("day", False),
+    "drops": {"amount": 3, "entries": [
+        {"item": "minecraft:black_dye", "quantityRange": "1-3"}, {"item": "minecraft:phantom_membrane", "quantityRange": "0-2"},
+        {"item": "minecraft:bone", "quantityRange": "0-2"}, {"item": "cobblemon:spell_tag", "percentage": 6.0},
+        {"item": "cobblemon:black_glasses", "percentage": 4.0}]},
+    "moves": lv((1, "leer scratch bite growl"), (5, "ominouswind"), (9, "screech"), (13, "confuseray"),
+                (17, "dragonbreath"), (21, "snarl"), (25, "dragonrush"), (29, "darkpulse"), (33, "nightslash"),
+                (37, "spite"), (41, "dragonpulse"), (45, "dragonclaw"), (49, "shadowball"), (53, "meanlook"),
+                (57, "nastyplot"), (61, "outrage"), (66, "hyperbeam"))
+             + [f"tm:{m}" for m in ("dragonclaw", "taunt", "hyperbeam", "shadowball", "darkpulse", "gigaimpact",
+                                    "dragontail", "uturn", "protect", "rest", "sleeptalk", "substitute", "facade",
+                                    "roar", "scaryface", "snarl", "knockoff", "fly", "airslash", "aerialace",
+                                    "tailwind", "dragonpulse", "outrage", "hex", "willowisp", "endure", "swift")]
+             + [f"tutor:{m}" for m in ("stealthrock", "dragontail", "tailwind", "imprison", "fierywrath")],
+    "evolutions": [
+        {"id": "goremagala_shagarumagala", "variant": "level_up", "result": "shagarumagala", "consumeHeldItem": False,
+         "learnableMoves": ["lightofruin"],
+         "requirements": [{"variant": "level", "minLevel": 69},
+                          {"variant": "party_member", "target": "shagarumagala", "contains": False}]},
+        {"id": "goremagala_chaoticgoremagala", "variant": "level_up", "result": "chaoticgoremagala",
+         "consumeHeldItem": False, "learnableMoves": ["closecombat"],
+         "requirements": [{"variant": "level", "minLevel": 69},
+                          {"variant": "party_member", "target": "shagarumagala", "contains": True}]}],
+    "forms": [{
+        "name": "Frenzy", "primaryType": "dark", "secondaryType": "dragon", "maleRatio": -1,
+        "height": GM_HEIGHT, "weight": 2300, "pokedex": ["cobblemon.species.goremagala-frenzy.desc"],
+        "labels": M_LABELS, "aspects": ["magala_frenzy"], "abilities": ["cursedbody", "unnerve", "h:infiltrator"],
+        "baseStats": {"hp": 95, "attack": 130, "defence": 75, "special_attack": 130, "special_defence": 75, "speed": 95},
+        "baseScale": GM_SCALE, "hitbox": {"width": 2.2, "height": round(t["top_frenzy"] / 16, 2), "fixed": False},
+        "battleOnly": True, "dynamaxBlocked": True, "lightingData": {"lightLevel": 6, "liquidGlowMode": "LAND"}}],
+}, forms=("Normal", "Frenzy"))
+dump(f"{D}/cobblemon/species_features/magala_frenzy.json",
+     {"type": "flag", "keys": ["magala_frenzy"], "default": False, "isAspect": True})
+dump(f"{D}/normandy/mega_showdown/battle_form/goremagala_frenzy.json", {
+    "pokemons": ["Gore Magala"], "showdown_form_change_id": "frenzy",
+    "aspect_conditions": {"apply": {"aspects": ["magala_frenzy=true"]}, "revert": {"aspects": ["magala_frenzy=false"]}}})
+write(f"{D}/normandy/mega_showdown/showdown/conditions/goremagala.js", """(function () {
+  try {
+    const dexes = Dex.dexes || {};
+    for (const k in dexes) {
+      const s = dexes[k] && dexes[k].species;
+      if (s && s.speciesCache) ['goremagala', 'goremagalafrenzy'].forEach(id => s.speciesCache.delete(id));
+    }
+  } catch (e) {}
+  return {
+    name: 'Gore Magala',
+    onUpdate(pokemon) {
+      if (!pokemon.hp || pokemon.transformed || pokemon.species.name !== 'Gore Magala') return;
+      if (pokemon.hp > pokemon.maxhp / 2) return;
+      const abilities = pokemon.species.abilities;
+      let slot = '0';
+      for (const k in abilities) if (this.toID(abilities[k]) === pokemon.baseAbility) slot = k;
+      pokemon.formeChange('Gore Magala-Frenzy', this.effect, true, slot);
+    }
+  };
+})()
+""")
+# dark forests, groves and their Terralith cousins (night or thunderstorms); the Deep Dark at any hour; ultra-rare
+dump(f"{D}/normandy/tags/worldgen/biome/magala_haunts.json", {"replace": False, "values": [
+    "minecraft:dark_forest", "minecraft:grove",
+    {"id": "terralith:moonlight_grove", "required": False}, {"id": "terralith:moonlight_valley", "required": False}]})
+GM_SPAWN = {"pokemon": "goremagala", "type": "pokemon", "spawnablePositionType": "grounded", "bucket": "ultra-rare",
+            "level": "48-65", "labels": ["monster_hunter", "legendary"]}
+dump(f"{D}/cobblemon/spawn_pool_world/11234_goremagala.json", {
+    "enabled": True, "neededInstalledMods": [], "neededUninstalledMods": [],
+    "spawns": [
+        dict(GM_SPAWN, id="goremagala-1", presets=["natural", "wild"], weight=8.0,
+             condition={"biomes": ["#normandy:magala_haunts"], "timeRange": "night"}),
+        dict(GM_SPAWN, id="goremagala-2", presets=["natural", "wild"], weight=8.0,
+             condition={"biomes": ["#normandy:magala_haunts"], "isThundering": True}),
+        dict(GM_SPAWN, id="goremagala-3", presets=["natural"], weight=4.0,
+             condition={"biomes": ["minecraft:deep_dark"], "canSeeSky": False})]})
+
+CG_HEIGHT = 44
+t = tops("chaoticgoremagala")
+species_file("chaoticgoremagala", {
+    "implemented": True, "nationalPokedexNumber": 11235, "name": "Chaotic Gore Magala",
+    "primaryType": "dark", "secondaryType": "dragon", "maleRatio": -1,
+    "height": CG_HEIGHT, "weight": 2450, "pokedex": ["cobblemon.species.chaoticgoremagala.desc"],
+    "labels": M_LABELS, "aspects": [], "abilities": ["cursedbody", "reckless", "h:infiltrator"],
+    "eggGroups": NO_EGG, "preEvolution": "goremagala",
+    "baseStats": {"hp": 95, "attack": 150, "defence": 80, "special_attack": 110, "special_defence": 75, "speed": 110},
+    "evYield": {"hp": 0, "attack": 3, "defence": 0, "special_attack": 0, "special_defence": 0, "speed": 0},
+    "baseExperienceYield": 300, "experienceGroup": "slow", "catchRate": 3, "eggCycles": 35, "baseFriendship": 0,
+    "shoulderMountable": False, "baseScale": scale_for(CG_HEIGHT, t["top_base"]),
+    "hitbox": {"width": 2.3, "height": round(t["top_base"] / 16, 2), "fixed": False},
+    "behaviour": magala_behaviour("day", False),
+    "drops": {"amount": 3, "entries": [
+        {"item": "minecraft:black_dye", "quantityRange": "1-2"}, {"item": "minecraft:gold_nugget", "quantityRange": "1-3"},
+        {"item": "minecraft:phantom_membrane", "quantityRange": "0-2"}, {"item": "cobblemon:dragon_fang", "percentage": 8.0},
+        {"item": "cobblemon:black_glasses", "percentage": 5.0}]},
+    "moves": lv((1, "leer scratch bite growl"), (5, "ominouswind"), (9, "screech"),
+                (13, "confuseray"), (17, "dragonbreath"), (21, "snarl"), (25, "dragonrush"), (29, "darkpulse"),
+                (33, "nightslash"), (37, "spite"), (41, "dragonclaw"), (45, "doubleedge"), (49, "flareblitz"),
+                (53, "outrage"), (57, "closecombat"), (61, "bravebird"), (66, "gigaimpact"), (72, "headsmash"))
+             + [f"tm:{m}" for m in ("roar", "icebeam", "earthquake", "shadowball", "flamethrower", "scald", "dreameater",
+                                    "dragonclaw", "taunt", "hyperbeam", "gigaimpact", "protect", "rest", "sleeptalk",
+                                    "substitute", "facade", "knockoff", "uturn", "swordsdance", "bulkup",
+                                    "wildcharge", "dragondance", "fly", "endure", "takedown", "brickbreak")]
+             + [f"tutor:{m}" for m in ("lashout", "rocksmash", "furyattack", "eruption")],
+    "evolutions": [], "forms": [],
+}, forms=("Normal",))
+
+SM_HEIGHT = 46
+t = tops("shagarumagala")
+species_file("shagarumagala", {
+    "implemented": True, "nationalPokedexNumber": 11236, "name": "Shagaru Magala",
+    "primaryType": "dragon", "secondaryType": "fairy", "maleRatio": -1,
+    "height": SM_HEIGHT, "weight": 2500, "pokedex": ["cobblemon.species.shagarumagala.desc"],
+    "labels": M_LABELS, "aspects": [], "abilities": ["goldenfrenzy", "h:multiscale"],
+    "eggGroups": NO_EGG, "preEvolution": "goremagala",
+    "baseStats": {"hp": 105, "attack": 110, "defence": 100, "special_attack": 145, "special_defence": 105, "speed": 85},
+    "evYield": {"hp": 0, "attack": 0, "defence": 0, "special_attack": 3, "special_defence": 0, "speed": 0},
+    "baseExperienceYield": 320, "experienceGroup": "slow", "catchRate": 3, "eggCycles": 40, "baseFriendship": 0,
+    "shoulderMountable": False, "baseScale": scale_for(SM_HEIGHT, t["top_base"]),
+    "hitbox": {"width": 2.3, "height": round(t["top_base"] / 16, 2), "fixed": False},
+    "behaviour": magala_behaviour("night", True),
+    "lightingData": {"lightLevel": 9, "liquidGlowMode": "LAND"},
+    "drops": {"amount": 3, "entries": [
+        {"item": "minecraft:gold_nugget", "quantityRange": "2-5"}, {"item": "minecraft:glowstone_dust", "quantityRange": "1-3"},
+        {"item": "minecraft:gold_ingot", "percentage": 10.0}, {"item": "cobblemon:dragon_scale", "percentage": 6.0}]},
+    "moves": lv((1, "leer fairywind dragonbreath ominouswind confuseray"), (5, "sweetkiss"), (9, "swift"),
+                (13, "disarmingvoice"), (17, "aurorabeam"), (21, "darkpulse"), (25, "dragonpulse"),
+                (29, "extrasensory"), (33, "dragonclaw"), (37, "charm"), (41, "moonblast"), (45, "dazzlinggleam"),
+                (49, "calmmind"), (53, "airslash"), (57, "moonlight"), (61, "dracometeor"), (66, "hurricane"),
+                (69, "lightofruin"), (75, "mistball"))
+             + [f"tm:{m}" for m in ("dragonclaw", "calmmind", "lightscreen", "protect", "roost", "aerialace", "uturn",
+                                    "dazzlinggleam", "reflect", "psychic", "fly", "hurricane", "tailwind",
+                                    "mistyterrain", "rest", "sleeptalk", "substitute", "hyperbeam", "gigaimpact",
+                                    "focusblast", "flamethrower", "dragonpulse", "airslash", "endure", "facade",
+                                    "drainingkiss", "playrough")]
+             + [f"tutor:{m}" for m in ("aromaticmist", "healpulse", "aeroblast", "mistball", "dracometeor")],
+    "evolutions": [], "forms": [],
+}, forms=("Normal",))
+# Écailles en furie dorée: Dragon and Fairy moves +25 %; the secondary effects of its light moves are twice as likely;
+# but Poison moves and poison / bad poison damage hurt it 25 % more.
+write(f"{D}/normandy/mega_showdown/showdown/abilities/goldenfrenzy.js", """{
+  onBasePowerPriority: 21,
+  onBasePower(basePower, attacker, defender, move) {
+    if (move.type === 'Dragon' || move.type === 'Fairy') {
+      return this.chainModify([5120, 4096]);
+    }
+  },
+  onModifyMovePriority: -2,
+  onModifyMove(move) {
+    const light = ['moonblast', 'dazzlinggleam', 'flashcannon', 'mirrorshot', 'lusterpurge', 'mistball', 'aurorabeam',
+      'chargebeam', 'signalbeam', 'psybeam', 'photongeyser', 'prismaticlaser', 'lightofruin', 'fleurcannon', 'solarbeam',
+      'solarblade', 'moongeistbeam', 'sunsteelstrike', 'doomdesire', 'spiritbreak', 'mysticalfire', 'fierydance',
+      'magicalleaf'];
+    if (!light.includes(move.id)) return;
+    if (move.secondaries) {
+      for (const secondary of move.secondaries) {
+        if (secondary.chance) secondary.chance = Math.min(100, secondary.chance * 2);
+      }
+    }
+  },
+  onSourceModifyDamage(damage, source, target, move) {
+    if (move.type === 'Poison') {
+      return this.chainModify([5120, 4096]);
+    }
+  },
+  onDamage(damage, target, source, effect) {
+    if (effect && (effect.id === 'psn' || effect.id === 'tox')) {
+      return Math.floor(damage * 1.25);
+    }
+  },
+  flags: {},
+  name: "Golden Frenzy",
+  rating: 3.5,
+  num: 7809
+}
+""")
+LANG.update({
+    "cobblemon.species.goremagala.name": "Gore Magala",
+    "cobblemon.species.goremagala.desc": "Un dragon noir aveugle, drapé d'ailes qui lui servent aussi de pattes avant. Il ne voit rien : il perçoit le monde grâce aux écailles noires qu'il répand autour de lui, porteuses du virus de la Frénésie.",
+    "cobblemon.species.goremagala-frenzy.desc": "Gore Magala en Mode Furie. Blessé, il déploie les antennes de son crâne qui luisent d'un violet malsain, et ses écailles noires tourbillonnent en un voile qui rend fou.",
+    "cobblemon.ui.pokedex.info.form.goremagala-frenzy": "Mode Furie",
+    "cobblemon.species.chaoticgoremagala.name": "Gore Magala du Chaos",
+    "cobblemon.species.chaoticgoremagala.desc": "Un Gore Magala dont la mue s'est figée en présence d'un Shagaru Magala. Moitié noir et violet, moitié or, il n'a qu'un œil, du côté doré, et sa fureur instable fait trembler le sol.",
+    "cobblemon.species.shagarumagala.name": "Shagaru Magala",
+    "cobblemon.species.shagarumagala.desc": "Le Gore Magala parvenu au terme de sa mue. Ce dragon ancien aux écailles d'or blanc a enfin ouvert ses deux yeux ; il règne sur les hauteurs, entouré d'une aura dorée étincelante.",
+    "cobblemon.ability.goldenfrenzy": "Écailles en furie dorée",
+    "cobblemon.ability.goldenfrenzy.desc": "Augmente de 25 % la puissance des capacités Dragon et Fée et double les chances d'effet de ses attaques de lumière. Il subit 25 % de dégâts en plus des capacités Poison et de l'empoisonnement.",
+})
+
 # ================================================================================================ shared
 dump(f"{D}/cobblemon/species_feature_assignments/monster_hunter_mega.json",
-     {"pokemon": SPECIES_IDS, "features": ["mega_evolution"]})
+     {"pokemon": MEGA_IDS, "features": ["mega_evolution"]})
 dump(f"{D}/cobblemon/dexes/monster_hunter.json", {
     "type": "cobblemon:simple_pokedex_def", "id": "cobblemon:monster_hunter", "sortOrder": 13,
     "entries": [f"cobblemon:{s}" for s in SPECIES_IDS]})
@@ -384,6 +731,8 @@ dump(f"{D}/cobblemon/dex_additions/monster_hunter_national.json",
 # a Mega Stone for every mod that looks at Mega Showdown's tag
 dump(f"{D}/mega_showdown/tags/item/mega_stone.json", {"replace": False, "values": [
     f"{MOD}:deviljhonite", f"{MOD}:glavenusite", f"{LEGACY_MOD}:deviljhonite"]})
+dump(f"{D}/cobblemon/species_feature_assignments/zamtrios_form.json", {"pokemon": ["zamtrios"], "features": ["zamtrios_form"]})
+dump(f"{D}/cobblemon/species_feature_assignments/magala_frenzy.json", {"pokemon": ["goremagala"], "features": ["magala_frenzy"]})
 GONE = ("cobblemon.ability.faimdevorante", "cobblemon.ability.faimdevorante.desc", "itemGroup.normandy_fakemons.fakemons")
 for lang in ("fr_fr", "en_us"):
     p = f"{A}/cobblemon/lang/{lang}.json"
@@ -394,4 +743,5 @@ for lang in ("fr_fr", "en_us"):
     dump(p, cur)
 for sid in SPECIES_IDS:
     d = json.load(open(f"{D}/cobblemon/species/monster_hunter/{sid}.json"))
-    print(f"{sid}: baseScale {d['baseScale']} (mega {d['forms'][0]['baseScale']}), hitbox height {d['hitbox']['height']}")
+    forms = ", ".join(f"{f['name']} {f.get('baseScale', d['baseScale'])}" for f in d["forms"])
+    print(f"{sid}: baseScale {d['baseScale']} ({forms or 'no form'}), hitbox height {d['hitbox']['height']}")

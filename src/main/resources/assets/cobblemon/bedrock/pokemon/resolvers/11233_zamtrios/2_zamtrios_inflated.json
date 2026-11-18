@@ -1,0 +1,21 @@
+{
+  "species": "cobblemon:zamtrios",
+  "order": 2,
+  "variations": [
+    {
+      "aspects": [
+        "zamtrios-inflated"
+      ],
+      "poser": "cobblemon:zamtrios_inflated",
+      "model": "cobblemon:zamtrios_inflated.geo",
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios.png"
+    },
+    {
+      "aspects": [
+        "zamtrios-inflated",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_shiny.png"
+    }
+  ]
+}

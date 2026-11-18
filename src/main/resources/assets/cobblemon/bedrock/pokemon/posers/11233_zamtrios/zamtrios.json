@@ -1,0 +1,82 @@
+{
+  "portraitScale": 0.5,
+  "portraitTranslation": [
+    -0.64,
+    1.09,
+    0
+  ],
+  "profileScale": 0.19,
+  "profileTranslation": [
+    0.09,
+    1.46,
+    0
+  ],
+  "rootBone": "zamtrios",
+  "animations": {
+    "cry": "q.bedrock_stateful('zamtrios', 'cry')",
+    "faint": "q.bedrock_primary('zamtrios', 'faint', q.curve('one'))",
+    "physical": "q.bedrock_primary('zamtrios', 'physical', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('zamtrios', 'special', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('zamtrios', 'status', q.curve('symmetrical_wide'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios', 'battle_idle')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios', 'ground_idle')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios', 'ground_walk')"
+      ]
+    },
+    "floating": {
+      "poseTypes": [
+        "FLOAT"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios', 'water_idle')"
+      ]
+    },
+    "swimming": {
+      "poseTypes": [
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios', 'water_swim')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('zamtrios', 'sleep')"
+      ]
+    }
+  }
+}

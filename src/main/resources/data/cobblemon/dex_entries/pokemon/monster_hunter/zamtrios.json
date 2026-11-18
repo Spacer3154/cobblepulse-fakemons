@@ -1,0 +1,27 @@
+{
+  "id": "cobblemon:zamtrios",
+  "speciesId": "cobblemon:zamtrios",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    },
+    {
+      "displayForm": "Armor",
+      "unlockForms": [
+        "Armor"
+      ]
+    },
+    {
+      "displayForm": "Inflated",
+      "unlockForms": [
+        "Inflated"
+      ]
+    }
+  ],
+  "variations": []
+}

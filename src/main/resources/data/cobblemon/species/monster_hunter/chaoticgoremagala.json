@@ -1,0 +1,162 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 11235,
+  "name": "Chaotic Gore Magala",
+  "primaryType": "dark",
+  "secondaryType": "dragon",
+  "maleRatio": -1,
+  "height": 44,
+  "weight": 2450,
+  "pokedex": [
+    "cobblemon.species.chaoticgoremagala.desc"
+  ],
+  "labels": [
+    "monster_hunter",
+    "custom",
+    "legendary"
+  ],
+  "aspects": [],
+  "abilities": [
+    "cursedbody",
+    "reckless",
+    "h:infiltrator"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "preEvolution": "goremagala",
+  "baseStats": {
+    "hp": 95,
+    "attack": 150,
+    "defence": 80,
+    "special_attack": 110,
+    "special_defence": 75,
+    "speed": 110
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 3,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 300,
+  "experienceGroup": "slow",
+  "catchRate": 3,
+  "eggCycles": 35,
+  "baseFriendship": 0,
+  "shoulderMountable": false,
+  "baseScale": 1.41,
+  "hitbox": {
+    "width": 2.3,
+    "height": 3.12,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-15",
+      "drowsyChance": 0.02,
+      "rouseChance": 0.006,
+      "times": "day"
+    },
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.32
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.15
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willDefendSelf": true,
+      "willFlee": false
+    }
+  },
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:black_dye",
+        "quantityRange": "1-2"
+      },
+      {
+        "item": "minecraft:gold_nugget",
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "minecraft:phantom_membrane",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:dragon_fang",
+        "percentage": 8.0
+      },
+      {
+        "item": "cobblemon:black_glasses",
+        "percentage": 5.0
+      }
+    ]
+  },
+  "moves": [
+    "1:leer",
+    "1:scratch",
+    "1:bite",
+    "1:growl",
+    "5:ominouswind",
+    "9:screech",
+    "13:confuseray",
+    "17:dragonbreath",
+    "21:snarl",
+    "25:dragonrush",
+    "29:darkpulse",
+    "33:nightslash",
+    "37:spite",
+    "41:dragonclaw",
+    "45:doubleedge",
+    "49:flareblitz",
+    "53:outrage",
+    "57:closecombat",
+    "61:bravebird",
+    "66:gigaimpact",
+    "72:headsmash",
+    "tm:roar",
+    "tm:icebeam",
+    "tm:earthquake",
+    "tm:shadowball",
+    "tm:flamethrower",
+    "tm:scald",
+    "tm:dreameater",
+    "tm:dragonclaw",
+    "tm:taunt",
+    "tm:hyperbeam",
+    "tm:gigaimpact",
+    "tm:protect",
+    "tm:rest",
+    "tm:sleeptalk",
+    "tm:substitute",
+    "tm:facade",
+    "tm:knockoff",
+    "tm:uturn",
+    "tm:swordsdance",
+    "tm:bulkup",
+    "tm:wildcharge",
+    "tm:dragondance",
+    "tm:fly",
+    "tm:endure",
+    "tm:takedown",
+    "tm:brickbreak",
+    "tutor:lashout",
+    "tutor:rocksmash",
+    "tutor:furyattack",
+    "tutor:eruption"
+  ],
+  "evolutions": [],
+  "forms": []
+}

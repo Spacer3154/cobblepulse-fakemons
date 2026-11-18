@@ -1,0 +1,254 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 11233,
+  "name": "Zamtrios",
+  "primaryType": "water",
+  "secondaryType": "ice",
+  "maleRatio": 0.5,
+  "height": 29,
+  "weight": 2150,
+  "pokedex": [
+    "cobblemon.species.zamtrios.desc"
+  ],
+  "labels": [
+    "monster_hunter",
+    "custom"
+  ],
+  "aspects": [],
+  "abilities": [
+    "furcoat",
+    "strongjaw",
+    "h:swiftswim"
+  ],
+  "eggGroups": [
+    "water1",
+    "monster"
+  ],
+  "baseStats": {
+    "hp": 105,
+    "attack": 100,
+    "defence": 95,
+    "special_attack": 75,
+    "special_defence": 80,
+    "speed": 60
+  },
+  "evYield": {
+    "hp": 2,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 186,
+  "experienceGroup": "slow",
+  "catchRate": 75,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "shoulderMountable": false,
+  "baseScale": 0.7,
+  "hitbox": {
+    "width": 3.0,
+    "height": 4.12,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4",
+      "drowsyChance": 0.02,
+      "rouseChance": 0.006
+    },
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.26
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": true,
+        "canSwimInLava": false,
+        "swimSpeed": 0.42
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willDefendSelf": true,
+      "willFlee": false
+    }
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:packed_ice",
+        "quantityRange": "1-4"
+      },
+      {
+        "item": "minecraft:cod",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:never_melt_ice",
+        "percentage": 15.0
+      }
+    ]
+  },
+  "moves": [
+    "1:splash",
+    "1:tackle",
+    "1:powdersnow",
+    "1:watergun",
+    "5:bite",
+    "9:screech",
+    "12:harden",
+    "15:icywind",
+    "18:aquajet",
+    "21:stockpile",
+    "21:swallow",
+    "21:spitup",
+    "24:icefang",
+    "27:haze",
+    "30:rollout",
+    "33:liquidation",
+    "36:icebeam",
+    "39:crunch",
+    "42:heavyslam",
+    "45:hydropump",
+    "48:iciclecrash",
+    "52:earthquake",
+    "56:blizzard",
+    "60:wavecrash",
+    "64:sheercold",
+    "tm:aquatail",
+    "tm:protect",
+    "tm:icebeam",
+    "tm:blizzard",
+    "tm:earthquake",
+    "tm:rocktomb",
+    "tm:scald",
+    "tm:icywind",
+    "tm:waterfall",
+    "tm:surf",
+    "tm:avalanche",
+    "tm:iciclespear",
+    "tm:bulldoze",
+    "tm:rest",
+    "tm:sleeptalk",
+    "tm:substitute",
+    "tm:facade",
+    "tm:snowscape",
+    "tm:raindance",
+    "tm:chillingwater",
+    "tm:takedown",
+    "tm:bodyslam",
+    "tm:endure",
+    "tm:liquidation",
+    "tm:hydropump",
+    "tm:icepunch",
+    "tm:whirlpool",
+    "tm:brine",
+    "tm:waterpulse",
+    "tm:amnesia",
+    "tm:snore",
+    "tm:ironhead",
+    "tm:icefang",
+    "egg:avalanche",
+    "egg:iciclespear",
+    "egg:ironhead",
+    "egg:flipturn",
+    "egg:mudbomb",
+    "egg:bounce",
+    "egg:aquatail",
+    "egg:psychicfangs",
+    "egg:jawlock",
+    "tutor:wavecrash",
+    "tutor:stompingtantrum",
+    "tutor:freezedry",
+    "tutor:disable",
+    "tutor:fishiousrend"
+  ],
+  "evolutions": [],
+  "forms": [
+    {
+      "name": "Armor",
+      "primaryType": "water",
+      "secondaryType": "ice",
+      "maleRatio": 0.5,
+      "height": 29,
+      "weight": 2600,
+      "pokedex": [
+        "cobblemon.species.zamtrios-armor.desc"
+      ],
+      "labels": [
+        "monster_hunter",
+        "custom"
+      ],
+      "aspects": [
+        "zamtrios-armor"
+      ],
+      "abilities": [
+        "furcoat",
+        "strongjaw",
+        "h:swiftswim"
+      ],
+      "baseStats": {
+        "hp": 105,
+        "attack": 120,
+        "defence": 125,
+        "special_attack": 70,
+        "special_defence": 85,
+        "speed": 40
+      },
+      "baseScale": 0.7,
+      "hitbox": {
+        "width": 3.0,
+        "height": 4.12,
+        "fixed": false
+      },
+      "lightingData": {
+        "lightLevel": 7,
+        "liquidGlowMode": "BOTH"
+      }
+    },
+    {
+      "name": "Inflated",
+      "primaryType": "water",
+      "secondaryType": "ice",
+      "maleRatio": 0.5,
+      "height": 36,
+      "weight": 3100,
+      "pokedex": [
+        "cobblemon.species.zamtrios-inflated.desc"
+      ],
+      "labels": [
+        "monster_hunter",
+        "custom"
+      ],
+      "aspects": [
+        "zamtrios-inflated"
+      ],
+      "abilities": [
+        "furcoat",
+        "strongjaw",
+        "h:swiftswim"
+      ],
+      "baseStats": {
+        "hp": 105,
+        "attack": 90,
+        "defence": 115,
+        "special_attack": 85,
+        "special_defence": 115,
+        "speed": 25
+      },
+      "baseScale": 0.7,
+      "hitbox": {
+        "width": 4.6,
+        "height": 5.0,
+        "fixed": false
+      },
+      "battleOnly": true,
+      "dynamaxBlocked": true
+    }
+  ]
+}

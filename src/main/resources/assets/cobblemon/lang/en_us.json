@@ -92,5 +92,21 @@
   "cobblemon.ability.lameduchaos.desc": "Augmente de 70 % la puissance des capacités tranchantes. Ses capacités tranchantes sont super efficaces sur les Pokémon de type Roche.",
   "cobblemon.move.queuelame": "Queue-Lame",
   "cobblemon.move.queuelame.desc": "Le lanceur assène un violent coup circulaire avec sa queue surchauffée à blanc. Super efficace aussi sur les Pokémon vulnérables au Feu.",
-  "itemGroup.cobblepulse_ecology.fakemons": "CobblePulse-Ecology"
+  "itemGroup.cobblepulse_ecology.fakemons": "CobblePulse-Ecology",
+  "cobblemon.species.zamtrios.name": "Zamtrios",
+  "cobblemon.species.zamtrios.desc": "Un requin amphibie des mers glacées. Il gèle l'eau sur ses écailles pour se couvrir d'une armure de glace et peut gonfler son corps d'eau jusqu'à devenir une énorme boule qui écrase tout.",
+  "cobblemon.species.zamtrios-armor.desc": "Zamtrios en Armure de Glace. Dans le froid ou après une attaque de glace, l'eau gèle sur sa peau en piques acérées qui luisent dans l'obscurité.",
+  "cobblemon.species.zamtrios-inflated.desc": "Zamtrios gonflé. Blessé ou après avoir fait des réserves, il avale tant d'eau que son corps devient une boule géante qu'il fait rouler sur ses ennemis.",
+  "cobblemon.ui.pokedex.info.form.zamtrios-armor": "Armure de Glace",
+  "cobblemon.ui.pokedex.info.form.zamtrios-inflated": "Gonflée",
+  "cobblemon.species.goremagala.name": "Gore Magala",
+  "cobblemon.species.goremagala.desc": "Un dragon noir aveugle, drapé d'ailes qui lui servent aussi de pattes avant. Il ne voit rien : il perçoit le monde grâce aux écailles noires qu'il répand autour de lui, porteuses du virus de la Frénésie.",
+  "cobblemon.species.goremagala-frenzy.desc": "Gore Magala en Mode Furie. Blessé, il déploie les antennes de son crâne qui luisent d'un violet malsain, et ses écailles noires tourbillonnent en un voile qui rend fou.",
+  "cobblemon.ui.pokedex.info.form.goremagala-frenzy": "Mode Furie",
+  "cobblemon.species.chaoticgoremagala.name": "Gore Magala du Chaos",
+  "cobblemon.species.chaoticgoremagala.desc": "Un Gore Magala dont la mue s'est figée en présence d'un Shagaru Magala. Moitié noir et violet, moitié or, il n'a qu'un œil, du côté doré, et sa fureur instable fait trembler le sol.",
+  "cobblemon.species.shagarumagala.name": "Shagaru Magala",
+  "cobblemon.species.shagarumagala.desc": "Le Gore Magala parvenu au terme de sa mue. Ce dragon ancien aux écailles d'or blanc a enfin ouvert ses deux yeux ; il règne sur les hauteurs, entouré d'une aura dorée étincelante.",
+  "cobblemon.ability.goldenfrenzy": "Écailles en furie dorée",
+  "cobblemon.ability.goldenfrenzy.desc": "Augmente de 25 % la puissance des capacités Dragon et Fée et double les chances d'effet de ses attaques de lumière. Il subit 25 % de dégâts en plus des capacités Poison et de l'empoisonnement."
 }

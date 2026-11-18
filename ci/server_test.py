@@ -83,9 +83,18 @@ COMMANDS = [
     "spawnpokemonat 8 100 0 guillopard",
     "spawnpokemonat 12 100 0 glavenus",
     "spawnpokemonat 16 100 0 glavenus mega_evolution=mega",
-    "sleep 3",
-    "data get entity @e[type=cobblemon:pokemon,limit=5,sort=nearest] Pokemon.Species",
-    "data get entity @e[type=cobblemon:pokemon,limit=5,sort=nearest] Pokemon.FormId",
+    "spawnpokemonat 20 100 0 zamtrios",
+    "spawnpokemonat 24 100 0 zamtrios zamtrios_form=armor",
+    "spawnpokemonat 28 100 0 zamtrios zamtrios_form=inflated",
+    "spawnpokemonat 32 100 0 goremagala",
+    "spawnpokemonat 36 100 0 goremagala magala_frenzy=true",
+    "spawnpokemonat 40 100 0 chaoticgoremagala",
+    "spawnpokemonat 44 100 0 shagarumagala",
+    "sleep 1",
+    "data get entity @e[type=cobblemon:pokemon,limit=12,sort=nearest] Pokemon.FormId",
+    "sleep 4",
+    "data get entity @e[type=cobblemon:pokemon,limit=12,sort=nearest] Pokemon.Species",
+    "data get entity @e[type=cobblemon:pokemon,limit=12,sort=nearest] Pokemon.FormId",
     "reload",
     "sleep 8",
     "list",
@@ -146,7 +155,7 @@ except subprocess.TimeoutExpired:
 logf.close()
 
 text = open(os.path.join(OUT, "server.log"), errors="replace").read().splitlines()
-keys = re.compile(r"normandy|ecology|deviljho|glavenus|fakemon|SELFTEST|guillopard|soufflecarnage|ragebrulante|queuelame|lameduchaos|wasteland", re.I)
+keys = re.compile(r"normandy|ecology|deviljho|glavenus|zamtrios|magala|goldenfrenzy|battle_form|fakemon|SELFTEST|guillopard|soufflecarnage|ragebrulante|queuelame|lameduchaos|wasteland|FormId|Species", re.I)
 bad = re.compile(r"\b(ERROR|WARN)\b|Exception|Couldn't|Failed|Unknown|Invalid|error", re.I)
 with open(os.path.join(OUT, "server-summary.txt"), "w") as fh:
     for l in text:

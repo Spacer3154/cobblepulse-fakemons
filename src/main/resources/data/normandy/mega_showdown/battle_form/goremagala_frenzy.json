@@ -1,0 +1,18 @@
+{
+  "pokemons": [
+    "Gore Magala"
+  ],
+  "showdown_form_change_id": "frenzy",
+  "aspect_conditions": {
+    "apply": {
+      "aspects": [
+        "magala_frenzy=true"
+      ]
+    },
+    "revert": {
+      "aspects": [
+        "magala_frenzy=false"
+      ]
+    }
+  }
+}

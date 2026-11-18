@@ -1,0 +1,79 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "zamtrios-1",
+      "pokemon": "zamtrios zamtrios_form=armor",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "submerged",
+      "bucket": "rare",
+      "level": "35-55",
+      "weight": 6.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_frozen_ocean"
+        ]
+      },
+      "labels": [
+        "monster_hunter"
+      ]
+    },
+    {
+      "id": "zamtrios-2",
+      "pokemon": "zamtrios",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "submerged",
+      "bucket": "rare",
+      "level": "35-55",
+      "weight": 3.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_cold_ocean"
+        ]
+      },
+      "labels": [
+        "monster_hunter"
+      ]
+    },
+    {
+      "id": "zamtrios-3",
+      "pokemon": "zamtrios zamtrios_form=armor",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "rare",
+      "level": "35-55",
+      "weight": 2.5,
+      "condition": {
+        "biomes": [
+          "minecraft:snowy_beach",
+          "minecraft:ice_spikes",
+          "minecraft:frozen_river"
+        ],
+        "canSeeSky": true
+      },
+      "weightMultipliers": [
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "isRaining": true
+          }
+        }
+      ],
+      "labels": [
+        "monster_hunter"
+      ]
+    }
+  ]
+}

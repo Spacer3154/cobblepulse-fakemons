@@ -1,0 +1,21 @@
+{
+  "id": "cobblemon:goremagala",
+  "speciesId": "cobblemon:goremagala",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    },
+    {
+      "displayForm": "Frenzy",
+      "unlockForms": [
+        "Frenzy"
+      ]
+    }
+  ],
+  "variations": []
+}

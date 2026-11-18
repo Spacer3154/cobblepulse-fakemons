@@ -28,7 +28,7 @@ import java.util.Optional;
 /**
  * CobblePulse-Ecology (anciennement Normandy Fakemons) : le contenu (especes, modeles, apparitions, Showdown...) est
  * dans les ressources du jar ; le code enregistre les vrais objets du mod, a commencer par les mega-gemmes
- * (Deviljhonite, Glavenusite).
+ * (Deviljhonite, Glavenusite), et la forme Armure de Glace de Zamtrios dans les biomes geles (ZamtriosClimate).
  *
  * Une mega-gemme est reconnue par Mega Showdown grace a deux composants de donnees poses par defaut sur l'objet :
  * mega_showdown:registry_type_component = "mega" et mega_showdown:registry_location_component = l'entree du registre
@@ -94,6 +94,7 @@ public final class CobblePulseEcology implements ModInitializer {
             }
         });
 
+        ZamtriosClimate.register();
         ServerLifecycleEvents.SERVER_STARTED.register(CobblePulseEcology::selfCheck);
         LOG.info("CobblePulse-Ecology : {} mega-gemme(s) enregistree(s)", MEGA_STONES.size());
     }
@@ -142,6 +143,14 @@ public final class CobblePulseEcology implements ModInitializer {
             else problems.add("recette " + r + " non chargee");
             if (verbose) LOG.info("SELFTEST recipe {} loaded={}", r, loaded);
         }
+        // formes de combat (Zamtrios Armure / Gonfle, Gore Magala Mode Furie) : registre battle_form de Mega Showdown
+        ResourceKey<Registry<Object>> formKey = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath("mega_showdown", "battle_form"));
+        Optional<Registry<Object>> formRegistry = server.registryAccess().registry(formKey);
+        for (String f : BATTLE_FORMS) {
+            boolean loaded = formRegistry.isPresent() && formRegistry.get().containsKey(data(f));
+            if (!loaded) problems.add(data(f) + " absent du registre mega_showdown:battle_form");
+            if (verbose) LOG.info("SELFTEST battle_form {} loaded={}", data(f), loaded);
+        }
         int species = 0;
         for (String sid : SPECIES) {
             Object sp = cobblemonSpecies(sid);
@@ -161,7 +170,8 @@ public final class CobblePulseEcology implements ModInitializer {
     static final String[] SPECIES = {"pomdraco", "arboverger", "cidrac", "drakflam", "vikinav", "drakkarthor", "meuhgousse",
             "bovecume", "normanguer", "etreroch", "archeolithe", "gargoylbatre", "rousselin", "roussinage", "homarbleu",
             "noroimard", "bolvados", "cruchevados", "alchibec", "archangelis", "sleipcheron", "guillopard", "deviljho",
-            "glavenus"};
+            "glavenus", "zamtrios", "goremagala", "chaoticgoremagala", "shagarumagala"};
+    static final String[] BATTLE_FORMS = {"zamtrios_armor", "zamtrios_inflated", "goremagala_frenzy"};
 
     /** PokemonSpecies.INSTANCE.getByName(name) de Cobblemon, par reflexion (pas de dependance de compilation). */
     private static Object cobblemonSpecies(String name) {

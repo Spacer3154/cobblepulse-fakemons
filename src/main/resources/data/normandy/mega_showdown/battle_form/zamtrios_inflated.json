@@ -1,0 +1,18 @@
+{
+  "pokemons": [
+    "Zamtrios"
+  ],
+  "showdown_form_change_id": "inflated",
+  "aspect_conditions": {
+    "apply": {
+      "aspects": [
+        "zamtrios_form=inflated"
+      ]
+    },
+    "revert": {
+      "aspects": [
+        "zamtrios_form=normal"
+      ]
+    }
+  }
+}

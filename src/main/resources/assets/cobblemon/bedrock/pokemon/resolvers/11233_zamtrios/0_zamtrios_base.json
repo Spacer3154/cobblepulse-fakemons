@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:zamtrios",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:zamtrios",
+      "model": "cobblemon:zamtrios.geo",
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios.png"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_shiny.png"
+    }
+  ]
+}

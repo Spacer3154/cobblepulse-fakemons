@@ -38,7 +38,8 @@ jobs:
           echo "validate=$?" >> out/CHECKS
           (cd tools/showdown && npm ci --silent && node test_customs.js ../../src/main/resources \
              && node test_deviljho.js ../../src/main/resources \
-             && node test_glavenus.js ../../src/main/resources) > out/showdown-tests.txt 2>&1
+             && node test_glavenus.js ../../src/main/resources \
+             && node test_magala_zamtrios.js ../../src/main/resources) > out/showdown-tests.txt 2>&1
           echo "showdown=$?" >> out/CHECKS
           exit 0
 

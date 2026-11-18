@@ -1,0 +1,75 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "pokemon": "goremagala",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "48-65",
+      "labels": [
+        "monster_hunter",
+        "legendary"
+      ],
+      "id": "goremagala-1",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "weight": 8.0,
+      "condition": {
+        "biomes": [
+          "#normandy:magala_haunts"
+        ],
+        "timeRange": "night"
+      }
+    },
+    {
+      "pokemon": "goremagala",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "48-65",
+      "labels": [
+        "monster_hunter",
+        "legendary"
+      ],
+      "id": "goremagala-2",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "weight": 8.0,
+      "condition": {
+        "biomes": [
+          "#normandy:magala_haunts"
+        ],
+        "isThundering": true
+      }
+    },
+    {
+      "pokemon": "goremagala",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "48-65",
+      "labels": [
+        "monster_hunter",
+        "legendary"
+      ],
+      "id": "goremagala-3",
+      "presets": [
+        "natural"
+      ],
+      "weight": 4.0,
+      "condition": {
+        "biomes": [
+          "minecraft:deep_dark"
+        ],
+        "canSeeSky": false
+      }
+    }
+  ]
+}
