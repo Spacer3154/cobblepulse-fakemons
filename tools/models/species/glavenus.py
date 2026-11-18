@@ -944,10 +944,11 @@ def special(mega=False):
     return {"animation_length": L, "bones": b}
 
 
-SHARPEN = {"torso": [2, -21, 0], "chest": [0, -21, 0], "neck": [-4, -31, 0], "head": [4, -30, 19], "jaw": [22, 0, 0],
-           "tail": [-6, 50, 0], "tail2": [-6, 50, 0], "tail3": [-6, 50, 0], "blade": [0, 15, 0]}
-"""Sharpening pose (found by a search): the body curls into a C, the tail sweeps round along the left flank (+X) and
-the head turns back to take the middle of the blade crosswise between its jaws."""
+SHARPEN = {"torso": [2, -39, 0], "chest": [0, -39, 0], "neck": [-4, -10, 0], "head": [1, -32, -7], "jaw": [22, 0, 0],
+           "tail": [-2, 44, 0], "tail2": [-2, 44, 0], "tail3": [-2, 44, 0], "blade": [-19, 3, -69]}
+"""Sharpening pose (found by a search): the body curls into a C, the tail sweeps round along the left flank (+X), the
+blade rolls flat and its cutting edge slides between the open jaws of the head turned back toward it — no part of the
+blade inside the skull, the neck or the jaw."""
 
 
 def status(mega=False):
@@ -955,7 +956,7 @@ def status(mega=False):
     takes the blade crosswise between its jaws; then it draws the blade back and forth through its clenched teeth,
     the head grinding along, sparks flying; the blade turns red-hot; it lets go and swings the tail back."""
     L = 3.0
-    b = timeline(LEGS, L, [(0, 0, 0), (0.6, -1.5, 0), (2.4, -1.2, 0), (L, 0, 0)], step=0.05)
+    b = timeline(LEGS, L, [(0, 0, 0), (L, 0, 0)], step=0.1)
     t_in, t_out = 0.7, 2.4
     for bn, r in SHARPEN.items():
         if bn == "jaw":
@@ -965,20 +966,20 @@ def status(mega=False):
                                t_out + 0.35 + d: [v * 0.25 for v in r], L: [0, 0, 0]})
     # grinding: the tail draws the blade back and forth through the jaws, the head follows a little
     saw = lambda amp, ph=0: f"math.sin((q.anim_time-{t_in})*720+{ph})*{amp}"
-    for bn in ("tail", "tail2", "tail3"):
+    for bn in ("tail3",):
         r = SHARPEN[bn]
-        b[bn]["rotation"][str(round(t_in + 0.2, 2))] = kf([r[0], f"{r[1]}+{saw(5)}", r[2]])
-        b[bn]["rotation"][str(round(t_out - 0.15, 2))] = kf([r[0], f"{r[1]}+{saw(5)}", r[2]])
+        b[bn]["rotation"][str(round(t_in + 0.2, 2))] = kf([r[0], f"{r[1]}+{saw(1.2)}", r[2]])
+        b[bn]["rotation"][str(round(t_out - 0.15, 2))] = kf([r[0], f"{r[1]}+{saw(1.2)}", r[2]])
     r = SHARPEN["head"]
-    b["head"]["rotation"][str(round(t_in + 0.2, 2))] = kf([f"{r[0]}+{saw(2, 90)}", f"{r[1]}+{saw(3)}", r[2]])
-    b["head"]["rotation"][str(round(t_out - 0.15, 2))] = kf([f"{r[0]}+{saw(2, 90)}", f"{r[1]}+{saw(3)}", r[2]])
+    b["head"]["rotation"][str(round(t_in + 0.2, 2))] = kf([f"{r[0]}+{saw(0.8, 90)}", f"{r[1]}+{saw(0.8)}", r[2]])
+    b["head"]["rotation"][str(round(t_out - 0.15, 2))] = kf([f"{r[0]}+{saw(0.8, 90)}", f"{r[1]}+{saw(0.8)}", r[2]])
     for bn in b:
         if isinstance(b[bn].get("rotation"), dict):
             b[bn]["rotation"] = dict(sorted(b[bn]["rotation"].items(), key=lambda kv: float(kv[0])))
-    b["jaw"] = keys(rotation={0: [0, 0, 0], 0.4: [22, 0, 0], t_in: [22, 0, 0], 0.85: [16, 0, 0],
-                              t_out - 0.1: [16, 0, 0], t_out + 0.1: [26, 0, 0], 2.7: [4, 0, 0], L: [0, 0, 0]})
-    b["jaw"]["rotation"]["1.0"] = kf([f"16+math.sin(q.anim_time*1440)*2", 0, 0])
-    b["jaw"]["rotation"]["2.2"] = kf([f"16+math.sin(q.anim_time*1440)*2", 0, 0])
+    b["jaw"] = keys(rotation={0: [0, 0, 0], 0.4: [26, 0, 0], t_in: [23, 0, 0], 0.85: [23, 0, 0],
+                              t_out - 0.1: [23, 0, 0], t_out + 0.1: [27, 0, 0], 2.7: [4, 0, 0], L: [0, 0, 0]})
+    b["jaw"]["rotation"]["1.0"] = kf([f"23+math.sin(q.anim_time*1440)*1.5", 0, 0])
+    b["jaw"]["rotation"]["2.2"] = kf([f"23+math.sin(q.anim_time*1440)*1.5", 0, 0])
     b["jaw"]["rotation"] = dict(sorted(b["jaw"]["rotation"].items(), key=lambda kv: float(kv[0])))
     for side, sx in (("left", 1), ("right", -1)):
         b[f"arm_{side}"] = keys(rotation={0: [0, 0, 0], 0.5: [-20, 0, -10 * sx], t_out: [-20, 0, -10 * sx], L: [0, 0, 0]})
@@ -1074,10 +1075,11 @@ def sleep_anim(m, mega=False):
 
 
 def ko_anim(m, mega=False):
-    """Death: the blow pushes it back a little — it leans back over its planted feet, head jerking up and jaws
-    gaping — then its legs give way and it topples slowly onto its left flank, legs limp, the neck and the long head
-    coming to rest on the ground, the tail sinking with the blade lying flat; a last breath, the eyes close (mega: the
-    flames and the mist die out). The body is settled on the ground at every frame: no jump."""
+    """Death: struck down, it rears up — head and trunk thrown up into the air, jaws gaping in a last roar, little arms
+    clawing at the air, the blade lifted clear of the ground — and holds there trembling; then its legs give way and it
+    topples slowly onto its left flank, legs limp, the neck and the long head coming to rest on the ground, the tail
+    sinking with the blade lying flat; a last breath, the eyes close (mega: the flames and the mist die out). The body
+    is settled on the ground at every frame: no jump."""
     skip = _skip(m)
     legs = make_legs(mega)
 
@@ -1093,40 +1095,52 @@ def ko_anim(m, mega=False):
                 out[k] = {kk: list(vv) for kk, vv in v.items()}
         return out
     R = lambda **kw: {k: {"rotation": v} for k, v in kw.items()}
+    arms = lambda x, z=0: {"arm_left": {"rotation": [x, 0, -z]}, "arm_right": {"rotation": [x, 0, z]},
+                           "forearm_left": {"rotation": [x * 0.5, 0, 0]}, "forearm_right": {"rotation": [x * 0.5, 0, 0]}}
     head_grp = descendants(m, "head") - set(skip)
     tail_grp = descendants(m, "tail") - set(skip)
     k0 = P(stand(0, 0))
-    k1 = P(stand(-0.4, 2.0), R(torso=[-5, 0, 0], chest=[-3, 0, 0], neck=[-8, 0, 0], head=[-8, 0, 0], jaw=[26, 0, 0],
-                              tail=[4, 0, 0]))
-    k2 = P(stand(-4.5, 2.5), R(torso=[-2, 0, 0], chest=[-1, 0, 0], neck=[-4, -6, 0], head=[-2, 0, 0], jaw=[18, 0, 0],
-                              tail=[0, -4, 0]))
-    k2["body"]["rotation"] = [0, 0, 14]
+    # rears up: head and trunk high in the air (the hips sink back over the planted feet)
+    k1 = P(stand(-1.5, 3.0), R(torso=[-24, 0, 0], chest=[-10, 0, 0], neck=[-26, 0, 0], head=[-16, 0, 0], jaw=[40, 0, 0],
+                              tail2=[4, 0, 0], tail3=[4, 0, 0], blade=[2, 0, 0]), arms(-50, 18))
+    k2 = P(stand(-2.0, 3.5), R(torso=[-27, 0, 5], chest=[-11, 0, 2], neck=[-28, 8, 0], head=[-20, 0, 10], jaw=[34, 0, 0],
+                              tail2=[4, 4, 0], tail3=[4, 4, 0], blade=[2, 0, 0]), arms(-40, 24))
+    for kp, yaw in ((k1, 0), (k2, 5)):       # the tail and the blade stay clear of the ground while it rears
+        search(m, kp, "tail", [[x, yaw, 0] for x in range(-10, 60, 2)], 2.5, tail_grp, skip=skip)
+    # the legs give way, it starts to topple sideways, the head still up
+    k3 = P(stand(-5.0, 3.0), R(torso=[-10, 0, 0], chest=[-4, 0, 0], neck=[-12, -4, 0], head=[-6, 0, 0], jaw=[20, 0, 0],
+                              tail2=[0, 4, 0], tail3=[0, 4, 0]), arms(-10, 10))
+    k3["body"]["rotation"] = [0, 0, 22]
+    search(m, k3, "tail", [[x, -4, -10] for x in range(-10, 60, 2)], 1.0, tail_grp, skip=skip)
     # on its flank: body rolled onto the +X side (positive Z lowers +X), limp legs, head and tail lying down
-    k3 = {"body": {"rotation": [0, 0, 78], "position": [0, -4.5, 2.5]}}
+    k4 = {"body": {"rotation": [0, 0, 78], "position": [0, -4.5, 2.5]}}
     for lg in legs:
         for bn, dd in zip(lg.bones, lg.deltas((-40, 8, -30, 12))):
-            k3[bn] = {"rotation": [dd, 0, 0]}
-    k3.update(R(torso=[2, 0, 0], chest=[2, 0, 0], neck=[-6, 0, 0], head=[4, 0, 0], jaw=[14, 0, 0],
+            k4[bn] = {"rotation": [dd, 0, 0]}
+    k4.update(R(torso=[2, 0, 0], chest=[2, 0, 0], neck=[-6, 0, 0], head=[4, 0, 0], jaw=[14, 0, 0],
                 arm_left=[20, 0, 0], arm_right=[30, 0, 20], forearm_left=[10, 0, 0], forearm_right=[15, 0, 0],
                 tail2=[0, 6, 0], tail3=[0, 6, 0]))
-    k3["body"]["position"][1] = 0
-    k3["body"]["position"][1] = -lowest(m, k3, skip=skip) + 0.05
-    search(m, k3, "neck", [[-6, 0, z] for z in range(-40, 42, 2)], 0.4, head_grp, keep={"neck"}, skip=skip)
-    search(m, k3, "tail", [[0, 0, z] for z in range(-40, 42, 2)], 0.3, tail_grp, skip=skip)
-    k4 = P(k3)
-    k4["chest"]["rotation"][0] += 3                                   # last breath out
-    k4["jaw"]["rotation"][0] = 8
-    for kp in (k3, k4):
+    k4["body"]["position"][1] = 0
+    k4["body"]["position"][1] = -lowest(m, k4, skip=skip) + 0.05
+    search(m, k4, "neck", [[-6, 0, z] for z in range(-40, 42, 2)], 0.4, head_grp, keep={"neck"}, skip=skip)
+    search(m, k4, "tail", [[0, 0, z] for z in range(-40, 42, 2)], 0.3, tail_grp, skip=skip)
+    k5 = P(k4)
+    k5["chest"]["rotation"][0] += 3                                   # last breath out
+    k5["jaw"]["rotation"][0] = 8
+    for kp in (k4, k5):
         kp["body"]["position"][1] = 0
-    L = 3.2
-    b = pose_sequence(m, [(0, k0), (0.45, k1), (1.05, k2), (2.0, k3), (2.6, k4), (L, k4)], length=L, step=0.05, skip=skip)
+    L = 3.6
+    b = pose_sequence(m, [(0, k0), (0.5, k1), (1.05, k2), (1.6, k3), (2.45, k4), (3.0, k5), (L, k5)], length=L, step=0.05,
+                      skip=skip)
+    b["head"]["rotation"]["0.75"] = kf([tremble(-18, 2200, 2.5), 0, 5])          # the death roar trembles
+    b["head"]["rotation"] = dict(sorted(b["head"]["rotation"].items(), key=lambda kv: float(kv[0])))
     for e in ("eye_left", "eye_right"):
-        b[e] = keys(scale={0: [1, 1, 1], 0.3: [1, 0.55, 1], 0.6: [1, 1, 1], 2.0: [1, 0.8, 1], 2.5: [1, 0.1, 1],
-                           2.8: [1, 0.02, 1], L: [1, 0.02, 1]})
-    b["breath"] = keys(scale={0: [1, 1, 1], 1.2: [1, 1, 1], 2.2: [0.2, 0.2, 1], L: [0.2, 0.2, 1]})
+        b[e] = keys(scale={0: [1, 1, 1], 0.4: [1.1, 0.6, 1], 1.1: [1.1, 0.6, 1], 2.4: [1, 0.8, 1], 2.9: [1, 0.1, 1],
+                           3.2: [1, 0.02, 1], L: [1, 0.02, 1]})
+    b["breath"] = keys(scale={0: [1, 1, 1], 0.5: [1.8, 1.8, 1], 1.1: [1.4, 1.4, 1], 2.4: [0.2, 0.2, 1], L: [0.2, 0.2, 1]})
     if mega:
-        b.update(mist_flare([(0, 1), (0.45, 1.4), (1.2, 1), (2.2, 0.4), (2.9, 0.05), (L, 0.05)]))
-        b.update(flames_flare(L, [(0, 1), (0.45, 1.5), (1.2, 1), (2.2, 0.4), (2.9, 0.1), (L, 0.1)]))
+        b.update(mist_flare([(0, 1), (0.5, 1.6), (1.1, 1.3), (2.4, 0.4), (3.2, 0.05), (L, 0.05)]))
+        b.update(flames_flare(L, [(0, 1), (0.5, 1.7), (1.1, 1.2), (2.4, 0.4), (3.2, 0.1), (L, 0.1)]))
         for e in EMBERS:
             b[e] = keys(scale={0: [0, 0, 0], L: [0, 0, 0]})
     else:
