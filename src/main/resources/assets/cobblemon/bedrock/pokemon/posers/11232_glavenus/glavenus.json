@@ -1,0 +1,76 @@
+{
+  "portraitScale": 0.55,
+  "portraitTranslation": [
+    -0.49,
+    1.15,
+    0
+  ],
+  "profileScale": 0.26,
+  "profileTranslation": [
+    0.19,
+    1.35,
+    0
+  ],
+  "rootBone": "glavenus",
+  "animations": {
+    "cry": "q.bedrock_stateful('glavenus', 'cry')",
+    "faint": "q.bedrock_primary('glavenus', 'faint', q.curve('one'))",
+    "physical": "q.bedrock_primary('glavenus', 'physical', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('glavenus', 'special', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('glavenus', 'status', q.curve('symmetrical_wide'))",
+    "recoil": "q.bedrock_stateful('glavenus', 'recoil')"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('glavenus', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('glavenus', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('glavenus', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('glavenus', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('glavenus', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('glavenus', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('glavenus', 'sleep')"
+      ]
+    }
+  }
+}

@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Builds Deviljho + Deviljho Carnage (mega): python3 -I build_deviljho.py <models_dir> <out_pack_dir> <tmp_dir>"""
+"""Builds a Monster Hunter Fakemon and its mega form (models, animations, posers, resolvers, textures with animated
+emissive layers): python3 -I build_mh.py <models_dir> <species> <out_pack_dir> <tmp_dir>
+The species module (species/<species>.py) provides SID, MEGA_SID, DEX, PAL/SHINY/MEGA/MEGA_SHINY, FRAME_BONES,
+HEIGHT_SKIP, build(mega), anims(m, mega), poser(mega). Writes <tmp>/<species>_tops.json (heights for baseScale)."""
 import json, os, sys
-models_dir, out, tmp = sys.argv[1:4]
+models_dir, species, out, tmp = sys.argv[1:5]
 sys.path.insert(0, models_dir)
 import importlib.util, modelgen
 from modelgen import clean_molang
-spec = importlib.util.spec_from_file_location("deviljho", os.path.join(models_dir, "species", "deviljho.py"))
+spec = importlib.util.spec_from_file_location(species, os.path.join(models_dir, "species", f"{species}.py"))
 mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 import portrait_sim
 
@@ -17,7 +20,7 @@ for sub in ("models", "animations", "posers", "resolvers"):
     os.makedirs(f"{A}/bedrock/pokemon/{sub}/{folder}", exist_ok=True)
 
 def emit(mega):
-    name = "deviljho_carnage" if mega else "deviljho"
+    name = mod.MEGA_SID if mega else mod.SID
     m = mod.build(mega)
     an = mod.anims(m, mega)
     ps = mod.poser(mega)
@@ -27,12 +30,12 @@ def emit(mega):
     qs, qx, qy = portrait_sim.auto_profile(bones)
     ps.update(portraitScale=s, portraitTranslation=[tx, ty, 0], profileScale=qs, profileTranslation=[qx, qy, 0])
     geo = m.geo()
+    anim = {"format_version": "1.8.0", "animations": clean_molang(an)}
     json.dump(geo, open(f"{A}/bedrock/pokemon/models/{folder}/{name}.geo.json", "w"), indent=2)
-    json.dump({"format_version": "1.8.0", "animations": clean_molang(an)},
-              open(f"{A}/bedrock/pokemon/animations/{folder}/{name}.animation.json", "w"), indent=2)
+    json.dump(anim, open(f"{A}/bedrock/pokemon/animations/{folder}/{name}.animation.json", "w"), indent=2)
     json.dump(ps, open(f"{A}/bedrock/pokemon/posers/{folder}/{name}.json", "w"), indent=2)
     json.dump(geo, open(f"{tmp}/{name}.geo.json", "w"))
-    json.dump({"format_version": "1.8.0", "animations": clean_molang(an)}, open(f"{tmp}/{name}.animation.json", "w"))
+    json.dump(anim, open(f"{tmp}/{name}.animation.json", "w"))
     pals = (("", mod.MEGA if mega else mod.PAL), ("_shiny", mod.MEGA_SHINY if mega else mod.SHINY))
     layers = {}
     for suf, pal in pals:
@@ -54,14 +57,14 @@ def emit(mega):
 
 n0, L0, top0 = emit(False)
 n1, L1, top1 = emit(True)
+sid = mod.SID
 tex = lambda n, s="": f"cobblemon:textures/pokemon/{folder}/{n}{s}.png"
-json.dump({"species": "cobblemon:deviljho", "order": 0, "variations": [
-    {"aspects": [], "poser": "cobblemon:deviljho", "model": "cobblemon:deviljho.geo", "texture": tex(n0), "layers": L0[""]},
+json.dump({"species": f"cobblemon:{sid}", "order": 0, "variations": [
+    {"aspects": [], "poser": f"cobblemon:{n0}", "model": f"cobblemon:{n0}.geo", "texture": tex(n0), "layers": L0[""]},
     {"aspects": ["shiny"], "texture": tex(n0, "_shiny"), "layers": L0["_shiny"]}]},
-    open(f"{A}/bedrock/pokemon/resolvers/{folder}/0_deviljho_base.json", "w"), indent=2)
-json.dump({"species": "cobblemon:deviljho", "order": 1, "variations": [
-    {"aspects": ["mega"], "poser": "cobblemon:deviljho_carnage", "model": "cobblemon:deviljho_carnage.geo",
-     "texture": tex(n1), "layers": L1[""]},
+    open(f"{A}/bedrock/pokemon/resolvers/{folder}/0_{sid}_base.json", "w"), indent=2)
+json.dump({"species": f"cobblemon:{sid}", "order": 1, "variations": [
+    {"aspects": ["mega"], "poser": f"cobblemon:{n1}", "model": f"cobblemon:{n1}.geo", "texture": tex(n1), "layers": L1[""]},
     {"aspects": ["mega", "shiny"], "texture": tex(n1, "_shiny"), "layers": L1["_shiny"]}]},
-    open(f"{A}/bedrock/pokemon/resolvers/{folder}/1_deviljho_carnage.json", "w"), indent=2)
-json.dump({"top_base": top0, "top_mega": top1}, open(f"{tmp}/deviljho_tops.json", "w"))
+    open(f"{A}/bedrock/pokemon/resolvers/{folder}/1_{n1}.json", "w"), indent=2)
+json.dump({"top_base": top0, "top_mega": top1}, open(f"{tmp}/{sid}_tops.json", "w"))

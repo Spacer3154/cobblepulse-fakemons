@@ -19,6 +19,7 @@ from bovine import vnoise, put, light, side_cols
 from templates import poser as make_poser, tremble
 
 SID, DEX = "deviljho", 11231
+MEGA_SID = "deviljho_carnage"
 FRAME_BONES = ("head", "jaw", "neck")
 HEIGHT_SKIP = ("spine", "aura", "bolt", "breath", "drool", "frill", "teeth", "ember")
 HITBOX_WIDTH = 2.0

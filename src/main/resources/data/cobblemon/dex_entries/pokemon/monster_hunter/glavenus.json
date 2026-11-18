@@ -1,0 +1,21 @@
+{
+  "id": "cobblemon:glavenus",
+  "speciesId": "cobblemon:glavenus",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    },
+    {
+      "displayForm": "Mega",
+      "unlockForms": [
+        "Mega"
+      ]
+    }
+  ],
+  "variations": []
+}

@@ -18,8 +18,9 @@ PDF = {
  1050: ("Sleipcheron", ["ice", "ground"], 580), 1051: ("Guillopard", ["steel", "electric"], 680),
  # Monster Hunter category (not in the PDF): data given with the original Deviljho files
  11231: ("Deviljho", ["dragon", "dark"], 600),
+ 11232: ("Glavenus", ["fire", "steel"], 540),          # Fiche Fakemon - Glavenus & Méga-Glavenus
 }
-CATEGORY = {11231: "monster_hunter"}
+CATEGORY = {11231: "monster_hunter", 11232: "monster_hunter"}
 
 for f in glob.glob(os.path.join(pack, "**/*"), recursive=True):
     if os.path.isdir(f): continue

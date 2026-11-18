@@ -1,4 +1,7 @@
-# Normandy Fakemons — contenu du mod (Cobblemon 1.8.4, Minecraft 1.21.1)
+# CobblePulse-Ecology — contenu du mod (Cobblemon 1.8.4, Minecraft 1.21.1)
+
+Anciennement « Normandy Fakemons » (jusqu'à la 2.3) : renommé en 3.0.0 (identifiant `cobblepulse_ecology`). Les
+données gardent l'espace de noms `normandy` ; l'ancien objet `normandy_fakemons:deviljhonite` reste valable.
 
 ## Prérequis
 - Minecraft 1.21.1 + Fabric (et Fabric API), **Cobblemon 1.8.4**
@@ -8,7 +11,7 @@
   Sleipcheron et Guillopard ne se chargent pas.
 
 ## Installation (mod)
-Un seul fichier `normandy_fakemons-<version>+mc1.21.1.jar` (mod Fabric) qui contient le code, les données (espèces,
+Un seul fichier `cobblepulse-ecology-<version>+mc1.21.1.jar` (mod Fabric, il remplace `normandy_fakemons-*.jar`) qui contient le code, les données (espèces,
 apparitions, Pokédex, Showdown, recette…) et les ressources (modèles, textures, animations, langue).
 - **Serveur** : `mods/` du serveur. **Clients** : `mods/` de chaque joueur (obligatoire : objets et modèles).
 - Dépendances : Fabric API, Cobblemon 1.8.4, Mega Showdown (et ses propres dépendances).
@@ -21,8 +24,8 @@ apparitions, Pokédex, Showdown, recette…) et les ressources (modèles, textur
 - 6 capacités + 4 talents en JavaScript Showdown
 - 34 fichiers d'apparition (22 espèces + 12 hordes et Alphas) et 12 groupes de biomes (voir « Apparitions »)
 - Pokédex régional « Normandie », ajouté au Pokédex national
-- Catégorie **Monster Hunter** : Deviljho et sa méga-évolution Deviljho Carnage (voir plus bas), Pokédex
-  « Monster Hunter » ajouté au national, Deviljhonite
+- Catégorie **Monster Hunter** : Deviljho (méga : Deviljho Carnage, Deviljhonite) et Glavenus (méga : Glavenus
+  Lame-Chaos, Glavenusite), voir plus bas ; Pokédex « Monster Hunter » ajouté au national
 - Langue `fr_fr` (et `en_us`, identique, en solution de repli)
 
 ## Changements par rapport à la v1
@@ -245,7 +248,7 @@ successeur, Oh The Biomes We've Gone, est couvert.
   resolver `1_deviljho_carnage.json` (aspect `mega`), textures + couches émissives animées.
 
 ## Deviljhonite
-- **Vrai objet du mod** : `normandy_fakemons:deviljhonite`, dans l'onglet créatif « Normandy Fakemons » et dans
+- **Vrai objet du mod** : `cobblepulse_ecology:deviljhonite`, dans l'onglet créatif « CobblePulse-Ecology » et dans
   l'onglet des Méga-Gemmes de Mega Showdown, avec sa description. Le code lui pose par défaut les deux composants
   de Mega Showdown (`registry_type_component` = `mega`, `registry_location_component` = `normandy:deviljhonite`) :
   Mega Showdown la reconnaît comme la méga-gemme de Deviljho (`data/normandy/mega_showdown/mega/deviljhonite.json`
@@ -253,8 +256,9 @@ successeur, Oh The Biomes We've Gone, est couvert.
 - Fabrication (établi) : Croc Dragon en haut, Bloc d'os à gauche et à droite, Méga-Gemme brute de Mega Showdown
   (`mega_showdown:mega_stone`) au centre, Lunettes Noires en bas. La recette se débloque dans le livre en ramassant
   une Méga-Gemme.
-- Commandes : `/give @s normandy_fakemons:deviljhonite` ou `/function normandy:give_deviljhonite`.
-- Les Deviljhonites fabriquées avec les versions 2.0 à 2.2 (Éclats d'écho) continuent de fonctionner.
+- Commandes : `/give @s cobblepulse_ecology:deviljhonite` ou `/function normandy:give_deviljhonite`.
+- Les Deviljhonites fabriquées avec les versions 2.0 à 2.2 (Éclats d'écho) et 2.3 (`normandy_fakemons:deviljhonite`)
+  continuent de fonctionner.
 - Utilisation : comme toutes les méga-gemmes de Mega Showdown (Deviljho la tient, le dresseur porte un
   Méga-Bracelet, bouton Méga en combat).
 
@@ -262,3 +266,60 @@ successeur, Oh The Biomes We've Gone, est couvert.
 - Uniquement dans les **Wasteland** de Biomes O' Plenty (`biomesoplenty:wasteland` et `wasteland_steppe`, groupe
   `#normandy:wastelands`), en **ultra-rare**, niveau 50-70 ; ×1,5 la nuit, ×2 pendant les orages. Sans Biomes O'
   Plenty, il n'apparaît pas à l'état sauvage. Étiquette `monster_hunter`.
+
+# Glavenus (n° 11232) et Glavenus Lame-Chaos
+
+## Glavenus
+- Feu / Acier, 4,8 m, 320,5 kg, 540 de total (PV 110, Att 130, Déf 65, Att Spé 75, Déf Spé 95, Vit 65). Talents :
+  **Incisif** (Sharpness) et, caché, **Courroupace** (Anger Shell). Groupes d'œufs Monstre et Dragon, 40 cycles.
+  Pokédex : « Une wyverne de terre qui manie sa queue puissante comme une épée. Elle chauffe à chaque coup jusqu'à
+  devenir brûlante. »
+- Capacités (fiche) : niveau 1 Griffe, Groz'Yeux, Flammèche, Affûtage ; 6 Taillade ; 10 Hurlement ; 14 Griffe Acier ;
+  18 Crocs Feu ; 22 Brouillard ; 26 Tranche ; 30 Mur de Fer ; 32 Allègement ; 34 Calcination ; 38 Tranche-Nuit ;
+  42 Danse-Lames ; 48 **Queue-Lame** ; 54 Boutefeu ; 60 Lame d'Air ; 66 Colère ; 72 Queue de Fer. CT, Maître des
+  capacités et capacités œuf : celles de la fiche.
+- **Queue-Lame** (signature) : Acier, physique, 80 de puissance, 100 % de précision, 5 PP (8 au maximum), tranchante
+  et avec contact. Elle compte aussi comme du Feu : contre chaque type de la cible, c'est la meilleure efficacité
+  entre Acier et Feu qui s'applique (super efficace sur tout ce qui craint le Feu ; Cizayox la subit ×4, Aquali la
+  résiste). Boostée par Incisif (×1,5) et Lame du Chaos (×1,7).
+- Apparition : **ultra-rare**, niveau 50-70, dans les jungles (`#cobblemon:is_jungle`, à ciel ouvert, ×1,5 le jour)
+  et les terres volcaniques (`#cobblemon:is_volcanic`). Étiquette `monster_hunter`.
+- Modèle (d'après les références du jeu) : wyverne brute longue et athlétique, écailles cramoisies bordées de bleu
+  nuit, ventre crème, pattes et tête blindées de plaques bleu nuit, pointes bleu nuit à pointe turquoise.
+  **Tête** massive et anguleuse, entièrement blindée, mâchoire profonde, barbe de pointes sous le menton, grandes
+  cornes du crâne relevées vers l'arrière, pointes sur les arcades, les joues et le museau, yeux en fentes turquoise
+  lumineuses enfoncés sous l'arcade. **Cornes de flanc** : sur chaque hanche, un bouclier d'écailles couvre
+  l'articulation ; il en sort une corne gigantesque, large comme une lame, qui monte puis se courbe vers la tête, et
+  deux cornes moyennes (6 en tout). Crête de grandes pointes recourbées le long du cou et du dos. **Queue** : longue,
+  tendue vers l'arrière ; sa seconde moitié s'aplatit en un immense cimeterre (tranchant en dessous, bord pâle,
+  plat bleu acier veiné de turquoise lumineux, cristaux dentelés sur le dos de la lame). Quand il frappe, la lame
+  rougit (surcouche incandescente). Shiny : écailles sarcelle sombre et lame vert acide.
+- Animations : **attente** (respiration, tête qui balaie, reniflements, petite bouffée de feu), **marche**, **garde**
+  (lame dressée en arc au-dessus du dos, qui se balance comme une épée en garde, grognement), **cri** (droit devant,
+  gueule grande ouverte, légers mouvements de tête, lame relevée qui vibre et rougit), **attaque physique : Queue-Lame**
+  (il se ramasse, puis tournoie sur lui-même en sautant, queue tendue et lame couchée tranchant en avant ; la lame
+  rougit), **attaque spéciale** (souffle de feu balayé), **statut : affûtage** (il s'enroule en C, ramène la lame le
+  long du flanc, la prend en travers de la gueule et la fait aller et venir entre ses dents jusqu'à ce qu'elle
+  rougisse), **coup reçu**, **sommeil** (couché, queue ramenée sur le côté, lame à plat au sol), **K.O.** (il recule
+  légèrement puis tombe doucement sur le flanc, sans saut), clignement.
+
+## Méga-évolution : Glavenus Lame-Chaos
+- Forme `Mega` : Feu / Dragon, 5,5 m, 410 kg, 640 de total (PV 110, Att 140, Déf 95, Att Spé 85, Déf Spé 120,
+  Vit 90). Talent signature **Lame du Chaos** : +70 % de puissance aux capacités tranchantes, et ses capacités
+  tranchantes sont super efficaces sur les Pokémon de type Roche (la partie Roche de la cible compte comme faible,
+  comme Lyophilisation sur l'Eau ; les capacités non tranchantes ne changent pas). Le Pokédex affiche « Lame-Chaos ».
+- Modèle : carapace charbon fendue de fissures rouges incandescentes, plaques rouge sombre, pointes et cornes rouge
+  rosé, brume rouge-rose qui monte du dos, yeux rouges brûlants qui laissent une traînée, gueule qui rougeoie comme une
+  forge, **lame en fusion** (bord blanc, orange, rouge) léchée de flammes, braises qui s'en échappent. Animations
+  propres (les flammes s'embrasent à chaque cri ou attaque, s'éteignent au K.O.). Shiny : corps obsidienne, flammes
+  bleu-blanc.
+- Fichiers : `models/11232_glavenus/glavenus.geo.json` et `glavenus_lame_chaos.geo.json`, posers, animations,
+  resolvers `0_glavenus_base.json` et `1_glavenus_lame_chaos.json` (aspect `mega`), textures et couches émissives
+  animées.
+
+## Glavenusite
+- Objet du mod `cobblepulse_ecology:glavenusite` (onglet « CobblePulse-Ecology » et onglet des Méga-Gemmes de Mega
+  Showdown), composants Mega Showdown posés par défaut (`normandy:glavenusite`).
+- Fabrication : Pierre Feu en haut, Bloc de fer à gauche et à droite, Méga-Gemme brute (`mega_showdown:mega_stone`)
+  au centre, Peau Métal en bas. Débloquée dans le livre de recettes en ramassant une Méga-Gemme.
+- Commandes : `/give @s cobblepulse_ecology:glavenusite` ou `/function normandy:give_glavenusite`.

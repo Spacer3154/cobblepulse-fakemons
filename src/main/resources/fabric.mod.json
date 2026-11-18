@@ -1,16 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "normandy_fakemons",
+  "id": "cobblepulse_ecology",
   "version": "${version}",
-  "name": "Normandy Fakemons",
-  "description": "Fakemons pour Cobblemon : la region de Normandie (22 especes) et la categorie Monster Hunter (Deviljho et sa mega-evolution Deviljho Carnage, Deviljhonite). Modeles, animations, textures, apparitions, Pokedex, capacites et talents Showdown.",
-  "authors": ["CobblePulse"],
-  "contact": {"sources": "https://github.com/Spacer3154/cobblepulse-fakemons"},
+  "name": "CobblePulse-Ecology",
+  "description": "Ecosysteme de Fakemons du serveur CobblePulse pour Cobblemon : la region de Normandie (22 especes) et la categorie Monster Hunter (Deviljho / Deviljho Carnage, Glavenus / Glavenus Lame-Chaos) avec leurs mega-gemmes (Deviljhonite, Glavenusite). Modeles, animations, textures, apparitions, Pokedex, capacites et talents Showdown.",
+  "authors": [
+    "CobblePulse"
+  ],
+  "contact": {
+    "sources": "https://github.com/Spacer3154/cobblepulse-fakemons"
+  },
   "license": "All-Rights-Reserved",
-  "icon": "normandy_fakemons_icon.png",
+  "icon": "cobblepulse_ecology_icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["fr.cobblepulse.fakemons.NormandyFakemons"]
+    "main": [
+      "fr.cobblepulse.ecology.CobblePulseEcology"
+    ]
   },
   "depends": {
     "fabricloader": ">=0.16.0",

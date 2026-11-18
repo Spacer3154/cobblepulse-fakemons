@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """CI : demarre un vrai serveur Fabric 1.21.1 avec Cobblemon 1.8.4, Mega Showdown (et ses dependances) et le mod,
-puis verifie le chargement : auto-test du mod (-Dnormandy_fakemons.selftest=true), Deviljho et sa forme Mega,
+puis verifie le chargement : auto-test du mod (-Dcobblepulse_ecology.selftest=true), Deviljho, Glavenus et leurs formes Mega,
 la Deviljhonite et ses composants Mega Showdown, et les erreurs de chargement des donnees."""
 import glob, json, os, queue, re, shutil, subprocess, sys, threading, time, urllib.request
 
@@ -59,7 +59,7 @@ while wanted:
                 log(f"!! dep {d}: {e}")
 for j in [j for j in glob.glob("build/libs/*.jar") if not j.endswith("-sources.jar")]:
     shutil.copy(j, os.path.join(SRV, "mods"))
-    log("mod normandy_fakemons " + j)
+    log("mod cobblepulse_ecology " + j)
 
 installer = json.loads(get("https://meta.fabricmc.net/v2/versions/installer"))[0]["version"]
 loader = props.get("loader_version")
@@ -74,20 +74,24 @@ COMMANDS = [
     "sleep 5",
     "forceload add 0 0",
     "sleep 3",
-    "summon minecraft:item 0 120 0 {Item:{id:\"normandy_fakemons:deviljhonite\",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}",
-    "data get entity @e[type=minecraft:item,limit=1] Item",
+    "summon minecraft:item 0 120 0 {Item:{id:\"cobblepulse_ecology:deviljhonite\",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}",
+    "summon minecraft:item 2 120 0 {Item:{id:\"cobblepulse_ecology:glavenusite\",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}",
+    "summon minecraft:item 4 120 0 {Item:{id:\"normandy_fakemons:deviljhonite\",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}",
+    "data get entity @e[type=minecraft:item,limit=3] Item",
     "spawnpokemonat 0 100 0 deviljho",
     "spawnpokemonat 4 100 0 deviljho mega_evolution=mega",
     "spawnpokemonat 8 100 0 guillopard",
+    "spawnpokemonat 12 100 0 glavenus",
+    "spawnpokemonat 16 100 0 glavenus mega_evolution=mega",
     "sleep 3",
-    "data get entity @e[type=cobblemon:pokemon,limit=3,sort=nearest] Pokemon.Species",
-    "data get entity @e[type=cobblemon:pokemon,limit=3,sort=nearest] Pokemon.FormId",
+    "data get entity @e[type=cobblemon:pokemon,limit=5,sort=nearest] Pokemon.Species",
+    "data get entity @e[type=cobblemon:pokemon,limit=5,sort=nearest] Pokemon.FormId",
     "reload",
     "sleep 8",
     "list",
 ]
 
-proc = subprocess.Popen(["java", "-Xmx5G", "-Dnormandy_fakemons.selftest=true", "-jar", "server.jar", "nogui"], cwd=SRV,
+proc = subprocess.Popen(["java", "-Xmx5G", "-Dcobblepulse_ecology.selftest=true", "-jar", "server.jar", "nogui"], cwd=SRV,
                         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
 lines = queue.Queue()
 logf = open(os.path.join(OUT, "server.log"), "w")
@@ -142,7 +146,7 @@ except subprocess.TimeoutExpired:
 logf.close()
 
 text = open(os.path.join(OUT, "server.log"), errors="replace").read().splitlines()
-keys = re.compile(r"normandy|deviljho|fakemon|SELFTEST|guillopard|soufflecarnage|ragebrulante|wasteland", re.I)
+keys = re.compile(r"normandy|ecology|deviljho|glavenus|fakemon|SELFTEST|guillopard|soufflecarnage|ragebrulante|queuelame|lameduchaos|wasteland", re.I)
 bad = re.compile(r"\b(ERROR|WARN)\b|Exception|Couldn't|Failed|Unknown|Invalid|error", re.I)
 with open(os.path.join(OUT, "server-summary.txt"), "w") as fh:
     for l in text:

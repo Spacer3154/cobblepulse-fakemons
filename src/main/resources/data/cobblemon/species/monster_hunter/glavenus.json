@@ -1,0 +1,229 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 11232,
+  "name": "Glavenus",
+  "primaryType": "fire",
+  "secondaryType": "steel",
+  "maleRatio": 0.5,
+  "height": 48,
+  "weight": 3205,
+  "pokedex": [
+    "cobblemon.species.glavenus.desc"
+  ],
+  "labels": [
+    "monster_hunter",
+    "custom"
+  ],
+  "aspects": [],
+  "abilities": [
+    "sharpness",
+    "h:angershell"
+  ],
+  "eggGroups": [
+    "monster",
+    "dragon"
+  ],
+  "baseStats": {
+    "hp": 110,
+    "attack": 130,
+    "defence": 65,
+    "special_attack": 75,
+    "special_defence": 95,
+    "speed": 65
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 3,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 255,
+  "experienceGroup": "slow",
+  "catchRate": 45,
+  "eggCycles": 40,
+  "baseFriendship": 35,
+  "shoulderMountable": false,
+  "baseScale": 1.46,
+  "hitbox": {
+    "width": 1.8,
+    "height": 3.29,
+    "fixed": false
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4",
+      "drowsyChance": 0.02,
+      "rouseChance": 0.006
+    },
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.32
+      },
+      "swim": {
+        "canSwimInWater": true,
+        "canBreatheUnderwater": false,
+        "canSwimInLava": false,
+        "swimSpeed": 0.15
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willDefendSelf": true,
+      "willFlee": false
+    }
+  },
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:bone",
+        "quantityRange": "1-2"
+      },
+      {
+        "item": "minecraft:iron_ingot",
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "minecraft:blaze_powder",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:fire_stone",
+        "percentage": 6.0
+      },
+      {
+        "item": "cobblemon:metal_coat",
+        "percentage": 4.0
+      }
+    ]
+  },
+  "moves": [
+    "1:scratch",
+    "1:leer",
+    "1:ember",
+    "1:sharpen",
+    "6:furycutter",
+    "10:roar",
+    "14:metalclaw",
+    "18:firefang",
+    "22:smokescreen",
+    "26:slash",
+    "30:irondefense",
+    "32:autotomize",
+    "34:incinerate",
+    "38:nightslash",
+    "42:swordsdance",
+    "48:queuelame",
+    "54:flareblitz",
+    "60:airslash",
+    "66:outrage",
+    "72:irontail",
+    "tm:aerialace",
+    "tm:aircutter",
+    "tm:airslash",
+    "tm:xscissor",
+    "tm:cut",
+    "tm:ironhead",
+    "tm:crunch",
+    "tm:earthquake",
+    "tm:rockslide",
+    "tm:stoneedge",
+    "tm:dragonclaw",
+    "tm:closecombat",
+    "tm:brickbreak",
+    "tm:heavyslam",
+    "tm:flamethrower",
+    "tm:fireblast",
+    "tm:heatwave",
+    "tm:flashcannon",
+    "tm:dragonpulse",
+    "tm:dracometeor",
+    "tm:ancientpower",
+    "tm:focusblast",
+    "tm:bulldoze",
+    "tm:roar",
+    "tm:stealthrock",
+    "tm:spikes",
+    "tm:swordsdance",
+    "tm:irondefense",
+    "tm:autotomize",
+    "tm:protect",
+    "tm:substitute",
+    "tm:rest",
+    "tm:sleeptalk",
+    "tm:willowisp",
+    "tm:sunnyday",
+    "tm:howl",
+    "tm:scaryface",
+    "tm:taunt",
+    "tm:torment",
+    "tutor:ironhead",
+    "tutor:heatwave",
+    "tutor:dracometeor",
+    "tutor:outrage",
+    "tutor:willowisp",
+    "tutor:stealthrock",
+    "tutor:gyroball",
+    "tutor:stompingtantrum",
+    "tutor:doubleslap",
+    "tutor:dragonpulse",
+    "tutor:earthpower",
+    "egg:barrier",
+    "egg:acupressure",
+    "egg:filletaway",
+    "egg:suckerpunch",
+    "egg:counter",
+    "egg:irontail",
+    "egg:aircutter"
+  ],
+  "evolutions": [],
+  "forms": [
+    {
+      "name": "Mega",
+      "primaryType": "fire",
+      "secondaryType": "dragon",
+      "maleRatio": 0.5,
+      "height": 55,
+      "weight": 4100,
+      "pokedex": [
+        "cobblemon.species.glavenus-mega.desc"
+      ],
+      "labels": [
+        "monster_hunter",
+        "custom",
+        "mega"
+      ],
+      "aspects": [
+        "mega"
+      ],
+      "abilities": [
+        "lameduchaos"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 140,
+        "defence": 95,
+        "special_attack": 85,
+        "special_defence": 120,
+        "speed": 90
+      },
+      "baseExperienceYield": 300,
+      "baseScale": 1.64,
+      "hitbox": {
+        "width": 1.9,
+        "height": 3.36,
+        "fixed": false
+      },
+      "battleOnly": true,
+      "dynamaxBlocked": true,
+      "lightingData": {
+        "lightLevel": 11,
+        "liquidGlowMode": "LAND"
+      }
+    }
+  ]
+}

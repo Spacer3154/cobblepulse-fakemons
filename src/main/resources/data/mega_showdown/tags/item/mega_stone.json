@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "cobblepulse_ecology:deviljhonite",
+    "cobblepulse_ecology:glavenusite",
     "normandy_fakemons:deviljhonite"
   ]
 }

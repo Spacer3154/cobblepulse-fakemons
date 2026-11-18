@@ -78,5 +78,19 @@
   "item.normandy_fakemons.deviljhonite": "Deviljhonite",
   "item.normandy_fakemons.deviljhonite.lore": "Permet à Deviljho de méga-évoluer en Deviljho Carnage.",
   "item.normandy_fakemons.deviljhonite.lore2": "Elle palpite d'une faim sans fin.",
-  "itemGroup.normandy_fakemons.fakemons": "Normandy Fakemons"
+  "item.cobblepulse_ecology.deviljhonite": "Deviljhonite",
+  "item.cobblepulse_ecology.deviljhonite.lore": "Permet à Deviljho de méga-évoluer en Deviljho Carnage.",
+  "item.cobblepulse_ecology.deviljhonite.lore2": "Elle palpite d'une faim sans fin.",
+  "item.cobblepulse_ecology.glavenusite": "Glavenusite",
+  "item.cobblepulse_ecology.glavenusite.lore": "Permet à Glavenus de méga-évoluer en Glavenus Lame-Chaos.",
+  "item.cobblepulse_ecology.glavenusite.lore2": "Elle brûle d'une chaleur qui ne s'éteint jamais.",
+  "cobblemon.species.glavenus.name": "Glavenus",
+  "cobblemon.species.glavenus.desc": "Une wyverne de terre qui manie sa queue puissante comme une épée. Elle chauffe à chaque coup jusqu'à devenir brûlante.",
+  "cobblemon.species.glavenus-mega.desc": "L'énergie de la Méga-Gemme le consume de l'intérieur, le plongeant dans une frénésie sanguinaire perpétuelle. Sa queue-lame irradie une chaleur si destructrice qu'elle fond ses propres écailles, le poussant à trancher tout sur son passage pour apaiser sa rage.",
+  "cobblemon.ui.pokedex.info.form.glavenus-mega": "Lame-Chaos",
+  "cobblemon.ability.lameduchaos": "Lame du Chaos",
+  "cobblemon.ability.lameduchaos.desc": "Augmente de 70 % la puissance des capacités tranchantes. Ses capacités tranchantes sont super efficaces sur les Pokémon de type Roche.",
+  "cobblemon.move.queuelame": "Queue-Lame",
+  "cobblemon.move.queuelame.desc": "Le lanceur assène un violent coup circulaire avec sa queue surchauffée à blanc. Super efficace aussi sur les Pokémon vulnérables au Feu.",
+  "itemGroup.cobblepulse_ecology.fakemons": "CobblePulse-Ecology"
 }

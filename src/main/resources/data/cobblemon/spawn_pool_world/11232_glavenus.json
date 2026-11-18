@@ -1,0 +1,58 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "glavenus-1",
+      "pokemon": "glavenus",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "50-70",
+      "weight": 0.8,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle"
+        ],
+        "canSeeSky": true
+      },
+      "weightMultipliers": [
+        {
+          "multiplier": 1.5,
+          "condition": {
+            "timeRange": "day"
+          }
+        }
+      ],
+      "labels": [
+        "monster_hunter"
+      ]
+    },
+    {
+      "id": "glavenus-2",
+      "pokemon": "glavenus",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "ultra-rare",
+      "level": "50-70",
+      "weight": 1.2,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      },
+      "labels": [
+        "monster_hunter"
+      ]
+    }
+  ]
+}

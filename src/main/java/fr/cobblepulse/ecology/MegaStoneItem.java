@@ -1,4 +1,4 @@
-package fr.cobblepulse.fakemons;
+package fr.cobblepulse.ecology;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
