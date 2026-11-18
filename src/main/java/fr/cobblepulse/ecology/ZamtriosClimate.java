@@ -26,6 +26,7 @@ final class ZamtriosClimate {
     private static Method getPokemon, isBattling, getSpecies, getName, getAspects, apply;
     private static Constructor<?> feature;
     private static boolean ready, broken, warned;
+    private static final boolean VERBOSE = Boolean.getBoolean("cobblepulse_ecology.selftest");
 
     private ZamtriosClimate() {
     }
@@ -76,7 +77,11 @@ final class ZamtriosClimate {
                 Set<String> aspects = (Set<String>) getAspects.invoke(pokemon);
                 String have = aspects.contains("zamtrios-armor") ? "armor" : aspects.contains("zamtrios-inflated") ? "inflated" : "normal";
                 String want = frozen(level, e.blockPosition()) ? "armor" : "normal";
-                if (!want.equals(have)) apply.invoke(feature.newInstance("zamtrios_form", want), pokemon);
+                if (!want.equals(have)) {
+                    apply.invoke(feature.newInstance("zamtrios_form", want), pokemon);
+                    if (VERBOSE) CobblePulseEcology.LOG.info("SELFTEST zamtrios_form {} -> {} at {} (now {})", have, want,
+                            e.blockPosition().toShortString(), getAspects.invoke(pokemon));
+                }
             } catch (Throwable t) {
                 if (!warned) {
                     warned = true;

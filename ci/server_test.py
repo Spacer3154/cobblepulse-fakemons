@@ -95,8 +95,9 @@ COMMANDS = [
     "say ZAMTRIOS CLIMATE CHECK: x=22 snowy_plains (normal -> armor), x=40 (armor -> normal); wild Pokemon despawn in a few seconds without players",
     "spawnpokemonat 22 100 0 zamtrios",
     "spawnpokemonat 40 100 0 zamtrios zamtrios_form=armor",
-    "execute as @e[type=cobblemon:pokemon] at @s run data get entity @s Pokemon.Features[2]",
-    "execute as @e[type=cobblemon:pokemon] at @s run data get entity @s Pokemon.Features[2]",
+    "execute as @e[type=cobblemon:pokemon] run data get entity @s Pos",
+    "execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Features[2]",
+    "execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Features[2]",
     "reload",
     "sleep 8",
     "list",
@@ -157,7 +158,7 @@ except subprocess.TimeoutExpired:
 logf.close()
 
 text = open(os.path.join(OUT, "server.log"), errors="replace").read().splitlines()
-keys = re.compile(r"normandy|ecology|deviljho|glavenus|zamtrios|magala|goldenfrenzy|battle_form|fakemon|SELFTEST|guillopard|soufflecarnage|ragebrulante|queuelame|lameduchaos|wasteland|FormId|Species", re.I)
+keys = re.compile(r"CLIMATE|normandy|ecology|deviljho|glavenus|zamtrios|magala|goldenfrenzy|battle_form|fakemon|SELFTEST|guillopard|soufflecarnage|ragebrulante|queuelame|lameduchaos|wasteland|FormId|Species", re.I)
 bad = re.compile(r"\b(ERROR|WARN)\b|Exception|Couldn't|Failed|Unknown|Invalid|error", re.I)
 with open(os.path.join(OUT, "server-summary.txt"), "w") as fh:
     for l in text:
