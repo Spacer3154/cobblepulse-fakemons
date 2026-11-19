@@ -416,6 +416,16 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   qui passent pour l'armure du visage ; ailes repliées en cape de fourrure noire en lambeaux le long des flancs,
   crinière de fourrure sur le cou et les épaules, queue bordée d'épines pâles. En combat, il prend la pose du rendu :
   griffes des ailes levées à hauteur de tête, ailes de fourrure dressées. Chromatique gris cendre, furie sarcelle.
+- 3.2.1 (Gore Magala seulement, d'après les rendus de MH Rise / World et une sculpture) : grandes écailles qui se
+  chevauchent, bordées de gris-bleu ; cou plus arqué ; rangées de plaques sur le cou et le dos ; collerette de pointes
+  derrière la mâchoire, crocs plus longs ; pattes plus épaisses (genouillère, griffes plus longues) ; arête de plaques
+  sur l'avant-bras des ailes ; frange de pointes dentelée le long de la queue ; lambeaux de la cape plus irréguliers.
+  En Mode Furie : cornes dressées qui se recourbent vers l'avant, pointes roses ; le bord des écailles du dessus et un
+  réseau de nervures dans les ailes luisent en violet. Comportement (descriptions d'écologie et d'attaques) : au repos,
+  aveugle, il balaie lentement l'air de la tête et ses ailes-cape frémissent (il sent ses proies avec les écailles de
+  ses ailes) ; attaque physique = « Grand Écrasement » (cri, se dresse sur ses pattes arrière griffes en l'air, les
+  abat devant lui) ; attaque spéciale = souffle explosif (tête levée sur sa droite, mâchoire ouverte balayée de droite
+  à gauche). Gore Magala du Chaos et Shagaru Magala inchangés.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

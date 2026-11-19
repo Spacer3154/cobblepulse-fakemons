@@ -13,7 +13,7 @@ mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 
 A = os.path.join(out, "assets/cobblemon")
 os.makedirs(tmp, exist_ok=True)
-GLOW = {"goremagala": None, "goremagala_frenzy": {"_antenna": True, "_veins": True},
+GLOW = {"goremagala": None, "goremagala_frenzy": {"_antenna": True, "_veins": True, "_fglow": True},
         "chaoticgoremagala": {"_antenna": True, "_veins": True, "_horn": True},
         "shagarumagala": {"_veins": True, "_horn": True}}
 
