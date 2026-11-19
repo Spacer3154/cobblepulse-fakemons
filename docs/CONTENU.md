@@ -366,14 +366,22 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
 - Apparitions (**rare**, niveau 35-55) : sous l'eau des océans gelés (en armure), des océans froids (normal), et à
   terre sur les plages enneigées, les pics de glace et les rivières gelées (en armure, ×1,5 sous la pluie).
   Butin : glace compactée, cabillaud, Glace Éternelle (15 %).
-- Modèle (3.1.1) : refait d'après les images de référence de Kevin, sur le squelette du modèle fourni (mêmes os,
-  mêmes pivots : ses animations s'appliquent toujours). Grosse tête ronde de requin (front haut, museau obtus, œil
-  blanc lumineux, lèvre rose bordée de dents, mâchoire et gorge pâles), corps voûté à grande nageoire dorsale en
-  faucille (bord d'attaque turquoise, moitié arrière vert-jaune-orange), pattes avant écartées portant une nageoire
-  nervurée sur l'avant-bras, griffes noires, queue terminée par une nageoire caudale verticale ; peau bleu-sarcelle
-  à fissures sombres, ventre crème lavande. Armure de Glace : peau givrée, masque de glace sur le crâne, énorme
-  corne de glace en avant du museau, épines latérales, couronne de longues épines sur le dos, nageoire dorsale gainée,
-  épaules, avant-bras, cuisses et queue givrés ; la glace luit (veines lumineuses) et s'éteint quand il dort.
+- Modèle (3.1.1, détaillé en 3.1.2 d'après la planche de concept) : refait d'après les images de référence de Kevin,
+  sur le squelette du modèle fourni (mêmes os, mêmes pivots : ses animations s'appliquent toujours). Grosse tête
+  ronde de requin (front haut, museau obtus, arcades sourcilières, œil blanc lumineux, ouïes, lèvre rose bordée de
+  dents, mâchoire et gorge pâles prolongées par deux lames blanches vers l'arrière), crête dentelée de plaques à
+  pointe brun-rouge sur le crâne, la nuque, le dos et toute la queue, double rangée de grandes écailles le long de
+  l'échine, corps voûté à grande nageoire dorsale en faucille (bord d'attaque turquoise, moitié arrière
+  vert-jaune-orange, nervures), pattes avant écartées portant une nageoire d'avant-bras en plumes d'écailles
+  superposées, griffes noires, queue terminée par une nageoire caudale verticale et frangée dessous d'une nageoire
+  dorée nervurée ; peau bleu-sarcelle couverte d'écailles en losange qui se chevauchent (reflets cyan, plus grandes
+  sur le dos, dos plus sombre), flancs bas olive puis dorés, queue virant à l'olive doré, ventre crème lavande à
+  plaques transversales. Armure de Glace : peau givrée (le turquoise reste visible, neige sur le dessus), masque de
+  glace sur le crâne, énorme corne de glace en avant du museau, crête de glace sur la tête, collerettes de glace
+  sur les joues, épines latérales, couronne de longues épines effilées sur le dos, nageoire dorsale gainée, épaules,
+  avant-bras, cuisses et queue givrés ; chaque cristal est blanc bleuté à pointe blanche, veiné d'une strie bleu
+  sombre, et la glace luit le long de ses veines (éteinte quand il dort). La poche de la forme Gonflée garde ses
+  écailles, étirées.
   Chromatique bleu-violet à nageoires dorées, glace lavande. Les yeux luisent aussi (éteints au sommeil). Animations
   fournies converties (attente, marche, course, sommeil, K.O. dressé en rugissant puis retourné, cri avec onde de
   choc de neige au sol) ; écrites : attente de combat, morsure (physique), jet de glace (spéciale), piétinement
