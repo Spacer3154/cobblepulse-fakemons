@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:zamtrios",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:zamtrios",
+      "model": "cobblemon:zamtrios.geo",
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_glow.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_shiny_glow.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

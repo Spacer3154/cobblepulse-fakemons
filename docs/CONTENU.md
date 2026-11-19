@@ -366,12 +366,18 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
 - Apparitions (**rare**, niveau 35-55) : sous l'eau des océans gelés (en armure), des océans froids (normal), et à
   terre sur les plages enneigées, les pics de glace et les rivières gelées (en armure, ×1,5 sous la pluie).
   Butin : glace compactée, cabillaud, Glace Éternelle (15 %).
-- Modèle : celui fourni, converti pour Cobblemon (UV par face → UV en boîte, tailles arrondies à l'unité, atlas
-  1024x512 refait à partir des deux textures fournies), trois modèles (`zamtrios`, `zamtrios_armor`,
-  `zamtrios_inflated`), chromatique bleu-violet (nageoires dorées, armure lavande). Animations fournies converties
-  (attente, marche, course, sommeil, K.O. dressé en rugissant puis retourné, cri avec onde de choc au sol) ;
-  écrites : attente de combat, morsure (physique), jet de glace (spéciale), piétinement (statut), nage. Forme
-  Gonflée : sa propre série (balancement, plaquage, jet d'eau, roulade, K.O. qui se dégonfle).
+- Modèle (3.1.1) : refait d'après les images de référence de Kevin, sur le squelette du modèle fourni (mêmes os,
+  mêmes pivots : ses animations s'appliquent toujours). Grosse tête ronde de requin (front haut, museau obtus, œil
+  blanc lumineux, lèvre rose bordée de dents, mâchoire et gorge pâles), corps voûté à grande nageoire dorsale en
+  faucille (bord d'attaque turquoise, moitié arrière vert-jaune-orange), pattes avant écartées portant une nageoire
+  nervurée sur l'avant-bras, griffes noires, queue terminée par une nageoire caudale verticale ; peau bleu-sarcelle
+  à fissures sombres, ventre crème lavande. Armure de Glace : peau givrée, masque de glace sur le crâne, énorme
+  corne de glace en avant du museau, épines latérales, couronne de longues épines sur le dos, nageoire dorsale gainée,
+  épaules, avant-bras, cuisses et queue givrés ; la glace luit (veines lumineuses) et s'éteint quand il dort.
+  Chromatique bleu-violet à nageoires dorées, glace lavande. Les yeux luisent aussi (éteints au sommeil). Animations
+  fournies converties (attente, marche, course, sommeil, K.O. dressé en rugissant puis retourné, cri avec onde de
+  choc de neige au sol) ; écrites : attente de combat, morsure (physique), jet de glace (spéciale), piétinement
+  (statut), nage. Forme Gonflée : sa propre série (balancement, plaquage, jet d'eau, roulade, K.O. qui se dégonfle).
 
 ## Gore Magala (n° 11234, Ténèbres / Dragon, légendaire)
 - 4,2 m, 230 kg, total 580 (PV 95, Att 115, Déf 85, Att Spé 115, Déf Spé 85, Vit 85), +1 Att +1 Att Spé. Talents

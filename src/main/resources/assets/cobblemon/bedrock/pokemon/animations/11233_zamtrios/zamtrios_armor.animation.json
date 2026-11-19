@@ -717,27 +717,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -1799,27 +1778,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -2826,27 +2784,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -3040,27 +2977,6 @@
       0
      ]
     },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
     "icearmor_glow": {
      "scale": [
       0,
@@ -3069,6 +2985,69 @@
      ]
     },
     "bodyicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "leftarmicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "lowerleftarmicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "leftlegicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "rightarmicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "lowerrightarmicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "rightlegicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "tailicearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "tail1icearmor_glow": {
+     "scale": [
+      0,
+      0,
+      0
+     ]
+    },
+    "eyes": {
      "scale": [
       0,
       0,
@@ -5341,27 +5320,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -8273,27 +8231,6 @@
       ]
      }
     },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
     "body": {
      "rotation": {
       "0.0": [
@@ -9306,27 +9243,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -9582,27 +9498,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -9887,27 +9782,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    }
   },
@@ -10145,27 +10019,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -10715,27 +10568,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -11276,27 +11108,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,

@@ -45,7 +45,7 @@ bash iter.sh guillopard                                              # une espè
 python3 -I build_mh.py . deviljho ../../src/main/resources tmp       # Monster Hunter : espèce + forme Méga
 python3 -I build_mh.py . glavenus ../../src/main/resources tmp       # (écrit aussi tmp/<espèce>_tops.json)
 cp tmp/glavenus_tops.json ../gen/                                    # hauteurs du modèle -> baseScale
-python3 -I zamtrios_import.py . ../../src/main/resources tmp/zam     # Zamtrios (modèle fourni, src/zamtrios/)
+python3 -I build_zamtrios.py . ../../src/main/resources tmp/zam     # Zamtrios (squelette et animations fournis, src/zamtrios/)
 python3 -I build_magala.py . ../../src/main/resources tmp/mag        # Gore Magala (+ Furie), du Chaos, Shagaru
 cp tmp/zam/*_tops.json tmp/mag/*_tops.json ../gen/
 python3 -I dex_icons.py . ../../src/main/resources                   # icônes 32x32

@@ -292,27 +292,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -727,27 +706,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -1235,27 +1193,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": true
@@ -1366,21 +1303,7 @@
       0
      ]
     },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
+    "eyes": {
      "scale": [
       0,
       0,
@@ -1608,27 +1531,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    }
   },
@@ -1828,27 +1730,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    }
   },
@@ -2006,27 +1887,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -2201,27 +2061,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -2534,27 +2373,6 @@
       0,
       0
      ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
     }
    },
    "loop": "hold_on_last_frame"
@@ -2774,27 +2592,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,
@@ -3205,27 +3002,6 @@
      }
     },
     "specialfx1": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx2": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx3": {
-     "scale": [
-      0,
-      0,
-      0
-     ]
-    },
-    "specialfx4": {
      "scale": [
       0,
       0,

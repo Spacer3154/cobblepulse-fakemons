@@ -8,14 +8,28 @@
       ],
       "poser": "cobblemon:zamtrios_inflated",
       "model": "cobblemon:zamtrios_inflated.geo",
-      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios.png"
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_inflated.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_inflated_glow.png",
+          "emissive": true
+        }
+      ]
     },
     {
       "aspects": [
         "zamtrios-inflated",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_shiny.png"
+      "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_inflated_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_inflated_shiny_glow.png",
+          "emissive": true
+        }
+      ]
     }
   ]
 }

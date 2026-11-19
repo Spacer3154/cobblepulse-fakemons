@@ -1,259 +1,36 @@
 # -*- coding: utf-8 -*-
-"""Zamtrios (Monster Hunter) for Cobblemon, from the supplied remaster model (src/zamtrios: per-face UV geometry,
-GeckoLib animations, normal texture and ice-armour texture).
+"""Zamtrios (Monster Hunter) for Cobblemon: models and textures from species/zamtrios.py (rebuilt on the skeleton of
+the supplied remaster model, after the reference pictures), animations from the supplied GeckoLib file (src/zamtrios:
+keyframes with easing resampled to linear Bedrock keyframes: idle, walk, run, sleep, faint, cry) plus the ones written
+here (battle_idle, physical, special, status, swimming, the whole Inflated set).
 
-python3 -I zamtrios_import.py <models_dir> <out_pack_dir> <tmp_dir>
+python3 -I build_zamtrios.py <models_dir> <out_pack_dir> <tmp_dir>
 
-What it does:
-* geometry: per-face UV -> box UV (Cobblemon only reads box UV), cube sizes snapped to whole units (centre kept) so
-  every face starts on a texel; one 1024x512 atlas re-laid out from the two supplied textures;
-* three models sharing the atlas: zamtrios (normal: no ice armour), zamtrios_armor (ice armour + glow shells),
-  zamtrios_inflated (the giant inflated sac, built at half size and scaled x2 by every animation);
-* the ice armour glows at night through glow shells: copies of the armour cubes, slightly inflated, transparent in
-  the base texture and painted only in the emissive layer, hidden while asleep (the glow goes out);
-* textures: normal / ice armour / shiny of both (teal -> violet, orange fins -> gold) / emissive glow (normal, shiny);
-* animations: GeckoLib keyframes (vector + easing) resampled to linear Bedrock keyframes for idle, walk, run, sleep,
-  faint (rears up roaring, collapses) and cry; battle_idle, physical, special, status and swimming are written here;
-  the inflated form has its own set (bobbing ball, body slam, deflating faint...)."""
-import copy, colorsys, json, math, os, sys
+Three models: zamtrios (normal), zamtrios_armor (Ice Armour, glow shells on the ice), zamtrios_inflated (the giant
+sac, built at half size and scaled x2 by every animation). Textures: normal / shiny, emissive layer (eyes; the ice of
+the armour) — the eyes and the ice glow go out while it sleeps."""
+import copy, json, math, os, sys
 
 models_dir, out, tmp = sys.argv[1:4]
 sys.path.insert(0, models_dir)
-from PIL import Image
+import importlib.util
 from gecko import sample, to_bedrock
 import portrait_sim
+spec = importlib.util.spec_from_file_location("zamtrios_species", os.path.join(models_dir, "species", "zamtrios.py"))
+Z = importlib.util.module_from_spec(spec); spec.loader.exec_module(Z)
 
 SRC = os.path.join(models_dir, "src", "zamtrios")
-DEX, SID = 11233, "zamtrios"
-FOLDER = f"{DEX}_{SID}"
+DEX, SID, FOLDER = Z.DEX, Z.SID, Z.FOLDER
 A = os.path.join(out, "assets/cobblemon")
 TDIR = f"{A}/textures/pokemon/{FOLDER}"
 for sub in ("models", "animations", "posers", "resolvers"):
     os.makedirs(f"{A}/bedrock/pokemon/{sub}/{FOLDER}", exist_ok=True)
 os.makedirs(TDIR, exist_ok=True); os.makedirs(tmp, exist_ok=True)
+FX = Z.FX
+BALLOON_K = Z.BALLOON_K
 
-FX = ("specialfx1", "specialfx2", "specialfx3", "specialfx4")
-ARMOR = ("icearmor", "bodyicearmor")
-GLOW = ("icearmor_glow", "bodyicearmor_glow")
-BALLOON_C = (0.0, 40.0, 6.0)          # centre and radii of the inflated sac (full size, model units)
-BALLOON_R = (44.0, 40.0, 46.0)
-BALLOON_K = 2.0                       # built at 1/K size, scaled xK by the animations (a quarter of the texels)
-
-# ------------------------------------------------------------------------------------------------ geometry
-src = json.load(open(f"{SRC}/zamtrios_remaster.geo.json"))
-geo = src["minecraft:geometry"][0]
-bones = geo["bones"]
-byname = {b["name"]: b for b in bones}
-for name, parent in zip(GLOW, ARMOR):           # glow shells: the armour cubes, a hair larger
-    shell = {"name": name, "parent": parent, "pivot": list(byname[parent]["pivot"]), "cubes": []}
-    for c in byname[parent]["cubes"]:
-        c2 = copy.deepcopy(c); c2["inflate"] = 0.2; c2["_glow"] = True
-        shell["cubes"].append(c2)
-    bones.append(shell)
-
-def balloon_cubes():
-    cx, cy, cz = BALLOON_C                    # centred on the real centre (the scale pivot), radii divided by K
-    rx, ry, rz = (v / BALLOON_K for v in BALLOON_R)
-    cubes = []
-    n = 12
-    for k in range(n):
-        y0 = cy - ry + 2 * ry * k / n
-        y1 = cy - ry + 2 * ry * (k + 1) / n
-        ym = (y0 + y1) / 2
-        f = math.sqrt(max(0.0, 1 - ((ym - cy) / ry) ** 2))
-        a, c = max(1, round(rx * f)), max(1, round(rz * f))
-        h = max(1, round(y1 - y0))
-        for ax, az in ((a, round(c * 0.72)), (round(a * 0.72), c)):
-            cubes.append({"origin": [cx - ax, round(y0, 2), cz - az], "size": [2 * ax, h, 2 * az], "_balloon": True})
-    return cubes
-
-bones.append({"name": "balloon", "parent": "body", "pivot": list(BALLOON_C), "cubes": balloon_cubes()})
-
-def snap(bones):
-    for b in bones:
-        for c in b.get("cubes", []):
-            o, s = c["origin"], c["size"]
-            ns = [0 if v == 0 else max(1, int(math.floor(v + 0.5))) for v in s]
-            c["origin"] = [round(o[i] + (s[i] - ns[i]) / 2, 4) for i in range(3)]
-            c["size"] = ns
-
-def box_rects(u, v, w, h, d):
-    return {"up": (u + d, v, w, d), "down": (u + d + w, v, w, d), "east": (u, v + d, d, h),
-            "north": (u + d, v + d, w, h), "west": (u + d + w, v + d, d, h), "south": (u + 2 * d + w, v + d, w, h)}
-
-def pack(sizes, width):
-    order = sorted(range(len(sizes)), key=lambda i: (-sizes[i][1], -sizes[i][0]))
-    sky, pos = [0] * width, {}
-    for i in order:
-        w, h = sizes[i]
-        if not w or not h:
-            pos[i] = (0, 0); continue
-        best = None
-        for x in range(0, width - w + 1):
-            y = max(sky[x:x + w])
-            if best is None or y < best[1]:
-                best = (x, y)
-        x, y = best
-        for k in range(x, x + w):
-            sky[k] = y + h
-        pos[i] = (x, y)
-    return pos, max(sky)
-
-orig = copy.deepcopy(bones)
-snap(bones)
-TW, TH = 1024, 512
-refs = [(bi, ci) for bi, b in enumerate(bones) for ci, _ in enumerate(b.get("cubes", []))]
-sizes = [(2 * bones[bi]["cubes"][ci]["size"][2] + 2 * bones[bi]["cubes"][ci]["size"][0],
-          bones[bi]["cubes"][ci]["size"][2] + bones[bi]["cubes"][ci]["size"][1]) for bi, ci in refs]
-pos, used = pack(sizes, TW)
-assert used <= TH, f"atlas overflow: {used} > {TH}"
-
-tex_src = {k: Image.open(f"{SRC}/{f}").convert("RGBA") for k, f in
-           (("normal", "zamtrios_remaster.png"), ("ice", "zamtrios_remaster_ice.png"))}
-atlas = {k: Image.new("RGBA", (TW, TH), (0, 0, 0, 0)) for k in tex_src}
-glow_mask = Image.new("L", (TW, TH), 0)
-balloon_faces = []                       # (rect, face, cube) to paint
-for k, (bi, ci) in enumerate(refs):
-    c = bones[bi]["cubes"][ci]
-    oc = orig[bi]["cubes"][ci]
-    w, h, d = c["size"]
-    u, v = pos[k]
-    c["uv"] = [u, v]
-    rects = box_rects(u, v, w, h, d)
-    if c.pop("_balloon", False):
-        for face, r in rects.items():
-            balloon_faces.append((face, r, c))
-        continue
-    glow = c.pop("_glow", False)
-    for face, (rx, ry, fw, fh) in rects.items():
-        f = oc["uv"].get(face) if isinstance(oc.get("uv"), dict) else None
-        if not fw or not fh or not f:
-            continue
-        su, sv = f["uv"]; ssx, ssy = f["uv_size"]
-        if not ssx or not ssy:
-            continue
-        tu, tv, tsx, tsy = (rx, ry + fh, fw, -fh) if face == "down" else (rx, ry, fw, fh)
-        for j in range(fh):
-            for i in range(fw):
-                s_, t_ = (rx + i + 0.5 - tu) / tsx, (ry + j + 0.5 - tv) / tsy
-                x = min(max(math.floor(su + s_ * ssx), min(su, su + ssx)), max(su, su + ssx) - 1)
-                y = min(max(math.floor(sv + t_ * ssy), min(sv, sv + ssy)), max(sv, sv + ssy) - 1)
-                for key, img in atlas.items():
-                    img.putpixel((rx + i, ry + j), tex_src[key].getpixel((x, y)))
-                if glow:
-                    glow_mask.putpixel((rx + i, ry + j), 255)
-
-# the inflated sac: teal back with the dark stripes of the head, cream belly, a soft line between them
-TEAL, TEAL_D, CREAM, CREAM_D, STRIPE = (32, 196, 190), (22, 150, 150), (222, 222, 196), (196, 196, 170), (14, 46, 52)
-def sac_color(px, py, pz):
-    cy, ry = BALLOON_C[1], BALLOON_R[1] / BALLOON_K
-    px, pz = px - BALLOON_C[0], pz - BALLOON_C[2]
-    hgt = (py - cy) / ry                          # -1 bottom .. 1 top
-    edge = -0.15 + 0.12 * math.sin(pz * 0.9) + 0.06 * math.sin(px * 1.7)
-    if hgt > edge:
-        col = TEAL if (int(px * 5) * 7 + int(pz * 5) * 3 + int(py * 5)) % 11 else TEAL_D
-        wave_ = math.sin(pz * 0.42 + 0.004 * px * px * 4 + 0.6)
-        if hgt > 0.05 and abs(wave_) < 0.16 + 0.05 * hgt:
-            col = STRIPE
-    else:
-        col = CREAM if (int(px * 2) + int(py * 3) + int(pz * 2)) % 9 else CREAM_D
-    return col + (255,)
-
-def face_point(face, c, a, b):
-    (x0, y0, z0), (sx, sy, sz) = c["origin"], c["size"]
-    x1, y1, z1 = x0 + sx, y0 + sy, z0 + sz
-    return {"north": (x0 + a, y1 - b, z0), "south": (x1 - a, y1 - b, z1), "east": (x0, y1 - b, z1 - a),
-            "west": (x1, y1 - b, z0 + a), "up": (x0 + a, y1, z1 - b), "down": (x0 + a, y0, z1 - b)}[face]
-
-for face, (rx, ry, fw, fh), c in balloon_faces:
-    for j in range(fh):
-        for i in range(fw):
-            p = face_point(face, c, i + 0.5, j + 0.5)
-            col = sac_color(*p)
-            for img in atlas.values():
-                img.putpixel((rx + i, ry + j), col)
-
-# ------------------------------------------------------------------------------------------------ textures
-def recolor(img, shiny):
-    """shiny: teal -> violet, orange/red fins -> gold, pale ice -> lavender ice"""
-    out_ = img.copy()
-    px = out_.load()
-    for y in range(img.height):
-        for x in range(img.width):
-            r, g, b, a = px[x, y]
-            if not a:
-                continue
-            h, s, v = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
-            if 0.40 <= h <= 0.56 and s > 0.08:
-                h = (h + 0.22) % 1.0
-                s = min(1.0, s * 0.72)
-                v = v * 0.92
-            elif (h <= 0.11 or h >= 0.95) and s > 0.35:
-                h = 0.12; s = min(1.0, s * 0.85); v = min(1.0, v * 1.05)
-            elif 0.56 < h <= 0.60 and s > 0.2:
-                h = 0.80
-            r2, g2, b2 = colorsys.hsv_to_rgb(h, s, v)
-            px[x, y] = (round(r2 * 255), round(g2 * 255), round(b2 * 255), a)
-    return out_
-
-def glow_layer(ice):
-    """emissive layer: only the glow shells, brightest ice glows most, the dark cracks stay dark"""
-    g = Image.new("RGBA", (TW, TH), (0, 0, 0, 0))
-    gp, ip, mp = g.load(), ice.load(), glow_mask.load()
-    for y in range(TH):
-        for x in range(TW):
-            if not mp[x, y]:
-                continue
-            r, gg, b, a = ip[x, y]
-            if not a:
-                continue
-            lum = (0.3 * r + 0.59 * gg + 0.11 * b) / 255
-            if lum < 0.55:
-                continue
-            k = (lum - 0.55) / 0.45
-            gp[x, y] = (min(255, int(r * 0.8 + 50)), min(255, int(gg * 0.9 + 40)), 255, int(70 + 150 * k))
-    return g
-
-def hide_glow(img):
-    img = img.copy()
-    p, mp = img.load(), glow_mask.load()
-    for y in range(TH):
-        for x in range(TW):
-            if mp[x, y]:
-                p[x, y] = (0, 0, 0, 0)
-    return img
-
-T = {}
-T["zamtrios"] = hide_glow(atlas["normal"])
-T["zamtrios_shiny"] = recolor(T["zamtrios"], True)
-T["zamtrios_armor"] = hide_glow(atlas["ice"])
-T["zamtrios_armor_shiny"] = recolor(T["zamtrios_armor"], True)
-G = {"normal": glow_layer(atlas["ice"])}
-G["shiny"] = recolor(G["normal"], True)
-for n, img in T.items():
-    img.save(f"{TDIR}/{n}.png"); img.save(f"{tmp}/{n}.png")
-os.makedirs(f"{TDIR}/glow", exist_ok=True)
-for k, img in G.items():
-    img.save(f"{TDIR}/glow/zamtrios_armor_{k}.png"); img.save(f"{tmp}/zamtrios_armor_glow_{k}.png")
-for base in ("zamtrios", "zamtrios_shiny"):          # previews with the glow on
-    pass
-
-# ------------------------------------------------------------------------------------------------ models
-geo["description"].update({"texture_width": TW, "texture_height": TH})
-def model(name, drop):
-    g = copy.deepcopy(src)
-    gg = g["minecraft:geometry"][0]
-    gg["description"]["identifier"] = f"geometry.{name}"
-    gg["bones"] = [b for b in copy.deepcopy(bones) if b["name"] not in drop]
-    for b in gg["bones"]:
-        for c in b.get("cubes", []):
-            for k in [k for k in c if k.startswith("_")]:
-                del c[k]
-    return g
-
-MODELS = {"zamtrios": model("zamtrios", ARMOR + GLOW + ("balloon",)),
-          "zamtrios_armor": model("zamtrios_armor", ("balloon",)),
-          "zamtrios_inflated": model("zamtrios_inflated", ARMOR + GLOW)}
+MODELS = {"zamtrios": Z.build("normal"), "zamtrios_armor": Z.build("armor"), "zamtrios_inflated": Z.build("inflated")}
+GLOW = tuple(b + "_glow" for b in Z.ICE_BONES)
 
 # ------------------------------------------------------------------------------------------------ animations
 SRC_A = json.load(open(f"{SRC}/zamtrios_remaster.animation.json"))["animations"]
@@ -481,13 +258,26 @@ def armor_set():
         S["sleep"]["bones"].setdefault(b, {})["scale"] = [0, 0, 0]
     return S
 
-ANIMS = {"zamtrios": base_set(), "zamtrios_armor": armor_set(), "zamtrios_inflated": inflated_set()}
+def finish(S, bones):
+    """eyes shut while asleep; drop the channels of bones this model does not have (the source's spray effects)"""
+    S["sleep"]["bones"].setdefault("eyes", {})["scale"] = [0, 0, 0]
+    for a in S.values():
+        for b in [b for b in a["bones"] if b not in bones]:
+            del a["bones"][b]
+    return S
+
+
+ANIMS = {}
+for name, m in MODELS.items():
+    names = {b.name for b in m.bones}
+    S = armor_set() if name == "zamtrios_armor" else (inflated_set() if name == "zamtrios_inflated" else base_set())
+    ANIMS[name] = finish(S, names)
 
 # ------------------------------------------------------------------------------------------------ posers
 def poser(group, geo_bones):
     portrait_sim.set_mode("portrait")
     s, tx, ty = portrait_sim.auto_frame(geo_bones, fill=13.5, below=0.5, names=("head", "jaw"))
-    qs, qx, qy = portrait_sim.auto_profile([b for b in geo_bones if b["name"] not in FX])
+    qs, qx, qy = portrait_sim.auto_profile([b for b in geo_bones if b["name"] not in FX and b["name"] != "balloon"])
     q = lambda a: f"q.bedrock('{group}', '{a}')"
     prim = lambda a: f"q.bedrock_primary('{group}', '{a}', q.curve('symmetrical_wide'))"
     return {
@@ -506,8 +296,9 @@ def poser(group, geo_bones):
             "swimming": {"poseTypes": ["SWIM"], "animations": ["q.look('head')", q("water_swim")]},
             "sleep": {"poseTypes": ["SLEEP"], "animations": [q("sleep")]}}}
 
-tops = {}
-for name, g in MODELS.items():
+tops, layers = {}, {}
+for name, m in MODELS.items():
+    g = m.geo()
     gb = g["minecraft:geometry"][0]["bones"]
     json.dump(g, open(f"{A}/bedrock/pokemon/models/{FOLDER}/{name}.geo.json", "w"), indent=1)
     json.dump(g, open(f"{tmp}/{name}.geo.json", "w"))
@@ -515,37 +306,29 @@ for name, g in MODELS.items():
     json.dump(an, open(f"{A}/bedrock/pokemon/animations/{FOLDER}/{name}.animation.json", "w"), indent=1)
     json.dump(an, open(f"{tmp}/{name}.animation.json", "w"))
     json.dump(poser(name, gb), open(f"{A}/bedrock/pokemon/posers/{FOLDER}/{name}.json", "w"), indent=2)
-    # height of the standing model (feet to the top of the dorsal fin), effects and the sac excluded
-    M = portrait_sim.mats(gb)
-    hi = 0.0
-    for b in gb:
-        if b["name"] in FX or b["name"] == "balloon":
-            continue
-        for c in b.get("cubes", []):
-            o, s_ = c["origin"], c["size"]
-            for dx in (0, s_[0]):
-                for dy in (0, s_[1]):
-                    for dz in (0, s_[2]):
-                        hi = max(hi, portrait_sim.apply(M[b["name"]], (o[0] + dx, o[1] + dy, o[2] + dz))[1])
-    tops[name] = round(hi, 2)
-    print(f"{name}: {sum(len(b.get('cubes', [])) for b in gb)} cubes, {len(gb)} bones, top {hi:.1f}")
+    for suf, pal in (("", Z.NORMAL), ("_shiny", Z.SHINY)):
+        p = dict(pal, _frost=True) if name == "zamtrios_armor" else pal
+        img = m.texture(p)
+        img.save(f"{TDIR}/{name}{suf}.png"); img.save(f"{tmp}/{name}{suf}.png")
+        glow = m.texture(dict(p, _only_glow=True), seed=101)
+        glow.save(f"{TDIR}/{name}{suf}_glow.png"); glow.save(f"{tmp}/{name}{suf}_glow.png")
+        prev = img.copy(); prev.alpha_composite(glow); prev.save(f"{tmp}/{name}{suf}_preview.png")
+        layers[(name, suf)] = [{"name": "emissive", "texture": f"cobblemon:textures/pokemon/{FOLDER}/{name}{suf}_glow.png",
+                                "emissive": True}]
+    # height of the standing model (feet to the top of the dorsal fin; ice, effects and the sac excluded)
+    lo, hi = m.extent(skip=[b.name for b in m.bones if b.name in FX or b.name == "balloon" or "icearmor" in b.name])
+    tops[name] = round(hi[1], 2)
+    print(f"{name}: texture {m.tex_size}, {sum(len(b.cubes) for b in m.bones)} cubes, {len(m.bones)} bones, top {hi[1]:.1f}")
 
 tex = lambda n: f"cobblemon:textures/pokemon/{FOLDER}/{n}.png"
-glow = lambda k: [{"name": "emissive", "texture": tex(f"glow/zamtrios_armor_{k}"), "emissive": True}]
 res = f"{A}/bedrock/pokemon/resolvers/{FOLDER}"
-json.dump({"species": f"cobblemon:{SID}", "order": 0, "variations": [
-    {"aspects": [], "poser": "cobblemon:zamtrios", "model": "cobblemon:zamtrios.geo", "texture": tex("zamtrios")},
-    {"aspects": ["shiny"], "texture": tex("zamtrios_shiny")}]}, open(f"{res}/0_zamtrios_base.json", "w"), indent=2)
-json.dump({"species": f"cobblemon:{SID}", "order": 1, "variations": [
-    {"aspects": ["zamtrios-armor"], "poser": "cobblemon:zamtrios_armor", "model": "cobblemon:zamtrios_armor.geo",
-     "texture": tex("zamtrios_armor"), "layers": glow("normal")},
-    {"aspects": ["zamtrios-armor", "shiny"], "texture": tex("zamtrios_armor_shiny"), "layers": glow("shiny")}]},
-    open(f"{res}/1_zamtrios_armor.json", "w"), indent=2)
-json.dump({"species": f"cobblemon:{SID}", "order": 2, "variations": [
-    {"aspects": ["zamtrios-inflated"], "poser": "cobblemon:zamtrios_inflated", "model": "cobblemon:zamtrios_inflated.geo",
-     "texture": tex("zamtrios")},
-    {"aspects": ["zamtrios-inflated", "shiny"], "texture": tex("zamtrios_shiny")}]},
-    open(f"{res}/2_zamtrios_inflated.json", "w"), indent=2)
+for order, (name, aspect) in enumerate((("zamtrios", None), ("zamtrios_armor", "zamtrios-armor"),
+                                        ("zamtrios_inflated", "zamtrios-inflated"))):
+    asp = [aspect] if aspect else []
+    json.dump({"species": f"cobblemon:{SID}", "order": order, "variations": [
+        {"aspects": asp, "poser": f"cobblemon:{name}", "model": f"cobblemon:{name}.geo", "texture": tex(name),
+         "layers": layers[(name, "")]},
+        {"aspects": asp + ["shiny"], "texture": tex(name + "_shiny"), "layers": layers[(name, "_shiny")]}]},
+        open(f"{res}/{order}_{name}.json", "w"), indent=2)
 json.dump({"top_base": tops["zamtrios"], "top_armor": tops["zamtrios_armor"], "top_inflated": tops["zamtrios_inflated"]},
           open(f"{tmp}/zamtrios_tops.json", "w"))
-print("atlas", TW, "x", TH, "used rows", used)

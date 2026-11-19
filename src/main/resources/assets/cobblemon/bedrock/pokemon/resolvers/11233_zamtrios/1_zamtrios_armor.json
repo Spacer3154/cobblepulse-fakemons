@@ -12,7 +12,7 @@
       "layers": [
         {
           "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/11233_zamtrios/glow/zamtrios_armor_normal.png",
+          "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_armor_glow.png",
           "emissive": true
         }
       ]
@@ -26,7 +26,7 @@
       "layers": [
         {
           "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/11233_zamtrios/glow/zamtrios_armor_shiny.png",
+          "texture": "cobblemon:textures/pokemon/11233_zamtrios/zamtrios_armor_shiny_glow.png",
           "emissive": true
         }
       ]
