@@ -511,8 +511,8 @@ def build(form):
     jaw = m.bone("jaw", "head", [0, 25.25, -39.5])
     jaw.cubes += [sbox(11, 16, 25, -52, -38, JAW), sbox(9.5, 17, 25, -61, -52, JAW), sbox(7, 19, 25, -67, -61, JAW)]
     for s in (1, -1):                                       # the white mandible blades, pointing back and down
-        jaw.cubes += chain(mx((9, 17, -52), s), [(0.03 * s, -0.12, 1), (0.03 * s, -0.5, 1)], [15, 6],
-                           [(3, 3), (2, 2)], [JAW, flat("tooth")])
+        jaw.cubes += chain(mx((9, 17, -53), s), [(0.03 * s, -0.1, 1), (0.03 * s, -0.45, 1)], [14, 4],
+                           [(3, 3), (2, 2)], [JAW, JAW])
     for s in (1, -1):
         for z in range(-64, -42, 3):
             hw = 6.0 if z < -61 else (8.0 if z < -52 else 9.5)
