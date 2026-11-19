@@ -499,7 +499,7 @@ def build(form):
     """form: normal | armor | inflated"""
     name = {"normal": "zamtrios", "armor": "zamtrios_armor", "inflated": "zamtrios_inflated"}[form]
     m = Model(name, DEX, (512, 512))
-    m.bone("zamtrios", None, [0, 35, 0])
+    m.bone("zamtrios", None, [0, 0, 0])                 # root pivot on the ground: Cobblemon ignores a root pivot
     # ------------------------------------------------------------------ body (shoulder hump, hips, dorsal fin)
     body = m.bone("body", "zamtrios", [0, 31, -27])
     body.cubes += [sbox(14, 16, 52, -30, -14, SKIN), sbox(16, 17, 58, -14, 2, SKIN), sbox(15, 19, 54, 2, 16, SKIN),

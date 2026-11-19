@@ -389,6 +389,12 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   fournies converties (attente, marche, course, sommeil, K.O. dressé en rugissant puis retourné, cri avec onde de
   choc de neige au sol) ; écrites : attente de combat, morsure (physique), jet de glace (spéciale), piétinement
   (statut), nage. Forme Gonflée : sa propre série (balancement, plaquage, jet d'eau, roulade, K.O. qui se dégonfle).
+- 3.1.3 : le modèle était enfoncé dans le sol en jeu (environ 2 blocs : mâchoire, pattes et griffes sous terre,
+  portrait d'équipe vide, résumé décalé vers le bas) parce que l'os racine `zamtrios` avait son pivot à 35 de haut,
+  ce que Cobblemon ignore ; pivot ramené au sol (comme tous les autres modèles, le validateur le vérifie désormais).
+  Animations revues avec un sol opaque : les pattes arrière et la queue ne passent plus sous terre pendant la
+  morsure et le jet de glace (la tête se cabre au lieu du corps, la queue se lève), le plaquage de la forme Gonflée
+  bascule moins vers l'avant.
 
 ## Gore Magala (n° 11234, Ténèbres / Dragon, légendaire)
 - 4,2 m, 230 kg, total 580 (PV 95, Att 115, Déf 85, Att Spé 115, Déf Spé 85, Vit 85), +1 Att +1 Att Spé. Talents

@@ -274,6 +274,10 @@ for e in dex["entries"]:
 
 A = f"{pack}/assets/cobblemon"
 modeled = []
+for gp in sorted(glob.glob(f"{A}/bedrock/pokemon/models/*/*.geo.json")):   # every model, forms included
+    for b in json.load(open(gp))["minecraft:geometry"][0]["bones"]:
+        if not b.get("parent") and any(abs(v) > 1e-9 for v in b.get("pivot", [0, 0, 0])):
+            E(f"{os.path.basename(gp)}: root bone {b['name']} pivot {b['pivot']} must be [0, 0, 0] (the model would sink)")
 def check_model(sid, folder, base):
     geo_p = f"{A}/bedrock/pokemon/models/{folder}/{base['model'].split(':')[1]}.json"
     if not os.path.exists(geo_p): E(f"{sid}: model file missing"); return
@@ -281,6 +285,8 @@ def check_model(sid, folder, base):
     bones = {b["name"] for b in geo["bones"]}
     for b in geo["bones"]:
         if b.get("parent") and b["parent"] not in bones: E(f"{sid}: bone {b['name']} has missing parent {b['parent']}")
+        if not b.get("parent") and any(abs(v) > 1e-9 for v in b.get("pivot", [0, 0, 0])):
+            E(f"{sid}: root bone {b['name']} pivot {b['pivot']} must be [0, 0, 0] (Cobblemon ignores it: the model sinks)")
         for c in b.get("cubes", []):
             if any(abs(s - round(s)) > 1e-9 for s in c["size"]): E(f"{sid}: non-integer cube size {c['size']} in {b['name']}")
             if not all(isinstance(v, int) for v in c["uv"]): E(f"{sid}: uv must be integers")
