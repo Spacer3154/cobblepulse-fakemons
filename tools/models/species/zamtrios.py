@@ -14,7 +14,10 @@ its GeckoLib animations still drive it), with the shapes and colours of the refe
 * Ice Armour: the hide lightly frosted (snow on the top faces), a huge ice horn growing forward from the snout, an ice cap on the skull and spikes
   along its sides, an ice crest and cheek frills, a crown of long tapering ice spikes on the shoulders and back, the dorsal fin sheathed in ice, iced forearm
   fins, shoulders, thighs and tail fin; every ice bone has a glow shell (emissive layer only, hidden asleep);
-* Inflated: the giant sac (built at half size, scaled x2 by every animation).
+* Inflated (after the in-game picture): a huge bean bag of stretched mauve-brown skin (wrinkles, folds near the top,
+  dark veins, the pink of the mouth under the jaw), widest low down and slanting back so its front slopes under the
+  head; the creature is lifted onto it (the sac is built at half size around its pivot on the ground and scaled x2 by
+  every animation; it empties when the creature faints and the body sinks back to the ground).
 
 Front = -Z, ground = y 0, left = +X (Blockbench shows +X on the screen's right)."""
 import math
@@ -22,9 +25,31 @@ from modelgen import Model, Cube, rgb, shade, mix, apply
 
 DEX, SID = 11233, "zamtrios"
 FOLDER = "11233_zamtrios"
-BALLOON_C = (0.0, 40.0, 6.0)          # centre and radii of the inflated sac (full size, model units)
-BALLOON_R = (44.0, 40.0, 46.0)
+# the inflated sac (a bean bag of stretched mauve-brown skin; the creature lies on it, its head on the front slope)
+BALLOON_P = (0.0, 0.0, -14.0)         # pivot: the middle of the sac on the ground (the scale origin)
 BALLOON_K = 2.0                       # built at 1/K size, scaled xK by the animations
+SAC_H, SAC_RX, SAC_RZ, SAC_SLANT = 66.0, 56.0, 70.0, 50.0
+LIFT = 34                             # the inflated creature is lifted this much, onto the top of its sac
+
+def sac_profile(u):
+    """footprint of the sac at the height fraction u: (half width, half length, centre z), full size; widest a
+    third of the way up, flat on the ground, its top sliding back so the front slopes down under the head"""
+    if u >= 0.38:
+        f = math.sqrt(max(0.0, 1 - ((u - 0.38) / 0.62) ** 2))
+    else:
+        f = math.sqrt(max(0.0, 1 - ((0.38 - u) / 0.5) ** 2))
+    return SAC_RX * f, SAC_RZ * f, -14 + SAC_SLANT * (u - 0.38)
+
+def lift(m, dy=LIFT, keep=("zamtrios", "specialfx1", "balloon")):
+    """moves every bone of the creature (not the root, the sac nor the effects) up by dy: call it after painting"""
+    for b in m.bones:
+        if b.name in keep:
+            continue
+        b.pivot[1] += dy
+        for c in b.cubes:
+            c.origin[1] += dy
+            if c.pivot is not None:
+                c.pivot = [c.pivot[0], c.pivot[1] + dy, c.pivot[2]]
 
 # ---------------------------------------------------------------------------------------------------- palettes
 NORMAL = {
@@ -39,6 +64,8 @@ NORMAL = {
     "ice": rgb("#F4F8FA"), "ice_m": rgb("#D8E4EA"), "ice_d": rgb("#9CB4C6"), "ice_b": rgb("#3E6688"),
     "ice_y": rgb("#DCCB92"), "ice_glow": rgb("#B8ECFF"), "frost": rgb("#C4D6DC"),
     "fx": rgb("#E8EEF2"), "fx_d": rgb("#B4C0C8"),
+    "sac": rgb("#8E7670"), "sac_l": rgb("#B09890"), "sac_d": rgb("#5E4A48"), "vein": rgb("#56384A"),
+    "sac_pink": rgb("#C08A92"),
 }
 SHINY = dict(NORMAL, **{   # blue-violet hide, gold fins, lavender ice
     "skin": rgb("#5A5290"), "skin_d": rgb("#463E74"), "skin_l": rgb("#7268AA"), "crack": rgb("#2C2650"),
@@ -47,7 +74,9 @@ SHINY = dict(NORMAL, **{   # blue-violet hide, gold fins, lavender ice
     "belly": rgb("#DCD6E4"), "belly_d": rgb("#B8B0CC"),
     "fin": [rgb("#5A5290"), rgb("#8A6CB0"), rgb("#C08AB0"), rgb("#E8BE62"), rgb("#F0CC58"), rgb("#E6A23E")],
     "ice": rgb("#F2EEF8"), "ice_m": rgb("#D6CCE6"), "ice_d": rgb("#A898C8"), "ice_b": rgb("#5E4C96"),
-    "ice_y": rgb("#E8D2A0"), "ice_glow": rgb("#E0C8FF"), "frost": rgb("#CCC6DC"), "eye_glow": rgb("#F4ECFF")})
+    "ice_y": rgb("#E8D2A0"), "ice_glow": rgb("#E0C8FF"), "frost": rgb("#CCC6DC"), "eye_glow": rgb("#F4ECFF"),
+    "sac": rgb("#8A7E98"), "sac_l": rgb("#ADA2BC"), "sac_d": rgb("#5A506C"), "vein": rgb("#4A3460"),
+    "sac_pink": rgb("#C690B4")})
 
 # ---------------------------------------------------------------------------------------------------- noise
 def _h(*v):
@@ -307,25 +336,36 @@ def glow_shell(src):
     return {"fn3": fn3, "base": None, "glow_fn": glow_fn}
 
 def sac():
-    """inflated sac: teal back with cracks and stretched stripes, pale belly, painted at full size"""
+    """inflated sac: stretched mauve-brown skin, lighter on top, darker toward the ground, fine stretch wrinkles,
+    deeper folds near the top where it gathers under the body, dark purple veins, the pink of the mouth showing
+    under the jaw; painted at full size"""
     def fn3(px, faces, pal, rnd, c):
-        cx, cy, cz = BALLOON_C
+        px_, py_, pz_ = BALLOON_P
+        K = BALLOON_K
         for face, X, Y, p in c.texels():
             w = apply(c.world, p)
-            x, y, z = (cx + BALLOON_K * (w[0] - cx), cy + BALLOON_K * (w[1] - cy), cz + BALLOON_K * (w[2] - cz))
-            hgt = (y - cy) / BALLOON_R[1]
-            edge = -0.18 + 0.12 * math.sin(z * 0.15) + 0.06 * math.sin(x * 0.3)
-            if hgt > edge:
-                n = vnoise(x * .1, y * .1, z * .1)
-                col = mix(pal["skin_d"], pal["skin_l"], 0.2 + 0.6 * n)
-                e, t, sid = scales(face, x, y, z, 2.2)                # the scales stretched by the swelling
-                col = mix(col, pal["scale_edge"], 0.45) if e else mix(col, pal["scale_hi"], 0.3 * t * t)
-                if hgt < edge + 0.12:
-                    col = mix(col, pal["olive"], 0.5)
-                if abs(vnoise(x * .07 + 5, y * .07, z * .07) - .5) < 0.02:
-                    col = pal["crack"]
-            else:
-                col = mix(pal["belly"], pal["belly_d"], vnoise(x * .15, y * .15, z * .15))
+            x, y, z = px_ + K * (w[0] - px_), py_ + K * (w[1] - py_), pz_ + K * (w[2] - pz_)
+            u = y / SAC_H
+            n = vnoise(x * .06, y * .06, z * .06)
+            col = mix(pal["sac_d"], pal["sac_l"], max(0.0, min(1.0, 0.15 + 0.7 * u + 0.3 * (n - .5))))
+            col = mix(col, pal["sac"], 0.35)
+            if face == "down" or u < 0.06:
+                col = mix(col, pal["sac_d"], 0.5)
+            ph = y * 0.85 + 5.0 * vnoise(x * .03 + 3, z * .03, 1) + 0.6 * math.sin(z * 0.11 + x * 0.07)
+            wr = math.sin(ph)
+            if wr > 0.93:                                          # fine stretch wrinkles
+                col = mix(col, pal["sac_d"], 0.35)
+            elif wr < -0.97:
+                col = mix(col, pal["sac_l"], 0.35)
+            if u > 0.72 and math.sin(y * 0.45 + 2.0 * vnoise(x * .05, z * .05, 7)) > 0.8:
+                col = mix(col, pal["sac_d"], 0.45)                 # deeper folds where the skin gathers
+            v = abs(vnoise(x * .045 + 5, y * .045, z * .045) - .5)
+            if v < 0.009 and vnoise(x * .02 + 1, y * .02, z * .02) > 0.4:
+                col = mix(col, pal["vein"], 0.75)                  # veins
+            if z < -40 and abs(x) < 15 and 0.6 < u < 0.78:
+                col = mix(col, pal["sac_pink"], 0.55)              # the mouth's lining under the jaw
+            if _h(X, Y, 77) > 0.9:
+                col = shade(col, 0.93)
             px[X, Y] = shade(col, LIGHT[face])
     return {"fn3": fn3, "base": None}
 
@@ -577,19 +617,22 @@ def build(form):
     if form == "armor":
         armour(m)
     if form == "inflated":
-        cx, cy, cz = BALLOON_C
-        rx, ry, rz = (v / BALLOON_K for v in BALLOON_R)
-        bal = m.bone("balloon", "body", list(BALLOON_C))
-        n = 12
+        # the sac, built at 1/K size around its pivot on the ground: 18 slices, each a 12-sided footprint (3 boxes)
+        px_, py_, pz_ = BALLOON_P
+        K = BALLOON_K
+        bal = m.bone("balloon", "zamtrios", list(BALLOON_P))
         SAC = sac()
+        n, hs = 33, int(SAC_H / K / 33)
         for k in range(n):
-            y0 = cy - ry + 2 * ry * k / n
-            y1 = cy - ry + 2 * ry * (k + 1) / n
-            fct = math.sqrt(max(0.0, 1 - (((y0 + y1) / 2 - cy) / ry) ** 2))
-            a, c = max(1, round(rx * fct)), max(1, round(rz * fct))
-            h = max(1, round(y1 - y0))
-            for ax, az in ((a, round(c * 0.72)), (round(a * 0.72), c)):
-                bal.cubes.append(Cube([cx - ax, round(y0, 2), cz - az], [2 * ax, h, 2 * az], SAC))
+            u = (k + 0.5) / n
+            rx, rz, zc = sac_profile(u)
+            if rx < 1:
+                continue
+            y0 = py_ + k * hs
+            zc = pz_ + (zc - pz_) / K
+            for cth, sth in ((0.906, 0.423), (0.643, 0.766), (0.259, 0.966)):
+                ax, az = max(1, round(rx * cth / K)), max(1, round(rz * sth / K))
+                bal.cubes.append(Cube([px_ - ax, y0, round(zc - az, 1)], [2 * ax, hs, 2 * az], SAC))
     m.pack()
     return m
 

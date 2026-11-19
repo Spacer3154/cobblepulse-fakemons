@@ -164,14 +164,35 @@ def base_set():
         hide_fx(a)
     return S
 
+ARM_L = json.loads(os.environ.get("ARM_L", "[0, 25, 0]"))
+ARM_R = [ARM_L[0], -ARM_L[1], -ARM_L[2]]
+LOW_L = json.loads(os.environ.get("LOW_L", "[-65, 0, 0]"))
+LOW_R = [LOW_L[0], -LOW_L[1], -LOW_L[2]]
+HEAD_TILT = float(os.environ.get("HEAD_TILT", "20"))
+HAND_L = json.loads(os.environ.get("HAND_L", "[55, 0, 0]"))
+HAND_R = [HAND_L[0], -HAND_L[1], -HAND_L[2]]
+
+def add_rot(a, bone, dx):
+    """tilts a bone (adds dx to the X rotation of every key, or sets it when the bone has no rotation channel)"""
+    ch = a["bones"].setdefault(bone, {})
+    r = ch.get("rotation", [0, 0, 0])
+    if isinstance(r, list):
+        ch["rotation"] = [r[0] + dx, r[1], r[2]]
+    else:
+        ch["rotation"] = {t: [v[0] + dx, v[1], v[2]] for t, v in r.items()}
+    return a
+
 def inflated_set():
-    """the giant inflated ball: limbs spread, the sac breathes (scale x2 = full size), a heavy bob"""
+    """the giant inflated sac: the creature lies on top of it (its rest geometry is lifted by Z.LIFT), the head
+    resting on the front slope (HEAD_TILT added to every head key), the fore limbs draped forward with the claws
+    beside the head, the hind legs folded inside; the sac breathes (scale x2 = full size) with a heavy bob"""
     K = BALLOON_K
+    LF = Z.LIFT
     def sac(points):
         return {"balloon": {"scale": kf({t: [K * v[0], K * v[1], K * v[2]] for t, v in points.items()})}}
-    pose = {"leftarm": {"rotation": [-10, 0, -32]}, "rightarm": {"rotation": [-10, 0, 32]},
-            "lowerleftarm": {"rotation": [0, 0, 18]}, "lowerrightarm": {"rotation": [0, 0, -18]},
-            "leftleg": {"rotation": [0, 0, -38]}, "rightleg": {"rotation": [0, 0, 38]},
+    pose = {"leftarm": {"rotation": ARM_L}, "rightarm": {"rotation": ARM_R},
+            "lowerleftarm": {"rotation": LOW_L}, "lowerrightarm": {"rotation": LOW_R},
+            "lefthand": {"rotation": HAND_L}, "righthand": {"rotation": HAND_R},
             "tail1": {"rotation": [-14, 0, 0]}, "tail2": {"rotation": [-10, 0, 0]}}
     def with_pose(b):
         return merge(pose, b)
@@ -209,8 +230,8 @@ def inflated_set():
     S["special"] = anim(1.4, with_pose(merge(
         sac({0: [1, 1, 1], .4: [1.12, 1.14, 1.12], .6: [1.02, 1.0, 1.02], 1.1: [.98, .97, .98], 1.4: [1, 1, 1]}),
         {"zamtrios": {"position": kf({0: [0, 0, 0], .4: [0, 3, 2], .6: [0, 1, 5], 1.1: [0, 1, 5], 1.4: [0, 0, 0]})},
-         "head": {"rotation": kf({0: [-6, 0, 0], .4: [-24, 0, 0], .6: [0, 0, 0], .85: [2, 2, 0], 1.0: [2, -2, 0],
-                                  1.1: [0, 0, 0], 1.4: [-6, 0, 0]})},
+         "head": {"rotation": kf({0: [-6, 0, 0], .4: [-28, 0, 0], .6: [-14, 0, 0], .85: [-12, 2, 0], 1.0: [-12, -2, 0],
+                                  1.1: [-14, 0, 0], 1.4: [-6, 0, 0]})},
          "jaw": {"rotation": kf({0: [6, 0, 0], .4: [10, 0, 0], .55: [40, 0, 0], 1.1: [40, 0, 0], 1.3: [6, 0, 0],
                                  1.4: [6, 0, 0]})}})))
     # status: rolls a full turn on itself
@@ -230,15 +251,20 @@ def inflated_set():
         {"zamtrios": {"rotation": kf({0: [0, 0, 0], .7: [0, 0, 0], .85: [0, 12, 3], 1.0: [0, -10, -3],
                                       1.15: [0, 8, 2], 1.3: [0, -6, -2], 1.5: [0, 3, 0], 2.2: [0, 0, 6]}),
                       "position": kf({0: [0, 0, 0], .4: [0, 2, 0], 1.6: [0, -2, 0], 2.2: [0, -3, 0]})},
-         "head": {"rotation": kf({0: [-6, 0, 0], .4: [-34, 0, 0], .55: [-32, 3, 0], .7: [-34, -3, 0], 1.2: [-10, 0, 0],
-                                  2.2: [14, 0, 0]})},
          "jaw": {"rotation": kf({0: [6, 0, 0], .35: [38, 0, 0], .8: [38, 0, 0], 1.4: [16, 0, 0], 2.2: [20, 0, 0]})},
-         "leftarm": {"rotation": kf({0: [-10, 0, -32], 1.4: [-10, 0, -12], 2.2: [0, 0, -40]})},
-         "rightarm": {"rotation": kf({0: [-10, 0, 32], 1.4: [-10, 0, 12], 2.2: [0, 0, 40]})},
-         "lowerleftarm": {"rotation": kf({0: [0, 0, 18], 2.2: [0, 0, 30]})},
-         "lowerrightarm": {"rotation": kf({0: [0, 0, -18], 2.2: [0, 0, -30]})},
-         "leftleg": {"rotation": kf({0: [0, 0, -38], 2.2: [0, 0, -20]})},
-         "rightleg": {"rotation": kf({0: [0, 0, 38], 2.2: [0, 0, 20]})},
+         # the body sinks back to the ground as the sac empties
+         "body": {"position": kf({0: [0, 0, 0], .7: [0, 0, 0], 1.0: [0, -LF * .25, 0], 1.3: [0, -LF * .5, 0],
+                                  1.6: [0, -LF * .75, 0], 1.9: [0, -LF, 0], 2.2: [0, -LF, 0]})},
+         "head": {"position": kf({0: [0, 0, 0], .7: [0, 0, 0], 1.0: [0, -LF * .25, 0], 1.3: [0, -LF * .5, 0],
+                                  1.6: [0, -LF * .75, 0], 1.9: [0, -LF, 0], 2.2: [0, -LF, 0]}),
+                  "rotation": kf({0: [-6, 0, 0], .4: [-34, 0, 0], .55: [-32, 3, 0], .7: [-34, -3, 0], 1.2: [-10, 0, 0],
+                                  2.2: [14 - HEAD_TILT, 0, 0]})},
+         "leftarm": {"rotation": kf({0: ARM_L, 1.4: [-10, 0, -12], 2.2: [0, 0, -40]})},
+         "rightarm": {"rotation": kf({0: ARM_R, 1.4: [-10, 0, 12], 2.2: [0, 0, 40]})},
+         "lowerleftarm": {"rotation": kf({0: LOW_L, 2.2: [0, 0, 30]})},
+         "lowerrightarm": {"rotation": kf({0: LOW_R, 2.2: [0, 0, -30]})},
+         "leftleg": {"rotation": kf({0: [0, 0, 0], 2.2: [0, 0, -20]})},
+         "rightleg": {"rotation": kf({0: [0, 0, 0], 2.2: [0, 0, 20]})},
          "tail1": {"rotation": kf({0: [-14, 0, 0], 2.2: [4, 10, 0]})},
          "tail2": {"rotation": kf({0: [-10, 0, 0], 2.2: [2, 18, 0]})}}), loop="hold")
     S["water_idle"] = anim(3.0, with_pose(merge(breathe if False else sac({0: [1, 1, 1], 1.5: [1.03, 1.04, 1.03], 3.0: [1, 1, 1]}),
@@ -250,6 +276,7 @@ def inflated_set():
          "tail2": {"rotation": wave(16, 1.2, 1.2, axis=1, base=(-10, 0, 0))}})), loop=True)
     for a in S.values():
         hide_fx(a)
+        add_rot(a, "head", HEAD_TILT)                     # the head rests on the front slope of the sac
     return S
 
 def armor_set():
@@ -298,6 +325,10 @@ def poser(group, geo_bones):
 
 tops, layers = {}, {}
 for name, m in MODELS.items():
+    textures = {suf: (lambda p: (m.texture(p), m.texture(dict(p, _only_glow=True), seed=101)))(
+        dict(pal, _frost=True) if name == "zamtrios_armor" else pal) for suf, pal in (("", Z.NORMAL), ("_shiny", Z.SHINY))}
+    if name == "zamtrios_inflated":
+        Z.lift(m)                                          # painted in place, then lifted onto its sac
     g = m.geo()
     gb = g["minecraft:geometry"][0]["bones"]
     json.dump(g, open(f"{A}/bedrock/pokemon/models/{FOLDER}/{name}.geo.json", "w"), indent=1)
@@ -306,11 +337,9 @@ for name, m in MODELS.items():
     json.dump(an, open(f"{A}/bedrock/pokemon/animations/{FOLDER}/{name}.animation.json", "w"), indent=1)
     json.dump(an, open(f"{tmp}/{name}.animation.json", "w"))
     json.dump(poser(name, gb), open(f"{A}/bedrock/pokemon/posers/{FOLDER}/{name}.json", "w"), indent=2)
-    for suf, pal in (("", Z.NORMAL), ("_shiny", Z.SHINY)):
-        p = dict(pal, _frost=True) if name == "zamtrios_armor" else pal
-        img = m.texture(p)
+    for suf in ("", "_shiny"):
+        img, glow = textures[suf]
         img.save(f"{TDIR}/{name}{suf}.png"); img.save(f"{tmp}/{name}{suf}.png")
-        glow = m.texture(dict(p, _only_glow=True), seed=101)
         glow.save(f"{TDIR}/{name}{suf}_glow.png"); glow.save(f"{tmp}/{name}{suf}_glow.png")
         prev = img.copy(); prev.alpha_composite(glow); prev.save(f"{tmp}/{name}{suf}_preview.png")
         layers[(name, suf)] = [{"name": "emissive", "texture": f"cobblemon:textures/pokemon/{FOLDER}/{name}{suf}_glow.png",

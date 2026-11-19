@@ -431,7 +431,7 @@ species_file("zamtrios", {
          "weight": 3100, "pokedex": ["cobblemon.species.zamtrios-inflated.desc"], "labels": ["monster_hunter", "custom"],
          "aspects": ["zamtrios-inflated"], "abilities": Z_ABIL,
          "baseStats": {"hp": 105, "attack": 90, "defence": 115, "special_attack": 85, "special_defence": 115, "speed": 25},
-         "baseScale": Z_SCALE, "hitbox": {"width": 4.6, "height": 5.0, "fixed": False},
+         "baseScale": Z_SCALE, "hitbox": {"width": 6.5, "height": round(t["top_inflated"] / 16, 2), "fixed": False},
          "battleOnly": True, "dynamaxBlocked": True}],
 }, forms=("Normal", "Armor", "Inflated"))
 dump(f"{D}/cobblemon/species_features/zamtrios_form.json", {

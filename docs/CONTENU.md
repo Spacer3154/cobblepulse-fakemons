@@ -380,8 +380,11 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   glace sur le crâne, énorme corne de glace en avant du museau, crête de glace sur la tête, collerettes de glace
   sur les joues, épines latérales, couronne de longues épines effilées sur le dos, nageoire dorsale gainée, épaules,
   avant-bras, cuisses et queue givrés ; chaque cristal est blanc bleuté à pointe blanche, veiné d'une strie bleu
-  sombre, et la glace luit le long de ses veines (éteinte quand il dort). La poche de la forme Gonflée garde ses
-  écailles, étirées.
+  sombre, et la glace luit le long de ses veines (éteinte quand il dort). Forme Gonflée (refaite en 3.1.2 d'après
+  la capture du jeu) : une énorme poche en forme de pouf, peau tendue brun-mauve (rides d'étirement, plis sous le
+  corps, veines violettes, le rose de la gueule sous la mâchoire), plus large en bas et inclinée vers l'arrière ;
+  Zamtrios est couché dessus, la tête posée sur la pente avant, les pattes avant ramenées vers l'avant avec les
+  griffes à côté de la tête ; quand il est K.O., la poche se vide et le corps redescend au sol.
   Chromatique bleu-violet à nageoires dorées, glace lavande. Les yeux luisent aussi (éteints au sommeil). Animations
   fournies converties (attente, marche, course, sommeil, K.O. dressé en rugissant puis retourné, cri avec onde de
   choc de neige au sol) ; écrites : attente de combat, morsure (physique), jet de glace (spéciale), piétinement
