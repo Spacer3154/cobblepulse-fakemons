@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:deviljho",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:deviljho",
+      "model": "cobblemon:deviljho.geo",
+      "texture": "cobblemon:textures/pokemon/1052_deviljho/deviljho.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_normal/1.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_normal/2.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_normal/3.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1052_deviljho/deviljho_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_shiny/1.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_shiny/2.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_shiny/3.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

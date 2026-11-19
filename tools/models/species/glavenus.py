@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""#11232 Glavenus — Wyverne brute de Monster Hunter (Feu / Acier), et sa méga-évolution Glavenus Lame-Chaos.
+"""#1053 Glavenus — Wyverne brute de Monster Hunter (Feu / Acier), et sa méga-évolution Glavenus Lame-Chaos.
 
 Silhouette of a lean, athletic brute wyvern: long horizontal body on powerful digitigrade legs (red scaled thighs, dark
 grey shins and feet with black claws), small clawed arms, a long crocodile-like head carried low with a pink gape full
@@ -29,7 +29,7 @@ mouth_fn, throat_fn, claw_fn, smoke_fn, breath_fn, eye_fn, trail_fn = (DJ.mouth_
                                                                        DJ.smoke_fn, DJ.breath_fn, DJ.eye_fn, DJ.trail_fn)
 S, bump, ramp, sampled, ik_track = DJ.S, DJ.bump, DJ.ramp, DJ.sampled, DJ.ik_track
 
-SID, DEX = "glavenus", 11232
+SID, DEX = "glavenus", 1053
 MEGA_SID = "glavenus_lame_chaos"
 FRAME_BONES = ("head", "jaw", "neck")
 HEIGHT_SKIP = ("blade", "spk", "crest", "aura", "flame", "breath", "ember", "heat", "teeth")

@@ -1,0 +1,50 @@
+{
+  "species": "cobblemon:glavenus",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:glavenus",
+      "model": "cobblemon:glavenus.geo",
+      "texture": "cobblemon:textures/pokemon/1053_glavenus/glavenus.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_normal/1.png",
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_normal/2.png",
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_normal/3.png",
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1053_glavenus/glavenus_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_shiny/1.png",
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_shiny/2.png",
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_shiny/3.png",
+              "cobblemon:textures/pokemon/1053_glavenus/glow/glavenus_shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

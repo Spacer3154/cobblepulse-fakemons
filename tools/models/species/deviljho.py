@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""#11231 Deviljho — Wyverne brute de Monster Hunter (Dragon / Ténèbres), et sa méga-évolution Deviljho Carnage.
+"""#1052 Deviljho — Wyverne brute de Monster Hunter (Dragon / Ténèbres), et sa méga-évolution Deviljho Carnage.
 
 Silhouette of a brute wyvern: hunched barrel body peaking at the shoulders, short bull neck plunging to a head carried
 low, a colossal underslung lower jaw (wider and longer than the upper one) bristling with teeth outside the lips and
@@ -18,7 +18,7 @@ from biped import (Leg, walk, leg_pose, timeline, keys, kf, lowest, drape, stand
 from bovine import vnoise, put, light, side_cols
 from templates import poser as make_poser, tremble
 
-SID, DEX = "deviljho", 11231
+SID, DEX = "deviljho", 1052
 MEGA_SID = "deviljho_carnage"
 FRAME_BONES = ("head", "jaw", "neck")
 HEIGHT_SKIP = ("spine", "aura", "bolt", "breath", "drool", "frill", "teeth", "ember")

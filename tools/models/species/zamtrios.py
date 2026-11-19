@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""#11233 Zamtrios (Monster Hunter), rebuilt on the skeleton of the supplied remaster model (same bones, same pivots:
+"""#1054 Zamtrios (Monster Hunter), rebuilt on the skeleton of the supplied remaster model (same bones, same pivots:
 its GeckoLib animations still drive it), with the shapes and colours of the reference pictures:
 
 * a big rounded shark head (high crown, blunt bullet snout, white eye, a pink-lipped mouth lined with teeth, a pale
@@ -23,8 +23,8 @@ Front = -Z, ground = y 0, left = +X (Blockbench shows +X on the screen's right).
 import math
 from modelgen import Model, Cube, rgb, shade, mix, apply
 
-DEX, SID = 11233, "zamtrios"
-FOLDER = "11233_zamtrios"
+DEX, SID = 1054, "zamtrios"
+FOLDER = "1054_zamtrios"
 # the inflated sac (a bean bag of stretched mauve-brown skin; the creature lies on it, its head on the front slope)
 BALLOON_P = (0.0, 0.0, -14.0)         # pivot: the middle of the sac on the ground (the scale origin)
 BALLOON_K = 2.0                       # built at 1/K size, scaled xK by the animations

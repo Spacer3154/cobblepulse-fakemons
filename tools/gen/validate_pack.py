@@ -17,14 +17,15 @@ PDF = {
  1047: ("Cruchevados", ["water", "fire"], 450), 1048: ("Alchibec", ["water", "fire"], 600), 1049: ("Archangelis", ["flying", "fairy"], 580),
  1050: ("Sleipcheron", ["ice", "ground"], 580), 1051: ("Guillopard", ["steel", "electric"], 680),
  # Monster Hunter category (not in the PDF): data given with the original Deviljho files
- 11231: ("Deviljho", ["dragon", "dark"], 600),
- 11232: ("Glavenus", ["fire", "steel"], 540),          # Fiche Fakemon - Glavenus & Méga-Glavenus
- # Cahier des Charges - CobblePulse-Ecology, 4 Fakemons (dex numbers 11233-11236 chosen with the user)
- 11233: ("Zamtrios", ["water", "ice"], 515), 11234: ("Gore Magala", ["dark", "dragon"], 580),
- 11235: ("Gore Magala du Chaos", ["dark", "dragon"], 620), 11236: ("Shagaru Magala", ["dragon", "fairy"], 650),
+ 1052: ("Deviljho", ["dragon", "dark"], 600),
+ 1053: ("Glavenus", ["fire", "steel"], 540),          # Fiche Fakemon - Glavenus & Méga-Glavenus
+ # Cahier des Charges - CobblePulse-Ecology, 4 Fakemons (all Monster Hunter species renumbered 1052-1057 after Guillopard
+# at the user's request; they were 11231-11236)
+ 1054: ("Zamtrios", ["water", "ice"], 515), 1055: ("Gore Magala", ["dark", "dragon"], 580),
+ 1056: ("Gore Magala du Chaos", ["dark", "dragon"], 620), 1057: ("Shagaru Magala", ["dragon", "fairy"], 650),
 }
-CATEGORY = {n: "monster_hunter" for n in range(11231, 11237)}
-NO_SPAWN = {11235, 11236}          # obtained only by evolving Gore Magala (cahier des charges: "aucun spawn naturel")
+CATEGORY = {n: "monster_hunter" for n in range(1052, 1058)}
+NO_SPAWN = {1056, 1057}          # obtained only by evolving Gore Magala (cahier des charges: "aucun spawn naturel")
 
 for f in glob.glob(os.path.join(pack, "**/*"), recursive=True):
     if os.path.isdir(f): continue
@@ -271,6 +272,19 @@ for e in dex["entries"]:
     sid = e.split(":")[1]
     if sid not in species: E(f"dex entry {e} has no species")
     if not os.path.exists(f"{pack}/data/cobblemon/dex_entries/pokemon/normandy/{sid}.json"): E(f"no dex_entry for {sid}")
+
+# Pokédex screen: every dex has a title, every form shown by a dex entry has a name (else the raw key is displayed)
+for dp in sorted(glob.glob(f"{pack}/data/cobblemon/dexes/*.json")):
+    did = json.load(open(dp))["id"].split(":")[1]
+    if f"cobblemon.ui.pokedex.region.{did}" not in lang: E(f"dex {did}: no lang cobblemon.ui.pokedex.region.{did}")
+for ep in sorted(glob.glob(f"{pack}/data/cobblemon/dex_entries/pokemon/*/*.json")):
+    ent = json.load(open(ep))
+    sid = ent["speciesId"].split(":")[1]
+    if len(ent["forms"]) > 1:
+        for f in ent["forms"]:
+            name = f["displayForm"].lower()
+            key = f"cobblemon.ui.pokedex.info.form.{sid}" + ("" if name == "normal" else f"-{name}")
+            if key not in lang: E(f"{sid}: no lang {key} (form name in the Pokédex)")
 
 A = f"{pack}/assets/cobblemon"
 modeled = []

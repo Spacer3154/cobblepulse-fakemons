@@ -1,0 +1,66 @@
+{
+  "portraitScale": 0.5,
+  "portraitTranslation": [
+    -0.82,
+    1.19,
+    0
+  ],
+  "profileScale": 0.22,
+  "profileTranslation": [
+    0.02,
+    1.41,
+    0
+  ],
+  "rootBone": "magala",
+  "animations": {
+    "cry": "q.bedrock_stateful('goremagala_frenzy', 'cry')",
+    "faint": "q.bedrock_primary('goremagala_frenzy', 'faint', q.curve('one'))",
+    "physical": "q.bedrock_primary('goremagala_frenzy', 'physical', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('goremagala_frenzy', 'special', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('goremagala_frenzy', 'status', q.curve('symmetrical_wide'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'battle_idle')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'ground_idle')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'ground_walk')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('goremagala_frenzy', 'sleep')"
+      ]
+    }
+  }
+}

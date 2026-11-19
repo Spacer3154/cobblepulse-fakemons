@@ -1,0 +1,53 @@
+{
+  "species": "cobblemon:deviljho",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "mega"
+      ],
+      "poser": "cobblemon:deviljho_carnage",
+      "model": "cobblemon:deviljho_carnage.geo",
+      "texture": "cobblemon:textures/pokemon/1052_deviljho/deviljho_carnage.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_normal/1.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_normal/2.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_normal/3.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_normal/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1052_deviljho/deviljho_carnage_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_shiny/1.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_shiny/2.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_shiny/3.png",
+              "cobblemon:textures/pokemon/1052_deviljho/glow/deviljho_carnage_shiny/4.png"
+            ],
+            "fps": 8,
+            "loop": true
+          },
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

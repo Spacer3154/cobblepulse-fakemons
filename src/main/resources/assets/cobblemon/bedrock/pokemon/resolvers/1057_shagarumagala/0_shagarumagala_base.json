@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:shagarumagala",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:shagarumagala",
+      "model": "cobblemon:shagarumagala.geo",
+      "texture": "cobblemon:textures/pokemon/1057_shagarumagala/shagarumagala.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/1057_shagarumagala/shagarumagala_glow.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1057_shagarumagala/shagarumagala_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/1057_shagarumagala/shagarumagala_shiny_glow.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

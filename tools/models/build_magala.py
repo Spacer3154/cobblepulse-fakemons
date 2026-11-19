@@ -29,7 +29,7 @@ def emit(name):
     geo = m.geo()
     bones = geo["minecraft:geometry"][0]["bones"]
     portrait_sim.set_mode("portrait")
-    s, tx, ty = portrait_sim.auto_frame(bones, fill=13.5, below=0.5, names=mod.FRAME_BONES)
+    s, tx, ty = portrait_sim.auto_frame(bones, fill=11.0, below=0.5, names=mod.FRAME_BONES)
     qs, qx, qy = portrait_sim.auto_profile(bones)
     ps = dict({"portraitScale": s, "portraitTranslation": [tx, ty, 0], "profileScale": qs,
                "profileTranslation": [qx, qy, 0]}, **ps)

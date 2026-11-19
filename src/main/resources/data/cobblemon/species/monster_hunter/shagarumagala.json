@@ -1,6 +1,6 @@
 {
   "implemented": true,
-  "nationalPokedexNumber": 11236,
+  "nationalPokedexNumber": 1057,
   "name": "Shagaru Magala",
   "primaryType": "dragon",
   "secondaryType": "fairy",
@@ -46,10 +46,10 @@
   "eggCycles": 40,
   "baseFriendship": 0,
   "shoulderMountable": false,
-  "baseScale": 1.48,
+  "baseScale": 1.42,
   "hitbox": {
     "width": 2.3,
-    "height": 3.12,
+    "height": 3.25,
     "fixed": false
   },
   "behaviour": {

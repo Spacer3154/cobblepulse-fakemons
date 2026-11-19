@@ -1,6 +1,6 @@
 {
   "implemented": true,
-  "nationalPokedexNumber": 11235,
+  "nationalPokedexNumber": 1056,
   "name": "Chaotic Gore Magala",
   "primaryType": "dark",
   "secondaryType": "dragon",
@@ -47,10 +47,10 @@
   "eggCycles": 35,
   "baseFriendship": 0,
   "shoulderMountable": false,
-  "baseScale": 1.41,
+  "baseScale": 1.35,
   "hitbox": {
     "width": 2.3,
-    "height": 3.12,
+    "height": 3.25,
     "fixed": false
   },
   "behaviour": {

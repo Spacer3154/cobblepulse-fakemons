@@ -109,7 +109,7 @@ BEHAVIOUR = lambda walk: {
 HEIGHT, HEIGHT_MEGA = 55, 64            # decimetres: 5.5 m at the top of the back; Carnage stands taller (6.4 m)
 t = tops("deviljho")
 species_file("deviljho", {
-    "implemented": True, "nationalPokedexNumber": 11231, "name": "Deviljho",
+    "implemented": True, "nationalPokedexNumber": 1052, "name": "Deviljho",
     "primaryType": "dragon", "secondaryType": "dark", "maleRatio": 0.5,
     "height": HEIGHT, "weight": 9500, "pokedex": ["cobblemon.species.deviljho.desc"],
     "labels": ["monster_hunter", "custom"], "aspects": [],
@@ -149,7 +149,7 @@ species_file("deviljho", {
 # so the spawn simply never happens without Biomes O' Plenty.
 dump(f"{D}/normandy/tags/worldgen/biome/wastelands.json", {"replace": False, "values": [
     {"id": "biomesoplenty:wasteland", "required": False}, {"id": "biomesoplenty:wasteland_steppe", "required": False}]})
-dump(f"{D}/cobblemon/spawn_pool_world/11231_deviljho.json", {
+dump(f"{D}/cobblemon/spawn_pool_world/1052_deviljho.json", {
     "enabled": True, "neededInstalledMods": ["biomesoplenty"], "neededUninstalledMods": [],
     "spawns": [{"id": "deviljho-1", "pokemon": "deviljho", "presets": ["natural", "wild"], "type": "pokemon",
                 "spawnablePositionType": "grounded", "bucket": "ultra-rare", "level": "50-70", "weight": 1.0,
@@ -258,7 +258,7 @@ LANG.update({
 G_HEIGHT, G_HEIGHT_MEGA = 48, 55        # 4.8 m; Lame-Chaos 5.5 m
 t = tops("glavenus")
 species_file("glavenus", {
-    "implemented": True, "nationalPokedexNumber": 11232, "name": "Glavenus",
+    "implemented": True, "nationalPokedexNumber": 1053, "name": "Glavenus",
     "primaryType": "fire", "secondaryType": "steel", "maleRatio": 0.5,
     "height": G_HEIGHT, "weight": 3205, "pokedex": ["cobblemon.species.glavenus.desc"],
     "labels": ["monster_hunter", "custom"], "aspects": [],
@@ -299,7 +299,7 @@ species_file("glavenus", {
         "battleOnly": True, "dynamaxBlocked": True, "lightingData": {"lightLevel": 11, "liquidGlowMode": "LAND"}}],
 })
 # Tropical forests (dense jungles, at the edge of volcanic areas) and volcanic / magmatic lands, ultra-rare
-dump(f"{D}/cobblemon/spawn_pool_world/11232_glavenus.json", {
+dump(f"{D}/cobblemon/spawn_pool_world/1053_glavenus.json", {
     "enabled": True, "neededInstalledMods": [], "neededUninstalledMods": [],
     "spawns": [
         {"id": "glavenus-1", "pokemon": "glavenus", "presets": ["natural", "wild"], "type": "pokemon",
@@ -386,7 +386,7 @@ t = tops("zamtrios")
 Z_SCALE = scale_for(Z_HEIGHT, t["top_base"])
 Z_ABIL = ["furcoat", "strongjaw", "h:swiftswim"]                     # Toison Épaisse, Prognathe, Glissade (caché)
 species_file("zamtrios", {
-    "implemented": True, "nationalPokedexNumber": 11233, "name": "Zamtrios",
+    "implemented": True, "nationalPokedexNumber": 1054, "name": "Zamtrios",
     "primaryType": "water", "secondaryType": "ice", "maleRatio": 0.5,
     "height": Z_HEIGHT, "weight": 2150, "pokedex": ["cobblemon.species.zamtrios.desc"],
     "labels": ["monster_hunter", "custom"], "aspects": [], "abilities": Z_ABIL,
@@ -443,7 +443,7 @@ for forme, choice in (("armor", "armor"), ("inflated", "inflated")):
         "aspect_conditions": {"apply": {"aspects": [f"zamtrios_form={choice}"]},
                               "revert": {"aspects": ["zamtrios_form=normal"]}}})
 # frozen seas (armoured), cold seas, snowy shores and ice fields (armoured), rare
-dump(f"{D}/cobblemon/spawn_pool_world/11233_zamtrios.json", {
+dump(f"{D}/cobblemon/spawn_pool_world/1054_zamtrios.json", {
     "enabled": True, "neededInstalledMods": [], "neededUninstalledMods": [],
     "spawns": [
         {"id": "zamtrios-1", "pokemon": "zamtrios zamtrios_form=armor", "presets": ["water"], "type": "pokemon",
@@ -525,7 +525,7 @@ GM_HEIGHT = 42
 t = tops("goremagala")
 GM_SCALE = scale_for(GM_HEIGHT, t["top_base"])
 species_file("goremagala", {
-    "implemented": True, "nationalPokedexNumber": 11234, "name": "Gore Magala",
+    "implemented": True, "nationalPokedexNumber": 1055, "name": "Gore Magala",
     "primaryType": "dark", "secondaryType": "dragon", "maleRatio": -1,
     "height": GM_HEIGHT, "weight": 2300, "pokedex": ["cobblemon.species.goremagala.desc"],
     "labels": M_LABELS, "aspects": [], "abilities": ["cursedbody", "unnerve", "h:infiltrator"],
@@ -598,7 +598,7 @@ dump(f"{D}/normandy/tags/worldgen/biome/magala_haunts.json", {"replace": False, 
     {"id": "terralith:moonlight_grove", "required": False}, {"id": "terralith:moonlight_valley", "required": False}]})
 GM_SPAWN = {"pokemon": "goremagala", "type": "pokemon", "spawnablePositionType": "grounded", "bucket": "ultra-rare",
             "level": "48-65", "labels": ["monster_hunter", "legendary"]}
-dump(f"{D}/cobblemon/spawn_pool_world/11234_goremagala.json", {
+dump(f"{D}/cobblemon/spawn_pool_world/1055_goremagala.json", {
     "enabled": True, "neededInstalledMods": [], "neededUninstalledMods": [],
     "spawns": [
         dict(GM_SPAWN, id="goremagala-1", presets=["natural", "wild"], weight=8.0,
@@ -611,7 +611,7 @@ dump(f"{D}/cobblemon/spawn_pool_world/11234_goremagala.json", {
 CG_HEIGHT = 44
 t = tops("chaoticgoremagala")
 species_file("chaoticgoremagala", {
-    "implemented": True, "nationalPokedexNumber": 11235, "name": "Chaotic Gore Magala",
+    "implemented": True, "nationalPokedexNumber": 1056, "name": "Chaotic Gore Magala",
     "primaryType": "dark", "secondaryType": "dragon", "maleRatio": -1,
     "height": CG_HEIGHT, "weight": 2450, "pokedex": ["cobblemon.species.chaoticgoremagala.desc"],
     "labels": M_LABELS, "aspects": [], "abilities": ["cursedbody", "reckless", "h:infiltrator"],
@@ -641,7 +641,7 @@ species_file("chaoticgoremagala", {
 SM_HEIGHT = 46
 t = tops("shagarumagala")
 species_file("shagarumagala", {
-    "implemented": True, "nationalPokedexNumber": 11236, "name": "Shagaru Magala",
+    "implemented": True, "nationalPokedexNumber": 1057, "name": "Shagaru Magala",
     "primaryType": "dragon", "secondaryType": "fairy", "maleRatio": -1,
     "height": SM_HEIGHT, "weight": 2500, "pokedex": ["cobblemon.species.shagarumagala.desc"],
     "labels": M_LABELS, "aspects": [], "abilities": ["goldenfrenzy", "h:multiscale"],
@@ -733,6 +733,16 @@ dump(f"{D}/mega_showdown/tags/item/mega_stone.json", {"replace": False, "values"
     f"{MOD}:deviljhonite", f"{MOD}:glavenusite", f"{LEGACY_MOD}:deviljhonite"]})
 dump(f"{D}/cobblemon/species_feature_assignments/zamtrios_form.json", {"pokemon": ["zamtrios"], "features": ["zamtrios_form"]})
 dump(f"{D}/cobblemon/species_feature_assignments/magala_frenzy.json", {"pokemon": ["goremagala"], "features": ["magala_frenzy"]})
+# Pokédex: the title of the Monster Hunter dex, and the name of the base form of every species that has other forms
+# (Cobblemon looks up cobblemon.ui.pokedex.info.form.<species> for the base form, <species>-<form> for the others)
+LANG.update({
+    "cobblemon.ui.pokedex.region.monster_hunter": "Monster Hunter",
+    "cobblemon.ui.pokedex.info.form.deviljho": "Normal",
+    "cobblemon.ui.pokedex.info.form.glavenus": "Normal",
+    "cobblemon.ui.pokedex.info.form.zamtrios": "Normal",
+    "cobblemon.ui.pokedex.info.form.zamtrios-normal": "Normal",
+    "cobblemon.ui.pokedex.info.form.goremagala": "Normal",
+})
 GONE = ("cobblemon.ability.faimdevorante", "cobblemon.ability.faimdevorante.desc", "itemGroup.normandy_fakemons.fakemons")
 for lang in ("fr_fr", "en_us"):
     p = f"{A}/cobblemon/lang/{lang}.json"

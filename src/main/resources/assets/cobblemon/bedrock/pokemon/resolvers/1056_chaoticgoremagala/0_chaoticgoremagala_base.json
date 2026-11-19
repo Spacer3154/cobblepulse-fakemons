@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:chaoticgoremagala",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:chaoticgoremagala",
+      "model": "cobblemon:chaoticgoremagala.geo",
+      "texture": "cobblemon:textures/pokemon/1056_chaoticgoremagala/chaoticgoremagala.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/1056_chaoticgoremagala/chaoticgoremagala_glow.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1056_chaoticgoremagala/chaoticgoremagala_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/1056_chaoticgoremagala/chaoticgoremagala_shiny_glow.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

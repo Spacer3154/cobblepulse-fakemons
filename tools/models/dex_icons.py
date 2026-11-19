@@ -11,10 +11,10 @@ A = os.path.join(pack, "assets/cobblemon")
 OUT = os.path.join(pack, "assets/cobblepulse_ecology/textures/gui/sprites")
 os.makedirs(OUT, exist_ok=True)
 ICONS = {  # species: (folder, model, texture, glow layer or None)
-    "zamtrios": ("11233_zamtrios", "zamtrios", "zamtrios", None),
-    "goremagala": ("11234_goremagala", "goremagala", "goremagala", None),
-    "chaoticgoremagala": ("11235_chaoticgoremagala", "chaoticgoremagala", "chaoticgoremagala", "chaoticgoremagala_glow"),
-    "shagarumagala": ("11236_shagarumagala", "shagarumagala", "shagarumagala", "shagarumagala_glow"),
+    "zamtrios": ("1054_zamtrios", "zamtrios", "zamtrios", None),
+    "goremagala": ("1055_goremagala", "goremagala", "goremagala", None),
+    "chaoticgoremagala": ("1056_chaoticgoremagala", "chaoticgoremagala", "chaoticgoremagala", "chaoticgoremagala_glow"),
+    "shagarumagala": ("1057_shagarumagala", "shagarumagala", "shagarumagala", "shagarumagala_glow"),
 }
 for sid, (folder, model, texn, glow) in ICONS.items():
     bones = load_geo(f"{A}/bedrock/pokemon/models/{folder}/{model}.geo.json")

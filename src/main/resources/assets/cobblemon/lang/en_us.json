@@ -108,5 +108,11 @@
   "cobblemon.species.shagarumagala.name": "Shagaru Magala",
   "cobblemon.species.shagarumagala.desc": "Le Gore Magala parvenu au terme de sa mue. Ce dragon ancien aux écailles d'or blanc a enfin ouvert ses deux yeux ; il règne sur les hauteurs, entouré d'une aura dorée étincelante.",
   "cobblemon.ability.goldenfrenzy": "Écailles en furie dorée",
-  "cobblemon.ability.goldenfrenzy.desc": "Augmente de 25 % la puissance des capacités Dragon et Fée et double les chances d'effet de ses attaques de lumière. Il subit 25 % de dégâts en plus des capacités Poison et de l'empoisonnement."
+  "cobblemon.ability.goldenfrenzy.desc": "Augmente de 25 % la puissance des capacités Dragon et Fée et double les chances d'effet de ses attaques de lumière. Il subit 25 % de dégâts en plus des capacités Poison et de l'empoisonnement.",
+  "cobblemon.ui.pokedex.region.monster_hunter": "Monster Hunter",
+  "cobblemon.ui.pokedex.info.form.deviljho": "Normal",
+  "cobblemon.ui.pokedex.info.form.glavenus": "Normal",
+  "cobblemon.ui.pokedex.info.form.zamtrios": "Normal",
+  "cobblemon.ui.pokedex.info.form.zamtrios-normal": "Normal",
+  "cobblemon.ui.pokedex.info.form.goremagala": "Normal"
 }

@@ -1,0 +1,35 @@
+{
+  "species": "cobblemon:goremagala",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "magala_frenzy"
+      ],
+      "poser": "cobblemon:goremagala_frenzy",
+      "model": "cobblemon:goremagala_frenzy.geo",
+      "texture": "cobblemon:textures/pokemon/1055_goremagala/goremagala_frenzy.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/1055_goremagala/goremagala_frenzy_glow.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "magala_frenzy",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1055_goremagala/goremagala_frenzy_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/1055_goremagala/goremagala_frenzy_shiny_glow.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

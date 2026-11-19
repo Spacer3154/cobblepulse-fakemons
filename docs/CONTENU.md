@@ -194,7 +194,7 @@ successeur, Oh The Biomes We've Gone, est couvert.
 - Gargoylbâtre est affiché environ 20 % plus grand que sa taille du Pokédex (1,6 m), comme beaucoup de
   montures officielles. Sinon le dresseur paraît plus grand que lui. Pour revenir à 1,6 m : `baseScale` 0,87.
 
-## Monster Hunter : Deviljho (n° 11231, Dragon / Ténèbres)
+## Monster Hunter : Deviljho (n° 1052, Dragon / Ténèbres)
 - Espèce : `data/cobblemon/species/monster_hunter/deviljho.json`. Talents : **Isograisse**, **Téméraire**,
   **Rage Poison** (caché). Taille du Pokédex : 5,5 m et 950 kg (le fichier d'origine indiquait 206,3 pour les deux) ;
   en jeu, environ 5,5 blocs de haut au dos (`baseScale` 1,73).
@@ -245,7 +245,7 @@ successeur, Oh The Biomes We've Gone, est couvert.
   et s'éteignent, et la fumée elle-même rougeoie de l'intérieur. L'aura s'embrase à chaque cri, attaque ou coup reçu
   (la fumée gonfle, les éclairs se déchaînent). Animations propres, plus violentes (tremblement de rage permanent) ;
   au K.O. l'aura s'éteint. Shiny : corps obsidienne et énergie violette.
-- Fichiers : `models/11231_deviljho/deviljho_carnage.geo.json`, poser et animations `deviljho_carnage`,
+- Fichiers : `models/1052_deviljho/deviljho_carnage.geo.json`, poser et animations `deviljho_carnage`,
   resolver `1_deviljho_carnage.json` (aspect `mega`), textures + couches émissives animées.
 
 ## Deviljhonite
@@ -268,7 +268,7 @@ successeur, Oh The Biomes We've Gone, est couvert.
   `#normandy:wastelands`), en **ultra-rare**, niveau 50-70 ; ×1,5 la nuit, ×2 pendant les orages. Sans Biomes O'
   Plenty, il n'apparaît pas à l'état sauvage. Étiquette `monster_hunter`.
 
-# Glavenus (n° 11232) et Glavenus Lame-Chaos
+# Glavenus (n° 1053) et Glavenus Lame-Chaos
 
 ## Glavenus
 - Feu / Acier, 4,8 m, 320,5 kg, 540 de total (PV 110, Att 130, Déf 65, Att Spé 75, Déf Spé 95, Vit 65). Talents :
@@ -314,7 +314,7 @@ successeur, Oh The Biomes We've Gone, est couvert.
   forge, **lame en fusion** (bord blanc, orange, rouge) léchée de flammes, braises qui s'en échappent. Animations
   propres (les flammes s'embrasent à chaque cri ou attaque, s'éteignent au K.O.). Shiny : corps obsidienne, flammes
   bleu-blanc.
-- Fichiers : `models/11232_glavenus/glavenus.geo.json` et `glavenus_lame_chaos.geo.json`, posers, animations,
+- Fichiers : `models/1053_glavenus/glavenus.geo.json` et `glavenus_lame_chaos.geo.json`, posers, animations,
   resolvers `0_glavenus_base.json` et `1_glavenus_lame_chaos.json` (aspect `mega`), textures et couches émissives
   animées.
 
@@ -333,8 +333,9 @@ successeur, Oh The Biomes We've Gone, est couvert.
 
 # Zamtrios et la lignée Magala (3.1.0)
 
-D'après le cahier des charges « CobblePulse-Ecology — 4 Fakemons ». Numéros 11233 à 11236 (à la suite de Deviljho et
-Glavenus, catégorie Monster Hunter). Écarts assumés avec le cahier : version 3.1.0 (le mod était déjà en 3.0.0),
+D'après le cahier des charges « CobblePulse-Ecology — 4 Fakemons ». Numéros 1054 à 1057 (à la suite de Deviljho et
+Glavenus, catégorie Monster Hunter ; en 3.2.0 toute la catégorie Monster Hunter a été renumérotée 1052-1057, juste
+après Guillopard, au lieu de 11231-11236). Écarts assumés avec le cahier : version 3.1.0 (le mod était déjà en 3.0.0),
 identifiants Cobblemon sans tiret bas (`zamtrios`, `goremagala`, `chaoticgoremagala`, `shagarumagala`, comme toutes
 les espèces ; les noms affichés restent « Gore Magala »…), pas de dépendance obligatoire à Cobblepulse-utils 1.2.0,
 pas encore de cris sonores (animation de cri seulement), movepools refaits avec de vraies capacités (les capacités
@@ -342,7 +343,7 @@ inventées de la fiche — Jugement Céleste, Frénésie Impure… — sont remp
 textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de 100 unités de long). Le biome
 `terralith:shadow_lands` n'existe pas : Gore Magala utilise les Moonlight Grove / Valley de Terralith à la place.
 
-## Zamtrios (n° 11233, Eau / Glace)
+## Zamtrios (n° 1054, Eau / Glace)
 - 2,9 m, 215 kg, total 515 (PV 105, Att 100, Déf 95, Att Spé 75, Déf Spé 80, Vit 60), +2 PV. Talents **Toison
   Épaisse**, **Prognathe**, caché **Glissade**. Taux de capture 75, 50 % mâles, groupes Aquatique 1 et Monstre,
   20 cycles. Nage et respire sous l'eau.
@@ -396,40 +397,50 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   morsure et le jet de glace (la tête se cabre au lieu du corps, la queue se lève), le plaquage de la forme Gonflée
   bascule moins vers l'avant.
 
-## Gore Magala (n° 11234, Ténèbres / Dragon, légendaire)
+## Gore Magala (n° 1055, Ténèbres / Dragon, légendaire)
 - 4,2 m, 230 kg, total 580 (PV 95, Att 115, Déf 85, Att Spé 115, Déf Spé 85, Vit 85), +1 Att +1 Att Spé. Talents
   **Corps Maudit**, **Tension**, caché **Infiltration**. Capture 5, asexué, groupe Inconnu, 30 cycles. Nocturne
   (dort le jour).
-- **Mode Furie** (forme de combat, aspect `magala_frenzy`) : à mi-PV ou moins, ses antennes se déploient et luisent
-  en violet, les nervures des ailes aussi ; PV 95, Att 130, Déf 75, Att Spé 130, Déf Spé 75, Vit 95.
+- **Mode Furie** (forme de combat, aspect `magala_frenzy`) : à mi-PV ou moins, ses cornes (repliées le long de la
+  face hors furie) se déploient vers le haut et luisent en violet, ses crocs s'écartent, des plaques et la fourrure
+  virent au violet, les nervures des ailes luisent ; PV 95, Att 130, Déf 75, Att Spé 130, Déf Spé 75, Vit 95.
 - Évolution au niveau 69 : en **Shagaru Magala** s'il n'y a pas de Shagaru Magala dans l'équipe, en **Gore Magala du
   Chaos** s'il y en a un (conditions `party_member`).
 - Apparitions (**ultra-rare**, niveau 48-65, étiquettes `monster_hunter` et `legendary`) : forêts sombres, bosquets
   (grove), Moonlight Grove / Valley de Terralith, la nuit ou pendant un orage ; et dans les Deep Dark à toute heure.
-- Modèle : dragon aveugle (masque lisse, aucun œil), noir à reflets violets, marche sur ses ailes-bras (coudes hauts,
-  poignets griffus au sol), ailes repliées en voile déchiré le long des flancs, crinière de plumes noires, antennes
-  couchées sur le crâne, queue à épines. Chromatique gris cendre à antennes sarcelle.
+- Modèle (refait en 3.2.0 d'après le rendu de Monster Hunter World et la description du wiki) : six membres comme
+  dans le jeu, deux pattes avant sous le poitrail, deux pattes arrière, et deux grandes ailes-bras partant du dos dont
+  les énormes griffes à pointe dorée (avec pouce opposable) se posent au sol devant les pattes avant ; allure de
+  wyverne quadrupède à la Nargacuga ; exosquelette noir à reflets bleu nuit (écailles bordées de gris-bleu), aucun œil
+  (masque lisse), cornes repliées le long de la face et crocs (plaques de l'exosquelette) repliés contre la mâchoire,
+  qui passent pour l'armure du visage ; ailes repliées en cape de fourrure noire en lambeaux le long des flancs,
+  crinière de fourrure sur le cou et les épaules, queue bordée d'épines pâles. En combat, il prend la pose du rendu :
+  griffes des ailes levées à hauteur de tête, ailes de fourrure dressées. Chromatique gris cendre, furie sarcelle.
 
-## Gore Magala du Chaos (n° 11235, Ténèbres / Dragon, légendaire)
+## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
   Maudit**, **Téméraire**, caché **Infiltration**. Capture 3, 35 cycles. Pas d'apparition sauvage.
-- Modèle asymétrique : moitié droite dorée de Shagaru (corne en croissant, seul œil), moitié gauche noire et violette
-  de Gore Magala (antenne, aveugle) ; lueur bicolore or / violet.
+- Modèle asymétrique (même squelette à six membres) : moitié droite dorée de Shagaru (corne en croissant, seul œil),
+  moitié gauche noire de Gore Magala en furie (corne dressée violette, croc ouvert, cape de fourrure, aveugle) ; lueur
+  bicolore or / violet.
 
-## Shagaru Magala (n° 11236, Dragon / Fée, légendaire)
+## Shagaru Magala (n° 1057, Dragon / Fée, légendaire)
 - 4,6 m, 250 kg, total 650 (PV 105, Att 110, Déf 100, Att Spé 145, Déf Spé 105, Vit 85), +3 Att Spé. Capture 3,
   40 cycles. Diurne, vole. Pas d'apparition sauvage.
 - Talents : **Écailles en furie dorée** (signature) — +25 % aux capacités Dragon et Fée, chances d'effet doublées
   pour ses attaques de lumière (Pouvoir Lunaire, Éclat Magique, Luminocanon, Lumière du Néant…), mais +25 % de dégâts
   subis des capacités Poison et de l'empoisonnement ; caché **Multiécaille**.
-- Modèle : écailles or blanc, membranes dorées à nervures lumineuses, deux grandes cornes en croissant, deux yeux
-  lumineux (fermés quand il dort), épines dorées. Animations de vol (sur place et en déplacement). Chromatique platine
+- Modèle (même squelette à six membres) : écailles or blanc, ailes dorées à nervures lumineuses, deux grandes cornes
+  en croissant, deux yeux lumineux (fermés quand il dort), épines dorées sur le dos et la queue. Animations de vol (sur place et en déplacement). Chromatique platine
   et bleu pâle.
 
 ## Commun
-- Animations de la lignée : attente, marche (pattes en diagonale), attente de combat (ailes entrouvertes), cri (cou
-  dressé, ailes déployées), attaque physique (se cabre puis abat ses griffes et mord), spéciale (tête rejetée puis
+- Animations de la lignée : attente, marche (griffes des ailes et pattes en diagonale, pattes avant avec la griffe de
+  leur côté), attente de combat (griffes levées, ailes dressées), cri (cou dressé, griffes levées, ailes grandes
+  ouvertes), attaque physique (se cabre griffes en l'air puis les abat et mord), spéciale (tête rejetée puis
   projection), statut (secoue ses ailes), K.O. (tête en l'air, dernier cri tremblant, s'effondre sur le flanc),
-  sommeil (couché, ailes repliées, yeux fermés).
+  sommeil (couché, pattes repliées, yeux fermés).
+- Pokédex (3.2.0) : titre de la catégorie « Monster Hunter » et nom « Normal » de la forme de base des espèces à
+  plusieurs formes (Deviljho, Glavenus, Zamtrios, Gore Magala) ajoutés ; le validateur vérifie ces clés.
 - Icônes 32x32 : `assets/cobblepulse_ecology/textures/gui/sprites/<espèce>.png`.
 - Tests Showdown : `tools/showdown/test_magala_zamtrios.js` (formes de Zamtrios, Mode Furie, Écailles en furie dorée).

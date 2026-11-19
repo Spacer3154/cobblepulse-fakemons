@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:goremagala",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:goremagala",
+      "model": "cobblemon:goremagala.geo",
+      "texture": "cobblemon:textures/pokemon/1055_goremagala/goremagala.png"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/1055_goremagala/goremagala_shiny.png"
+    }
+  ]
+}
