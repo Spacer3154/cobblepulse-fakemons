@@ -72,9 +72,11 @@ SHAGARU_SHINY = dict(SHAGARU, **{     # platinum and pale blue
     "spike": rgb("#8CA8C8"), "spike_tip": rgb("#F4FAFF")})
 GORE_G = dict(GORE, **{               # Gore Magala only: pink-tipped frenzy horns, purple scale glow
     "scale": rgb("#2E2C40"), "scale_dark": rgb("#100F18"),
+    "claw": rgb("#3A1A22"), "claw_tip": rgb("#B4525E"), "keel_sheen": rgb("#5C68C8"),
     "antenna": rgb("#5E2E8A"), "antenna_tip": rgb("#F07AB4"), "scale_rim": rgb("#7484A8"), "net": rgb("#8A4AD0"),
     "net_glow": rgb("#C070FF"), "scale_glow": rgb("#B060FF")})
 GORE_G_SHINY = dict(GORE_SHINY, **{
+    "claw": rgb("#2A2E34"), "claw_tip": rgb("#C8D4DA"), "keel_sheen": rgb("#6AB0B4"),
     "antenna": rgb("#2A6E74"), "antenna_tip": rgb("#A8FFF0"), "scale_rim": rgb("#7A8890"), "net": rgb("#3A9A9E"),
     "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0")})
 CHAOS = dict(GORE, _R=SHAGARU)
@@ -204,6 +206,13 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5):
             col = mix(P["plate"], P["plate_light"], 0.25 * (1 - g))
             if rim:
                 col = mix(col, P["frenzy"] if fr else P["plate_light"], 0.6)
+            return col, n
+        if kind == "keel":                                                # Gore's face keel: blue sheen
+            rim = i == 0 or j == 0 or i == w - 1 or j == h - 1
+            g = max(0.0, min(1.0, (z + 72) / 18))
+            col = mix(P["plate"], P["keel_sheen"], 0.55 * (1 - abs(g - 0.55) * 1.6) if face == "up" else 0.15)
+            if rim:
+                col = mix(col, P["frenzy"] if fr else P["plate_light"], 0.5)
             return col, n
         if kind == "fang":
             t = _along(p, c)
@@ -365,6 +374,8 @@ def shingle(x, y, z, w, L, sx=1, tilt=14, roll=0, paint=None):
     """a flat armour plate lying on the hide (front edge at x, y, z), its back edge lifted by `tilt` degrees"""
     return Cube([x - w / 2, y - 0.5, z], [w, 1, L], paint or PLATE, rotation=[tilt, 0, roll * sx], pivot=[x, y, z])
 
+WRIST_G = (32, 5, -28)           # Gore: the wing-claws planted wide apart, the wing-arms arching over it (game)
+
 def build_gore(name):
     """Gore Magala and its Frenzy form (3.2.1, after the MH World / Rise renders and the sculpt): the same six-limbed
     skeleton as the line, with big overlapping armour scales (blue-grey rims), rows of plates down the arched neck and
@@ -401,64 +412,80 @@ def build_gore(name):
         n1.cubes.append(shingle(0, 36.3, z, 6, 6, tilt=18))
     for z in (-47, -43, -39):
         n2.cubes.append(shingle(0, 35.3, z, 5, 6, tilt=18))
-    head = m.bone("head", "neck2", [0, 30, -45], rotation=[22, 0, 0], cubes=[
-        box(-6, 6, 25, 36, -60, -44, SC),                                    # skull
-        box(-4, 4, 24, 31, -70, -58, SL),                                    # snout
-        box(-3, 3, 31, 33, -69, -56, PLATE),                                 # nose ridge
-        box(-7, 7, 35, 38, -58, -43, PLATE),                                 # hood
-        box(-5, 5, 33, 35, -62, -56, PLATE),                                 # brow (no eyes: a smooth armoured mask)
-        box(-2, 2, 23, 25, -72, -68, PLATE)])                                # the hooked tip of the upper jaw
+    # the head (after the game): long, narrow and pointed like a spearhead, carried low, a keel of overlapping plates
+    # down its middle (blue sheen on the forehead), layered plates along its sides, no eyes
+    head = m.bone("head", "neck2", [0, 30, -45], rotation=[28, 0, 0], cubes=[
+        box(-5, 5, 25, 35, -58, -43, SC),                                    # skull
+        box(-4, 4, 24, 33, -66, -57, SL),                                    # face
+        box(-2.5, 2.5, 24, 30, -73, -65, SL),                                # snout
+        box(-1.5, 1.5, 23, 27, -77, -72, PLATE),                             # the hooked tip of the upper jaw
+        box(-6, 6, 34, 37, -56, -43, PLATE)])                                # hood
+    KEEL = surf("keel")
+    for k, z in enumerate(range(-78, -44, 4)):                               # the keel down the middle of the face
+        top = 27.5 + min(7.5, (z + 78) * 0.36)
+        head.cubes.append(shingle(0, top, z, 3 if z < -64 else 4, 6, tilt=10, paint=KEEL))
     for sx in (1, -1):
-        head.cubes.append(box(*xs(6, 7, sx), 27, 34, -58, -46, PLATE))          # cheek armour
-        head.cubes += chain([3.5 * sx, 37.5, -47], [(0.25 * sx, 0.55, 1), (0.1 * sx, 0.2, 1)], [6, 5], [(2, 3), (1, 2)],
+        for k, z in enumerate(range(-72, -46, 5)):                           # layered plates along the sides
+            y0 = 28.5 + (z + 72) * 0.12
+            hw = 2.5 if z < -64 else (4 if z < -56 else 5)
+            head.cubes.append(shingle(hw * sx, y0, z, 3, 6, sx, tilt=8, roll=70))
+        head.cubes += chain([3 * sx, 36.5, -47], [(0.25 * sx, 0.55, 1), (0.1 * sx, 0.2, 1)], [6, 5], [(2, 3), (1, 2)],
                             PLATE)                                          # crest plates at the back of the skull
         for k, (y, L) in enumerate(((31, 6), (28, 5), (25.5, 4))):          # frill of spikes behind the jaw
-            head.cubes += chain([6.5 * sx, y, -46], [(0.45 * sx, 0.15, 1)], [L], [(1, 2)], PLATE)
+            head.cubes += chain([5.5 * sx, y, -45], [(0.45 * sx, 0.15, 1)], [L], [(1, 2)], PLATE)
     m.bone("jaw", "head", [0, 25, -46], cubes=[
-        box(-4.5, 4.5, 20, 25, -68, -46, gs(22, 2.6)),
-        box(-3.5, 3.5, 24.6, 25.6, -67, -48, MOUTH)])
+        box(-3.5, 3.5, 20, 25, -66, -46, gs(22, 2.6)), box(-2, 2, 21, 25, -74, -66, gs(22, 2.6)),
+        box(-2.5, 2.5, 24.6, 25.6, -70, -48, MOUTH)])
     jaw = m.get("jaw")
-    for k in range(5):                                                       # teeth (long fangs in front)
+    for k in range(6):                                                       # teeth (long fangs in front)
         for sx in (1, -1):
-            z = -67 + 4 * k
+            z = -71 + 4 * k
+            xw = 1.8 if z < -64 else 2.8
             h = 3 if k < 2 else 2
-            head.cubes.append(box(3.0 * sx - 0.5, 3.0 * sx + 0.5, 24.5 - h, 24.5, z, z + 1, TOOTH))
-            jaw.cubes.append(box(3.4 * sx - 0.5, 3.4 * sx + 0.5, 25, 25 + h, z + 2, z + 3, TOOTH))
-    # horns folded along the face (they look like cheek armour) / in frenzy rising from the back of the skull and
-    # curving forward, pink-tipped and glowing; fangs folded against the jaw / opened outward like mandibles
+            head.cubes.append(box(xw * sx - 0.5, xw * sx + 0.5, 24.5 - h, 24.5, z, z + 1, TOOTH))
+            jaw.cubes.append(box((xw + 0.3) * sx - 0.5, (xw + 0.3) * sx + 0.5, 25, 25 + h, z + 2, z + 3, TOOTH))
+    # horns folded along the face (they look like part of its armour) / in frenzy the purple feelers rise from the
+    # back of the skull, curving slightly forward, pink-tipped and glowing; fangs folded / opened like mandibles
     for sx, side in ((1, "left"), (-1, "right")):
-        ab = m.bone(f"antenna_{side}", "head", [6 * sx, 35, -45])
+        ab = m.bone(f"antenna_{side}", "head", [5 * sx, 34, -46])
         if frenzy:
-            ab.cubes += chain([6 * sx, 35, -45], [(0.3 * sx, 1, 0.5), (0.25 * sx, 1, 0.05), (0.15 * sx, 0.7, -0.55),
-                                                   (0.05 * sx, 0.25, -1)],
-                              [8, 7, 6, 5], [(2, 3), (2, 2), (2, 2), (1, 1)], surf("antenna", glow="antenna"))
+            ab.cubes += chain([4.5 * sx, 34.5, -47], [(0.2 * sx, 1, 0.25), (0.15 * sx, 1, -0.1), (0.1 * sx, 0.8, -0.45),
+                                                     (0.05 * sx, 0.4, -0.9)],
+                              [8, 7, 6, 4], [(2, 3), (2, 2), (2, 2), (1, 1)], surf("antenna", glow="antenna"))
         else:
-            ab.cubes += chain([7 * sx, 34.5, -45], [(0.02 * sx, -0.06, -1), (-0.02 * sx, -0.1, -1), (-0.06 * sx, -0.12, -1)],
+            ab.cubes += chain([5.6 * sx, 33.5, -46], [(-0.03 * sx, -0.08, -1), (-0.06 * sx, -0.12, -1), (-0.1 * sx, -0.14, -1)],
                               [7, 6, 5], [(1, 4), (1, 3), (1, 2)], FOLD)
-        fb = m.bone(f"fang_{side}", "head", [4 * sx, 25, -64])
+        fb = m.bone(f"fang_{side}", "head", [2.6 * sx, 25, -68])
         if frenzy:
-            fb.cubes += chain([4.5 * sx, 25.5, -64], [(0.7 * sx, -0.5, -0.5), (0.3 * sx, -0.6, -0.8)], [6, 4],
+            fb.cubes += chain([3 * sx, 25.5, -68], [(0.7 * sx, -0.5, -0.5), (0.3 * sx, -0.6, -0.8)], [6, 4],
                               [(2, 2), (1, 1)], surf("fang", glow="antenna"))
         else:
-            fb.cubes += chain([4.6 * sx, 25.5, -64], [(0.05 * sx, -0.7, 0.6), (0.0, -0.4, 1)], [4, 3],
+            fb.cubes += chain([3.1 * sx, 25.5, -68], [(0.05 * sx, -0.7, 0.6), (0.0, -0.4, 1)], [4, 3],
                               [(1, 2), (1, 1)], surf("fang"))
     # ------------------------------------------------------------------ front legs (under the chest), thick and scaled
     for sx, side in ((1, "left"), (-1, "right")):
-        A0, A1, A2 = mx((8, 22, -20), sx), mx((10, 12, -24), sx), mx((10, 3, -22), sx)
+        A0, A1, A2 = mx((8, 22, -20), sx), mx((11, 12, -24), sx), mx((13, 3, -23), sx)
         m.bone(f"arm_{side}", "chest", list(A0), cubes=[seg(A0, A1, 7, 7, SL), box(*xs(5, 12, sx), 16, 26, -25, -15, SC)])
         m.bone(f"arm_{side}_low", f"arm_{side}", list(A1), cubes=[
             seg(A1, A2, 6, 6, SL), box(*xs(7, 13, sx), 10, 15, -28, -21, PLATE)])          # knee plate
-        foot = m.bone(f"arm_{side}_foot", f"arm_{side}_low", list(A2), cubes=[box(*xs(6, 14, sx), 0, 4, -29, -19, SL)])
+        foot = m.bone(f"arm_{side}_foot", f"arm_{side}_low", list(A2), cubes=[box(*xs(9, 17, sx), 0, 4, -30, -20, SL)])
         for dx in (-2.5, 0, 2.5):
-            foot.cubes += chain([(10 + dx) * sx, 2, -29], [(0, 0.2, -1), (0, -0.7, -1)], [4, 3], [(2, 2), (1, 1)], CLAW)
+            foot.cubes += chain([(13 + dx) * sx, 2, -30], [(0, 0.2, -1), (0, -0.7, -1)], [4, 3], [(2, 2), (1, 1)], CLAW)
     # ------------------------------------------------------------------ wing-arms and folded wings (the fur cape)
     for sx, side in ((1, "left"), (-1, "right")):
-        S, E, W = mx(SHOULDER, sx), mx(ELBOW, sx), mx(WRIST, sx)
+        S, E, W = mx(SHOULDER, sx), mx(ELBOW, sx), mx(WRIST_G, sx)
         m.bone(f"wing_{side}", "chest", list(S), cubes=[seg(S, E, 8, 8, SL)])
         fore = m.bone(f"wing_{side}_fore", f"wing_{side}", list(E), cubes=[
             seg(E, W, 6, 6, SL), box(E[0] - 4, E[0] + 4, E[1] - 4, E[1] + 4, E[2] - 4, E[2] + 4, SC)])
-        fore.cubes += chain([E[0], E[1] + 3, E[2] - 2], [(0.2 * sx, 1, -0.4), (0.1 * sx, 0.4, -1)], [5, 4],
-                            [(2, 2), (1, 1)], CLAW)                       # the elbow's hooked claw
+        for dx, L0 in ((-1.5, 6), (1.5, 5)):                              # the elbow's two great hooked claws
+            fore.cubes += chain([E[0] + dx * sx, E[1] + 3, E[2] - 2], [(0.15 * sx, 1, -0.5), (0.1 * sx, 0.3, -1),
+                                                                      (0.05 * sx, -0.6, -0.8)],
+                                [L0, 5, 3], [(3, 3), (2, 2), (1, 1)], CLAW)
+        inner = surf("gmembrane", glow="net")                             # the membrane folded under the forearm,
+        for k, f in enumerate((0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)):      # filling the arch as in the game
+            P0 = [E[i] + (W[i] - E[i]) * f for i in range(3)]
+            Q = (12.5 * sx, max(15.0, P0[1] - 14), P0[2] + 7)
+            fore.cubes.append(seg(P0, Q, 1, 10, inner, sunk=0.5))
         for k in range(3):                                                # a ridge of plates down the forearm
             f = 0.25 + 0.22 * k
             P0 = [E[i] + (W[i] - E[i]) * f for i in range(3)]

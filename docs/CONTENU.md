@@ -426,6 +426,11 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   ses ailes) ; attaque physique = « Grand Écrasement » (cri, se dresse sur ses pattes arrière griffes en l'air, les
   abat devant lui) ; attaque spéciale = souffle explosif (tête levée sur sa droite, mâchoire ouverte balayée de droite
   à gauche). Gore Magala du Chaos et Shagaru Magala inchangés.
+- 3.2.2 (Gore Magala seulement, d'après des captures du jeu) : tête longue et étroite en fer de lance, portée bas,
+  carène de plaques au milieu de la face (reflet bleu sur le front), plaques étagées sur les côtés ; griffes rouge
+  sombre (ailes et pattes) ; deux grandes griffes recourbées rouges à chaque coude ; les ailes-bras forment une arche
+  au-dessus de lui, griffes posées loin de chaque côté, membrane repliée sous l'avant-bras (réseau violet lumineux en
+  Furie) ; pattes avant écartées ; en Furie, antennes violettes dressées droites, à peine recourbées.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
