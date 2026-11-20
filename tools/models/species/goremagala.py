@@ -178,8 +178,13 @@ def build(name):
                                                    (0.0, 0.35, -0.95)],
                               [6, 6, 5, 3], [(2, 3), (2, 2), (2, 2), (1, 1)], surf("antenna", glow="antenna"))
         else:
-            ab.cubes += chain([3.5 * sx, 46.5, -54], [(0.32 * sx, 0.22, 1), (0.25 * sx, 0.12, 1), (0.15 * sx, 0.05, 1)],
-                              [7, 6, 5], [(2, 3), (1, 3), (1, 2)], FOLD)
+            # calm: dark, folded along the face; when it raises them (battle) they turn glowing purple (Kevin): a dark
+            # copy and a lit copy, the animations swap them by scale
+            args = ([3.5 * sx, 46.5, -54], [(0.32 * sx, 0.22, 1), (0.25 * sx, 0.12, 1), (0.15 * sx, 0.05, 1)],
+                    [7, 6, 5], [(2, 3), (1, 3), (1, 2)])
+            m.bone(f"antenna_{side}_dark", f"antenna_{side}", [3 * sx, 46, -54], cubes=chain(*args, FOLD))
+            m.bone(f"antenna_{side}_lit", f"antenna_{side}", [3 * sx, 46, -54],
+                   cubes=chain(*args, surf("antenna", glow="antenna")))
         fb = m.bone(f"fang_{side}", "head", [3 * sx, 37, -58])
         if frenzy:
             fb.cubes += chain([3.4 * sx, 37.5, -58], [(0.7 * sx, -0.5, -0.5), (0.3 * sx, -0.6, -0.8)], [6, 4],
@@ -300,6 +305,24 @@ def build(name):
             tb.cubes += chain([0, y - w / 2 + 0.5, zz + 2], [(0, -0.8, 0.7)], [max(2, L2 - 1)], [(1, 2)], SPIKE)
         prev, z, y = f"tail{k + 1}", z + L, y - 1
     m.get("tail4").cubes += chain([0, y + 1, z - 2], [(0, 0.2, 1), (0, 0, 1)], [6, 5], [(3, 3), (1, 1)], SPIKE)
+    if not frenzy:
+        # the purple veins that light up on its body when it raises its antennas (Kevin; the video's frenzy lines
+        # along the neck, the chest, the front legs and under the wing arms); hidden (scale 0) unless in battle
+        LIT = surf("antenna", glow="antenna")
+        def veins(parent, pivot, lines):
+            m.bone(f"veins_{parent}", parent, list(pivot),
+                   cubes=[seg(p0, p1, 1, 1, LIT) for p0, p1 in lines])
+        veins("neck1", [0, 44, -28], [((7.9 * sx, 46, -26), (7.9 * sx, 40, -34)) for sx in (1, -1)] +
+              [((7.9 * sx, 38, -26), (7.9 * sx, 42, -33)) for sx in (1, -1)])
+        veins("neck2", [0, 44, -33], [((7.4 * sx, 44, -32), (7.4 * sx, 40, -39)) for sx in (1, -1)])
+        veins("chest", [0, 42, -14], [((11.6 * sx, 48, -28), (11.6 * sx, 38, -14)) for sx in (1, -1)] +
+              [((11.6 * sx, 44, -24), (11.6 * sx, 34, -10)) for sx in (1, -1)])
+        for sx, side in ((1, "left"), (-1, "right")):
+            A0, A1 = mx((13, 36, -21), sx), mx((15, 17, -24), sx)
+            veins(f"arm_{side}", A0, [((A0[0] + 4.9 * sx, A0[1] + 2, A0[2]), (A1[0] + 3.9 * sx, A1[1] + 2, A1[2]))])
+            S, E, W = mx(S_, sx), mx(E_, sx), mx(W_, sx)
+            veins(f"wing_{side}", S, [((S[0], S[1] - 4.8, S[2]), (E[0], E[1] - 4.8, E[2]))])
+            veins(f"wing_{side}_fore", E, [((E[0] + 0.5 * sx, E[1] - 4.3, E[2]), (W[0] + 0.5 * sx, W[1] - 4.3, W[2]))])
     m.pack()
     return m
 
@@ -519,10 +542,19 @@ def anims(name, m):
             out[b]["scale"] = track(lambda t: [round(SAIL_REST + (1 - SAIL_REST) * ext(t), 4)] * 3, L, steps)
         return out
     frenzy = name.endswith("frenzy")
+    LIT_BONES = [b.name for b in m.bones if b.name.startswith("veins_")]
     def antennas(fn, L, steps=24, quiver=0.0):
         """the horns (antennas) unfolding from along the face to straight up (fn 0..1); in Frenzy they already stand,
         so they only quiver"""
         out = {}
+        if not frenzy:
+            lit = lambda t: [1.0 if fn(t) > 0.35 else 0.0] * 3
+            dark = lambda t: [0.0 if fn(t) > 0.35 else 1.0] * 3
+            for s, sx in SIDES:
+                out[f"antenna_{s}_lit"] = {"scale": track(lit, L, steps)}
+                out[f"antenna_{s}_dark"] = {"scale": track(dark, L, steps)}
+            for b in LIT_BONES:
+                out[b] = {"scale": track(lit, L, steps)}
         for s, sx in SIDES:
             out[f"antenna_{s}"] = {"rotation": track(
                 lambda t, sx=sx: [(0 if frenzy else 92 * fn(t)) + quiver * math.sin(t * 37 + sx), 0,
@@ -746,6 +778,12 @@ def anims(name, m):
     S["air_idle"] = fly(1.6, 4, 1.5)
     S["air_fly"] = fly(1.0, 16, 2.5)
     fold = pose_euler("fold")
+    for a in S.values():                                  # calm: dark folded antennas, no lit veins
+        if not frenzy:
+            for b in LIT_BONES + ["antenna_left_lit", "antenna_right_lit"]:
+                a["bones"].setdefault(b, {}).setdefault("scale", [0, 0, 0])
+            for b in ("antenna_left_dark", "antenna_right_dark"):
+                a["bones"].setdefault(b, {}).setdefault("scale", [1, 1, 1])
     for a in S.values():                                  # without wing channels the wings hold the fold, sails retracted
         for b in WING_BONES:
             a["bones"].setdefault(b, {})

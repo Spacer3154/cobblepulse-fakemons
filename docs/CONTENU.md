@@ -469,6 +469,10 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   avec un claquement de mâchoire, le poids passe d'une griffe à l'autre, les voiles ondulent, la queue fouette ;
   cri avec recul préparatoire puis cabrage, ailes déployées qui frémissent ; Grand Écrasement avec secousse à
   l'impact ; souffle avec la queue qui contrebalance la tête.
+- 3.6.1 (Gore Magala) : quand il déploie ses antennes (combat, cri, attaques, statut), elles passent au rose-magenta
+  lumineux et des lignes magenta s'allument sur le cou, le poitrail, les pattes avant et sous les bras des ailes (calque
+  émissif ajouté à la forme normale) ; au calme, antennes sombres repliées et pas de lignes. Antennes de Furie aussi en
+  magenta vif (images du jeu).
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

@@ -73,7 +73,8 @@ SHAGARU_SHINY = dict(SHAGARU, **{     # platinum and pale blue
 GORE_G = dict(GORE, **{               # Gore Magala only: pink-tipped frenzy horns, purple scale glow
     "scale": rgb("#2E2C40"), "scale_dark": rgb("#100F18"),
     "claw": rgb("#3A1A22"), "claw_tip": rgb("#B4525E"), "keel_sheen": rgb("#5C68C8"),
-    "antenna": rgb("#5E2E8A"), "antenna_tip": rgb("#F07AB4"), "scale_rim": rgb("#7484A8"), "net": rgb("#8A4AD0"),
+    "antenna": rgb("#B0208A"), "antenna_tip": rgb("#FF5ED2"), "antenna_glow": rgb("#FF3CC8"),   # hot magenta (game)
+    "scale_rim": rgb("#7484A8"), "net": rgb("#8A4AD0"),
     "net_glow": rgb("#C070FF"), "scale_glow": rgb("#B060FF"),
     "membrane": rgb("#2E2A3C"), "membrane_dark": rgb("#0E0C14"), "_mscale": True,
     "gfur": rgb("#1C1B22"), "gfur_tip": rgb("#62646F"), "under": rgb("#7A8898"), "under_dark": rgb("#3A4452")})
