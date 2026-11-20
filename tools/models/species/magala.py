@@ -84,16 +84,32 @@ GORE_G_SHINY = dict(GORE_SHINY, **{
     "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0"), "_mscale": True,
     "gfur": rgb("#33373D"), "gfur_tip": rgb("#8C9AA2"), "under": rgb("#A8B8C4"), "under_dark": rgb("#56646E")})
 # Shagaru (3.8.0, on Gore's model): pale gold body, sails of feather-like scales (sage-cream), purple-pink claws
+# Kevin (3.10): "covered in golden scales of a pure, dazzling white, a celestial shell; black horns (left from Gore),
+# violet claws, orange eyes; star-shaped wings with an iridescent sheen" (official render, MH4U 3DS intro): white-gold
+# scales with thin cool slate seams between them (never a green or grey cast), white-gold feather sails
 SHAGARU_G = dict(SHAGARU, **{
-    "scale": rgb("#DCDDD0"), "scale_dark": rgb("#8E989C"), "scale_light": rgb("#F6F6EC"), "belly": rgb("#ECEBDD"),
-    "belly_dark": rgb("#C4C4B2"), "plate": rgb("#CDB878"), "plate_light": rgb("#F4E8B8"),
-    "horn": rgb("#3E3A30"), "horn_tip": rgb("#77705A"),                  # Kevin: the antennas became dark horns
-    "mouth": rgb("#7A3A8A"), "eye": rgb("#FFB050"), "eye_glow": rgb("#FF9030"), "pupil": rgb("#5A1A0A"),
-    "_mscale": True, "_feather": True, "scale_rim": rgb("#FFF4D0"), "net": rgb("#D8B050"), "keel_sheen": rgb("#FFE8A0"),
-    "net_glow": rgb("#FFE070"), "scale_glow": rgb("#FFE070"),
-    "gfur": rgb("#D6D4AE"), "gfur_tip": rgb("#F6F2DA"), "under": rgb("#E4E6C8"), "under_dark": rgb("#A4A47A"),
-    "claw": rgb("#5A2A4A"), "claw_tip": rgb("#E6A8D0"), "spike": rgb("#C8A848"), "spike_tip": rgb("#FFF0B8")})
+    "_smooth": True, "_irid": True,
+    "scale": rgb("#EEC860"), "scale_dark": rgb("#B48A34"), "scale_light": rgb("#FFFCEC"), "seam": rgb("#8E6C2C"),
+    "scale_sheen": rgb("#FFF6D8"),
+    "belly": rgb("#EED290"), "belly_dark": rgb("#C49C50"),
+    "plate": rgb("#EAD48A"), "plate_light": rgb("#FFF8D8"),
+    "fur": rgb("#EED89A"), "fur_tip": rgb("#FFFBE8"),
+    "membrane": rgb("#ECD8A0"), "membrane_dark": rgb("#A88A50"),
+    "horn": rgb("#141418"), "horn_tip": rgb("#3C3C48"),                  # black horns (the antennas of Gore)
+    "lid": rgb("#C8B47A"), "tooth": rgb("#FFFDF2"),
+    "mouth": rgb("#A04E9E"), "eye": rgb("#FF7A1A"), "eye_glow": rgb("#FF5A0A"), "pupil": rgb("#1A0602"),
+    "_mscale": True, "_feather": True, "scale_rim": rgb("#FFFCEE"), "net": rgb("#A88A4C"), "keel_sheen": rgb("#FFF4D0"),
+    "net_glow": rgb("#FFF4B0"), "scale_glow": rgb("#FFF4B0"), "vein_glow": rgb("#FFF0A0"),
+    "gfur": rgb("#EACB6E"), "gfur_tip": rgb("#FFFAE4"), "under": rgb("#FFF2CC"), "under_dark": rgb("#A88A4C"),
+    "irid": (rgb("#E8D6F4"), rgb("#D4E6F8"), rgb("#FFF0C0")),            # lilac, sky, gold: the sails' sheen
+    "claw": rgb("#3A1C4C"), "claw_tip": rgb("#C08EDC"),                  # violet claws
+    "spike": rgb("#D8B860"), "spike_tip": rgb("#FFF8DC")})
+# Shagaru's limbs and wing arms: the same white-gold scales, a touch deeper
+SHAGARU_G["_alt"] = dict(SHAGARU_G, **{"scale": rgb("#EAC25C"), "scale_dark": rgb("#A88030"), "scale_light": rgb("#FFF8E0")})
 SHAGARU_G_SHINY = dict(SHAGARU_SHINY, **{
+    "_smooth": True, "_irid": True, "seam": rgb("#8A9AB4"),            # the same smooth scales, platinum
+    "irid": (rgb("#E8DCF8"), rgb("#D0E8FF"), rgb("#F4F8FF")), "eye": rgb("#FF7A1A"), "eye_glow": rgb("#FF5A0A"),
+    "pupil": rgb("#1A0602"),
     "horn": rgb("#5A6270"), "horn_tip": rgb("#B4C0D0"),
     "_mscale": True, "_feather": True, "scale_rim": rgb("#F4FAFF"), "net": rgb("#7AA8D8"), "keel_sheen": rgb("#C8E4FF"),
     "net_glow": rgb("#90E0FF"), "scale_glow": rgb("#90E0FF"),
@@ -108,7 +124,7 @@ CHAOS_ARM = dict(GORE_G, **{"scale": rgb("#3A3826"), "scale_dark": rgb("#16150F"
 CHAOS_ARM_SHINY = dict(GORE_G_SHINY, **{"scale": rgb("#3A4048"), "scale_dark": rgb("#1C2026"), "scale_rim": rgb("#A8D8F8"),
                                         "spike": rgb("#6A90B8"), "spike_tip": rgb("#D8F0FF"), "_mscale": True})
 CHAOS_R = dict(GORE_G, **{"_goldband": True, "gb": rgb("#D8C060"), "gb_dark": rgb("#8A7430"), "_alt": CHAOS_ARM,
-                          "eye": rgb("#FFB050"), "eye_glow": rgb("#FF9030"), "lid": rgb("#22202E"),
+                          "eye": rgb("#FF7A1A"), "eye_glow": rgb("#FF5A0A"), "lid": rgb("#22202E"), "pupil": rgb("#1A0602"),
                           "horn": rgb("#3E3630"), "horn_tip": rgb("#5E5248")})
 CHAOS_R_SHINY = dict(GORE_G_SHINY, **{"_goldband": True, "gb": rgb("#C8DCF0"), "gb_dark": rgb("#6A7E96"),
                                       "_alt": CHAOS_ARM_SHINY, "horn": rgb("#3A4048"), "horn_tip": rgb("#98A8B8")})
@@ -212,6 +228,20 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0, al
             if belly_below is not None and y < belly_below and face != "up":
                 return (P["belly_dark"] if int(math.floor(y)) % 3 == 0 else P["belly"]), n
             a, b = _ab(face, p)
+            if P.get("_smooth"):                                          # Shagaru (Kevin: no mosaic): big smooth
+                Hh, Ww = 4.6 * S / 4.2, 5.6 * S / 4.2                     # overlapping scales in rows, each shaded from
+                row = math.floor(b / Hh)                                  # its base to a bright glossy tip, a thin seam
+                aa = a / Ww + (0.5 if row % 2 else 0.0)
+                u, v = aa - math.floor(aa), b / Hh - row
+                tip = 1.0 - 0.16 - 0.55 * (u - 0.5) ** 2
+                if v > tip:                                               # the seam under the next row
+                    return P.get("seam", mix(P["scale_dark"], P["scale"], 0.45)), n * 0.5
+                k = v / tip                                               # gold at the root, dazzling white at the
+                col = mix(P["scale_dark"], P["scale"], min(1.0, 0.25 + 1.5 * k))   # free edge
+                col = mix(col, P["scale_light"], max(0.0, k - 0.45) / 0.55 * 0.8 * (1 - 0.6 * abs(u - 0.5)))
+                if v > tip - 0.22:                                        # the scale's lit free edge
+                    col = mix(col, P["scale_light"], 0.5)
+                return col, n * 0.5
             e, t, sid, rim = _gscale(a, b, S)
             if e:
                 return P["scale_dark"], n
@@ -229,13 +259,25 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0, al
             if P.get("_mscale") and face in ("east", "west"):             # Gore (3.5): fur cape outside, pale scales under
                 outer = (face == "west") == (x > 0)
                 a, b = _ab(face, p)
-                if outer and P.get("_feather"):                       # Shagaru: feather-like scales on both sides
-                    e, t, sid = _diamond(a, b, 1.6)
-                    col = mix(P["gfur"], P["gfur_tip"], 0.2 + 0.7 * t)
-                    if int(_along(p, c) * 9) % 2:                         # bands across the sail (Sunbreak intro)
-                        col = mix(col, P["under_dark"], 0.3)
-                    if e:
-                        col = mix(col, P["under_dark"], 0.55)
+                if P.get("_feather"):                                 # Shagaru: rows of overlapping feather-scales
+                    rh = 2.4                                              # (both faces), lit at the tip, shadowed under
+                    row = math.floor(b / rh)                              # the next row; bands across the sail
+                    aa = a / 2.0 + (0.5 if row % 2 else 0.0)
+                    fa, fb = aa - math.floor(aa), (b / rh) - row
+                    gap = fb > 0.86 - 0.55 * abs(fa - 0.5)
+                    col = mix(P["gfur"], P["gfur_tip"], 0.15 + 0.75 * fb)
+                    if gap:
+                        col = mix(P["under_dark"], P["gfur"], 0.35)
+                    if int(_along(p, c) * 7) % 2:
+                        col = mix(col, P["under_dark"], 0.18)
+                    if not outer:
+                        col = mix(col, P["under"], 0.35)
+                    if P.get("_irid") and not gap:                        # iridescent sheen: soft bands of lilac,
+                        ph = _frac(a * 0.045 + b * 0.03 + _along(p, c) * 1.4)  # sky and gold drifting across the sail
+                        k3 = ph * 3
+                        i0 = int(k3) % 3
+                        tint = mix(P["irid"][i0], P["irid"][(i0 + 1) % 3], k3 - int(k3))
+                        col = mix(col, tint, 0.3 * fb)
                     return col, n * 0.3
                 if outer:
                     fib = _h(math.floor(a * 1.6), math.floor(b * 0.45), 11)  # fibres along the strip

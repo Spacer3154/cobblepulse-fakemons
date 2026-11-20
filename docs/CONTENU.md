@@ -513,6 +513,17 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   genou en avant, tibia vers un jarret à éperon, long métatarse, pied griffu. Shagaru : attaque spéciale « Éclipse
   Éclatante » (il s'élève et plane à la verticale, ventre face à l'adversaire, mains des ailes levées au-dessus de
   la tête, voiles déployées en grande étoile, rugit puis se repose), voiles à bandes d'écailles.
+- 3.10.0 (lignée terminée, d'après Kevin, le rendu officiel et les intros MH4U 3DS et Sunbreak) : nouvelle marche à
+  quatre temps pour les trois (pied posé 70 % du cycle, levé en arc, roulis et balancement du corps, tête basse qui
+  dodeline, queue en S). Œil menaçant (Shagaru et côté Shagaru du Chaos) : fente en amande orange-rouge lumineuse dans
+  une orbite noire, sous un sourcil lourd qui plonge vers le museau ; face un peu élargie. Shagaru : écailles or à
+  blanc éclatant (or à la racine, blanc au bord libre), grandes et lisses, sans effet mosaïque ; voiles or pâle à
+  écailles plumeuses avec un reflet irisé (lilas, ciel, or) ; cornes noires, griffes violettes, yeux orange ; mains
+  d'ailes à quatre doigts et serres crochues ; plus de moustaches. Animations du Shagaru d'après l'intro 3DS : cri (il
+  redresse la tête en sifflant puis s'accroupit et rugit en avant, ailes ouvertes en éventail), statut (il recule la
+  tête et crache une boule de lumière, puis secoue ses voiles), gueule entrouverte qui siffle en combat, vol sur place
+  dressé, mains levées au-dessus de la tête et voiles en étoile (pose du rendu officiel) ; Éclipse Éclatante : pattes
+  avant plus basses, un peu repliées. Shiny : les mêmes écailles lisses, en platine.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
@@ -527,9 +538,10 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
 - Talents : **Écailles en furie dorée** (signature) — +25 % aux capacités Dragon et Fée, chances d'effet doublées
   pour ses attaques de lumière (Pouvoir Lunaire, Éclat Magique, Luminocanon, Lumière du Néant…), mais +25 % de dégâts
   subis des capacités Poison et de l'empoisonnement ; caché **Multiécaille**.
-- Modèle (même squelette à six membres) : écailles or blanc, ailes dorées à nervures lumineuses, deux grandes cornes
-  en croissant, deux yeux lumineux (fermés quand il dort), épines dorées sur le dos et la queue. Animations de vol (sur place et en déplacement). Chromatique platine
-  et bleu pâle.
+- Modèle (celui du Gore Magala, 3.10.0) : grandes écailles lisses or à blanc éclatant, voiles en étoile or pâle à
+  écailles plumeuses irisées, deux grandes cornes noires, yeux orange menaçants sous un sourcil froncé (fermés quand il
+  dort), griffes violettes, collerette et épines dorées. Vol sur place dressé, mains levées et voiles en étoile ; vol
+  en déplacement. Chromatique platine et bleu pâle.
 
 ## Commun
 - Animations de la lignée : attente, marche (griffes des ailes et pattes en diagonale, pattes avant avec la griffe de

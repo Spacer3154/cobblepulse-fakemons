@@ -141,12 +141,13 @@ def build(name):
     for z in (-34, -30):
         n1.cubes.append(shingle(0, 53.3, z, 6, 6, tilt=18))
     n2.cubes.append(shingle(0, 52.3, -39, 6, 6, tilt=18))
+    wd = 1 if name in ("shagarumagala", "chaoticgoremagala") else 0       # Kevin: a broader face for the eyes
     head = m.bone("head", "neck2", [0, 44, -37], cubes=[
-        *rbox(-7, 7, 36, 50, -50, -36, SC),                                  # skull
-        *rbox(-5.5, 5.5, 37, 47, -56, -50, SL),                              # face
-        *rbox(-3.5, 3.5, 37, 44, -60, -56, SL),                              # snout
+        *rbox(-7 - wd, 7 + wd, 36, 50, -50, -36, SC),                        # skull
+        *rbox(-5.5 - wd, 5.5 + wd, 37, 47, -56, -50, SL),                    # face
+        *rbox(-3.5 - wd, 3.5 + wd, 37, 44, -60, -56, SL),                    # snout
         box(-2, 2, 35, 39, -63, -59, PLATE),                                 # the hooked tip of the upper jaw
-        box(-7.5, 7.5, 49, 52, -48, -36, PLATE)])                            # hood
+        box(-7.5 - wd, 7.5 + wd, 49, 52, -48, -36, PLATE)])                  # hood
     KEEL = surf("keel")
     for z in range(-62, -38, 4):                                             # the keel down the middle of the face
         top = 44 + min(7.5, (z + 62) * 0.32)
@@ -154,14 +155,14 @@ def build(name):
     for sx in (1, -1):
         for z in range(-58, -38, 5):                                         # layered plates along the sides
             y0 = 43 + (z + 58) * 0.15
-            hw = 3.5 if z < -55 else (5.5 if z < -49 else 7)
+            hw = (3.5 if z < -55 else (5.5 if z < -49 else 7)) + wd
             head.cubes.append(shingle(hw * sx, y0, z, 3, 6, sx, tilt=8, roll=70))
         head.cubes += chain([4 * sx, 51, -38], [(0.25 * sx, 0.55, 1), (0.1 * sx, 0.2, 1)], [6, 5],
                             [(2, 3), (1, 2)], PLATE)                         # crest plates at the back of the skull
         for y, L in ((46, 6), (42, 6), (38, 5)):                             # frill of spikes behind the jaw
             head.cubes += chain([6.5 * sx, y, -37], [(0.5 * sx, 0.1, 1)], [L], [(1, 2)], PLATE)
     m.bone("jaw", "head", [0, 37, -38], cubes=[
-        box(-5, 5, 31, 37, -55, -38, gs(33, 2.6)), box(-3, 3, 32, 37, -61, -55, gs(33, 2.6)),
+        box(-5 - wd, 5 + wd, 31, 37, -55, -38, gs(33, 2.6)), box(-3 - wd, 3 + wd, 32, 37, -61, -55, gs(33, 2.6)),
         box(-3.5, 3.5, 36.6, 37.6, -59, -40, MOUTH)])
     jaw = m.get("jaw")
     for k, z in enumerate(range(-56, -38, 4)):                               # the beard of spikes under the jaw
@@ -201,15 +202,13 @@ def build(name):
                 hb.cubes += chain([top0[0] + 0.6 * sx, top0[1] + q, top0[2] + 2], [(0.3 * sx, 0.3, 1)], [L], [(1, 2)], HORN)
             if shag:
                 # Shagaru's head (game captures): golden spiky fins flaring from the cheeks to frame the face, a beard of
-                # plates under the jaw, and a long pale whisker on each side
+                # plates under the jaw (Kevin, 3.10: no whiskers)
                 for k, (y, z, d, L) in enumerate(((46, -50, (0.85 * sx, 0.35, 0.4), 8), (43, -49, (0.9 * sx, 0.05, 0.45), 9),
                                                   (40, -48, (0.85 * sx, -0.25, 0.45), 8), (37, -47, (0.7 * sx, -0.5, 0.5), 6))):
                     head.cubes += chain([6 * sx, y, z], [d, (d[0] * 0.6, d[1], d[2] + 0.4)], [L * 0.6, L * 0.5],
                                         [(1, 3), (1, 2)], SPIKE)
                 for k, z in enumerate((-56, -51, -46, -41)):
                     m.get("jaw").cubes += chain([4.6 * sx, 32, z], [(0.6 * sx, -0.6, 0.45)], [5 - 0.5 * k], [(1, 2)], SPIKE)
-                head.cubes += chain([5.6 * sx, 40, -57], [(0.9 * sx, 0.15, -0.2), (0.85 * sx, -0.35, 0.25), (0.5 * sx, -0.85, 0.3)],
-                                    [8, 8, 7], [(1, 1), (1, 1), (1, 1)], TOOTH)          # the long pale whisker
             if shag:
                 for kk2, (y, z) in enumerate(((47, -40), (44, -38), (41, -38), (38, -39))):      # the golden ruff
                     head.cubes += chain([6.5 * sx, y, z], [(0.75 * sx, 0.1 * (y - 42) / 3, 0.6)], [6 - kk2 % 2],
@@ -223,21 +222,18 @@ def build(name):
                                seg((7.2 * sx, 41, -50), (7.6 * sx, 44, -38), 1, 1, CR)]
                 n1.cubes.append(seg((7.9 * sx, 47, -26), (7.9 * sx, 44, -34), 1, 1, CR))
                 n2.cubes.append(seg((7.4 * sx, 46, -32), (7.4 * sx, 44, -39), 1, 1, CR))
-            if shag:
-                # the eye (Shagaru sculpt): round, orange-red, high on the side of the face beside the mask, under the
-                # brow ridge
-                eb = m.bone(f"eye_{side}", "head", [5.3 * sx, 44.5, -55])
-                eb.cubes.append(box(*xs(5.3, 6.3, sx), 43.5, 45.5, -57, -55, surf("eye", glow="eye")))
-                head.cubes.append(box(*xs(4.8, 6.8, sx), 45.5, 47.5, -58, -53, PLATE))                # brow ridge
-                m.bone(f"lid_{side}", f"eye_{side}", [5.3 * sx, 44.5, -55],
-                       cubes=[box(*xs(5.5, 6.5, sx), 43.5, 45.5, -57, -55, surf("lid"), inflate=0.2)])
-            else:
-                # the eye (game capture): a small slanted orange slit, deep under a heavy brow ridge
-                eb = m.bone(f"eye_{side}", "head", [5.6 * sx, 43, -53])
-                eb.cubes.append(seg((5.6 * sx, 43.0, -57.5), (6.2 * sx, 44.4, -53), 1, 1, surf("eye", glow="eye")))
-                head.cubes.append(seg((5.8 * sx, 45.6, -58.5), (6.8 * sx, 46.6, -51), 2, 2, PLATE))     # brow ridge
-                m.bone(f"lid_{side}", f"eye_{side}", [5.6 * sx, 43, -55],
-                       cubes=[seg((5.8 * sx, 43.0, -57.5), (6.4 * sx, 44.4, -53), 2, 2, surf("lid"))])
+            # the eye (Kevin: improved, the face broadened for it): a round orange-red eye with a dark slit pupil, set in
+            # a dark socket on the side of the face just under the horn, a heavy brow ridge over it
+            ex = 5.5 + wd
+            # Kevin (3.10): a more serious, menacing look: a narrow almond slit glowing orange-red, sunk in a black
+            # socket, the heavy brow slanting down toward the snout over its front end (a frown), a ridge under it
+            eb = m.bone(f"eye_{side}", "head", [ex * sx, 44, -55.5])
+            eb.cubes.append(box(*xs(ex - 0.2, ex + 0.8, sx), 43.5, 44.5, -58, -54, surf("eye", glow="eye")))
+            head.cubes.append(box(*xs(ex - 0.5, ex + 0.5, sx), 42, 46, -58.5, -53.5, surf("horn")))   # the black socket
+            head.cubes.append(seg(((ex + 0.5) * sx, 47.6, -51), ((ex + 0.7) * sx, 45.4, -59.5), 2, 2, PLATE))  # brow
+            head.cubes.append(seg(((ex + 0.4) * sx, 42.4, -53), ((ex + 0.6) * sx, 42.9, -59), 1, 1, PLATE))    # ridge
+            m.bone(f"lid_{side}", f"eye_{side}", [ex * sx, 44, -55.5],
+                   cubes=[box(*xs(ex, ex + 1, sx), 43.5, 44.5, -58, -54, surf("horn"), inflate=0.25)])
             continue
         ab = m.bone(f"antenna_{side}", "head", [3 * sx, 46, -54])
         if frenzy:
@@ -270,6 +266,8 @@ def build(name):
             tip = [cx + off * sx + d[0] * sum(L), cy + 0.15 * L[0] - 0.35 * L[1], cz - sum(L)]
             bone.cubes += chain(tip, [(d[0], -0.5, -1), (0, -1, -0.35)], [3, 2], [(2, 2), (1, 1)], M.CLAW)
         bone.cubes += chain([cx + 4 * sx, cy + 2, cz + 9], [(0.4 * sx, -0.4, 0.6)], [3], [(1, 2)], M.CLAW)   # dewclaw
+    if name == "shagarumagala":
+        SC, SL = surf("gscale", S=4.2, glow="gscale", alt=True), surf("gscale", S=3.2, glow="gscale", alt=True)
     for sx, side in ((1, "left"), (-1, "right")):
         A0, A1, A2 = mx((13, 37, -20), sx), mx((14, 20, -16), sx), mx((15, 6, -25), sx)
         up = m.bone(f"arm_{side}", "chest", list(A0), cubes=[
@@ -323,12 +321,26 @@ def build(name):
                                                                                W[2] - 5, W[2] + 5, SC))
         # the wing's three great claws, side by side: folded, they rest on the shoulder above the front leg's joint,
         # hooked forward and down over it (Kevin's gif)
-        for dx, L0 in ((-3.5, 9), (0.5, 10), (4.5, 9)):
-            r = [W[0] + dx * sx, W[1] - 1, W[2] - 4]
-            hand.cubes += chain(r, [(0.1 * sx, -0.1, -1), (0.08 * sx, -0.8, -0.6), (0.0, -1, 0.25)],
-                                [L0, 7, 4], [(3, 3), (2, 2), (1, 1)], CLAW)
-        hand.cubes += chain([W[0] - 4 * sx, W[1] - 3, W[2] - 1], [(-0.35 * sx, -0.75, -0.55), (-0.1 * sx, -1, 0.1)], [5, 3],
-                            [(2, 2), (1, 1)], CLAW)                       # the opposable thumb, hooking down inside
+        if shag:
+            # Shagaru (Kevin's image): a scaly hand of four spread fingers, each ending in a short, strongly hooked dark
+            # talon with a lavender sheen, and an opposed thumb: a grasping hand rather than three long hooks
+            for k, dx in enumerate((-4.5, -1.5, 1.5, 4.5)):
+                sp = 0.14 * (k - 1.5) * sx
+                r = [W[0] + dx * sx, W[1] - 2.5, W[2] - 4]
+                hand.cubes += chain(r, [(sp, -0.15, -1), (sp, -0.4, -1)], [4, 3], [(3, 3), (3, 3)], SL)  # the finger
+                tip = [r[0] + sp * 7, r[1] - 1.8, r[2] - 7]
+                hand.cubes += chain(tip, [(sp, -0.3, -1), (sp, -1, -0.5), (sp * 0.5, -0.8, 0.5)], [3, 3, 2.5],
+                                    [(2, 3), (2, 2), (1, 1)], CLAW)          # the hooked talon
+            hand.cubes += chain([W[0] - 4.5 * sx, W[1] - 3, W[2] - 1], [(-0.45 * sx, -0.5, -0.6), (-0.2 * sx, -1, -0.2),
+                                                                        (0, -0.6, 0.6)], [4, 3, 2],
+                                [(2, 3), (2, 2), (1, 1)], CLAW)              # the opposed thumb
+        else:
+            for dx, L0 in ((-3.5, 9), (0.5, 10), (4.5, 9)):
+                r = [W[0] + dx * sx, W[1] - 1, W[2] - 4]
+                hand.cubes += chain(r, [(0.1 * sx, -0.1, -1), (0.08 * sx, -0.8, -0.6), (0.0, -1, 0.25)],
+                                    [L0, 7, 4], [(3, 3), (2, 2), (1, 1)], CLAW)
+            hand.cubes += chain([W[0] - 4 * sx, W[1] - 3, W[2] - 1], [(-0.35 * sx, -0.75, -0.55), (-0.1 * sx, -1, 0.1)],
+                                [5, 3], [(2, 2), (1, 1)], CLAW)          # the opposable thumb, hooking down inside
         # fingers and membrane, laid out in the rest (stretched) fan
         dirs = [mx(_norm(d), sx) for d in REST_DIRS]
         tips = [[W[i] + L * d[i] for i in range(3)] for d, L in zip(dirs, FINGER_LEN)]
@@ -417,6 +429,8 @@ def build(name):
         foot = m.bone(f"leg_{side}_foot", f"leg_{side}_shin", list(Hk), cubes=[
             *rseg(Hk, Ft, 6, SL), *rbox(*xs(7, 18, sx), 0, 6, 14, 24, SL)])
         toes(foot, 12.5 * sx, 3.5, 14, sx, L=(3, 3))
+    if name == "shagarumagala":
+        SC, SL = gs(), gs(S=3.2)
     # ------------------------------------------------------------------ the long tail: spikes on the sides, top and below
     prev, z, y = "torso", 28, 43
     for k, (L, w) in enumerate([(18, 13), (18, 10), (18, 7), (18, 4)]):
@@ -637,6 +651,10 @@ WING_POSES = {
     # sails spread wide as a star facing the player (in the body's frame: hands far forward, sails in its x-z plane)
     "eclipse": {"wrist": (36, 62, -64), "pole": (0.3, 1, 0.2), "claws": (0.2, 0.3, -1),
                 "fingers": [(0.0, 0.02, 1), (0.42, 0.02, 0.9), (0.77, 0.0, 0.64), (0.97, -0.02, 0.25)]},
+    # Shagaru's hover (Kevin's render, 3.10): the hands raised close together over its head, the sails a six-pointed
+    # star: the first finger down along the body, the middle ones out to the side, the great bone up and out
+    "star": {"wrist": (24, 64, -62), "pole": (0.3, 1, 0.2), "claws": (0.1, 0.4, -1),
+             "fingers": [(0.05, 0.0, 1), (0.55, 0.0, 0.83), (0.95, 0.0, 0.3), (0.8, 0.05, -0.6)]},
     "lie": {"keep_arm": True, "fingers": [[t[i] - W_[i] for i in range(3)] for t in
                                          [(6, 62, 50), (26, 52, 58), (40, 44, 50), (50, 38, 34)]]},
     "fly_up": {"keep_arm": True, "fingers": [_rotz(d, 26) for d in REST_DIRS]},
@@ -773,28 +791,46 @@ def anims(name, m):
         {f"tail{k}": {"rotation": wave(3 + k, 3.0, L, phase=-0.5 * k, axis=1)} for k in range(1, 5)})
     S["ground_idle"] = anim(L, idle, loop=True)
 
-    # walk: the four legs in diagonal pairs, the folded wings (claws behind the head) rocking a little
-    T = 1.4
+    # walk (3.10.0, Kevin: walks redone): a heavy four-beat walk (left hind, left fore, right hind, right fore), each
+    # foot planted 70 % of the cycle and lifted in an arc (knee and wrist folding), the body rolling and swaying with the
+    # steps, the head carried low and bobbing, the tail swinging in an S, the folded wings rocking on the shoulders
+    T = 1.8
+    DUTY = 0.7
+    def gait(t, off, A):
+        u = (t / T + off) % 1.0
+        if u < DUTY:
+            p = u / DUTY
+            return -A * (1 - 2 * p), 0.0                                 # planted: swings back under the body
+        q = (u - DUTY) / (1 - DUTY)
+        e = q * q * (3 - 2 * q)
+        return A * (1 - 2 * e), math.sin(math.pi * q)                     # lifted: swings forward in an arc
+    OFF = {("leg", 1): 0.0, ("arm", 1): 0.25, ("leg", -1): 0.5, ("arm", -1): 0.75}
     w = {}
     for s, sx in SIDES:
-        ph = 0 if sx > 0 else math.pi
-        a = lambda t, ph=ph: math.sin(2 * math.pi * t / T + ph)
-        b = lambda t, ph=ph: max(0.0, math.cos(2 * math.pi * t / T + ph))
-        a2 = lambda t, ph=ph: math.sin(2 * math.pi * t / T + ph + math.pi)
-        b2 = lambda t, ph=ph: max(0.0, math.cos(2 * math.pi * t / T + ph + math.pi))
-        w[f"arm_{s}"] = {"rotation": track(lambda t, a=a: [16 * a(t), 0, 0], T)}
-        w[f"arm_{s}_low"] = {"rotation": track(lambda t, b=b: [-20 * b(t), 0, 0], T)}
-        w[f"arm_{s}_foot"] = {"rotation": track(lambda t, a=a, b=b: [-16 * a(t) + 20 * b(t), 0, 0], T)}
-        w[f"leg_{s}"] = {"rotation": track(lambda t, a=a2: [18 * a(t), 0, 0], T)}
-        w[f"leg_{s}_shin"] = {"rotation": track(lambda t, b=b2: [18 * b(t), 0, 0], T)}
-        w[f"leg_{s}_foot"] = {"rotation": track(lambda t, a=a2, b=b2: [-18 * a(t) - 18 * b(t), 0, 0], T)}
-        w[f"wing_{s}"] = {"rotation": wave(2.5, T, T, phase=ph, axis=0)}
+        fa = lambda t, sx=sx: gait(t, OFF[("arm", sx)], 15)
+        ha = lambda t, sx=sx: gait(t, OFF[("leg", sx)], 16)
+        w[f"arm_{s}"] = {"rotation": track(lambda t, fa=fa: [fa(t)[0] - 6 * fa(t)[1], 0, 0], T, 36)}
+        w[f"arm_{s}_low"] = {"rotation": track(lambda t, fa=fa: [-38 * fa(t)[1], 0, 0], T, 36)}
+        w[f"arm_{s}_foot"] = {"rotation": track(lambda t, fa=fa: [-(fa(t)[0] - 6 * fa(t)[1]) + 38 * fa(t)[1] + 20 * fa(t)[1], 0, 0],
+                                               T, 36)}
+        w[f"leg_{s}"] = {"rotation": track(lambda t, ha=ha: [ha(t)[0] - 10 * ha(t)[1], 0, 0], T, 36)}
+        w[f"leg_{s}_shin"] = {"rotation": track(lambda t, ha=ha: [40 * ha(t)[1], 0, 0], T, 36)}
+        w[f"leg_{s}_foot"] = {"rotation": track(lambda t, ha=ha: [-(ha(t)[0] - 10 * ha(t)[1]) - 40 * ha(t)[1] + 15 * ha(t)[1], 0, 0],
+                                               T, 36)}
+        w[f"wing_{s}"] = {"rotation": track(lambda t, fa=fa: [3 * fa(t)[0] / 15, 0, 0], T, 36)}
     walkd = merge(w,
-        {"body": {"position": track(lambda t: [0, 0.7 * abs(math.sin(2 * math.pi * t / T)), 0], T),
-                  "rotation": wave(2, T, T, axis=2)}},
-        {"neck1": {"rotation": wave(2, T / 2, T, axis=0, base=(10, 0, 0))}, "neck2": {"rotation": [4, 0, 0]},
-         "head": {"rotation": wave(2, T / 2, T, phase=math.pi, axis=0, base=(-4, 0, 0))}},
-        {f"tail{k}": {"rotation": wave(4 + 2 * k, T, T, phase=-0.6 * k, axis=1)} for k in range(1, 5)})
+        {"body": {"position": track(lambda t: [0.8 * math.sin(2 * math.pi * t / T), 1.2 + 0.5 * math.cos(4 * math.pi * t / T), 0], T, 36),
+                  "rotation": track(lambda t: [1.2 * math.sin(4 * math.pi * t / T), 2.5 * math.sin(2 * math.pi * t / T),
+                                               2.0 * math.sin(2 * math.pi * t / T + 0.6)], T, 36)}},
+        {"chest": {"rotation": track(lambda t: [0, -1.5 * math.sin(2 * math.pi * t / T), -1.2 * math.sin(2 * math.pi * t / T + 1.4)], T, 36)}},
+        {"neck1": {"rotation": track(lambda t: [12 + 2.5 * math.sin(4 * math.pi * t / T + 0.8), -3 * math.sin(2 * math.pi * t / T), 0], T, 36)},
+         "neck2": {"rotation": track(lambda t: [4, -2 * math.sin(2 * math.pi * t / T - 0.4), 0], T, 36)},
+         "head": {"rotation": track(lambda t: [-6 - 2 * math.sin(4 * math.pi * t / T + 0.8), -2 * math.sin(2 * math.pi * t / T - 0.8),
+                                               1.5 * math.sin(2 * math.pi * t / T)], T, 36)},
+         "jaw": {"rotation": track(lambda t: [2 + 1.5 * math.sin(4 * math.pi * t / T), 0, 0], T, 36)}},
+        {f"tail{k}": {"rotation": track(lambda t, k=k: [-2 + 1.5 * math.sin(4 * math.pi * t / T - 0.5 * k),
+                                                        (5 + 2.5 * k) * math.sin(2 * math.pi * t / T - 0.7 * k), 0], T, 36)}
+         for k in range(1, 5)})
     S["ground_walk"] = anim(T, walkd, loop=True)
 
     # battle_idle (3 s): claws planted wide (they stay on the ground), sails raised and rippling, antennas up and
@@ -815,7 +851,9 @@ def anims(name, m):
         {"neck1": {"rotation": track(lambda t: [14 + 3 * math.sin(4 * math.pi * t / L) - 8 * snap(t), sweep(t) * 0.45, 0], L, 48)},
          "neck2": {"rotation": track(lambda t: [4, sweep(t) * 0.25, 0], L, 48)},
          "head": {"rotation": track(lambda t: [2 + 6 * snap(t), sweep(t) * 0.3, -sweep(t) * 0.25], L, 48)},
-         "jaw": {"rotation": track(lambda t: [6 + 3 * math.sin(4 * math.pi * t / L) + 26 * max(0.0, snap(t)), 0, 0], L, 48)}},
+         # Shagaru (MH4U intro 0:26): the head held low, jaws half open, hissing
+         "jaw": {"rotation": track(lambda t: [(13 if name == "shagarumagala" else 6) + 3 * math.sin(4 * math.pi * t / L)
+                                              + 26 * max(0.0, snap(t)), 0, 0], L, 48)}},
         {f"tail{k}": {"rotation": track(lambda t, k=k: [(5 if k == 1 else 2), 12 * math.sin(2 * math.pi * t / L - 0.8 * k), 0], L, 24)}
          for k in range(1, 5)})
     S["battle_idle"] = anim(L, bi, loop=True)
@@ -894,8 +932,10 @@ def anims(name, m):
              "neck2": {"rotation": track(lambda t: [14 * rise(t), 0, 0], L, 32)},
              "head": {"rotation": track(lambda t: [12 * rise(t) - 6 * roar(t), 3 * math.sin(t * 40) * roar(t), 0], L, 52)},
              "jaw": {"rotation": track(lambda t: [2 + 40 * roar(t), 0, 0], L, 32)}},
-            {f"arm_{s}": {"rotation": track(lambda t: [30 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
-            {f"arm_{s}_low": {"rotation": track(lambda t: [-40 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            # Kevin: in the Eclipse the front legs hang lower, slightly folded
+            {f"arm_{s}": {"rotation": track(lambda t, sx=sx: [62 * rise(t), 0, 6 * sx * rise(t)], L, 32)} for s, sx in SIDES},
+            {f"arm_{s}_low": {"rotation": track(lambda t: [-34 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            {f"arm_{s}_foot": {"rotation": track(lambda t: [28 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
             {f"leg_{s}": {"rotation": track(lambda t: [30 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
             {f"leg_{s}_shin": {"rotation": track(lambda t: [20 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
             {f"leg_{s}_foot": {"rotation": track(lambda t: [40 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
@@ -913,6 +953,55 @@ def anims(name, m):
          "jaw": {"rotation": track(lambda t: [2 + 16 * o(t), 0, 0], L)},
          "body": {"rotation": track(lambda t: [0, 0, 3 * math.sin(t * 30) * (0.3 < t < 1.0)], L, 32)}})
     S["status"] = anim(L, st)
+    if name == "shagarumagala":
+        # Kevin (3.10): its cry and status after the MH4U intro (3DS)
+        # cry (2.8 s, intro 0:39 and 1:07): it rears its head high, hissing, then drops into a crouch and thrusts the
+        # head at the hunter roaring with jaws wide, the wings flung open up and out like a great fan behind it, the
+        # sails shuddering, the tail raised and lashing
+        L = 2.8
+        rearh = seq({0: 0, .5: 1, .8: 0, 2.8: 0})
+        lunge = seq({0: 0, .55: 0, .85: 1, 2.2: 1, 2.7: 0, 2.8: 0})
+        fan = seq({0: 0, .4: 0.25, .85: 1, 2.2: 1, 2.7: 0, 2.8: 0})
+        shake = lambda t: math.sin(t * 46) if 0.9 < t < 2.1 else 0
+        S["cry"] = anim(L, merge(
+            ripple(wings(lambda t: [("spread", 0.5 * fan(t)), ("display", 0.5 * fan(t))], L, 34), L, amp=3.5, period=0.25),
+            flex(lambda t, j: fan(t) * (5 + 3 * math.sin(t * 34 - j)), L, 56),
+            {"neck1": {"rotation": track(lambda t: [-30 * rearh(t) + 14 * lunge(t), 2 * shake(t), 0], L, 56)},
+             "neck2": {"rotation": track(lambda t: [-10 * rearh(t) + 4 * lunge(t), 0, 0], L, 56)},
+             "head": {"rotation": track(lambda t: [-14 * rearh(t) - 22 * lunge(t) + 3 * shake(t), 4 * shake(t), 3 * shake(t)],
+                                        L, 56)},
+             "jaw": {"rotation": track(lambda t: [seq({0: 2, .3: 14, .55: 10, .85: 46, 2.2: 46, 2.6: 2, 2.8: 2})(t)
+                                                  + 3 * shake(t), 0, 0], L, 56)},
+             "chest": {"rotation": track(lambda t: [-6 * rearh(t) + 5 * lunge(t), 0, 0], L, 56)},
+             "body": {"position": track(lambda t: [0, 1.5 * rearh(t) - 1.5 * lunge(t), -2 * lunge(t)], L, 56),
+                      "rotation": track(lambda t: [-3 * rearh(t) + 3 * lunge(t), 0, 0], L, 56)}},
+            {f"arm_{s}": {"rotation": track(lambda t: [20 * lunge(t), 0, 0], L, 28)} for s, sx in SIDES},
+            {f"arm_{s}_low": {"rotation": track(lambda t: [-38 * lunge(t), 0, 0], L, 28)} for s, sx in SIDES},
+            {f"arm_{s}_foot": {"rotation": track(lambda t: [18 * lunge(t), 0, 0], L, 28)} for s, sx in SIDES},
+            {f"leg_{s}": {"rotation": track(lambda t: [-8 * lunge(t), 0, 0], L, 28)} for s, sx in SIDES},
+            {f"leg_{s}_shin": {"rotation": track(lambda t: [14 * lunge(t), 0, 0], L, 28)} for s, sx in SIDES},
+            {f"leg_{s}_foot": {"rotation": track(lambda t: [-6 * lunge(t), 0, 0], L, 28)} for s, sx in SIDES},
+            {f"tail{k}": {"rotation": track(lambda t, k=k: [10 * lunge(t) - 4 * rearh(t),
+                                                            16 * shake(t) * k / 4 + 6 * math.sin(t * 4 - k) * (1 - lunge(t)), 0],
+                                            L, 56)} for k in range(1, 5)}))
+        # status (1.7 s, intro 0:45): the claws planted, the sails half raised, it draws its head back, mouth opening,
+        # and spits a ball of light at the hunter with a sharp forward thrust, then shakes its sails to scatter scales
+        L = 1.7
+        draw = seq({0: 0, .45: 1, .55: 1, .68: 0, 1.7: 0})
+        spit = seq({0: 0, .55: 0, .68: 1, .9: 1, 1.15: 0, 1.7: 0})
+        o = seq({0: 0, .35: 1, 1.4: 1, 1.7: 0})
+        sh = lambda t: math.sin(t * 34) if 0.95 < t < 1.45 else 0
+        S["status"] = anim(L, merge(
+            wings(lambda t: [("half", o(t)), ("spread", 0.1 * sh(t) * o(t))], L, 34),
+            {"neck1": {"rotation": track(lambda t: [-24 * draw(t) + 18 * spit(t), 0, 0], L, 51)},
+             "neck2": {"rotation": track(lambda t: [-8 * draw(t) + 6 * spit(t), 0, 0], L, 51)},
+             "head": {"rotation": track(lambda t: [-10 * draw(t) - 6 * spit(t), 3 * sh(t), 0], L, 51)},
+             "jaw": {"rotation": track(lambda t: [seq({0: 2, .4: 18, .55: 22, .66: 44, .9: 40, 1.1: 6, 1.7: 2})(t), 0, 0],
+                                       L, 51)},
+             "chest": {"rotation": track(lambda t: [-5 * draw(t) + 2 * spit(t), 0, 0], L, 51)},
+             "body": {"position": track(lambda t: [0, 0.6 * draw(t) + 1.2 * spit(t), 2 * draw(t) - 3 * spit(t)], L, 51),
+                      "rotation": track(lambda t: [0, 0, 2.5 * sh(t)], L, 51)}},
+            {f"tail{k}": {"rotation": track(lambda t, k=k: [6 * draw(t), 10 * sh(t) * k / 4, 0], L, 34)} for k in range(1, 5)}))
 
     # faint (2.8 s): it raises its head screaming, antennas out, the wings flaring; then the legs buckle, the body sinks onto its belly
     # and rolls a little onto its flank, the head drops to the ground, the wings slump closed, the tail falls
@@ -983,6 +1072,29 @@ def anims(name, m):
         return anim(T, d, loop=True)
     S["air_idle"] = fly(1.6, 4, 1.5)
     S["air_fly"] = fly(1.0, 16, 2.5)
+    if name == "shagarumagala":
+        # air_idle (Kevin, 3.10: the official render's pose): hovering upright, belly to the foe, the wing hands raised
+        # over its head and the sails spread behind it as a great star; the front legs hang folded, the hind legs and
+        # the long tail hang down; it bobs slowly, the sails breathing and rippling, the head watching
+        L = 2.4
+        bob = lambda t: math.sin(2 * math.pi * t / L)
+        S["air_idle"] = anim(L, merge(
+            ripple(wings(lambda t: [("star", 1.0 + 0.05 * bob(t))], L, 24), L, amp=2.5, period=L / 2),
+            flex(lambda t, j: 4 + 3 * math.sin(2 * math.pi * t / L - 0.8 * j), L, 24),
+            {"magala": {"position": track(lambda t: [0, 68 + 1.5 * bob(t), 6], L, 24),
+                        "rotation": track(lambda t: [-64 + 2 * bob(t), 8, 10], L, 24)}},     # leaning a little aside
+            {"neck1": {"rotation": track(lambda t: [40 + 2 * bob(t), 4 * math.sin(2 * math.pi * t / L * 0.5), 0], L, 24)},
+             "neck2": {"rotation": track(lambda t: [14, 0, 0], L, 24)},
+             "head": {"rotation": track(lambda t: [10 - 2 * bob(t), 3 * math.sin(2 * math.pi * t / L * 0.5), 0], L, 24)},
+             "jaw": {"rotation": track(lambda t: [5 + 3 * math.sin(2 * math.pi * t / L + 1), 0, 0], L, 24)}},
+            {f"arm_{s}": {"rotation": track(lambda t, sx=sx: [60 + 3 * bob(t), 0, 6 * sx], L, 24)} for s, sx in SIDES},
+            {f"arm_{s}_low": {"rotation": [-36, 0, 0]} for s, sx in SIDES},
+            {f"arm_{s}_foot": {"rotation": [30, 0, 0]} for s, sx in SIDES},
+            {f"leg_{s}": {"rotation": track(lambda t: [26 + 3 * bob(t), 0, 0], L, 24)} for s, sx in SIDES},
+            {f"leg_{s}_shin": {"rotation": [16, 0, 0]} for s, sx in SIDES},
+            {f"leg_{s}_foot": {"rotation": [36, 0, 0]} for s, sx in SIDES},
+            {f"tail{k}": {"rotation": track(lambda t, k=k: [(16 if k == 1 else 8), 9 * math.sin(2 * math.pi * t / L - 0.7 * k), 0],
+                                            L, 24)} for k in range(1, 5)}), loop=True)
     fold = pose_euler("fold")
     for a in S.values():                                  # calm: dark folded antennas, no lit veins
         if not frenzy:
