@@ -491,6 +491,13 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   vert-crème, bords hérissés de pointes dorées, griffes violet-rose. Chaos : moitié gauche Gore en Furie (fourrure
   noire, lueur violette, antenne magenta dressée, croc ouvert), moitié droite Shagaru (corne en croissant, œil, voile
   dorée en étoile). Tailles recalées sur le nouveau modèle (hauteur et hitbox inchangées en jeu).
+- 3.8.1 (d'après Kevin et la planche de concept du Gore Magala du Chaos) : le Chaos a raté sa mue. Son antenne Gore et
+  le violet ne s'activent qu'en combat comme sur un Gore normal (antenne magenta qui sort en se dressant, lignes
+  violettes). Son aile « blanche » garde surtout les couleurs du Gore (fourrure noire en lambeaux) avec une bande de
+  fourrure dorée le long du bras ; bras d'aile sombre tacheté de jaune, rangée de pointes dorées, fissures dorées
+  de la corne le long de la tête et du cou jusqu'au bras ; corne sombre à la racine plus basse. Les cornes (Chaos et
+  Shagaru) s'arrondissent à la racine puis montent droit avec un léger arrondi vers l'avant ; cornes du Shagaru plus
+  sombres. Gore Magala : l'antenne n'apparaît plus du tout au calme, elle sort en se dressant à l'activation.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

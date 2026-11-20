@@ -87,20 +87,34 @@ GORE_G_SHINY = dict(GORE_SHINY, **{
 SHAGARU_G = dict(SHAGARU, **{
     "scale": rgb("#DCDDD0"), "scale_dark": rgb("#8E989C"), "scale_light": rgb("#F6F6EC"), "belly": rgb("#ECEBDD"),
     "belly_dark": rgb("#C4C4B2"), "plate": rgb("#CDB878"), "plate_light": rgb("#F4E8B8"),
+    "horn": rgb("#6A5C46"), "horn_tip": rgb("#C8B48A"),                  # Kevin: the antennas became darker horns
     "_mscale": True, "_feather": True, "scale_rim": rgb("#FFF4D0"), "net": rgb("#D8B050"), "keel_sheen": rgb("#FFE8A0"),
     "net_glow": rgb("#FFE070"), "scale_glow": rgb("#FFE070"),
     "gfur": rgb("#D6D4AE"), "gfur_tip": rgb("#F6F2DA"), "under": rgb("#E4E6C8"), "under_dark": rgb("#A4A47A"),
     "claw": rgb("#5A2A4A"), "claw_tip": rgb("#E6A8D0"), "spike": rgb("#C8A848"), "spike_tip": rgb("#FFF0B8")})
 SHAGARU_G_SHINY = dict(SHAGARU_SHINY, **{
+    "horn": rgb("#5A6270"), "horn_tip": rgb("#B4C0D0"),
     "_mscale": True, "_feather": True, "scale_rim": rgb("#F4FAFF"), "net": rgb("#7AA8D8"), "keel_sheen": rgb("#C8E4FF"),
     "net_glow": rgb("#90E0FF"), "scale_glow": rgb("#90E0FF"),
     "gfur": rgb("#C8D4E0"), "gfur_tip": rgb("#F2F8FF"), "under": rgb("#DCE6F0"), "under_dark": rgb("#8A9AAE"),
     "claw": rgb("#3A3A5A"), "claw_tip": rgb("#B8C8F0")})
-CHAOS = dict(GORE_G, _R=SHAGARU_G)
-CHAOS_SHINY = dict(GORE_G_SHINY, _R=SHAGARU_G_SHINY)
+# the chaotic Gore (Kevin): it missed its moult; its "white" wing is mostly Gore's colours with a golden band along the
+# arm and golden spikes and scales on the wing arm, a dark horn instead of the antenna on that side; its antenna and
+# purple light up in battle as on a plain Gore
+# concept sheet: the failed side's wing arm is dark with leopard spots of yellow (scale rims), golden spikes
+CHAOS_ARM = dict(GORE_G, **{"scale": rgb("#3A3826"), "scale_dark": rgb("#16150F"), "scale_rim": rgb("#E8D050"),
+                            "spike": rgb("#B89A30"), "spike_tip": rgb("#F8E890"), "_mscale": True})
+CHAOS_ARM_SHINY = dict(GORE_G_SHINY, **{"scale": rgb("#3A4048"), "scale_dark": rgb("#1C2026"), "scale_rim": rgb("#A8D8F8"),
+                                        "spike": rgb("#6A90B8"), "spike_tip": rgb("#D8F0FF"), "_mscale": True})
+CHAOS_R = dict(GORE_G, **{"_goldband": True, "gb": rgb("#D8C060"), "gb_dark": rgb("#8A7430"), "_alt": CHAOS_ARM,
+                          "horn": rgb("#3E3630"), "horn_tip": rgb("#5E5248")})
+CHAOS_R_SHINY = dict(GORE_G_SHINY, **{"_goldband": True, "gb": rgb("#C8DCF0"), "gb_dark": rgb("#6A7E96"),
+                                      "_alt": CHAOS_ARM_SHINY, "horn": rgb("#3A4048"), "horn_tip": rgb("#98A8B8")})
+CHAOS = dict(GORE_G, _R=CHAOS_R)
+CHAOS_SHINY = dict(GORE_G_SHINY, _R=CHAOS_R_SHINY)
 PALETTES = {"goremagala": (GORE_G, GORE_G_SHINY),
             "goremagala_frenzy": (dict(GORE_G, _frenzy=True), dict(GORE_G_SHINY, _frenzy=True)),
-            "chaoticgoremagala": (dict(CHAOS, _frenzy=True), dict(CHAOS_SHINY, _frenzy=True)),
+            "chaoticgoremagala": (CHAOS, CHAOS_SHINY),
             "shagarumagala": (SHAGARU_G, SHAGARU_G_SHINY)}
 
 # ---------------------------------------------------------------------------------------------------- painting
@@ -165,13 +179,15 @@ def side_pal(pal, p):
 def _along(p, c):
     return (p[1] - c.origin[1]) / max(c.size[1], 1)
 
-def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
+def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0, alt=False):
     """paint dict: every texel coloured from its model-space position (asymmetric palettes, scales...)
     kind: scale | belly | plate | fold | fang | spike | membrane | fur | claw | horn | antenna | mouth | tooth | eye |
     lid. belly_below: texels below this height use the belly colour; ragged: the bottom `ragged` rows of the side
     faces get torn (transparent) edges; glow: emissive key ('vein', 'antenna', 'eye', 'horn')."""
     def colour(pal, face, p, i, j, w, h, c):
         P = side_pal(pal, p)
+        if alt:                                                           # an alternate palette for some parts
+            P = P.get("_alt", P)
         fr = bool(pal.get("_frenzy")) and P is pal                       # frenzy tints (never on the gold side)
         x, y, z = p
         n = (_h(x, y, z) - 0.5) * 0.06
@@ -220,6 +236,10 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
                 if outer:
                     fib = _h(math.floor(a * 1.6), math.floor(b * 0.45), 11)  # fibres along the strip
                     col = mix(P["gfur"], P["gfur_tip"], 0.12 + 0.45 * fib ** 2)
+                    if P.get("_goldband"):                                # the chaotic one's failed moult: a golden
+                        t = _along(p, c)                                  # band of fur along the arm, the rest Gore's
+                        g = max(0.0, min(1.0, (0.55 - t) / 0.3))
+                        col = mix(col, mix(P["gb_dark"], P["gb"], 0.3 + 0.6 * fib), 0.85 * g)
                     if fr and _h(math.floor(a), math.floor(b / 5), 21) > 0.86:
                         col = mix(col, P["frenzy"], 0.45)
                     return col, n * 0.4

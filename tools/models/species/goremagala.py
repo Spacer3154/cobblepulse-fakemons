@@ -109,6 +109,7 @@ def build(name):
     chaos = name == "chaoticgoremagala"
     # Shagaru Magala and the chaotic Gore's right half (Bedrock -X) are built on Gore's model with Shagaru's parts
     gold = lambda sx: name == "shagarumagala" or (chaos and sx < 0)
+    shag = name == "shagarumagala"
     HORN = M.HORN
     m = Model(name, M.DEX[name], (512, 512))
     def gs(bb=None, S=4.2):
@@ -180,11 +181,22 @@ def build(name):
         if gold(sx):
             # Shagaru: a crown of horns (the great crescent rising from the brow and sweeping forward, two swept back
             # behind it) and an eye on each side of the face
-            hb = m.bone(f"horn_{side}", "head", [4.5 * sx, 50, -46])
-            hb.cubes += chain([4.5 * sx, 50, -46], [(0.25 * sx, 1, 0.45), (0.2 * sx, 1, 0.1), (0.1 * sx, 0.9, -0.35),
-                                                    (0.05 * sx, 0.5, -1)],
-                              [12, 11, 10, 8], [(3, 4), (3, 3), (2, 2), (1, 1)], HORN)
-            for (y, z, d, L) in ((50, -40, (0.45 * sx, 0.45, 1), 11), (48, -37, (0.6 * sx, 0.15, 1), 9)):
+            hy = 50 if shag else 46                                        # the chaotic one: the horn's root set lower
+            hb = m.bone(f"horn_{side}", "head", [4.5 * sx, hy, -46])
+            # Kevin: the horn curves round at its root, then rises straight up without bending, only a light curve forward
+            hb.cubes += chain([(4.5 if shag else 6) * sx, hy, -46], [(0.45 * sx, 0.55, 0.6), (0.15 * sx, 1, 0.12),
+                                                                    (0.05 * sx, 1, -0.06), (0.0, 1, -0.22)],
+                              [6, 11, 10, 8], [(3, 4), (3, 3), (2, 3), (1, 2)], HORN)
+            if not shag:
+                # concept sheet: golden cracks from the horn's root along the side of the head and down the neck, joined
+                # to the cracks of the wing arm
+                CR = surf("spike", alt=True)
+                hb.cubes += chain([6.6 * sx, 45, -44], [(0.05 * sx, 0.6, 1), (0.1 * sx, 0.3, 1)], [5, 4], [(1, 1), (1, 1)], CR)
+                head.cubes += [seg((7.2 * sx, 44, -54), (7.6 * sx, 47, -38), 1, 1, CR),
+                               seg((7.2 * sx, 41, -50), (7.6 * sx, 44, -38), 1, 1, CR)]
+                n1.cubes.append(seg((7.9 * sx, 47, -26), (7.9 * sx, 44, -34), 1, 1, CR))
+                n2.cubes.append(seg((7.4 * sx, 46, -32), (7.4 * sx, 44, -39), 1, 1, CR))
+            for (y, z, d, L) in (((50, -40, (0.45 * sx, 0.45, 1), 11), (48, -37, (0.6 * sx, 0.15, 1), 9)) if shag else ()):
                 hb.cubes += chain([5.5 * sx, y, z], [d, (d[0] * 0.7, d[1] - 0.25, d[2])], [L, L * 0.6],
                                   [(2, 3), (1, 2)], HORN)
             eb = m.bone(f"eye_{side}", "head", [5.6 * sx, 43, -53])
@@ -193,7 +205,7 @@ def build(name):
                    cubes=[box(*xs(5.6, 6.6, sx), 42, 45, -56, -51, surf("lid"), inflate=0.2)])
             continue
         ab = m.bone(f"antenna_{side}", "head", [3 * sx, 46, -54])
-        if frenzy or chaos:
+        if frenzy:
             ab.cubes += chain([3 * sx, 46, -54], [(0.12 * sx, 1, 0.1), (0.1 * sx, 1, -0.1), (0.05 * sx, 0.8, -0.5),
                                                    (0.0, 0.35, -0.95)],
                               [6, 6, 5, 3], [(2, 3), (2, 2), (2, 2), (1, 1)], surf("antenna", glow="antenna"))
@@ -206,7 +218,7 @@ def build(name):
             m.bone(f"antenna_{side}_lit", f"antenna_{side}", [3 * sx, 46, -54],
                    cubes=chain(*args, surf("antenna", glow="antenna")))
         fb = m.bone(f"fang_{side}", "head", [3 * sx, 37, -58])
-        if frenzy or chaos:
+        if frenzy:
             fb.cubes += chain([3.4 * sx, 37.5, -58], [(0.7 * sx, -0.5, -0.5), (0.3 * sx, -0.6, -0.8)], [6, 4],
                               [(2, 2), (1, 1)], surf("fang", glow="antenna"))
         else:
@@ -224,9 +236,23 @@ def build(name):
     # ------------------------------------------------------------------ the wings: webs folded on the shoulders
     for sx, side in ((1, "left"), (-1, "right")):
         S, E, W = mx(S_, sx), mx(E_, sx), mx(W_, sx)
-        m.bone(f"wing_{side}", "chest", list(S), cubes=rseg(S, E, 9, SL))
+        ARM = surf("gscale", S=3.2, alt=True) if (chaos and sx < 0) else SL         # the chaotic one: golden wing arm
+        m.bone(f"wing_{side}", "chest", list(S), cubes=rseg(S, E, 9, ARM))
         fore = m.bone(f"wing_{side}_fore", f"wing_{side}", list(E), cubes=[
-            *rseg(E, W, 8, SL), *rbox(E[0] - 4, E[0] + 4, E[1] - 4, E[1] + 4, E[2] - 4, E[2] + 4, SC)])
+            *rseg(E, W, 8, ARM), *rbox(E[0] - 4, E[0] + 4, E[1] - 4, E[1] + 4, E[2] - 4, E[2] + 4, SC)])
+        if chaos and sx < 0:
+            GSP = surf("spike", alt=True)
+            for q in [0.1 + 0.11 * k for k in range(8)]:                   # golden spikes along the forearm (MH4U)
+                P0 = [E[i] + (W[i] - E[i]) * q for i in range(3)]
+                fore.cubes += chain([P0[0] + 2 * sx, P0[1] + 3, P0[2]], [(0.5 * sx, 0.8, 0.35)], [5 - 2 * abs(q - 0.5)],
+                                    [(1, 2)], GSP)
+            for q in (0.3, 0.6, 0.9):
+                P0 = [S[i] + (E[i] - S[i]) * q for i in range(3)]
+                m.get(f"wing_{side}").cubes += chain([P0[0] + 2 * sx, P0[1] + 3, P0[2]], [(0.5 * sx, 0.8, 0.4)], [4],
+                                                     [(1, 2)], GSP)
+            # the arm's golden cracks, continuing those of the neck
+            m.get(f"wing_{side}").cubes.append(seg((S[0] + 4.7 * sx, S[1], S[2]), (E[0] + 4.7 * sx, E[1], E[2]), 1, 1, GSP))
+            fore.cubes.append(seg((E[0] + 4.2 * sx, E[1], E[2]), (W[0] + 4.2 * sx, W[1], W[2]), 1, 1, GSP))
         for k in range(4):                                                # a ridge of plates down the forearm
             f = 0.15 + 0.2 * k
             P0 = [E[i] + (W[i] - E[i]) * f for i in range(3)]
@@ -265,7 +291,7 @@ def build(name):
                     continue
                 d = _slerp(a, b, t)
                 L = La + (Lb - La) * t
-                if gold(sx) and kk != 7:                                   # Shagaru: a star, pointed at every finger
+                if shag and kk != 7:                                       # Shagaru: a star, pointed at every finger
                     L *= 1 - 0.2 * math.sin(math.pi * t)
                 wdt = max(2, int(round(L * om / n * 1.25 + 1)))
                 p0 = [O[i] + 3 * d[i] for i in range(3)]
@@ -285,7 +311,7 @@ def build(name):
                     wv = _norm(_cross(nrm, d))
                     q0 = [p1[i] - d[i] + off * wv[i] for i in range(3)]
                     q1 = [q0[i] + Lt * d[i] for i in range(3)]
-                    bone.cubes.append(web(q0, q1, wv, 2 + int(2 * _h(kk, j, 3)), SPIKE if gold(sx) else FUR))
+                    bone.cubes.append(web(q0, q1, wv, 2 + int(2 * _h(kk, j, 3)), SPIKE if shag else FUR))
         for k in range(4):
             fb = m.bone(f"wing_{side}_f{k + 1}", f"wing_{side}_hand", list(W))
             if k == 3:
@@ -347,7 +373,7 @@ def build(name):
             tb.cubes += chain([0, y - w / 2 + 0.5, zz + 2], [(0, -0.8, 0.7)], [max(2, L2 - 1)], [(1, 2)], SPIKE)
         prev, z, y = f"tail{k + 1}", z + L, y - 1
     m.get("tail4").cubes += chain([0, y + 1, z - 2], [(0, 0.2, 1), (0, 0, 1)], [6, 5], [(3, 3), (1, 1)], SPIKE)
-    if name == "goremagala":
+    if name in ("goremagala", "chaoticgoremagala"):
         # the purple veins that light up on its body when it raises its antennas (Kevin; the video's frenzy lines
         # along the neck, the chest, the front legs and under the wing arms); hidden (scale 0) unless in battle
         LIT = surf("antenna", glow="antenna")
@@ -608,7 +634,7 @@ def anims(name, m):
         for b in SAIL_BONES:
             out[b]["scale"] = track(lambda t: [round(SAIL_REST + (1 - SAIL_REST) * ext(t), 4)] * 3, L, steps)
         return out
-    frenzy = name.endswith("frenzy") or name == "chaoticgoremagala"     # the chaotic one's Gore half stays in frenzy
+    frenzy = name.endswith("frenzy")         # (the chaotic one raises its antenna and lights up like a plain Gore)
     HAVE = {b.name for b in m.bones}
     LIT_BONES = [b.name for b in m.bones if b.name.startswith("veins_")]
     def antennas(fn, L, steps=24, quiver=0.0):
@@ -616,11 +642,13 @@ def anims(name, m):
         so they only quiver"""
         out = {}
         if not frenzy:
+            # Kevin: the antenna and the purple only appear when the Gore activates them: the antenna grows out as it
+            # rises (hidden when calm), the purple lines light up with it
+            grow = lambda t: [round(max(0.0, min(1.0, fn(t) * 1.6)), 3)] * 3
             lit = lambda t: [1.0 if fn(t) > 0.35 else 0.0] * 3
-            dark = lambda t: [0.0 if fn(t) > 0.35 else 1.0] * 3
             for s, sx in SIDES:
-                out[f"antenna_{s}_lit"] = {"scale": track(lit, L, steps)}
-                out[f"antenna_{s}_dark"] = {"scale": track(dark, L, steps)}
+                out[f"antenna_{s}_lit"] = {"scale": track(grow, L, steps)}
+                out[f"antenna_{s}_dark"] = {"scale": [0, 0, 0]}
             for b in LIT_BONES:
                 out[b] = {"scale": track(lit, L, steps)}
         for s, sx in SIDES:
@@ -878,7 +906,7 @@ def anims(name, m):
                     a["bones"].setdefault(b, {}).setdefault("scale", [0, 0, 0])
             for b in ("antenna_left_dark", "antenna_right_dark"):
                 if b in HAVE:
-                    a["bones"].setdefault(b, {}).setdefault("scale", [1, 1, 1])
+                    a["bones"].setdefault(b, {}).setdefault("scale", [0, 0, 0])
     lids = [b for b in ("lid_left", "lid_right") if b in HAVE]   # Shagaru's eyes: open, blinking now and then, shut asleep
     if lids:
         blink = lambda t: [1.0 if (2.0 < t < 2.12) or (4.6 < t < 4.72) else 0.0] * 3
