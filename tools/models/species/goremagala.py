@@ -182,12 +182,25 @@ def build(name):
             # Shagaru and the chaotic one's Shagaru side (Kevin + game capture): one great thick dark horn from the top of
             # the skull, curving round at its root, then rising straight up with only a light curve forward
             # Kevin: the horn grows where Gore's antenna is (the antennas became horns), the eye just under it
-            R0 = (3.5 * sx, 46.5, -53)
+            R0 = (3.2 * sx, 46, -56.5)                                     # set well forward, over the eyes (game capture)
             hb = m.bone(f"horn_{side}", "head", list(R0))
             hb.cubes += chain(list(R0), [(0.5 * sx, 0.6, 0.45)], [4], [(5, 5)], HORN)                     # thick root
-            hb.cubes += chain([R0[0] + 2 * sx, R0[1] + 2.4, R0[2] + 1.8], [(0.2 * sx, 1, 0.1), (0.06 * sx, 1, -0.05),
-                                                                         (0.0, 1, -0.2), (0.0, 0.8, -0.5)],
+            top0 = [R0[0] + 2 * sx, R0[1] + 2.4, R0[2] + 1.8]
+            hb.cubes += chain(top0, [(0.2 * sx, 1, 0.1), (0.06 * sx, 1, -0.05), (0.0, 1, -0.2), (0.0, 0.8, -0.5)],
                               [9, 9, 8, 5], [(5, 5), (4, 4), (3, 3), (2, 2)], HORN)
+            for q, L in ((6, 4), (12, 3.5), (18, 3)):                      # small spikes up the back of the horn
+                hb.cubes += chain([top0[0] + 0.6 * sx, top0[1] + q, top0[2] + 2], [(0.3 * sx, 0.3, 1)], [L], [(1, 2)], HORN)
+            if shag:
+                # Shagaru's head (game captures): golden spiky fins flaring from the cheeks to frame the face, a beard of
+                # plates under the jaw, and a long pale whisker on each side
+                for k, (y, z, d, L) in enumerate(((46, -50, (0.85 * sx, 0.35, 0.4), 8), (43, -49, (0.9 * sx, 0.05, 0.45), 9),
+                                                  (40, -48, (0.85 * sx, -0.25, 0.45), 8), (37, -47, (0.7 * sx, -0.5, 0.5), 6))):
+                    head.cubes += chain([6 * sx, y, z], [d, (d[0] * 0.6, d[1], d[2] + 0.4)], [L * 0.6, L * 0.5],
+                                        [(1, 3), (1, 2)], SPIKE)
+                for k, z in enumerate((-56, -51, -46, -41)):
+                    m.get("jaw").cubes += chain([4.6 * sx, 32, z], [(0.6 * sx, -0.6, 0.45)], [5 - 0.5 * k], [(1, 2)], SPIKE)
+                head.cubes += chain([5.6 * sx, 40, -57], [(0.9 * sx, 0.15, -0.2), (0.85 * sx, -0.35, 0.25), (0.5 * sx, -0.85, 0.3)],
+                                    [8, 8, 7], [(1, 1), (1, 1), (1, 1)], TOOTH)          # the long pale whisker
             if shag:
                 for kk2, (y, z) in enumerate(((47, -40), (44, -38), (41, -38), (38, -39))):      # the golden ruff
                     head.cubes += chain([6.5 * sx, y, z], [(0.75 * sx, 0.1 * (y - 42) / 3, 0.6)], [6 - kk2 % 2],
@@ -203,10 +216,10 @@ def build(name):
                 n2.cubes.append(seg((7.4 * sx, 46, -32), (7.4 * sx, 44, -39), 1, 1, CR))
             # the eye (game capture): a small slanted orange slit, deep under a heavy brow ridge
             eb = m.bone(f"eye_{side}", "head", [5.6 * sx, 43, -53])
-            eb.cubes.append(seg((6.0 * sx, 42.6, -55.5), (6.4 * sx, 44.2, -50.5), 1, 1, surf("eye", glow="eye")))
-            head.cubes.append(seg((6.4 * sx, 45.6, -56.5), (7.0 * sx, 46.6, -49), 2, 2, PLATE))         # brow ridge
-            m.bone(f"lid_{side}", f"eye_{side}", [5.6 * sx, 43, -53],
-                   cubes=[seg((6.2 * sx, 42.6, -55.5), (6.6 * sx, 44.2, -50.5), 2, 2, surf("lid"))])
+            eb.cubes.append(seg((5.6 * sx, 43.0, -57.5), (6.2 * sx, 44.4, -53), 1, 1, surf("eye", glow="eye")))
+            head.cubes.append(seg((5.8 * sx, 45.6, -58.5), (6.8 * sx, 46.6, -51), 2, 2, PLATE))         # brow ridge
+            m.bone(f"lid_{side}", f"eye_{side}", [5.6 * sx, 43, -55],
+                   cubes=[seg((5.8 * sx, 43.0, -57.5), (6.4 * sx, 44.4, -53), 2, 2, surf("lid"))])
             continue
         ab = m.bone(f"antenna_{side}", "head", [3 * sx, 46, -54])
         if frenzy:
