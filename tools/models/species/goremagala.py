@@ -370,8 +370,13 @@ def solve_wing(pose):
     cd = np.array(pose.get("claws", (0, -0.3, -1)), float); cd /= np.linalg.norm(cd)
     fd0 = np.array(pose["fingers"][1], float); fd0 /= np.linalg.norm(fd0)
     d1 = _rest_dirs()[1]
-    a_ha = fit(lambda a: -np.dot(R2 @ _rot(a) @ claw0, cd) - 0.6 * np.dot(R2 @ _rot(a) @ d1, fd0)
-               + 1e-6 * np.sum(np.square(a)))
+    if pose.get("flat"):        # the three claws set down side by side on the ground: claws aimed, the hand level
+        upv = np.array([0.0, 1.0, 0.0])
+        a_ha = fit(lambda a: -np.dot(R2 @ _rot(a) @ claw0, cd) - np.dot(R2 @ _rot(a) @ upv, upv)
+                   + 1e-6 * np.sum(np.square(a)))
+    else:
+        a_ha = fit(lambda a: -np.dot(R2 @ _rot(a) @ claw0, cd) - 0.6 * np.dot(R2 @ _rot(a) @ d1, fd0)
+                   + 1e-6 * np.sum(np.square(a)))
     out["wing_left_hand"] = a_ha
     return _fingers(pose, R2 @ _rot(a_ha), out, fit)
 
@@ -449,7 +454,7 @@ WING_POSES = {
     "fold": {"keep_arm": True, "fingers": [[t[i] - W_[i] for i in range(3)] for t in FOLD_TIPS]},
     # claws planted (Kevin + the video 0:17-0:24): the wing arms arch wide, elbows high, the claws set down far out
     # to each side a little ahead of the head, the sails rising behind the arms
-    "planted": {"wrist": (48, 19, -50), "pole": (0.1, 1, -0.05), "claws": (0.45, -0.5, -0.75),
+    "planted": {"wrist": (48, 14, -50), "pole": (0.1, 1, -0.05), "claws": (0.1, -0.45, -0.89), "flat": True,
                 "fingers": [(-0.25, 0.38, 0.89), (-0.15, 0.72, 0.68), (-0.05, 0.93, 0.36), (0.1, 1, 0.0)]},
     # wide open (the reference's T-pose): the arm out, the fingers fanned back
     "spread": {"wrist": (70, 62, -16), "pole": (0, 0.3, 1), "claws": (0.4, 0.0, -1),
@@ -464,7 +469,7 @@ WING_POSES = {
     "slam": {"wrist": (26, 21, -66), "pole": (0.5, 1, 0.2), "claws": (0.2, -0.6, -0.8),
              "fingers": [(-0.25, 0.4, 0.88), (-0.15, 0.74, 0.66), (-0.05, 0.94, 0.33), (0.1, 1, 0.0)]},
     # the claws set down ahead of its head, the sails half raised behind (exploding breath)
-    "half": {"wrist": (46, 20, -52), "pole": (0.3, 1, 0), "claws": (0.3, -0.5, -0.8),
+    "half": {"wrist": (46, 20, -52), "pole": (0.3, 1, 0), "claws": (0.1, -0.45, -0.89), "flat": True,
              "fingers": [(-0.25, 0.3, 0.92), (-0.15, 0.55, 0.82), (-0.05, 0.75, 0.66), (0.05, 0.92, 0.4)]},
     # flight (Kevin: it does not unfold its arms, only the sails stretch out): the arm stays folded on the shoulder,
     # the sail stretched sideways (the rest layout) beats up and down
@@ -513,6 +518,32 @@ def anims(name, m):
         for b in SAIL_BONES:
             out[b]["scale"] = track(lambda t: [round(SAIL_REST + (1 - SAIL_REST) * ext(t), 4)] * 3, L, steps)
         return out
+    frenzy = name.endswith("frenzy")
+    def antennas(fn, L, steps=24, quiver=0.0):
+        """the horns (antennas) unfolding from along the face to straight up (fn 0..1); in Frenzy they already stand,
+        so they only quiver"""
+        out = {}
+        for s, sx in SIDES:
+            out[f"antenna_{s}"] = {"rotation": track(
+                lambda t, sx=sx: [(0 if frenzy else 92 * fn(t)) + quiver * math.sin(t * 37 + sx), 0,
+                                  (0 if frenzy else -8 * sx * fn(t))], L, steps)}
+        return out
+    def ripple(ch, L, amp=2.5, period=None):
+        """the sails rippling (fingers and strips together, so the sail stays whole), on top of wing channels"""
+        period = period or L
+        for b in SAIL_BONES:
+            k = 0.4 * (sum(map(ord, b[-3:])) % 7)
+            rot = ch[b]["rotation"]
+            base = {float(t): v for t, v in rot.items()} if isinstance(rot, dict) else {0.0: rot}
+            n = 24
+            keys = {}
+            for i in range(n + 1):
+                t = L * i / n
+                tt = min(base, key=lambda q: abs(q - t))
+                v = base[tt]
+                keys[round(t, 4)] = [round(v[0] + amp * math.sin(2 * math.pi * t / period + k), 2), v[1], v[2]]
+            ch[b]["rotation"] = kf(keys)
+        return ch
     def flutter(t, amp, period=0.5):
         """the membrane fingers rippling"""
         out = {}
@@ -563,42 +594,57 @@ def anims(name, m):
         {f"tail{k}": {"rotation": wave(4 + 2 * k, T, T, phase=-0.6 * k, axis=1)} for k in range(1, 5)})
     S["ground_walk"] = anim(T, walkd, loop=True)
 
-    # battle_idle: the game's frenzy stance: wings unfolded, the wrist claws planted far out on each side, low head
-    L = 2.0
+    # battle_idle (3 s): claws planted wide (they stay on the ground), sails raised and rippling, antennas up and
+    # quivering; blind, the head sweeps low from side to side tasting the air, the weight rocks from claw to claw
+    L = 3.0
+    sweep = seq({0: 0, .6: 18, 1.2: 18, 1.7: -18, 2.4: -18, 3.0: 0})
+    snap = lambda t: math.sin((t - 1.3) * math.pi / 0.25) if 1.3 < t < 1.55 else 0
     bi = merge(
-        wings(lambda t: [("planted", 1.0 - 0.04 * (1 + math.sin(2 * math.pi * t / L))),
-                         ("spread", 0.04 * (1 + math.sin(2 * math.pi * t / L)))], L, 12),
-        {"body": {"position": wave(0.6, L, L, axis=1, base=(0, 1.2, 0))}},
-        {"chest": {"rotation": wave(1.5, L, L, axis=0, base=(5, 0, 0))}},
+        ripple(wings(lambda t: [("planted", 1.0)], L, 4), L, amp=2.5, period=L / 2),
+        antennas(lambda t: 1.0, L, 36, quiver=4),
+        {"body": {"position": track(lambda t: [0.4 * math.sin(2 * math.pi * t / L), 1.2 + 0.3 * math.sin(4 * math.pi * t / L), 0], L, 24),
+                  "rotation": track(lambda t: [0, 0, 0.5 * math.sin(2 * math.pi * t / L)], L, 24)}},
+        {"chest": {"rotation": track(lambda t: [5 + 0.6 * math.sin(4 * math.pi * t / L), sweep(t) * 0.06, 0], L, 24)}},
         {f"arm_{s}": {"rotation": [-8, 0, 6 * sx]} for s, sx in SIDES},
         {f"leg_{s}": {"rotation": [-6, 0, 0]} for s, sx in SIDES},
         {f"leg_{s}_shin": {"rotation": [8, 0, 0]} for s, sx in SIDES},
-        {"neck1": {"rotation": wave(2, L, L, axis=0, base=(12, 0, 0))},
-         "head": {"rotation": wave(3, L, L, phase=1, axis=0, base=(4, 0, 0))},
-         "jaw": {"rotation": wave(4, L / 2, L, axis=0, base=(6, 0, 0))}},
-        {f"tail{k}": {"rotation": wave(5 + k, L, L, phase=-0.7 * k, axis=1, base=(4 if k == 1 else 0, 0, 0))}
+        {"neck1": {"rotation": track(lambda t: [14 + 3 * math.sin(4 * math.pi * t / L) - 8 * snap(t), sweep(t) * 0.45, 0], L, 48)},
+         "neck2": {"rotation": track(lambda t: [4, sweep(t) * 0.25, 0], L, 48)},
+         "head": {"rotation": track(lambda t: [2 + 6 * snap(t), sweep(t) * 0.3, -sweep(t) * 0.25], L, 48)},
+         "jaw": {"rotation": track(lambda t: [6 + 3 * math.sin(4 * math.pi * t / L) + 26 * max(0.0, snap(t)), 0, 0], L, 48)}},
+        {f"tail{k}": {"rotation": track(lambda t, k=k: [(5 if k == 1 else 2), 12 * math.sin(2 * math.pi * t / L - 0.8 * k), 0], L, 24)}
          for k in range(1, 5)})
     S["battle_idle"] = anim(L, bi, loop=True)
 
-    # cry (2.2 s): rears its neck, throws its wings wide open and roars, the membrane quivering
-    L = 2.2
-    up = seq({0: 0, .55: 1, 1.7: 1, 2.2: 0})
-    shake = lambda t: 4 * math.sin(t * 40) if 0.6 < t < 1.6 else 0
+    # cry (2.4 s): crouches and draws back, then rears, the antennas snap up, the wings flare wide with a shudder and
+    # it roars at the sky, the tail lashing
+    L = 2.4
+    dip = seq({0: 0, .35: 1, .6: 0, 2.4: 0})
+    up = seq({0: 0, .35: 0, .75: 1, 1.9: 1, 2.4: 0})
+    shake = lambda t: math.sin(t * 42) if 0.8 < t < 1.8 else 0
     cry = merge(
-        wings(lambda t: [("display", up(t))], L),
-        {"neck1": {"rotation": track(lambda t: [-22 * up(t), 0, 0], L)},
-         "head": {"rotation": track(lambda t: [-16 * up(t), shake(t), 0], L, 44)},
-         "jaw": {"rotation": track(lambda t: [seq({0: 2, .45: 38, 1.6: 38, 2.0: 2, 2.2: 2})(t), 0, 0], L)},
-         "chest": {"rotation": track(lambda t: [-6 * up(t), 0, 0], L)},
-         "body": {"position": track(lambda t: [0, 2 * up(t), 0], L)}},
-        {f"tail{k}": {"rotation": track(lambda t, k=k: [6 * up(t), 0, 0], L)} for k in (1, 2)})
+        ripple(wings(lambda t: [("display", up(t))], L, 30), L, amp=3, period=0.3),
+        antennas(seq({0: 0, .5: 0, .7: 1, 2.0: 1, 2.4: 0}), L, 48, quiver=6),
+        {"neck1": {"rotation": track(lambda t: [14 * dip(t) - 26 * up(t), 0, 0], L, 48)},
+         "neck2": {"rotation": track(lambda t: [6 * dip(t) - 8 * up(t), 0, 0], L, 48)},
+         "head": {"rotation": track(lambda t: [8 * dip(t) - 20 * up(t) + 3 * shake(t), 5 * shake(t), 0], L, 48)},
+         "jaw": {"rotation": track(lambda t: [seq({0: 2, .35: 2, .7: 42, 1.8: 42, 2.2: 2, 2.4: 2})(t) + 3 * shake(t), 0, 0], L, 48)},
+         "chest": {"rotation": track(lambda t: [2 * dip(t) - 10 * up(t), 0, 0], L, 48)},
+         "body": {"position": track(lambda t: [0, 3 * up(t), 2 * dip(t)], L, 48)}},
+        {f"arm_{s}": {"rotation": track(lambda t: [-10 * up(t), 0, 0], L)} for s, sx in SIDES},
+        {f"tail{k}": {"rotation": track(lambda t, k=k: [8 * up(t), 18 * shake(t) * (k / 4), 0], L, 48)} for k in range(1, 5)})
     S["cry"] = anim(L, cry)
 
     # physical: Giant Slam (1.3 s): screech, rears up on its hind legs with the wings raised, slams the claws down
     L = 1.3
     rear = seq({0: 0, .45: 1, .62: 1, .78: 0, 1.0: 0, 1.3: 0})
     slam = seq({0: 0, .62: 0, .76: 1, 1.0: 1, 1.3: 0})
+    hit = lambda t: math.exp(-((t - 0.8) / 0.06) ** 2)                   # the impact jolt
     phys = merge(
+        antennas(seq({0: 0, .2: 1, 1.05: 1, 1.3: 0}), L, 26, quiver=5),
+        {"chest": {"rotation": track(lambda t: [2.5 * hit(t), 0, 0], L, 39)}},
+        {f"tail{k}": {"rotation": track(lambda t, k=k: [10 * rear(t) if k < 3 else 0, 14 * hit(t) * k / 4, 0], L, 39)}
+         for k in range(1, 5)},
         wings(lambda t: [("raised", rear(t)), ("slam", slam(t) * (1 - rear(t)))], L, 26),
         {"body": {"rotation": track(lambda t: [-22 * rear(t) + 3 * slam(t), 0, 0], L, 26),
                   "position": track(lambda t: [0, 8 * rear(t) + 1 * slam(t), 3 * rear(t) - 6 * slam(t)], L, 26)}},
@@ -606,7 +652,6 @@ def anims(name, m):
         {f"arm_{s}_low": {"rotation": track(lambda t: [40 * rear(t), 0, 0], L, 26)} for s, sx in SIDES},
         {f"leg_{s}": {"rotation": track(lambda t: [24 * rear(t), 0, 0], L, 26)} for s, sx in SIDES},
         {f"leg_{s}_shin": {"rotation": track(lambda t: [-10 * rear(t), 0, 0], L, 26)} for s, sx in SIDES},
-        {f"tail{k}": {"rotation": track(lambda t: [10 * rear(t), 0, 0], L, 26)} for k in (1, 2)},
         {"neck1": {"rotation": track(lambda t: [-18 * rear(t) + 18 * slam(t), 0, 0], L, 26)},
          "head": {"rotation": track(lambda t: [-16 * rear(t) + 10 * slam(t), 0, 0], L, 26)},
          "jaw": {"rotation": track(lambda t: [seq({0: 2, .3: 36, .6: 30, .76: 8, 1.3: 2})(t), 0, 0], L, 26)}})
@@ -618,6 +663,8 @@ def anims(name, m):
     o = seq({0: 0, .4: 1, 1.3: 1, 1.6: 0})
     sp = merge(
         wings(lambda t: [("half", o(t))], L),
+        antennas(o, L, 32, quiver=4),
+        {f"tail{k}": {"rotation": track(lambda t, k=k: [0, -yaw(t) * 0.25 * k / 2, 0], L, 32)} for k in range(1, 5)},
         {"neck1": {"rotation": track(lambda t: [seq({0: 0, .45: -18, .7: -6, 1.25: -6, 1.6: 0})(t), yaw(t) * 0.45, 0], L, 48)},
          "neck2": {"rotation": track(lambda t: [0, yaw(t) * 0.3, 0], L, 48)},
          "head": {"rotation": track(lambda t: [seq({0: 0, .45: -14, .7: 6, 1.25: 6, 1.6: 0})(t), yaw(t) * 0.3,
@@ -632,6 +679,7 @@ def anims(name, m):
     o = seq({0: 0, .3: 1, 1.0: 1, 1.3: 0})
     st = merge(
         wings(lambda t: [("spread", 0.55 * o(t) + (0.08 * math.sin(t * 30) if 0.3 < t < 1.0 else 0))], L, 39),
+        antennas(o, L, 39, quiver=7),
         {"neck1": {"rotation": track(lambda t: [-16 * o(t), 0, 0], L)},
          "head": {"rotation": track(lambda t: [-6 * o(t), 5 * math.sin(t * 22) * (0.3 < t < 1.0), 0], L, 32)},
          "jaw": {"rotation": track(lambda t: [2 + 16 * o(t), 0, 0], L)},
