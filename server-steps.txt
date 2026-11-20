@@ -1,0 +1,38 @@
+mod fabric-api 0.116.18+1.21.1 -> fabric-api-0.116.18+1.21.1.jar
+mod fabric-language-kotlin 1.14.2+kotlin.2.4.21 -> fabric-language-kotlin-1.14.2+kotlin.2.4.21.jar
+mod cobblemon 1.8.4F -> Cobblemon-fabric-1.8.4+1.21.1.jar
+mod cobblemon-mega-showdown 1.4+1.8.4+1.21.1-release -> mega_showdown-fabric-1.4+1.8.4+1.21.1-release.jar
+mod architectury-api 13.0.12+fabric -> architectury-13.0.12-fabric.jar
+mod owo-lib 0.13.0-alpha.15.1+1.21 -> owo-lib-0.13.0-alpha.15.1+1.21.jar
+mod accessories 1.1.0-beta.54+1.21.1 -> accessories-fabric-1.1.0-beta.54+1.21.1.jar
+mod cobblepulse_ecology build/libs/cobblepulse-ecology-3.10.1+mc1.21.1.jar
+server ready: True
+> forceload add 0 0 47 15
+> fillbiome 18 60 -6 29 140 6 minecraft:snowy_plains
+> summon minecraft:item 0 120 0 {Item:{id:"cobblepulse_ecology:deviljhonite",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}
+> summon minecraft:item 2 120 0 {Item:{id:"cobblepulse_ecology:glavenusite",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}
+> summon minecraft:item 4 120 0 {Item:{id:"normandy_fakemons:deviljhonite",count:1},NoGravity:1b,PickupDelay:32767,Age:-32768}
+> data get entity @e[type=minecraft:item,limit=3] Item
+> spawnpokemonat 0 100 0 deviljho
+> spawnpokemonat 4 100 0 deviljho mega_evolution=mega
+> spawnpokemonat 8 100 0 guillopard
+> spawnpokemonat 12 100 0 glavenus
+> spawnpokemonat 16 100 0 glavenus mega_evolution=mega
+> spawnpokemonat 32 100 0 goremagala
+> spawnpokemonat 36 100 0 goremagala magala_frenzy=true
+> spawnpokemonat 40 100 0 chaoticgoremagala
+> spawnpokemonat 44 100 0 shagarumagala
+> execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Species
+> execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.FormId
+> execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Features
+> kill @e[type=cobblemon:pokemon]
+> say ZAMTRIOS CLIMATE CHECK: x=22 snowy_plains (normal -> armor), x=40 (armor -> normal); wild Pokemon despawn in a few seconds without players
+> spawnpokemonat 22 100 0 zamtrios
+> spawnpokemonat 40 100 0 zamtrios zamtrios_form=armor
+> execute as @e[type=cobblemon:pokemon] run data get entity @s Pos
+> execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Features[2]
+> execute as @e[type=cobblemon:pokemon] run data get entity @s Pokemon.Features[2]
+> reload
+> list
+selftest: [17:12:12] [Server thread/INFO]: SELFTEST SUMMARY cobblepulse_ecology PASS (0 probleme(s))
+exit code 0

@@ -1,0 +1,13 @@
+[17:11:44] [main/WARN]: Error loading class: juuxel/adorn/block/variant/BlockVariantSets (java.lang.ClassNotFoundException: juuxel/adorn/block/variant/BlockVariantSets)
+[17:11:44] [main/WARN]: Error loading class: net/minecraft/class_1140 (java.lang.ClassNotFoundException: net/minecraft/class_1140)
+[17:11:44] [main/WARN]: Error loading class: xyz/nucleoid/server/translations/impl/language/LanguageReader (java.lang.ClassNotFoundException: xyz/nucleoid/server/translations/impl/language/LanguageReader)
+[17:11:44] [main/WARN]: Error loading class: xyz/nucleoid/server/translations/impl/language/SystemDelegatedLanguage (java.lang.ClassNotFoundException: xyz/nucleoid/server/translations/impl/language/SystemDelegatedLanguage)
+[17:11:44] [main/WARN]: Error loading class: net/minecraft/class_1044 (java.lang.ClassNotFoundException: net/minecraft/class_1044)
+[17:11:49] [main/WARN]: Error loading class: net/minecraft/class_1132 (java.lang.ClassNotFoundException: net/minecraft/class_1132)
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:pokemon
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:empty_pokeball
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:boat
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:chest_boat
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:poke_bobber
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:generic_bedrock
+[17:11:50] [main/ERROR]: No data fixer registered for cobblemon:npc

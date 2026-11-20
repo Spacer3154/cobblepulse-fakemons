@@ -1,0 +1,133 @@
+== biomesoplenty/init/ModBlocks.class
+51.method_9626:(Lnet/minecraft/class_2498;)Lnet/minecraft/class_4970$class_2251;
+    1381: invokevirtual #211                // Method net/minecraft/class_4970$class_2251.method_29292:()Lnet/minecraft/class_4970$class_2251;
+    1384: ldc_w         #466                // float 0.75f
+    1387: invokevirtual #147                // Method net/minecraft/class_4970$class_2251.method_9632:(F)Lnet/minecraft/class_4970$class_2251;
+    1390: invokespecial #480                // Method biomesoplenty/block/ThermalCalciteVentBlock."<init>":(Lnet/minecraft/class_4970$class_2251;)V
+    1393: ldc_w         #482                // String thermal_calcite_vent
+    1396: invokestatic  #156                // Method register:(Ljava/util/function/BiConsumer;Lnet/minecraft/class_2248;Ljava/lang/String;)Lnet/minecraft/class_2248;
+    1399: putstatic     #485                // Field biomesoplenty/api/block/BOPBlocks.THERMAL_CALCITE_VENT:Lnet/minecraft/class_2248;
+    1402: aload_0
+    1403: new           #487                // class biomesoplenty/block/DriedSaltBlock
+    1406: dup
+    1407: invokestatic  #97                 // Method net/minecraft/class_4970$class_2251.method_9637:()Lnet/minecraft/class_4970$class_2251;
+    1410: getstatic     #490                // Field net/minecraft/class_3620.field_15996:Lnet/minecraft/class_3620;
+    1413: invokevirtual #132                // Method net/minecraft/class_4970$class_2251.method_31710:(Lnet/minecraft/class_3620;)Lnet/minecraft/class_4970$class_2251;
+    1416: fconst_1
+    1417: invokevirtual #147                // Method net/minecraft/class_4970$class_2251.method_9632:(F)Lnet/minecraft/class_4970$class_2251;
+    1420: new           #134                // class net/minecraft/class_2498
+    1423: dup
+    1424: fconst_1
+    1425: ldc           #192                // float 0.5f
+    1427: getstatic     #496                // Field net/minecraft/class_3417.field_15211:Lnet/minecraft/class_3414;
+    1430: getstatic     #499                // Field net/minecraft/class_3417.field_14798:Lnet/minecraft/class_3414;
+    1433: getstatic     #502                // Field net/minecraft/class_3417.field_14609:Lnet/minecraft/class_3414;
+    1436: getstatic     #505                // Field net/minecraft/class_3417.field_14697:Lnet/minecraft/class_3414;
+    1439: getstatic     #508                // Field net/minecraft/class_3417.field_15156:Lnet/minecraft/class_3414;
+    1442: invokespecial #511                // Method net/minecraft/class_2498."<init>":(FFLnet/minecraft/class_3414;Lnet/minecraft/class_3414;Lnet/minecraft/class_3414;Lnet/minecraft/class_3414;Lnet/minecraft/class_3414;)V
+    1445: invokevirtual #142                // Method net/minecraft/class_4970$class_2251.method_9626:(Lnet/minecraft/class_2498;)Lnet/minecraft/class_4970$class_2251;
+    1448: invokespecial #512                // Method biomesoplenty/block/DriedSaltBlock."<init>":(Lnet/minecraft/class_4970$class_2251;)V
+    1451: ldc_w         #514                // String dried_salt
+    1454: invokestatic  #156                // Method register:(Ljava/util/function/BiConsumer;Lnet/minecraft/class_2248;Ljava/lang/String;)Lnet/minecraft/class_2248;
+    1457: putstatic     #517                // Field biomesoplenty/api/block/BOPBlocks.DRIED_SALT:Lnet/minecraft/class_2248;
+    1460: aload_0
+    1461: new           #519                // class biomesoplenty/block/FleshBlock
+    1464: dup
+    1465: invokestatic  #97                 // Method net/minecraft/class_4970$class_2251.method_9637:()Lnet/minecraft/class_4970$class_2251;
+    1468: invokevirtual #119                // Method net/minecraft/class_4970$class_2251.method_9640:()Lnet/minecraft/class_4970$class_2251;
+    1471: getstatic     #436                // Field net/minecraft/class_3620.field_15982:Lnet/minecraft/class_3620;
+    1474: invokevirtual #132                // Method net/minecraft/class_4970$class_2251.method_31710:(Lnet/minecraft/class_3620;)Lnet/minecraft/class_4970$class_2251;
+    1477: ldc_w         #520                // float 0.4f
+    1480: invokevirtual #147                // Method net/minecraft/class_4970$class_2251.method_9632:(F)Lnet/minecraft/class_4970$class_2251;
+    1483: new           #134                // class net/minecraft/class_2498
+    1486: dup
+    1487: fconst_1
+    1488: ldc           #192                // float 0.5f
+    1490: getstatic     #523                // Field net/minecraft/class_3417.field_14804:Lnet/minecraft/class_3414;
+    1493: getstatic     #526                // Field net/minecraft/class_3417.field_14935:Lnet/minecraft/class_3414;
+    1496: getstatic     #529                // Field net/minecraft/class_3417.field_15087:Lnet/minecraft/class_3414;
+    1499: getstatic     #532                // Field net/minecraft/class_3417.field_14672:Lnet/minecraft/class_3414;
+    1502: getstatic     #535                // Field net/minecraft/class_3417.field_14551:Lnet/minecraft/class_3414;
+    1505: invokespecial #511                // Method net/minecraft/class_2498."<init>":(FFLnet/minecraft/class_3414;Lnet/minecraft/class_3414;Lnet/minecraft/class_3414;Lnet/minecraft/class_3414;Lnet/minecraft/class_3414;)V
+    1508: invokevirtual #142                // Method net/minecraft/class_4970$class_2251.method_9626:(Lnet/minecraft/class_2498;)Lnet/minecraft/class_4970$class_2251;
+    1511: invokespecial #536                // Method biomesoplenty/block/FleshBlock."<init>":(Lnet/minecraft/class_4970$class_2251;)V
+    1514: ldc_w         #538                // String flesh
+    1517: invokestatic  #156                // Method register:(Ljava/util/function/BiConsumer;Lnet/minecraft/class_2248;Ljava/lang/String;)Lnet/minecraft/class_2248;
+    1520: putstatic     #541                // Field biomesoplenty/api/block/BOPBlocks.FLESH:Lnet/minecraft/class_2248;
+    1523: aload_0
+    1524: new           #519                // class biomesoplenty/block/FleshBlock
+    1527: dup
+    1528: invokestatic  #97                 // Method net/minecraf
+
+== biomesoplenty/init/ModItems.class
+oad_0
+     946: ldc_w         #821                // String chiseled_black_sandstone
+     949: new           #572                // class net/minecraft/class_1747
+     952: dup
+     953: getstatic     #824                // Field biomesoplenty/api/block/BOPBlocks.CHISELED_BLACK_SANDSTONE:Lnet/minecraft/class_2248;
+     956: new           #7                  // class net/minecraft/class_1792$class_1793
+     959: dup
+     960: invokespecial #38                 // Method net/minecraft/class_1792$class_1793."<init>":()V
+     963: invokespecial #577                // Method net/minecraft/class_1747."<init>":(Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V
+     966: invokestatic  #580                // Method register:(Ljava/util/function/BiConsumer;Ljava/lang/String;Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792;
+     969: putstatic     #826                // Field biomesoplenty/api/item/BOPItems.CHISELED_BLACK_SANDSTONE:Lnet/minecraft/class_1792;
+     972: aload_0
+     973: ldc_w         #828                // String thermal_calcite
+     976: new           #572                // class net/minecraft/class_1747
+     979: dup
+     980: getstatic     #831                // Field biomesoplenty/api/block/BOPBlocks.THERMAL_CALCITE:Lnet/minecraft/class_2248;
+     983: new           #7                  // class net/minecraft/class_1792$class_1793
+     986: dup
+     987: invokespecial #38                 // Method net/minecraft/class_1792$class_1793."<init>":()V
+     990: invokespecial #577                // Method net/minecraft/class_1747."<init>":(Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V
+     993: invokestatic  #580                // Method register:(Ljava/util/function/BiConsumer;Ljava/lang/String;Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792;
+     996: putstatic     #833                // Field biomesoplenty/api/item/BOPItems.THERMAL_CALCITE:Lnet/minecraft/class_1792;
+     999: aload_0
+    1000: ldc_w         #835                // String thermal_calcite_vent
+    1003: new           #572                // class net/minecraft/class_1747
+    1006: dup
+    1007: getstatic     #838                // Field biomesoplenty/api/block/BOPBlocks.THERMAL_CALCITE_VENT:Lnet/minecraft/class_2248;
+    1010: new           #7                  // class net/minecraft/class_1792$class_1793
+    1013: dup
+    1014: invokespecial #38                 // Method net/minecraft/class_1792$class_1793."<init>":()V
+    1017: invokespecial #577                // Method net/minecraft/class_1747."<init>":(Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V
+    1020: invokestatic  #580                // Method register:(Ljava/util/function/BiConsumer;Ljava/lang/String;Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792;
+    1023: putstatic     #840                // Field biomesoplenty/api/item/BOPItems.THERMAL_CALCITE_VENT:Lnet/minecraft/class_1792;
+    1026: aload_0
+    1027: ldc_w         #842                // String dried_salt
+    1030: new           #572                // class net/minecraft/class_1747
+    1033: dup
+    1034: getstatic     #845                // Field biomesoplenty/api/block/BOPBlocks.DRIED_SALT:Lnet/minecraft/class_2248;
+    1037: new           #7                  // class net/minecraft/class_1792$class_1793
+    1040: dup
+    1041: invokespecial #38                 // Method net/minecraft/class_1792$class_1793."<init>":()V
+    1044: invokespecial #577                // Method net/minecraft/class_1747."<init>":(Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V
+    1047: invokestatic  #580                // Method register:(Ljava/util/function/BiConsumer;Ljava/lang/String;Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792;
+    1050: putstatic     #847                // Field biomesoplenty/api/item/BOPItems.DRIED_SALT:Lnet/minecraft/class_1792;
+    1053: aload_0
+    1054: ldc_w         #849                // String flesh
+    1057: new           #572                // class net/minecraft/class_1747
+    1060: dup
+    1061: getstatic     #852                // Field biomesoplenty/api/block/BOPBlocks.FLESH:Lnet/minecraft/class_2248;
+    1064: new           #7                  // class net/minecraft/class_1792$class_1793
+    1067: dup
+    1068: invokespecial #38                 // Method net/minecraft/class_1792$class_1793."<init>":()V
+    1071: invokespecial #577                // Method net/minecraft/class_1747."<init>":(Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V
+    1074: invokestatic  #580                // Method register:(Ljava/util/function/BiConsumer;Ljava/lang/String;Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792;
+    1077: putstatic     #854                // Field biomesoplenty/api/item/BOPItems.FLESH:Lnet/minecraft/class_1792;
+    1080: aload_0
+    1081: ldc_w         #856                // String porous_flesh
+    1084: new           #572                // class net/minecraft/class_1747
+    1087: dup
+    1088: getstatic     #859                // Field biomesoplenty/api/block/BOPBlocks.POROUS_FLESH:Lnet/minecraft/class_2248;
+    1091: new           #7                  // class net/minecraft/class_1792$class_1793
+    1094: dup
+    1095: invokespecial #38                 // Method net/minecraft/class_1792$class_1793."<init>":()V
+    1098: invokespecial #577                // Method net/minecraft/class_1747."<init>":(Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V
+    1101: invokestatic  #580                // Method register:(Ljava/util/function/BiConsumer;Ljava/lang/String;Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792;
+    1104: putstatic     #861                // Field biomesoplenty/api/item/BOPItems.POROUS_FLESH:Lnet/minecraft/class_1792;
+    1107: aload_0
+    1108: ldc_w         #863                // String flesh_tendons
+    1111: new           #572                // class net/minecraft/class_1747
+    1114: dup
+    1115: getstatic     #866                // Fie

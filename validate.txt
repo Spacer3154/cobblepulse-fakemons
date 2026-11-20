@@ -1,0 +1,3 @@
+INFO  species with wild spawns: 26/28 (prepared but disabled: []), biome groups: 14, spawn ids: 57
+INFO  species with a model: 28/28 ['alchibec', 'arboverger', 'archangelis', 'archeolithe', 'bolvados', 'bovecume', 'chaoticgoremagala', 'cidrac', 'cruchevados', 'deviljho', 'drakflam', 'drakkarthor', 'etreroch', 'gargoylbatre', 'glavenus', 'goremagala', 'guillopard', 'homarbleu', 'meuhgousse', 'normanguer', 'noroimard', 'pomdraco', 'rousselin', 'roussinage', 'shagarumagala', 'sleipcheron', 'vikinav', 'zamtrios']
+VALIDATION OK - 0 error
