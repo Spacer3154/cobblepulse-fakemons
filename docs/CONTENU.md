@@ -444,6 +444,9 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   griffes au sol près de la tête, pour le souffle. Poses des ailes calculées (cinématique inverse) dans
   `tools/models/species/goremagala.py`, module propre au Gore Magala (le Chaos et Shagaru ne changent pas). Pose calme
   à part pour le portrait d'équipe et le résumé.
+- 3.3.1 (Gore Magala) : ailes repliées corrigées (Kevin : « t'as mis les griffes en l'air ») : le bras replié forme
+  l'épaule, le poignet se loge sur le côté de l'épaule sous la ligne du dos et les quatre longues griffes rouges
+  pendent le long de l'épaule, pointes recourbées vers l'avant, comme sur le rendu de MH4.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

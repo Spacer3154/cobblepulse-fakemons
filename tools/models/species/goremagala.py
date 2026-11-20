@@ -6,9 +6,10 @@ a long body carried on four tall legs, a short thick neck with the head held for
 above and below, and two great wings whose arm runs out from the shoulder to a clawed wrist, with long fingers
 spreading the membrane back to the hips.
 Kevin: "the wings act like webs, and Gore can fold them and make shoulders of them (at the claws)". So at rest the
-wings are folded: the arm rises from the shoulder to the elbow above the back, the forearm comes forward again and
-the wrist sits on top of the shoulder with its three great hooked dark-red claws, like an epaulette (as on the
-game's front view); the fingers lie back along the flank and the membrane (ragged black fur) hangs over it like a
+wings are folded: the arm goes back from the shoulder to the elbow above the back, the forearm comes forward and
+down again and the wrist sits on the outside of the shoulder, below the line of the back, its four long dark-red
+claws hanging down along the shoulder (MH4 render; Kevin: the claws must not stick up); the fingers lie back along
+the flank and the membrane (ragged black fur) hangs over it like a
 cloak. In battle it unfolds them and plants the wrist claws far out on each side (the wings make a tent over it,
 the game's frenzy capture); for its roar and when it rises it spreads them wide like the model's T-pose.
 
@@ -19,11 +20,11 @@ M = None          # set by magala._gore(): magala's helpers (surf, seg, chain, b
 
 # key points (left side, mirrored with mx), measured on the reference mesh (x 0.43, z shifted +22)
 S_ = (10, 55, -18)                       # shoulder, on top of the chest
-E_ = (21, 64, 14)                        # elbow, folded back above the back
-W_ = (20, 66, -22)                       # wrist, folded forward on top of the shoulder: the claws are its epaulettes
-UP_LEN, FORE_LEN = 35.0, 36.0
-FINGERS = [(22, 60, 52), (25, 42, 46), (27, 26, 30), (27, 18, 4)]   # finger tips, folded back over the flank
-FRONT = (25, 20, -20)                    # front edge of the folded membrane (falls from the wrist)
+E_ = (23, 61, 14)                        # elbow, folded back: the folded arm makes the shoulder
+W_ = (23, 49, -20)                       # wrist, on the outside of the shoulder (below the line of the back)
+UP_LEN, FORE_LEN = 35.06, 36.06
+FINGERS = [(24, 60, 52), (27, 42, 46), (28, 28, 30), (28, 20, 4)]   # finger tips, folded back over the flank
+FRONT = (27, 24, -12)                    # front edge of the folded membrane (falls from the wrist)
 
 def _norm(v):
     n = math.sqrt(sum(x * x for x in v))
@@ -171,12 +172,12 @@ def build(name):
                             [(3, 3), (1, 1)], CLAW)                       # the elbow's spur, back
         hand = m.bone(f"wing_{side}_hand", f"wing_{side}_fore", list(W), cubes=[
             box(W[0] - 5, W[0] + 5, W[1] - 5, W[1] + 4, W[2] - 5, W[2] + 5, SC)])
-        # the wing's great claws (folded: as on the MH4 render, the wrist rests on top of the shoulder and its four long
-        # red claws hook over it, hanging down the outside-front of the shoulder, their tips curling in to the chest)
-        for k, (dz, L0) in enumerate(((-4.5, 11), (-1.5, 13), (1.5, 12), (4.5, 10))):
-            r = [W[0] + 3.5 * sx, W[1] + 2, W[2] + dz]
-            hand.cubes += chain(r, [(0.6 * sx, 0.35, -0.25), (0.3 * sx, -1, -0.2), (-0.25 * sx, -1, -0.45)],
-                                [4, L0, 6], [(3, 3), (2, 3), (1, 2)], CLAW)
+        # the wing's great claws (folded, as on the MH4 render: the wrist sits on the outside of the shoulder, below the
+        # line of the back, and its four long red claws hang down along the shoulder, tips curling forward and in)
+        for k, (dz, L0) in enumerate(((-4.5, 13), (-1.5, 15), (1.5, 14), (4.5, 12))):
+            r = [W[0] + 4.5 * sx, W[1] + 1, W[2] + dz]
+            hand.cubes += chain(r, [(0.5 * sx, -0.3, -0.35), (0.12 * sx, -1, -0.15), (-0.1 * sx, -0.8, -0.6)],
+                                [3, L0, 6], [(3, 3), (2, 3), (1, 2)], CLAW)
         hand.cubes += chain([W[0] - 3 * sx, W[1] + 2, W[2] - 1], [(-0.6 * sx, 0.8, -0.5), (-0.5 * sx, 0.1, -1)], [5, 4],
                             [(2, 2), (1, 1)], CLAW)                       # the opposable thumb
         # fingers and membrane: finger k carries the strips of membrane between it and the next one
@@ -288,7 +289,7 @@ def solve_wing(pose):
     from scipy.optimize import minimize
     S, E, W = (np.array(v, float) for v in (S_, E_, W_))
     tips = [np.array(t, float) for t in FINGERS]
-    claw0 = np.array([0.3, -1.0, -0.2]); claw0 /= np.linalg.norm(claw0)   # the claws' main direction (folded)
+    claw0 = np.array([0.12, -1.0, -0.15]); claw0 /= np.linalg.norm(claw0)   # the claws' main direction (folded)
     out = {}
     def fit(fun, x0=(0, 0, 0)):
         best = None
@@ -332,7 +333,7 @@ def mirror(rots):
 
 WING_POSES = {
     # the game's frenzy stance: the arms arch out and down, the wrist claws planted far out, the webs a tent over it
-    "planted": {"wrist": (38, 18, -30), "pole": (0.4, 1, 0.3), "claws": (0.15, -1, -0.35),
+    "planted": {"wrist": (38, 23, -30), "pole": (0.4, 1, 0.3), "claws": (0.15, -1, -0.35),
                 "fingers": [(-0.35, 0.62, 0.7), (-0.42, 0.45, 0.78), (-0.5, 0.28, 0.82), (-0.6, 0.1, 0.8)]},
     # wide open (its roar, the reference's T-pose): the arm straight out, the fingers fanned back
     "spread": {"wrist": (79, 60, -20), "pole": (0, 0.3, 1), "claws": (0.3, -0.1, -1),
@@ -341,7 +342,7 @@ WING_POSES = {
     "raised": {"wrist": (24, 104, -34), "pole": (0.6, 0.2, 1), "claws": (0, 0.2, -1),
                "fingers": [(0.35, 0.25, 0.9), (0.3, -0.05, 0.95), (0.25, -0.3, 0.92), (0.2, -0.55, 0.8)]},
     # slammed down in front of it
-    "slam": {"wrist": (24, 20, -50), "pole": (0.5, 0.6, 0.2), "claws": (0, -1, -0.45),
+    "slam": {"wrist": (24, 25, -50), "pole": (0.5, 0.6, 0.2), "claws": (0, -1, -0.45),
              "fingers": [(-0.15, 0.75, 0.6), (-0.2, 0.55, 0.8), (-0.25, 0.3, 0.9), (-0.3, 0.05, 0.95)]},
     # half open, the claws on the ground by its head (exploding breath)
     "half": {"wrist": (30, 18, -42), "pole": (0.6, 0.6, 0.2), "claws": (0.05, -1, -0.4),

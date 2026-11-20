@@ -46,10 +46,10 @@
   "eggCycles": 30,
   "baseFriendship": 0,
   "shoulderMountable": false,
-  "baseScale": 0.93,
+  "baseScale": 0.99,
   "hitbox": {
     "width": 2.2,
-    "height": 4.53,
+    "height": 4.24,
     "fixed": false
   },
   "behaviour": {
@@ -231,10 +231,10 @@
         "special_defence": 75,
         "speed": 95
       },
-      "baseScale": 0.93,
+      "baseScale": 0.99,
       "hitbox": {
         "width": 2.2,
-        "height": 4.53,
+        "height": 4.24,
         "fixed": false
       },
       "battleOnly": true,
