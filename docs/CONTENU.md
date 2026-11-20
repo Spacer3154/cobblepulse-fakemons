@@ -473,6 +473,15 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   lumineux et des lignes magenta s'allument sur le cou, le poitrail, les pattes avant et sous les bras des ailes (calque
   émissif ajouté à la forme normale) ; au calme, antennes sombres repliées et pas de lignes. Antennes de Furie aussi en
   magenta vif (images du jeu).
+- 3.7.0 (Gore Magala, revu dans Blockbench avec Kevin) : grand os de la voile sur son bord extérieur, de
+  l'articulation des griffes au bout de la voile, souple et articulé (4 segments à nœuds, chacun son os, qui ondulent
+  en combat, au cri et en vol), terminé par un crochet. En combat, à l'attaque physique et au souffle, l'os part en
+  longue diagonale vers le haut et l'extérieur et les voiles s'étendent sur les côtés en mur face au joueur ; griffes
+  à plat au sol aussi au Grand Écrasement. K.O. : il lève la tête en criant, antennes sorties, puis les pattes
+  cèdent, il s'écroule sur le ventre en roulant un peu sur le flanc, ailes affaissées, antennes toujours sorties.
+  Sommeil : vraiment couché sur le ventre, pattes repliées, voiles drapées au sol, tête posée, queue enroulée.
+  Correctif : angles des ailes rendus continus (plus de tour complet parasite entre deux images clés en vol et au K.O.,
+  visible dans Blockbench et en jeu).
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
