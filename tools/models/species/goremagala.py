@@ -169,7 +169,7 @@ def build(name):
             P0 = [E[i] + (W[i] - E[i]) * f for i in range(3)]
             fore.cubes += chain([P0[0] + 3 * sx, P0[1] + 2, P0[2]], [(0.4 * sx, 1, 0.3)], [4], [(1, 3)], PLATE)
         fore.cubes += chain([E[0], E[1] + 3, E[2] + 3], [(0.1 * sx, 0.6, 1), (0.05 * sx, 0.1, 1)], [5, 4],
-                            [(3, 3), (1, 1)], CLAW)                       # the elbow's spur, back
+                            [(3, 3), (1, 1)], PLATE)                      # the elbow's spur, back (dark, not a claw)
         hand = m.bone(f"wing_{side}_hand", f"wing_{side}_fore", list(W), cubes=[
             box(W[0] - 5, W[0] + 5, W[1] - 5, W[1] + 4, W[2] - 5, W[2] + 5, SC)])
         # the wing's great claws (folded, as on the MH4 render: the wrist sits on the outside of the shoulder, below the
@@ -178,8 +178,8 @@ def build(name):
             r = [W[0] + 4.5 * sx, W[1] + 1, W[2] + dz]
             hand.cubes += chain(r, [(0.5 * sx, -0.3, -0.35), (0.12 * sx, -1, -0.15), (-0.1 * sx, -0.8, -0.6)],
                                 [3, L0, 6], [(3, 3), (2, 3), (1, 2)], CLAW)
-        hand.cubes += chain([W[0] - 3 * sx, W[1] + 2, W[2] - 1], [(-0.6 * sx, 0.8, -0.5), (-0.5 * sx, 0.1, -1)], [5, 4],
-                            [(2, 2), (1, 1)], CLAW)                       # the opposable thumb
+        hand.cubes += chain([W[0] - 3 * sx, W[1] + 2, W[2] - 1], [(-0.4 * sx, -0.7, -0.45), (-0.2 * sx, -1, -0.3)], [5, 4],
+                            [(2, 2), (1, 1)], CLAW)                       # the opposable thumb, hanging inward
         # fingers and membrane: finger k carries the strips of membrane between it and the next one
         tips = [mx(t, sx) for t in FINGERS]
         dirs = [_norm([t[i] - W[i] for i in range(3)]) for t in tips]
