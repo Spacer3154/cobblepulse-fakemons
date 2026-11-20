@@ -175,6 +175,15 @@ def build(name):
             h = 3 if k < 2 else 2
             head.cubes.append(box(xw * sx - 0.5, xw * sx + 0.5, 37 - h, 37, z, z + 1, TOOTH))
             jaw.cubes.append(box((xw + 0.3) * sx - 0.5, (xw + 0.3) * sx + 0.5, 37, 37 + h, z + 2, z + 3, TOOTH))
+    if name == "shagarumagala":
+        # Shagaru's face (sculpt): a broad mask plate from between the horns down the face to a hooked beak, and a
+        # crown of big dark spikes behind the horns
+        head.cubes += [*rbox(-3, 3, 45, 48, -60, -50, PLATE), *rbox(-4.5, 4.5, 46, 49, -50, -44, PLATE)]
+        head.cubes += chain([0, 44.5, -59.5], [(0, -0.35, -1), (0, -1, -0.35)], [5, 4], [(5, 4), (3, 3)], PLATE)
+        for k, (x, z, L) in enumerate(((2.5, -46, 8), (4.5, -43, 9), (3, -40, 9), (5.5, -38, 7), (1.5, -37, 7))):
+            for sxx in (1, -1):
+                head.cubes += chain([x * sxx, 49.5, z], [(0.3 * sxx, 0.85, 0.5), (0.15 * sxx, 0.6, 0.85)], [L * 0.6, L * 0.5],
+                                    [(2, 3), (1, 2)], M.HORN)
     # horns: rooted on the front of the face (as on the reference and the frenzy capture); calm they lie folded back
     # along the sides of the head, in frenzy they rise straight up, curving forward at the tip, pink and glowing
     for sx, side in ((1, "left"), (-1, "right")):
@@ -214,12 +223,21 @@ def build(name):
                                seg((7.2 * sx, 41, -50), (7.6 * sx, 44, -38), 1, 1, CR)]
                 n1.cubes.append(seg((7.9 * sx, 47, -26), (7.9 * sx, 44, -34), 1, 1, CR))
                 n2.cubes.append(seg((7.4 * sx, 46, -32), (7.4 * sx, 44, -39), 1, 1, CR))
-            # the eye (game capture): a small slanted orange slit, deep under a heavy brow ridge
-            eb = m.bone(f"eye_{side}", "head", [5.6 * sx, 43, -53])
-            eb.cubes.append(seg((5.6 * sx, 43.0, -57.5), (6.2 * sx, 44.4, -53), 1, 1, surf("eye", glow="eye")))
-            head.cubes.append(seg((5.8 * sx, 45.6, -58.5), (6.8 * sx, 46.6, -51), 2, 2, PLATE))         # brow ridge
-            m.bone(f"lid_{side}", f"eye_{side}", [5.6 * sx, 43, -55],
-                   cubes=[seg((5.8 * sx, 43.0, -57.5), (6.4 * sx, 44.4, -53), 2, 2, surf("lid"))])
+            if shag:
+                # the eye (Shagaru sculpt): round, orange-red, high on the side of the face beside the mask, under the
+                # brow ridge
+                eb = m.bone(f"eye_{side}", "head", [5.3 * sx, 44.5, -55])
+                eb.cubes.append(box(*xs(5.3, 6.3, sx), 43.5, 45.5, -57, -55, surf("eye", glow="eye")))
+                head.cubes.append(box(*xs(4.8, 6.8, sx), 45.5, 47.5, -58, -53, PLATE))                # brow ridge
+                m.bone(f"lid_{side}", f"eye_{side}", [5.3 * sx, 44.5, -55],
+                       cubes=[box(*xs(5.5, 6.5, sx), 43.5, 45.5, -57, -55, surf("lid"), inflate=0.2)])
+            else:
+                # the eye (game capture): a small slanted orange slit, deep under a heavy brow ridge
+                eb = m.bone(f"eye_{side}", "head", [5.6 * sx, 43, -53])
+                eb.cubes.append(seg((5.6 * sx, 43.0, -57.5), (6.2 * sx, 44.4, -53), 1, 1, surf("eye", glow="eye")))
+                head.cubes.append(seg((5.8 * sx, 45.6, -58.5), (6.8 * sx, 46.6, -51), 2, 2, PLATE))     # brow ridge
+                m.bone(f"lid_{side}", f"eye_{side}", [5.6 * sx, 43, -55],
+                       cubes=[seg((5.8 * sx, 43.0, -57.5), (6.4 * sx, 44.4, -53), 2, 2, surf("lid"))])
             continue
         ab = m.bone(f"antenna_{side}", "head", [3 * sx, 46, -54])
         if frenzy:
