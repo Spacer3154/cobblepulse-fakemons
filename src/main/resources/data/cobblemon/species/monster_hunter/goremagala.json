@@ -70,6 +70,10 @@
         "canBreatheUnderwater": false,
         "canSwimInLava": false,
         "swimSpeed": 0.15
+      },
+      "fly": {
+        "canFly": true,
+        "flySpeedHorizontal": 0.45
       }
     },
     "combat": {

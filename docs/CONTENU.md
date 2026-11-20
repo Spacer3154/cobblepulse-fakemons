@@ -447,6 +447,16 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
 - 3.3.1 (Gore Magala) : ailes repliées corrigées (Kevin : « t'as mis les griffes en l'air ») : le bras replié forme
   l'épaule, le poignet se loge sur le côté de l'épaule sous la ligne du dos et les quatre longues griffes rouges
   pendent le long de l'épaule, pointes recourbées vers l'avant, comme sur le rendu de MH4.
+- 3.4.0 (Gore Magala, ailes refaites d'après les indications et images de Kevin) : repliées, le poignet se pose sur
+  l'épaule juste au-dessus de l'articulation de la patte avant, les trois grandes griffes rouges recourbées dessus
+  (elles ne se lèvent que quand il s'en sert) ; la voile, rétractée (80 %), couvre tout le flanc comme une cape, du
+  dos jusqu'à la ligne du ventre et jusqu'aux hanches, et se déploie au fur et à mesure qu'il ouvre les ailes. La
+  voile longe toute l'aile en deux parties liées au coude : une entre le bras et le dos, une entre l'avant-bras et
+  le bout de l'aile. Griffes posées (combat, Grand Écrasement, souffle) : plantées bien plus loin que la tête, bras
+  tendus, voiles dressées vers le ciel. **Vol** activé : les bras restent repliés (griffes sur les épaules), seules
+  les voiles s'étendent sur les côtés et battent. Membres et corps arrondis (sections octogonales), voile écailleuse
+  (coutures sombres, violettes en Furie). Technique : la voile est découpée en bandes, chacune tournée entre ses
+  deux bords, pour rester continue dans toutes les poses.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

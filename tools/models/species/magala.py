@@ -74,11 +74,12 @@ GORE_G = dict(GORE, **{               # Gore Magala only: pink-tipped frenzy hor
     "scale": rgb("#2E2C40"), "scale_dark": rgb("#100F18"),
     "claw": rgb("#3A1A22"), "claw_tip": rgb("#B4525E"), "keel_sheen": rgb("#5C68C8"),
     "antenna": rgb("#5E2E8A"), "antenna_tip": rgb("#F07AB4"), "scale_rim": rgb("#7484A8"), "net": rgb("#8A4AD0"),
-    "net_glow": rgb("#C070FF"), "scale_glow": rgb("#B060FF")})
+    "net_glow": rgb("#C070FF"), "scale_glow": rgb("#B060FF"),
+    "membrane": rgb("#2E2A3C"), "membrane_dark": rgb("#0E0C14"), "_mscale": True})
 GORE_G_SHINY = dict(GORE_SHINY, **{
     "claw": rgb("#2A2E34"), "claw_tip": rgb("#C8D4DA"), "keel_sheen": rgb("#6AB0B4"),
     "antenna": rgb("#2A6E74"), "antenna_tip": rgb("#A8FFF0"), "scale_rim": rgb("#7A8890"), "net": rgb("#3A9A9E"),
-    "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0")})
+    "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0"), "_mscale": True})
 CHAOS = dict(GORE, _R=SHAGARU)
 CHAOS_SHINY = dict(GORE_SHINY, _R=SHAGARU_SHINY)
 PALETTES = {"goremagala": (GORE_G, GORE_G_SHINY),
@@ -191,6 +192,14 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
         if kind == "gmembrane":                                           # Gore: fur cape, net of veins in frenzy
             strand = _h(math.floor((z + x) * 1.4), 5)
             low = max(0.0, min(1.0, (34 - y) / 18))
+            if P.get("_mscale"):                                          # Gore (3.4): a scaly sail, dark seams
+                a, b = _ab(face, p)
+                seam = _net(a, b) < 0.75
+                col = mix(P["membrane_dark"], P["membrane"], 0.6 + 0.4 * strand)
+                if seam:
+                    col = mix(col, P["net"] if fr else P["membrane_dark"], 0.8 if fr else 0.7)
+                col = mix(col, P["fur_tip"], 0.3 * low * (0.5 + 0.5 * strand))
+                return col, n * 0.3
             col = mix(P["membrane_dark"], P["membrane"], 0.25 + 0.75 * strand)
             col = mix(col, P["fur_tip"], 0.45 * low * (0.5 + 0.5 * strand))
             if fr:

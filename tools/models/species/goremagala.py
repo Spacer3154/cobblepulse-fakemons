@@ -1,30 +1,48 @@
 # -*- coding: utf-8 -*-
-"""#1055 Gore Magala (+ Frenzy form): its own model and animations (3.3.0).
+"""#1055 Gore Magala (+ Frenzy form): its own model and animations (3.3.0, wings redone in 3.4.0).
 
 Proportions taken from the detailed Gore Magala mesh Kevin supplied (a 10 000-face model in T-pose, 2.3x our size):
 a long body carried on four tall legs, a short thick neck with the head held forward, a long tail lined with spikes
-above and below, and two great wings whose arm runs out from the shoulder to a clawed wrist, with long fingers
-spreading the membrane back to the hips.
-Kevin: "the wings act like webs, and Gore can fold them and make shoulders of them (at the claws)". So at rest the
-wings are folded: the arm goes back from the shoulder to the elbow above the back, the forearm comes forward and
-down again and the wrist sits on the outside of the shoulder, below the line of the back, its four long dark-red
-claws hanging down along the shoulder (MH4 render; Kevin: the claws must not stick up); the fingers lie back along
-the flank and the membrane (ragged black fur) hangs over it like a
-cloak. In battle it unfolds them and plants the wrist claws far out on each side (the wings make a tent over it,
-the game's frenzy capture); for its roar and when it rises it spreads them wide like the model's T-pose.
+above and below. Limbs and body are rounded (octagonal sections).
+The wings (Kevin, 3.4.0): folded, the wrist rests on the shoulder just above the front leg's joint with its three
+great red claws hooked over it (they only rise when it uses them), and the retracted sail covers the whole flank like
+a cloak; the sail runs along the whole wing in two parts linked at the elbow (upper arm to back, forearm to the
+wing's end) and stretches as the wing opens. Claws planted: set down well beyond the head, arms stretched, sails
+rising to the sky. Flight: the arms stay folded, only the sails stretch out sideways and beat.
+The sail is cut in strips, each strip bone turned part-way between its two edges, so it stays whole in every pose;
+the geometry's rest layout is the stretched (flight) sail, every animation sets the wing pose.
 
 Front = -Z, ground = y 0, the creature's right side is Bedrock -X. Helpers come from species/magala.py (as M)."""
 import math
+import re
 
 M = None          # set by magala._gore(): magala's helpers (surf, seg, chain, box, ...)
 
-# key points (left side, mirrored with mx), measured on the reference mesh (x 0.43, z shifted +22)
-S_ = (10, 55, -18)                       # shoulder, on top of the chest
-E_ = (23, 61, 14)                        # elbow, folded back: the folded arm makes the shoulder
-W_ = (23, 49, -20)                       # wrist, on the outside of the shoulder (below the line of the back)
-UP_LEN, FORE_LEN = 35.06, 36.06
-FINGERS = [(24, 60, 52), (27, 42, 46), (28, 28, 30), (28, 20, 4)]   # finger tips, folded back over the flank
-FRONT = (27, 24, -12)                    # front edge of the folded membrane (falls from the wrist)
+# key points (left side, mirrored with mx). Kevin: folded, the wing claws rest on the shoulder just above the
+# joint of the front legs (they only go up when it uses them), and the sails cover its flanks even folded, so from
+# behind only the tail shows; the sails retract or stretch as it unfolds (a great sail); in flight it does not unfold
+# its arms, only the sails stretch out.
+S_ = (10, 55, -14)                       # shoulder (wing root), on the back above the front legs
+E_ = (14, 66, 16)                        # elbow, folded back high above the back (the gif's peak behind the shoulders)
+W_ = (20, 44, -25)                       # wrist, resting on the shoulder just above the front leg's joint
+UP_LEN = math.dist(S_, E_)
+FORE_LEN = math.dist(E_, W_)
+SAIL_REST = 0.8                          # folded, the sail is retracted to 80 % (it stretches to 100 % as it opens)
+# folded finger tips as shown (sail retracted): the sail drapes over the flank like a cloak, its top edge running up
+# over the back to the hips, its lower edge along the belly line down to the thighs
+FOLD_TIPS = [(4, 64, 50), (17, 52, 58), (23, 34, 54), (24, 14, 34)]
+FOLD_FRONT = (22, 18, -12)               # the hem, hanging down the shoulder behind the front leg
+# the geometry's own (rest) layout is the sail stretched out sideways, as in flight: the widest fan any pose uses, so
+# the membrane never tears open between the fingers; every other pose (folded included) closes the fan
+REST_DIRS = [(0.259, 0.03, 0.966), (0.643, 0.03, 0.766), (0.906, 0.03, 0.423), (1.0, 0.03, 0.0)]   # f1 along the body ... f4 straight out
+REST_FRONT = (0.766, -0.1, -0.643)            # the hem, the leading edge forward of the last finger
+FINGER_LEN = [math.dist(W_, t) / SAIL_REST for t in FOLD_TIPS]
+FRONT_LEN = math.dist(W_, FOLD_FRONT) / SAIL_REST
+UPPER_BODY = (0.08, -0.02, 1)            # the upper sail's inner edge: along the back from the shoulder to the hips
+UPPER_BODY_LEN = 46
+UPPER_SUBS = 10                          # strip bones of the upper sail (between the upper arm and the back)
+SUBS = [7, 3, 3, 3]                      # membrane bones per sector (forearm-f1, f1-f2, f2-f3, f3-f4), each turned
+                                         # part-way between its two edges so the sail stays whole as the fan moves
 
 def _norm(v):
     n = math.sqrt(sum(x * x for x in v))
@@ -61,6 +79,23 @@ def web(p0, p1, wdir, width, paint, sunk=0.5):
     return Cube([x - 0.5, y - sunk, z - width / 2], [1, max(1, int(round(L + sunk))), width], paint,
                 rotation=frame_rot(v, wdir), pivot=list(p0))
 
+def rbox(x0, x1, y0, y1, z0, z1, paint, k=0.22):
+    """a rounded box (octagonal section, long along z): a tall narrow core and a wide flat one"""
+    w, h = x1 - x0, y1 - y0
+    dx, dy = max(1, round(k * w)), max(1, round(k * h))
+    return [M.box(x0 + dx, x1 - dx, y0, y1, z0, z1, paint), M.box(x0, x1, y0 + dy, y1 - dy, z0, z1, paint)]
+
+def rboxv(x0, x1, y0, y1, z0, z1, paint, k=0.22):
+    """a rounded box standing upright (octagonal section in x/z)"""
+    w, d = x1 - x0, z1 - z0
+    dx, dz = max(1, round(k * w)), max(1, round(k * d))
+    return [M.box(x0 + dx, x1 - dx, y0, y1, z0, z1, paint), M.box(x0, x1, y0, y1, z0 + dz, z1 - dz, paint)]
+
+def rseg(p0, p1, w, paint):
+    """a rounded limb segment (octagonal section): two crossed boxes"""
+    w2 = w - 2 * max(1, round(0.2 * w))
+    return [M.seg(p0, p1, w, w2, paint), M.seg(p0, p1, w2, w, paint)]
+
 def build(name):
     from modelgen import Model, Cube
     surf, seg, chain, box, sbox, xs, mx = M.surf, M.seg, M.chain, M.box, M.sbox, M.xs, M.mx
@@ -76,10 +111,10 @@ def build(name):
     BELLY = 33
     # ------------------------------------------------------------------ chest and torso (deep, carried high)
     m.bone("chest", "body", [0, 42, -14], cubes=[
-        sbox(11, 28, 54, -30, -6, gs(BELLY)), sbox(9, 54, 57, -28, -6, SC),
-        box(-14, 14, 44, 56, -26, -12, SC)])                                 # shoulder hump (wing roots)
+        *rbox(-11, 11, 28, 54, -30, -6, gs(BELLY)), sbox(8, 54, 57, -28, -6, SC),
+        *rbox(-14, 14, 44, 56, -26, -12, SC)])                               # shoulder hump (wing roots)
     m.bone("torso", "body", [0, 40, 12], cubes=[
-        sbox(10, 30, 52, -7, 30, gs(BELLY)), sbox(8, 52, 55, -5, 26, SC)])
+        *rbox(-10, 10, 30, 52, -7, 30, gs(BELLY)), sbox(7, 52, 55, -5, 26, SC)])
     def btop(z):
         return 57 if z < -6 else 55 if z < 26 else 52
     mane = m.bone("mane", "body", [0, 56, -10])                             # plates down the spine, fur mane
@@ -92,15 +127,15 @@ def build(name):
         for sx in (1, -1):
             mane.cubes.append(seg([6 * sx, y - 1, z], [10 * sx, y + L * 0.45, z + L * 0.85], 3, 3, FUR))
     # ------------------------------------------------------------------ short thick neck, big head held forward
-    n1 = m.bone("neck1", "chest", [0, 44, -28], cubes=[box(-7.5, 7.5, 33, 53, -34, -26, gs(36))])
-    n2 = m.bone("neck2", "neck1", [0, 44, -33], cubes=[box(-7, 7, 34, 52, -39, -32, gs(37))])
+    n1 = m.bone("neck1", "chest", [0, 44, -28], cubes=rbox(-7.5, 7.5, 33, 53, -34, -26, gs(36)))
+    n2 = m.bone("neck2", "neck1", [0, 44, -33], cubes=rbox(-7, 7, 34, 52, -39, -32, gs(37)))
     for z in (-34, -30):
         n1.cubes.append(shingle(0, 53.3, z, 6, 6, tilt=18))
     n2.cubes.append(shingle(0, 52.3, -39, 6, 6, tilt=18))
     head = m.bone("head", "neck2", [0, 44, -37], cubes=[
-        box(-7, 7, 36, 50, -50, -36, SC),                                    # skull
-        box(-5.5, 5.5, 37, 47, -56, -50, SL),                                # face
-        box(-3.5, 3.5, 37, 44, -60, -56, SL),                                # snout
+        *rbox(-7, 7, 36, 50, -50, -36, SC),                                  # skull
+        *rbox(-5.5, 5.5, 37, 47, -56, -50, SL),                              # face
+        *rbox(-3.5, 3.5, 37, 44, -60, -56, SL),                              # snout
         box(-2, 2, 35, 39, -63, -59, PLATE),                                 # the hooked tip of the upper jaw
         box(-7.5, 7.5, 49, 52, -48, -36, PLATE)])                            # hood
     KEEL = surf("keel")
@@ -152,101 +187,93 @@ def build(name):
     # ------------------------------------------------------------------ front legs: tall columns under the chest
     for sx, side in ((1, "left"), (-1, "right")):
         A0, A1, A2 = mx((13, 36, -21), sx), mx((15, 17, -24), sx), mx((16, 4, -22), sx)
-        m.bone(f"arm_{side}", "chest", list(A0), cubes=[seg(A0, A1, 9, 9, SL), box(*xs(7, 18, sx), 26, 42, -28, -14, SC)])
+        m.bone(f"arm_{side}", "chest", list(A0), cubes=[*rseg(A0, A1, 9, SL), *rboxv(*xs(7, 18, sx), 26, 42, -28, -14, SC)])
         m.bone(f"arm_{side}_low", f"arm_{side}", list(A1), cubes=[
-            seg(A1, A2, 7, 7, SL), box(*xs(10, 18, sx), 14, 20, -29, -21, PLATE)])          # knee plate
-        foot = m.bone(f"arm_{side}_foot", f"arm_{side}_low", list(A2), cubes=[box(*xs(11, 21, sx), 0, 5, -32, -18, SL)])
+            *rseg(A1, A2, 7, SL), box(*xs(11, 17, sx), 14, 20, -28, -22, PLATE)])          # knee plate
+        foot = m.bone(f"arm_{side}_foot", f"arm_{side}_low", list(A2), cubes=rbox(*xs(11, 21, sx), 0, 5, -32, -18, SL))
         for dx in (-3, 0, 3):
             foot.cubes += chain([(16 + dx) * sx, 2.5, -32], [(0, 0.2, -1), (0, -0.7, -1)], [4, 3], [(2, 2), (1, 1)], M.CLAW)
     # ------------------------------------------------------------------ the wings: webs folded on the shoulders
     for sx, side in ((1, "left"), (-1, "right")):
         S, E, W = mx(S_, sx), mx(E_, sx), mx(W_, sx)
-        m.bone(f"wing_{side}", "chest", list(S), cubes=[seg(S, E, 9, 9, SL)])
+        m.bone(f"wing_{side}", "chest", list(S), cubes=rseg(S, E, 9, SL))
         fore = m.bone(f"wing_{side}_fore", f"wing_{side}", list(E), cubes=[
-            seg(E, W, 8, 8, SL), box(E[0] - 4, E[0] + 4, E[1] - 4, E[1] + 4, E[2] - 4, E[2] + 4, SC)])
+            *rseg(E, W, 8, SL), *rbox(E[0] - 4, E[0] + 4, E[1] - 4, E[1] + 4, E[2] - 4, E[2] + 4, SC)])
         for k in range(4):                                                # a ridge of plates down the forearm
             f = 0.15 + 0.2 * k
             P0 = [E[i] + (W[i] - E[i]) * f for i in range(3)]
             fore.cubes += chain([P0[0] + 3 * sx, P0[1] + 2, P0[2]], [(0.4 * sx, 1, 0.3)], [4], [(1, 3)], PLATE)
         fore.cubes += chain([E[0], E[1] + 3, E[2] + 3], [(0.1 * sx, 0.6, 1), (0.05 * sx, 0.1, 1)], [5, 4],
                             [(3, 3), (1, 1)], PLATE)                      # the elbow's spur, back (dark, not a claw)
-        hand = m.bone(f"wing_{side}_hand", f"wing_{side}_fore", list(W), cubes=[
-            box(W[0] - 5, W[0] + 5, W[1] - 5, W[1] + 4, W[2] - 5, W[2] + 5, SC)])
-        # the wing's great claws (folded, as on the MH4 render: the wrist sits on the outside of the shoulder, below the
-        # line of the back, and its four long red claws hang down along the shoulder, tips curling forward and in)
-        for k, (dz, L0) in enumerate(((-4.5, 13), (-1.5, 15), (1.5, 14), (4.5, 12))):
-            r = [W[0] + 4.5 * sx, W[1] + 1, W[2] + dz]
-            hand.cubes += chain(r, [(0.5 * sx, -0.3, -0.35), (0.12 * sx, -1, -0.15), (-0.1 * sx, -0.8, -0.6)],
-                                [3, L0, 6], [(3, 3), (2, 3), (1, 2)], CLAW)
-        hand.cubes += chain([W[0] - 3 * sx, W[1] + 2, W[2] - 1], [(-0.4 * sx, -0.7, -0.45), (-0.2 * sx, -1, -0.3)], [5, 4],
-                            [(2, 2), (1, 1)], CLAW)                       # the opposable thumb, hanging inward
-        # fingers and membrane: finger k carries the strips of membrane between it and the next one
-        tips = [mx(t, sx) for t in FINGERS]
-        dirs = [_norm([t[i] - W[i] for i in range(3)]) for t in tips]
-        lens = [math.sqrt(sum((t[i] - W[i]) ** 2 for i in range(3))) for t in tips]
-        fr = _norm([mx(FRONT, sx)[i] - W[i] for i in range(3)])
-        frl = math.sqrt(sum((mx(FRONT, sx)[i] - W[i]) ** 2 for i in range(3)))
-        bounds = list(zip(dirs, lens)) + [(fr, frl)]
+        hand = m.bone(f"wing_{side}_hand", f"wing_{side}_fore", list(W), cubes=rbox(W[0] - 5, W[0] + 5, W[1] - 5, W[1] + 4,
+                                                                               W[2] - 5, W[2] + 5, SC))
+        # the wing's three great claws, side by side: folded, they rest on the shoulder above the front leg's joint,
+        # hooked forward and down over it (Kevin's gif)
+        for dx, L0 in ((-3.5, 9), (0.5, 10), (4.5, 9)):
+            r = [W[0] + dx * sx, W[1] - 1, W[2] - 4]
+            hand.cubes += chain(r, [(0.1 * sx, -0.1, -1), (0.08 * sx, -0.8, -0.6), (0.0, -1, 0.25)],
+                                [L0, 7, 4], [(3, 3), (2, 2), (1, 1)], CLAW)
+        hand.cubes += chain([W[0] - 4 * sx, W[1] - 3, W[2] - 1], [(-0.35 * sx, -0.75, -0.55), (-0.1 * sx, -1, 0.1)], [5, 3],
+                            [(2, 2), (1, 1)], CLAW)                       # the opposable thumb, hooking down inside
+        # fingers and membrane, laid out in the rest (stretched) fan
+        dirs = [mx(_norm(d), sx) for d in REST_DIRS]
+        tips = [[W[i] + L * d[i] for i in range(3)] for d, L in zip(dirs, FINGER_LEN)]
+        fa = _norm([E[i] - W[i] for i in range(3)])
+        bounds = [(fa, FORE_LEN - 6)] + list(zip(dirs, FINGER_LEN)) + [(mx(_norm(REST_FRONT), sx), FRONT_LEN)]
         mem = surf("gmembrane", glow="net", ragged_end=5)
+        def sector(bone, a, La, b, Lb, kk, t0=0.0, t1=1.0, tatters=True, O=W):
+            om = _angle(a, b)
+            n = max(2, int(math.ceil(math.degrees(om) / 4.5)))
+            nrm = _cross(a, b)
+            for j in range(n):
+                t = (j + 0.5) / n
+                if not t0 <= t < t1:
+                    continue
+                d = _slerp(a, b, t)
+                L = La + (Lb - La) * t
+                wdt = max(2, int(round(L * om / n * 1.25 + 1)))
+                p0 = [O[i] + 3 * d[i] for i in range(3)]
+                p1 = [O[i] + L * d[i] for i in range(3)]
+                bone.cubes.append(web(p0, p1, _cross(nrm, d), wdt, mem))
+                if tatters and _h(kk, j, 9) < 0.6:                         # torn fur tatters past the trailing edge
+                    Lt = 2 + 5 * _h(kk, j, 5)
+                    off = (_h(kk, j, 7) - 0.5) * wdt * 0.6
+                    wv = _norm(_cross(nrm, d))
+                    q0 = [p1[i] - d[i] + off * wv[i] for i in range(3)]
+                    q1 = [q0[i] + Lt * d[i] for i in range(3)]
+                    bone.cubes.append(web(q0, q1, wv, 2 + int(2 * _h(kk, j, 3)), FUR))
         for k in range(4):
             fb = m.bone(f"wing_{side}_f{k + 1}", f"wing_{side}_hand", list(W))
             fb.cubes.append(seg(W, tips[k], 2, 2, SL))                     # the finger bone
             fb.cubes += chain([tips[k][0], tips[k][1], tips[k][2]], [dirs[k]], [4], [(1, 1)], SPIKE)
+        (a, La), (b, Lb) = bounds[4], bounds[5]
+        sector(m.get(f"wing_{side}_f4"), a, La, b, Lb, 4)                  # the hem rides on the last finger
+        for k in range(4):                                                 # the sail between two edges, in strips
             (a, La), (b, Lb) = bounds[k], bounds[k + 1]
-            om = _angle(a, b)
-            n = max(2, int(math.ceil(math.degrees(om) / 4.5)))
-            for j in range(n):
-                t = (j + 0.5) / n
-                d = _slerp(a, b, t)
-                L = La + (Lb - La) * t
-                wdt = max(2, int(round(L * om / n * 1.25 + 1)))
-                p0 = [W[i] + 3 * d[i] for i in range(3)]
-                p1 = [W[i] + L * d[i] for i in range(3)]
-                nrm = _cross(a, b)
-                fb.cubes.append(web(p0, p1, _cross(nrm, d), wdt, mem))
-                if _h(k, j, 9) < 0.6:                                      # torn fur tatters past the trailing edge
-                    Lt = 2 + 5 * _h(k, j, 5)
-                    off = (_h(k, j, 7) - 0.5) * wdt * 0.6
-                    wv = _norm(_cross(nrm, d))
-                    q0 = [p1[i] - d[i] + off * wv[i] for i in range(3)]
-                    q1 = [q0[i] + Lt * d[i] for i in range(3)]
-                    fb.cubes.append(web(q0, q1, wv, 2 + int(2 * _h(k, j, 3)), FUR))
-    # the inner web between the outstretched arm and the flank: laid out in the spread pose (shoulder -> wrist,
-    # back to the hip), shown only when the wings open (its scale follows the spread weight in the animations)
-    import numpy as np
-    sp = WING_POSES["spread"]
-    for sx, side in ((1, "left"), (-1, "right")):
-        S = np.array(mx(S_, sx), float)
-        Wp = np.array(mx(sp["wrist"], sx), float)
-        a = _norm(list(Wp - S)); b = _norm([0.35 * sx, -0.06, 1])
-        La, Lb = float(np.linalg.norm(Wp - S)) - 2, 52.0
-        wb = m.bone(f"wing_{side}_web", "chest", list(S))
-        om = _angle(a, b)
-        n = max(2, int(math.ceil(math.degrees(om) / 4.5)))
-        nrm = _cross(a, b)
-        for j in range(n):
-            t = (j + 0.5) / n
-            d = _slerp(a, b, t)
-            L = La + (Lb - La) * t
-            wdt = max(2, int(round(L * om / n * 1.25 + 1)))
-            p0 = [S[i] + 2 * d[i] for i in range(3)]
-            p1 = [S[i] + L * d[i] for i in range(3)]
-            wb.cubes.append(web(p0, p1, _cross(nrm, d), wdt, surf("gmembrane", glow="net", ragged_end=4)))
+            for jj in range(SUBS[k]):
+                sector(m.bone(f"wing_{side}_s{k}{jj}", f"wing_{side}_hand", list(W)), a, La, b, Lb, k,
+                       jj / SUBS[k], (jj + 1) / SUBS[k], tatters=k > 0)
+        # the upper sail (Kevin: the sail runs along the whole wing, two parts linked at the elbow): from the shoulder,
+        # between the upper arm and the back; laid out at its widest, each strip bone turned to follow the arm
+        a0, b0 = mx(upper_open(), sx), mx(_norm(UPPER_BODY), sx)
+        for jj in range(UPPER_SUBS):
+            sector(m.bone(f"wing_{side}_a{jj}", "chest", list(S)), b0, UPPER_BODY_LEN, a0, UP_LEN - 3, 7,
+                   jj / UPPER_SUBS, (jj + 1) / UPPER_SUBS, O=S)
     # ------------------------------------------------------------------ hind legs: tall columns
     for sx, side in ((1, "left"), (-1, "right")):
-        m.bone(f"leg_{side}", "torso", list(mx((11, 38, 20), sx)), cubes=[box(*xs(5, 17, sx), 20, 44, 10, 30, SC)])
+        m.bone(f"leg_{side}", "torso", list(mx((11, 38, 20), sx)), cubes=rbox(*xs(5, 17, sx), 20, 44, 10, 30, SC))
         K, Hk = mx((11, 20, 22), sx), mx((11, 7, 26), sx)
-        m.bone(f"leg_{side}_shin", f"leg_{side}", list(K), cubes=[seg(K, Hk, 8, 8, SL)])
+        m.bone(f"leg_{side}_shin", f"leg_{side}", list(K), cubes=rseg(K, Hk, 8, SL))
         Ft = mx((11, 2, 22), sx)
         foot = m.bone(f"leg_{side}_foot", f"leg_{side}_shin", list(Hk), cubes=[
-            seg(Hk, Ft, 6, 6, SL), box(*xs(6, 16, sx), 0, 5, 12, 28, SL)])
+            *rseg(Hk, Ft, 6, SL), *rbox(*xs(6, 16, sx), 0, 5, 12, 28, SL)])
         for dx in (-3, 0, 3):
             foot.cubes += chain([(11 + dx) * sx, 2.5, 12], [(0, 0.2, -1), (0, -0.7, -1)], [4, 3], [(2, 2), (1, 1)], M.CLAW)
     # ------------------------------------------------------------------ the long tail: spikes on the sides, top and below
     prev, z, y = "torso", 28, 43
     for k, (L, w) in enumerate([(18, 13), (18, 10), (18, 7), (18, 4)]):
         tb = m.bone(f"tail{k + 1}", prev, [0, y, z], rotation=[-3, 0, 0], cubes=[
-            box(-w / 2, w / 2, y - w / 2, y + w / 2, z - 1, z + L, gs(y - w / 2 + 2, 2.8))])
+            *rbox(-w / 2, w / 2, y - w / 2, y + w / 2, z - 1, z + L, gs(y - w / 2 + 2, 2.8))])
         for jj in range(4):
             zz = z + 1 + 4.2 * jj
             L2 = max(2, round(8 - 1.5 * k - 0.3 * jj))
@@ -282,27 +309,40 @@ def ik(wrist, pole):
     pv = np.array(pole, float); pv = pv - np.dot(pv, u) * u; pv /= np.linalg.norm(pv)
     return tuple(S + x * u + h * pv), tuple(S + L * u)
 
+def _R(e):
+    from scipy.spatial.transform import Rotation
+    return Rotation.from_euler("ZYX", [-e[2], e[1], -e[0]], degrees=True)
+
+def _E(R):
+    a, b, c = R.as_euler("ZYX", degrees=True)
+    return [round(float(-c), 2), round(float(b), 2), round(float(-a), 2)]
+
+def _rest_dirs():
+    import numpy as np
+    return [np.array(_norm(d)) for d in REST_DIRS] + [np.array(_norm(REST_FRONT))]
+
 def solve_wing(pose):
-    """rotations (left side) of the wing bones for a pose given as world targets:
-    pose = {"wrist": (x, y, z), "pole": dir, "claws": dir, "fingers": [dir1..dir4]}"""
+    """local rotations (left side) of the wing bones for a pose given as world targets:
+    pose = {"wrist": (x, y, z), "pole": dir, "claws": dir, "fingers": [dir1..dir4]}, or {"keep_arm": True, "fingers": ...}
+    (the arm stays folded, only the fingers move)"""
     import numpy as np
     from scipy.optimize import minimize
     S, E, W = (np.array(v, float) for v in (S_, E_, W_))
-    tips = [np.array(t, float) for t in FINGERS]
-    claw0 = np.array([0.12, -1.0, -0.15]); claw0 /= np.linalg.norm(claw0)   # the claws' main direction (folded)
+    claw0 = np.array([0.1, -0.45, -0.89]); claw0 /= np.linalg.norm(claw0)   # the claws' main direction (rest)
     out = {}
     def fit(fun, x0=(0, 0, 0)):
         best = None
-        for x in (x0, (40, 0, 0), (-40, 0, 0), (0, 0, 60), (0, 0, -60), (0, 60, 0), (0, -60, 0)):
-            r = minimize(fun, x, method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-7, "maxiter": 6000})
+        for x in (x0, (40, 0, 0), (-40, 0, 0), (0, 0, 60), (0, 0, -60), (0, 60, 0), (0, -60, 0), (0, 90, 0), (0, -90, 0)):
+            r = minimize(fun, x, method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-8, "maxiter": 8000})
             if best is None or r.fun < best.fun:
                 best = r
         return [round(float(v), 2) for v in best.x]
+    if pose.get("keep_arm"):
+        out.update({"wing_left": [0, 0, 0], "wing_left_fore": [0, 0, 0], "wing_left_hand": [0, 0, 0]})
+        return _fingers(pose, np.eye(3), out, fit)
     tE, tW = (np.array(v, float) for v in ik(pose["wrist"], pose["pole"]))
-    # upper arm: orient S->E onto S->tE and the forearm plane (E->W) toward tW, both at once
     def f_up(a):
-        R = _rot(a)
-        e = S + R @ (E - S)
+        e = S + _rot(a) @ (E - S)
         return np.sum((e - tE) ** 2) + 1e-6 * np.sum(np.square(a))
     a_up = fit(f_up)
     R1 = _rot(a_up)
@@ -312,16 +352,67 @@ def solve_wing(pose):
     out["wing_left"], out["wing_left_fore"] = a_up, a_fo
     cd = np.array(pose.get("claws", (0, -0.3, -1)), float); cd /= np.linalg.norm(cd)
     fd0 = np.array(pose["fingers"][1], float); fd0 /= np.linalg.norm(fd0)
-    d1 = (tips[1] - W) / np.linalg.norm(tips[1] - W)
+    d1 = _rest_dirs()[1]
     a_ha = fit(lambda a: -np.dot(R2 @ _rot(a) @ claw0, cd) - 0.6 * np.dot(R2 @ _rot(a) @ d1, fd0)
                + 1e-6 * np.sum(np.square(a)))
-    R3 = R2 @ _rot(a_ha)
     out["wing_left_hand"] = a_ha
-    for k, fd in enumerate(pose.get("fingers") or []):
-        d0 = (tips[k] - W) / np.linalg.norm(tips[k] - W)
-        fd = np.array(fd, float); fd /= np.linalg.norm(fd)
-        out[f"wing_left_f{k + 1}"] = fit(lambda a: -np.dot(R3 @ _rot(a) @ d0, fd) + 1e-6 * np.sum(np.square(a)))
+    return _fingers(pose, R2 @ _rot(a_ha), out, fit)
+
+def _fingers(pose, R3, out, fit):
+    """each finger: its direction onto the target, and its web's plane onto the plane of the fan in that pose (roll)"""
+    import numpy as np
+    rd = _rest_dirs()
+    pf = [np.array(v, float) / np.linalg.norm(v) for v in pose["fingers"]]
+    for k, fd in enumerate(pf):
+        n0 = np.cross(rd[k], rd[k + 1]); n0 /= np.linalg.norm(n0)
+        j = k if k < 3 else 2
+        npz = np.cross(pf[j], pf[j + 1]); npz /= np.linalg.norm(npz)
+        out[f"wing_left_f{k + 1}"] = fit(lambda a: -np.dot(R3 @ _rot(a) @ rd[k], fd) - 0.5 * np.dot(R3 @ _rot(a) @ n0, npz)
+                                         + 1e-6 * np.sum(np.square(a)))
+    return _membrane(out)
+
+def upper_open():
+    """the upper arm's direction when the wing is open widest (the largest angle to the back over all poses): the
+    upper sail is laid out at that opening, so no pose tears it"""
+    import numpy as np
+    b0 = np.array(_norm(UPPER_BODY)); best = None
+    for pose in WING_POSES.values():
+        if "wrist" not in pose:
+            continue
+        tE, _ = ik(pose["wrist"], pose["pole"])
+        u = np.array(_norm([tE[i] - S_[i] for i in range(3)]))
+        ang = math.acos(max(-1.0, min(1.0, float(np.dot(u, b0)))))
+        if best is None or ang > best[0]:
+            best = (ang, u)
+    return [float(v) for v in best[1]]
+
+def _upper_sheet(out):
+    """the upper sail's strip bones (children of the chest): a flat fan from the back edge to the upper arm as it
+    stands in that pose"""
+    import numpy as np
+    from scipy.spatial.transform import Rotation
+    b0 = np.array(_norm(UPPER_BODY)); a0 = np.array(upper_open())
+    u = _R(out["wing_left"]).as_matrix() @ np.array(_norm([E_[i] - S_[i] for i in range(3)]))
+    n0 = np.array(_norm(list(np.cross(b0, a0)))); n1 = np.array(_norm(list(np.cross(b0, u))))
+    for j in range(UPPER_SUBS):
+        t = (j + 0.5) / UPPER_SUBS
+        d0, d1 = np.array(_slerp(list(b0), list(a0), t)), np.array(_slerp(list(b0), list(u), t))
+        F0 = np.column_stack([d0, n0, np.cross(d0, n0)]); F1 = np.column_stack([d1, n1, np.cross(d1, n1)])
+        out[f"wing_left_a{j}"] = _E(Rotation.from_matrix(F1 @ F0.T))
     return out
+
+def _membrane(out):
+    """the sail's strip bones (children of the hand): each turned part-way between the two edges of its sector
+    (the forearm and the first finger, then finger k and finger k+1)"""
+    from scipy.spatial.transform import Rotation
+    Rh = _R(out["wing_left_hand"])
+    edges = [Rh.inv()] + [_R(out[f"wing_left_f{k}"]) for k in range(1, 5)]   # in the hand's frame
+    for k in range(4):
+        A, B = edges[k], edges[k + 1]
+        rv = (A.inv() * B).as_rotvec()
+        for j in range(SUBS[k]):
+            out[f"wing_left_s{k}{j}"] = _E(A * Rotation.from_rotvec(rv * (j + 0.5) / SUBS[k]))
+    return _upper_sheet(out)
 
 def mirror(rots):
     """left-side rotations -> both sides"""
@@ -331,54 +422,79 @@ def mirror(rots):
         out[b.replace("left", "right")] = [r[0], -r[1], -r[2]]
     return out
 
+def _rotz(d, deg):
+    c, s_ = math.cos(math.radians(deg)), math.sin(math.radians(deg))
+    return (d[0] * c - d[1] * s_, d[0] * s_ + d[1] * c, d[2])
+
 WING_POSES = {
-    # the game's frenzy stance: the arms arch out and down, the wrist claws planted far out, the webs a tent over it
-    "planted": {"wrist": (38, 23, -30), "pole": (0.4, 1, 0.3), "claws": (0.15, -1, -0.35),
-                "fingers": [(-0.35, 0.62, 0.7), (-0.42, 0.45, 0.78), (-0.5, 0.28, 0.82), (-0.6, 0.1, 0.8)]},
-    # wide open (its roar, the reference's T-pose): the arm straight out, the fingers fanned back
-    "spread": {"wrist": (79, 60, -20), "pole": (0, 0.3, 1), "claws": (0.3, -0.1, -1),
-               "fingers": [(0.15, 0.0, 1), (-0.15, -0.02, 1), (-0.45, -0.05, 0.9), (-0.75, -0.08, 0.65)]},
-    # raised high and forward (the Giant Slam's wind-up): claws over its head, the webs half open behind
-    "raised": {"wrist": (24, 104, -34), "pole": (0.6, 0.2, 1), "claws": (0, 0.2, -1),
-               "fingers": [(0.35, 0.25, 0.9), (0.3, -0.05, 0.95), (0.25, -0.3, 0.92), (0.2, -0.55, 0.8)]},
+    # folded (Kevin): the arm folded on the shoulder, the claws resting just above the front leg's joint, the sail
+    # draped over the flank down to the belly line and back to the hips
+    "fold": {"keep_arm": True, "fingers": [[t[i] - W_[i] for i in range(3)] for t in FOLD_TIPS]},
+    # claws planted (Kevin): the wing claws set down on the ground further forward than its head, the arms
+    # stretched out, the sails rising to the sky
+    "planted": {"wrist": (34, 22, -64), "pole": (0.5, 1, 0.2), "claws": (0.2, -0.55, -0.8),
+                "fingers": [(-0.25, 0.38, 0.89), (-0.15, 0.72, 0.68), (-0.05, 0.93, 0.36), (0.1, 1, 0.0)]},
+    # wide open (the reference's T-pose): the arm out, the fingers fanned back
+    "spread": {"wrist": (70, 62, -16), "pole": (0, 0.3, 1), "claws": (0.4, 0.0, -1),
+               "fingers": [(-0.7, -0.05, 0.71), (-0.35, -0.05, 0.94), (0.0, -0.05, 1), (0.35, -0.05, 0.94)]},
+    # the threat display of the concept sheet (its roar): the arms raised high, the claws on top, the sails towering
+    "display": {"wrist": (40, 76, -14), "pole": (1, 0.3, 0.6), "claws": (0.2, 0.5, -1),
+                "fingers": [(-0.3, -0.3, 0.9), (-0.1, 0.05, 0.99), (0.1, 0.38, 0.92), (0.25, 0.6, 0.76)]},
+    # raised high and forward (the Giant Slam's wind-up): claws over its head, the sails half open behind
+    "raised": {"wrist": (24, 84, -36), "pole": (0.6, 0.2, 1), "claws": (0, 0.3, -1),
+               "fingers": [(-0.2, -0.25, 0.95), (-0.05, 0.1, 0.99), (0.1, 0.4, 0.9), (0.2, 0.68, 0.7)]},
     # slammed down in front of it
-    "slam": {"wrist": (24, 25, -50), "pole": (0.5, 0.6, 0.2), "claws": (0, -1, -0.45),
-             "fingers": [(-0.15, 0.75, 0.6), (-0.2, 0.55, 0.8), (-0.25, 0.3, 0.9), (-0.3, 0.05, 0.95)]},
-    # half open, the claws on the ground by its head (exploding breath)
-    "half": {"wrist": (30, 18, -42), "pole": (0.6, 0.6, 0.2), "claws": (0.05, -1, -0.4),
-             "fingers": [(-0.1, 0.62, 0.78), (-0.15, 0.42, 0.88), (-0.2, 0.22, 0.95), (-0.28, 0.02, 0.95)]},
+    "slam": {"wrist": (26, 21, -66), "pole": (0.5, 1, 0.2), "claws": (0.2, -0.6, -0.8),
+             "fingers": [(-0.25, 0.4, 0.88), (-0.15, 0.74, 0.66), (-0.05, 0.94, 0.33), (0.1, 1, 0.0)]},
+    # the claws set down ahead of its head, the sails half raised behind (exploding breath)
+    "half": {"wrist": (32, 26, -56), "pole": (0.6, 1, 0.2), "claws": (0.3, -0.5, -0.8),
+             "fingers": [(-0.25, 0.3, 0.92), (-0.15, 0.55, 0.82), (-0.05, 0.75, 0.66), (0.05, 0.92, 0.4)]},
+    # flight (Kevin: it does not unfold its arms, only the sails stretch out): the arm stays folded on the shoulder,
+    # the sail stretched sideways (the rest layout) beats up and down
+    "fly_up": {"keep_arm": True, "fingers": [_rotz(d, 26) for d in REST_DIRS]},
+    "fly_down": {"keep_arm": True, "fingers": [_rotz(d, -18) for d in REST_DIRS]},
 }
+WING_BONES = [f"wing_{s}{p}" for s in ("left", "right") for p in
+              ["", "_fore", "_hand", "_f1", "_f2", "_f3", "_f4"] + [f"_s{k}{j}" for k in range(4) for j in range(SUBS[k])]
+              + [f"_a{j}" for j in range(UPPER_SUBS)]]
+SAIL_BONES = [b for b in WING_BONES if re.fullmatch(r"wing_(left|right)_(f\d|s\d\d|a\d+)", b)]
 _CACHE = {}
 
-def wing(pose, f=1.0):
-    """bone -> rotation for both wings at a pose, scaled by f (0 = folded)"""
+def pose_euler(pose):
+    """bone -> local rotation (both wings) at a pose; "rest" is the geometry's own layout (the stretched sail)"""
     if pose not in _CACHE:
-        _CACHE[pose] = mirror(solve_wing(WING_POSES[pose]))
-    return {b: [v * f for v in r] for b, r in _CACHE[pose].items()}
+        _CACHE[pose] = {b: [0, 0, 0] for b in WING_BONES} if pose == "rest" else mirror(solve_wing(WING_POSES[pose]))
+    return _CACHE[pose]
 
-WING_BONES = [f"wing_{s}{p}" for s in ("left", "right") for p in ("", "_fore", "_hand", "_f1", "_f2", "_f3", "_f4")]
-
-def blend(*parts):
-    """sum of weighted wing poses: blend(("planted", w1), ("spread", w2), ...) -> bone -> rotation"""
-    out = {b: [0.0, 0.0, 0.0] for b in WING_BONES}
-    for pose, w in parts:
-        if w == 0:
-            continue
-        for b, r in wing(pose, w).items():
-            out[b] = [a + c for a, c in zip(out[b], r)]
+def blend(parts, base="fold"):
+    """the wings at [(pose, weight), ...] on top of a base pose (rotations averaged around the base)"""
+    import numpy as np
+    from scipy.spatial.transform import Rotation
+    B = pose_euler(base)
+    out = {}
+    for b in WING_BONES:
+        Rb = _R(B[b])
+        v = np.zeros(3)
+        for p, w in parts:
+            if w:
+                v = v + w * (Rb.inv() * _R(pose_euler(p)[b])).as_rotvec()
+        out[b] = _E(Rb * Rotation.from_rotvec(v))
     return out
 
 # ---------------------------------------------------------------------------------------------- animations
 def anims(name, m):
     kf, wave, track, merge, anim, seq, SIDES = M.kf, M.wave, M.track, M.merge, M.anim, M.seq, M.SIDES
     S = {}
-    def wings(fn, L, steps=24):
-        """wing channels from fn(t) -> [(pose, weight), ...]; the inner webs open with the "spread" weight"""
-        samples = [(L * i / steps, blend(*fn(L * i / steps))) for i in range(steps + 1)]
+    def wings(fn, L, steps=24, base="fold"):
+        """wing channels from fn(t) -> [(pose, weight), ...] over a base pose; the sails stretch as the wings open
+        (fold = retracted)"""
+        samples = [(L * i / steps, blend(fn(L * i / steps), base)) for i in range(steps + 1)]
         out = {b: {"rotation": kf({round(t, 4): bl[b] for t, bl in samples})} for b in WING_BONES}
-        sw = lambda t: sum(w for p, w in fn(t) if p == "spread")
-        for s in ("left", "right"):
-            out[f"wing_{s}_web"] = {"scale": track(lambda t: [max(0.0, min(1.0, sw(t)))] * 3, L, steps)}
+        b_ext = 0.0 if base == "fold" else 1.0
+        ext = lambda t: max(0.0, min(1.0, b_ext * (1 - sum(w for p, w in fn(t))) +
+                                     sum(w * (0.0 if p == "fold" else 1.0) for p, w in fn(t))))
+        for b in SAIL_BONES:
+            out[b]["scale"] = track(lambda t: [round(SAIL_REST + (1 - SAIL_REST) * ext(t), 4)] * 3, L, steps)
         return out
     def flutter(t, amp, period=0.5):
         """the membrane fingers rippling"""
@@ -402,13 +518,11 @@ def anims(name, m):
          "head": {"rotation": track(lambda t: [-4 + 3 * math.sin(2 * math.pi * t / 1.5), look(t) * 0.3, -look(t) * 0.15],
                                     L, 48)},
          "jaw": {"rotation": wave(1.5, 3.0, L, phase=2.0, axis=0, base=(2, 0, 0))}},
-        {f"wing_{s}_f{k}": {"rotation": track(lambda t, k=k, sx=sx: [-4 * max(0.0, tw(t)) * k, 0,
-                                                                     -sx * 6 * max(0.0, tw(t))], L, 60)}
-         for s, sx in SIDES for k in range(1, 5)},
+        wings(lambda t: [("rest", 0.1 * max(0.0, tw(t)))], L, 60),
         {f"tail{k}": {"rotation": wave(3 + k, 3.0, L, phase=-0.5 * k, axis=1)} for k in range(1, 5)})
     S["ground_idle"] = anim(L, idle, loop=True)
 
-    # walk: the four legs in diagonal pairs, the folded wings rocking a little
+    # walk: the four legs in diagonal pairs, the folded wings (claws behind the head) rocking a little
     T = 1.4
     w = {}
     for s, sx in SIDES:
@@ -424,8 +538,6 @@ def anims(name, m):
         w[f"leg_{s}_shin"] = {"rotation": track(lambda t, b=b2: [18 * b(t), 0, 0], T)}
         w[f"leg_{s}_foot"] = {"rotation": track(lambda t, a=a2, b=b2: [-18 * a(t) - 18 * b(t), 0, 0], T)}
         w[f"wing_{s}"] = {"rotation": wave(2.5, T, T, phase=ph, axis=0)}
-        for k in range(1, 5):
-            w[f"wing_{s}_f{k}"] = {"rotation": wave(2 + k, T, T, phase=ph + 0.4 * k, axis=0)}
     walkd = merge(w,
         {"body": {"position": track(lambda t: [0, 0.7 * abs(math.sin(2 * math.pi * t / T)), 0], T),
                   "rotation": wave(2, T, T, axis=2)}},
@@ -437,13 +549,9 @@ def anims(name, m):
     # battle_idle: the game's frenzy stance: wings unfolded, the wrist claws planted far out on each side, low head
     L = 2.0
     bi = merge(
-        wings(lambda t: [("planted", 1.0)], L, 4),
-        {f"wing_{s}_f{k}": {"rotation": track(lambda t, k=k: [wing("planted")[f"wing_left_f{k}"][0] +
-                                                                 3 * math.sin(2 * math.pi * t / L + k),
-                                                                 (1 if s == "left" else -1) * wing("planted")[f"wing_left_f{k}"][1],
-                                                                 (1 if s == "left" else -1) * wing("planted")[f"wing_left_f{k}"][2]], L)}
-         for s, sx in SIDES for k in range(1, 5)},
-        {"body": {"position": wave(0.6, L, L, axis=1, base=(0, -1, 0))}},
+        wings(lambda t: [("planted", 1.0 - 0.04 * (1 + math.sin(2 * math.pi * t / L))),
+                         ("spread", 0.04 * (1 + math.sin(2 * math.pi * t / L)))], L, 12),
+        {"body": {"position": wave(0.6, L, L, axis=1, base=(0, 1.2, 0))}},
         {"chest": {"rotation": wave(1.5, L, L, axis=0, base=(5, 0, 0))}},
         {f"arm_{s}": {"rotation": [-8, 0, 6 * sx]} for s, sx in SIDES},
         {f"leg_{s}": {"rotation": [-6, 0, 0]} for s, sx in SIDES},
@@ -460,7 +568,7 @@ def anims(name, m):
     up = seq({0: 0, .55: 1, 1.7: 1, 2.2: 0})
     shake = lambda t: 4 * math.sin(t * 40) if 0.6 < t < 1.6 else 0
     cry = merge(
-        wings(lambda t: [("spread", up(t))], L),
+        wings(lambda t: [("display", up(t))], L),
         {"neck1": {"rotation": track(lambda t: [-22 * up(t), 0, 0], L)},
          "head": {"rotation": track(lambda t: [-16 * up(t), shake(t), 0], L, 44)},
          "jaw": {"rotation": track(lambda t: [seq({0: 2, .45: 38, 1.6: 38, 2.0: 2, 2.2: 2})(t), 0, 0], L)},
@@ -476,7 +584,7 @@ def anims(name, m):
     phys = merge(
         wings(lambda t: [("raised", rear(t)), ("slam", slam(t) * (1 - rear(t)))], L, 26),
         {"body": {"rotation": track(lambda t: [-22 * rear(t) + 3 * slam(t), 0, 0], L, 26),
-                  "position": track(lambda t: [0, 8 * rear(t) - 2 * slam(t), 3 * rear(t) - 6 * slam(t)], L, 26)}},
+                  "position": track(lambda t: [0, 8 * rear(t) + 1 * slam(t), 3 * rear(t) - 6 * slam(t)], L, 26)}},
         {f"arm_{s}": {"rotation": track(lambda t: [-35 * rear(t), 0, 0], L, 26)} for s, sx in SIDES},
         {f"arm_{s}_low": {"rotation": track(lambda t: [40 * rear(t), 0, 0], L, 26)} for s, sx in SIDES},
         {f"leg_{s}": {"rotation": track(lambda t: [24 * rear(t), 0, 0], L, 26)} for s, sx in SIDES},
@@ -499,18 +607,14 @@ def anims(name, m):
                                                -yaw(t) * 0.2], L, 48)},
          "jaw": {"rotation": track(lambda t: [seq({0: 2, .45: 10, .65: 38, 1.25: 38, 1.45: 2, 1.6: 2})(t), 0, 0], L, 48)},
          "chest": {"rotation": track(lambda t: [-4 * o(t), yaw(t) * 0.1, 0], L, 48)},
-         "body": {"position": track(lambda t: [0, -2 * o(t), 2 * o(t)], L, 48)}})
+         "body": {"position": track(lambda t: [0, 0.5 * o(t), 2 * o(t)], L, 48)}})
     S["special"] = anim(L, sp)
 
     # status (1.3 s): half opens its wings and shakes them to scatter its scales, head high
     L = 1.3
     o = seq({0: 0, .3: 1, 1.0: 1, 1.3: 0})
     st = merge(
-        wings(lambda t: [("spread", 0.55 * o(t))], L, 26),
-        {f"wing_{s}_f{k}": {"rotation": track(lambda t, k=k, s=s: [a + (8 * math.sin(t * 30 + k) * (0.3 < t < 1.0) if i == 0 else 0)
-                                                                   for i, a in enumerate(wing("spread", 0.55 * o(t))[f"wing_{s}_f{k}"])],
-                                              L, 39)}
-         for s, sx in SIDES for k in range(1, 5)},
+        wings(lambda t: [("spread", 0.55 * o(t) + (0.08 * math.sin(t * 30) if 0.3 < t < 1.0 else 0))], L, 39),
         {"neck1": {"rotation": track(lambda t: [-16 * o(t), 0, 0], L)},
          "head": {"rotation": track(lambda t: [-6 * o(t), 5 * math.sin(t * 22) * (0.3 < t < 1.0), 0], L, 32)},
          "jaw": {"rotation": track(lambda t: [2 + 16 * o(t), 0, 0], L)},
@@ -528,26 +632,27 @@ def anims(name, m):
          "neck2": {"rotation": track(lambda t: [-8 * up(t) + 10 * fall(t), 0, 0], L)},
          "head": {"rotation": track(lambda t: [-20 * up(t) + 12 * fall(t), tremble(t), 0], L, 52)},
          "jaw": {"rotation": track(lambda t: [2 + 36 * up(t) + 14 * fall(t) * (1 - up(t)), 0, 0], L)},
-         "magala": {"rotation": track(lambda t: [0, 0, -70 * fall(t)], L),
-                    "position": track(lambda t: [-8 * fall(t), -1 * fall(t), 0], L)},
+         "magala": {"rotation": track(lambda t: [0, 0, -62 * fall(t)], L),
+                    "position": track(lambda t: [-8 * fall(t), 8 * fall(t), 0], L)},
          "chest": {"rotation": track(lambda t: [-8 * up(t), 0, 0], L)}},
         {f"arm_{s}": {"rotation": track(lambda t: [-30 * fall(t), 0, 0], L)} for s, sx in SIDES},
         {f"leg_{s}": {"rotation": track(lambda t: [-30 * fall(t), 0, 0], L)} for s, sx in SIDES},
         {f"leg_{s}_shin": {"rotation": track(lambda t: [40 * fall(t), 0, 0], L)} for s, sx in SIDES},
         {f"tail{k}": {"rotation": track(lambda t, k=k: [0, 8 * fall(t), 0], L)} for k in range(1, 5)})
+    for b in SAIL_BONES:                                  # the sails pull in tight as it falls
+        fa[b]["scale"] = track(lambda t: [round(SAIL_REST + (1 - SAIL_REST) * 0.6 * up(t) - 0.25 * fall(t), 4)] * 3, L, 26)
     S["faint"] = anim(L, fa, loop="hold")
 
     # sleep: lying down, legs folded, wings folded over it, head on the ground
     L = 4.0
     sl = merge(
-        {"magala": {"position": [0, -16, 0]}},
+        {"magala": {"position": [0, -9, 0]}},
         {f"leg_{s}": {"rotation": [-40, 0, 0]} for s, sx in SIDES},
         {f"leg_{s}_shin": {"rotation": [70, 0, 0]} for s, sx in SIDES},
         {f"leg_{s}_foot": {"rotation": [-55, 0, 0]} for s, sx in SIDES},
         {f"arm_{s}": {"rotation": [65, 0, 0]} for s, sx in SIDES},
         {f"arm_{s}_low": {"rotation": [-95, 0, 0]} for s, sx in SIDES},
         {f"arm_{s}_foot": {"rotation": [30, 0, 0]} for s, sx in SIDES},
-        {f"wing_{s}_f{k}": {"rotation": [-2 * k, 0, 0]} for s, sx in SIDES for k in range(1, 5)},
         {"neck1": {"rotation": [26, 0, 0]}, "neck2": {"rotation": [8, -14, 0]}, "head": {"rotation": [6, -12, 0]},
          "jaw": {"rotation": [0, 0, 0]}, "chest": {"rotation": wave(1.0, L, L, axis=0, base=(4, 0, 0))}},
         {f"tail{k}": {"rotation": [6 if k == 1 else 0, -14 - 4 * k, 0]} for k in range(1, 5)})
@@ -558,9 +663,30 @@ def anims(name, m):
         {"body": {"position": wave(0.4, L, L, axis=1)}, "chest": {"rotation": wave(1.0, L, L, axis=0)},
          "jaw": {"rotation": wave(1.5, L, L, phase=2.0, axis=0, base=(2, 0, 0))}},
         {f"tail{k}": {"rotation": wave(3 + k, L, L, phase=-0.5 * k, axis=1)} for k in range(1, 5)}), loop=True)
-    for a in S.values():                                  # the inner webs stay folded away unless an animation opens them
-        for s in ("left", "right"):
-            a["bones"].setdefault(f"wing_{s}_web", {"scale": [0, 0, 0]})
+    # flight: the arms stay folded (claws behind the head), only the sails stretch out and beat; legs tucked
+    def fly(T, pitch, lift):
+        beat = lambda t: 0.5 + 0.5 * math.sin(2 * math.pi * t / T)
+        d = merge(
+            wings(lambda t: [("fly_up", beat(t)), ("fly_down", 1 - beat(t))], T, 24, base="rest"),
+            {"magala": {"position": wave(lift, T, T, phase=math.pi / 2, axis=1, base=(0, 8, 0))},
+             "body": {"rotation": [pitch, 0, 0]}},
+            {f"arm_{s}": {"rotation": [50, 0, 0]} for s, sx in SIDES},
+            {f"arm_{s}_low": {"rotation": [-70, 0, 0]} for s, sx in SIDES},
+            {f"leg_{s}": {"rotation": [45, 0, 0]} for s, sx in SIDES},
+            {f"leg_{s}_shin": {"rotation": [20, 0, 0]} for s, sx in SIDES},
+            {f"leg_{s}_foot": {"rotation": [35, 0, 0]} for s, sx in SIDES},
+            {"neck1": {"rotation": [-pitch * 0.6, 0, 0]}, "head": {"rotation": [-pitch * 0.3, 0, 0]}},
+            {f"tail{k}": {"rotation": wave(3 + k, T, T, phase=-0.6 * k, axis=0, base=(-pitch * 0.3, 0, 0))} for k in range(1, 5)})
+        return anim(T, d, loop=True)
+    S["air_idle"] = fly(1.6, 4, 1.5)
+    S["air_fly"] = fly(1.0, 16, 2.5)
+    fold = pose_euler("fold")
+    for a in S.values():                                  # without wing channels the wings hold the fold, sails retracted
+        for b in WING_BONES:
+            a["bones"].setdefault(b, {})
+            a["bones"][b].setdefault("rotation", fold[b])
+        for b in SAIL_BONES:
+            a["bones"][b].setdefault("scale", [SAIL_REST] * 3)
     return S
 
 def poser(name, group):
@@ -578,4 +704,6 @@ def poser(name, group):
                              "animations": ["q.look('head')", q("ground_idle")]},
                 "portrait": {"poseTypes": ["PORTRAIT", "PROFILE"], "animations": [q("portrait_idle")]},
                 "walking": {"poseTypes": ["WALK", "SWIM"], "animations": ["q.look('head')", q("ground_walk")]},
+                "hovering": {"poseTypes": ["HOVER"], "animations": ["q.look('head')", q("air_idle")]},
+                "flying": {"poseTypes": ["FLY"], "animations": ["q.look('head')", q("air_fly")]},
                 "sleep": {"poseTypes": ["SLEEP"], "animations": [q("sleep")]}}}

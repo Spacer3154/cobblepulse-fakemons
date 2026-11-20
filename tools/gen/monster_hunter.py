@@ -535,7 +535,7 @@ species_file("goremagala", {
     "baseExperienceYield": 260, "experienceGroup": "slow", "catchRate": 5, "eggCycles": 30, "baseFriendship": 0,
     "shoulderMountable": False, "baseScale": GM_SCALE,
     "hitbox": {"width": 2.2, "height": round(t["top_base"] / 16, 2), "fixed": False},
-    "behaviour": magala_behaviour("day", False),
+    "behaviour": magala_behaviour("day", True),
     "drops": {"amount": 3, "entries": [
         {"item": "minecraft:black_dye", "quantityRange": "1-3"}, {"item": "minecraft:phantom_membrane", "quantityRange": "0-2"},
         {"item": "minecraft:bone", "quantityRange": "0-2"}, {"item": "cobblemon:spell_tag", "percentage": 6.0},

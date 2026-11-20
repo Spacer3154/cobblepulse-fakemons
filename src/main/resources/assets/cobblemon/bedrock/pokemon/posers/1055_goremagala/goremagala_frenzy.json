@@ -5,10 +5,10 @@
     1.59,
     0
   ],
-  "profileScale": 0.17,
+  "profileScale": 0.11,
   "profileTranslation": [
-    0.1,
-    1.48,
+    0.02,
+    1.57,
     0
   ],
   "rootBone": "magala",
@@ -59,6 +59,24 @@
       "animations": [
         "q.look('head')",
         "q.bedrock('goremagala_frenzy', 'ground_walk')"
+      ]
+    },
+    "hovering": {
+      "poseTypes": [
+        "HOVER"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'air_idle')"
+      ]
+    },
+    "flying": {
+      "poseTypes": [
+        "FLY"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'air_fly')"
       ]
     },
     "sleep": {
