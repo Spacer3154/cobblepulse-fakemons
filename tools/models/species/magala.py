@@ -127,7 +127,7 @@ def _vein(y, z):
     a = math.atan2(43 - y, z + 8)
     return any(abs(a - k) < 0.035 for k in (0.35, 0.65, 0.95, 1.25)) and 14 < y < 42
 
-def _net(a, b, cell=4.2):
+def _net(a, b, cell=5.2):
     """distance (texels) between the two nearest jittered cell centres: small on the borders of a net of cells"""
     ia, ib = math.floor(a / cell), math.floor(b / cell)
     d = []
@@ -148,7 +148,7 @@ def side_pal(pal, p):
 def _along(p, c):
     return (p[1] - c.origin[1]) / max(c.size[1], 1)
 
-def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5):
+def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
     """paint dict: every texel coloured from its model-space position (asymmetric palettes, scales...)
     kind: scale | belly | plate | fold | fang | spike | membrane | fur | claw | horn | antenna | mouth | tooth | eye |
     lid. belly_below: texels below this height use the belly colour; ragged: the bottom `ragged` rows of the side
@@ -185,8 +185,8 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5):
                 col = mix(col, P["scale_rim"], 0.55)
             if _h(sid[0], sid[1], 3) > 0.94:
                 col = mix(col, P["scale_sheen"], 0.3)
-            if fr and rim and (face == "up" or y > 30):
-                col = mix(col, P["frenzy"], 0.7)
+            if fr and rim and (face == "up" or y > 50):
+                col = mix(col, P["frenzy"], 0.6)
             return col, n
         if kind == "gmembrane":                                           # Gore: fur cape, net of veins in frenzy
             strand = _h(math.floor((z + x) * 1.4), 5)
@@ -249,6 +249,11 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5):
                 if _h(p[0] * 3 + p[2] * 3, 1, 0) < 0.3 + 0.55 * (j - (fh - ragged)) / max(ragged, 1):
                     px[X, Y] = (0, 0, 0, 0)
                     continue
+            if ragged_end and face in ("east", "west", "north", "south"):     # torn far end (strips of a wing)
+                k = (p[1] - c.origin[1]) - (c.size[1] - ragged_end)
+                if k > 0 and _h(p[0] * 3 + p[2] * 3 + p[1] * 0.0, 2, 0) < 0.2 + 0.7 * k / ragged_end:
+                    px[X, Y] = (0, 0, 0, 0)
+                    continue
             col, n = colour(pal, face, p, i, j, fw, fh, c)
             px[X, Y] = shade(col, LIGHT[face] * (1 + n))
 
@@ -278,7 +283,7 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5):
             elif glow == "gscale":                                        # frenzy: the upper scales' rims glow
                 if not pal.get("_fglow") or (belly_below is not None and y < belly_below and face != "up"):
                     continue
-                if not (face == "up" or y > 30):
+                if not (face == "up" or y > 50):
                     continue
                 a, b = _ab(face, p)
                 e, t, sid, rim = _gscale(a, b, S)
@@ -541,9 +546,18 @@ def build_gore(name):
     m.pack()
     return m
 
+def _gore():
+    """species/goremagala.py (Gore Magala's own model and animations), given this module's helpers"""
+    import importlib.util, os, types
+    spec = importlib.util.spec_from_file_location("goremagala", os.path.join(os.path.dirname(__file__), "goremagala.py"))
+    G = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(G)
+    G.M = types.SimpleNamespace(**globals())
+    return G
+
 def build(name):
     if name.startswith("goremagala"):
-        return build_gore(name)
+        return _gore().build(name)
     gold = name == "shagarumagala"
     chaos = name == "chaoticgoremagala"
     frenzy = name == "goremagala_frenzy"
@@ -770,6 +784,8 @@ def raise_claws(f, sx):
 BONES = {}
 
 def anims(name, m):
+    if name.startswith("goremagala"):
+        return _gore().anims(name, m)
     BONES[name] = {b.name for b in m.bones}
     gold = name == "shagarumagala"
     S = {}
@@ -1038,6 +1054,8 @@ def gore_anims(S, claws):
     S["special"] = anim(L, sp)
 
 def poser(name, group):
+    if name.startswith("goremagala"):
+        return _gore().poser(name, group)
     q = lambda a: f"q.bedrock('{group}', '{a}')"
     prim = lambda a: f"q.bedrock_primary('{group}', '{a}', q.curve('symmetrical_wide'))"
     poses = {

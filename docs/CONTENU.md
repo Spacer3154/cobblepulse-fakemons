@@ -431,6 +431,19 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   sombre (ailes et pattes) ; deux grandes griffes recourbées rouges à chaque coude ; les ailes-bras forment une arche
   au-dessus de lui, griffes posées loin de chaque côté, membrane repliée sous l'avant-bras (réseau violet lumineux en
   Furie) ; pattes avant écartées ; en Furie, antennes violettes dressées droites, à peine recourbées.
+- 3.3.0 (Gore Magala seulement, refait d'après le modèle détaillé fourni par Kevin et ses précisions) : proportions
+  relevées sur ce modèle (10 000 faces, ramené à l'échelle 0,43) : corps profond porté haut sur quatre pattes en
+  colonnes, cou court et épais, grosse tête tenue en avant (abaissée quand il chasse), longue queue hérissée de pointes
+  sur les côtés, le dessus et le dessous, barbe de pointes sous la mâchoire, cornes enracinées sur l'avant de la face
+  (couchées le long de la tête au calme, dressées en Furie). Les ailes sont de vraies toiles : un bras à trois os
+  (bras, avant-bras, main) et quatre doigts qui tendent la membrane de fourrure noire. Repliées (« il en fait des
+  épaules »), le poignet repose sur l'épaule et ses quatre longues griffes rouges retombent par-dessus, comme sur
+  le rendu de MH4, les doigts couchés vers l'arrière en cape sur le flanc ; en combat elles s'ouvrent en tente, les
+  griffes plantées au sol loin de chaque côté ; au cri, déployées en grand comme sur le modèle (membrane du bras au
+  flanc comprise) ; levées au-dessus de la tête pour le Grand Écrasement puis abattues devant lui ; à demi ouvertes,
+  griffes au sol près de la tête, pour le souffle. Poses des ailes calculées (cinématique inverse) dans
+  `tools/models/species/goremagala.py`, module propre au Gore Magala (le Chaos et Shagaru ne changent pas). Pose calme
+  à part pour le portrait d'équipe et le résumé.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
