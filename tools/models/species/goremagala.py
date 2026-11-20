@@ -492,6 +492,13 @@ def _rotz(d, deg):
     c, s_ = math.cos(math.radians(deg)), math.sin(math.radians(deg))
     return (d[0] * c - d[1] * s_, d[0] * s_ + d[1] * c, d[2])
 
+def _wall(wrist, back, bone):
+    """the sail as a wall facing the player but joined to the body (Kevin): its inner edge (first finger) runs from the
+    wrist to the top of the back, the great bone (last finger) a diagonal up and out, the fingers between evenly"""
+    f1 = _norm([back[i] - wrist[i] for i in range(3)])
+    f4 = _norm(bone)
+    return [_slerp(f1, f4, q) for q in (0.0, 1 / 3, 2 / 3, 1.0)]
+
 WING_POSES = {
     # folded (Kevin): the arm folded on the shoulder, the claws resting just above the front leg's joint, the sail
     # draped over the flank down to the belly line and back to the hips
@@ -502,7 +509,7 @@ WING_POSES = {
                 # Kevin: the great bone spreads the sails out to the sides like a wall facing the hunter
                 # the great bone (last finger) a long diagonal up and out, the sail stretched from it back to the
                 # arm and the body: a wall facing the hunter
-                "fingers": [(-0.35, 0.94, 0.06), (0.0, 1, 0.04), (0.38, 0.92, 0.02), (0.72, 0.69, 0.0)]},
+                "fingers": _wall((48, 14, -50), (8, 64, -6), (0.72, 0.69, 0.0))},
     # wide open (the reference's T-pose): the arm out, the fingers fanned back
     "spread": {"wrist": (70, 62, -16), "pole": (0, 0.3, 1), "claws": (0.4, 0.0, -1),
                "fingers": [(-0.7, -0.05, 0.71), (-0.35, -0.05, 0.94), (0.0, -0.05, 1), (0.35, -0.05, 0.94)]},
@@ -511,13 +518,13 @@ WING_POSES = {
                 "fingers": [(-0.3, -0.3, 0.9), (-0.1, 0.05, 0.99), (0.1, 0.38, 0.92), (0.25, 0.6, 0.76)]},
     # raised high and forward (the Giant Slam's wind-up): claws over its head, the sails half open behind
     "raised": {"wrist": (34, 72, -40), "pole": (0.6, 0.3, 1), "claws": (0, 0.3, -1),
-               "fingers": [(-0.25, 0.85, 0.46), (0.12, 0.9, 0.42), (0.48, 0.79, 0.38), (0.78, 0.53, 0.33)]},
+               "fingers": _wall((34, 72, -40), (8, 66, 4), (0.78, 0.53, 0.33))},
     # slammed down in front of it
     "slam": {"wrist": (26, 22, -66), "pole": (0.5, 1, 0.2), "claws": (0.1, -0.45, -0.89), "flat": True,
-             "fingers": [(-0.35, 0.93, 0.1), (0.0, 1, 0.08), (0.38, 0.92, 0.05), (0.72, 0.69, 0.02)]},
+             "fingers": _wall((26, 22, -66), (8, 64, -6), (0.72, 0.69, 0.02))},
     # the claws set down ahead of its head, the sails half raised behind (exploding breath)
     "half": {"wrist": (46, 20, -52), "pole": (0.3, 1, 0), "claws": (0.1, -0.45, -0.89), "flat": True,
-             "fingers": [(-0.35, 0.9, 0.25), (0.0, 0.97, 0.22), (0.38, 0.89, 0.2), (0.72, 0.67, 0.16)]},
+             "fingers": _wall((46, 20, -52), (8, 64, -6), (0.72, 0.67, 0.16))},
     # flight (Kevin: it does not unfold its arms, only the sails stretch out): the arm stays folded on the shoulder,
     # the sail stretched sideways (the rest layout) beats up and down
     # lying (sleep, faint): the arm folded, the sail draped out over the ground on each side like a blanket

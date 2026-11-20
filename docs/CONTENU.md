@@ -482,6 +482,8 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   Sommeil : vraiment couché sur le ventre, pattes repliées, voiles drapées au sol, tête posée, queue enroulée.
   Correctif : angles des ailes rendus continus (plus de tour complet parasite entre deux images clés en vol et au K.O.,
   visible dans Blockbench et en jeu).
+- 3.7.1 (Gore Magala) : les voiles en mur ne se séparent plus du corps : leur bord intérieur va du poignet au haut du
+  dos, et elles se tendent du dos jusqu'au grand os en diagonale (combat, attaque physique, souffle).
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
