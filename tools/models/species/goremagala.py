@@ -208,6 +208,12 @@ def build(name):
             fore.cubes += chain([P0[0] + 3 * sx, P0[1] + 2, P0[2]], [(0.4 * sx, 1, 0.3)], [4], [(1, 3)], PLATE)
         fore.cubes += chain([E[0], E[1] + 3, E[2] + 3], [(0.1 * sx, 0.6, 1), (0.05 * sx, 0.1, 1)], [5, 4],
                             [(3, 3), (1, 1)], PLATE)                      # the elbow's spur, back (dark, not a claw)
+        fdir = _norm([W[i] - E[i] for i in range(3)])                     # the video (0:17): red hooks stacked on the
+        for k, L0 in enumerate((8, 7, 6)):                                # top of the elbow, curling forward over the arch
+            P0 = [E[i] + fdir[i] * (2 + 5 * k) for i in range(3)]
+            up = [fdir[0] * 0.5 + 0.15 * sx, fdir[1] * 0.5 + 0.85, fdir[2] * 0.5]
+            fore.cubes += chain([P0[0], P0[1] + 3.5, P0[2]], [up, fdir, (fdir[0], fdir[1] - 0.9, fdir[2])], [L0 * 0.5, L0 * 0.6, 4],
+                                [(3, 3), (2, 2), (1, 1)], CLAW)
         hand = m.bone(f"wing_{side}_hand", f"wing_{side}_fore", list(W), cubes=rbox(W[0] - 5, W[0] + 5, W[1] - 5, W[1] + 4,
                                                                                W[2] - 5, W[2] + 5, SC))
         # the wing's three great claws, side by side: folded, they rest on the shoulder above the front leg's joint,
@@ -441,9 +447,9 @@ WING_POSES = {
     # folded (Kevin): the arm folded on the shoulder, the claws resting just above the front leg's joint, the sail
     # draped over the flank down to the belly line and back to the hips
     "fold": {"keep_arm": True, "fingers": [[t[i] - W_[i] for i in range(3)] for t in FOLD_TIPS]},
-    # claws planted (Kevin): the wing claws set down on the ground further forward than its head, the arms
-    # stretched out, the sails rising to the sky
-    "planted": {"wrist": (34, 22, -64), "pole": (0.5, 1, 0.2), "claws": (0.2, -0.55, -0.8),
+    # claws planted (Kevin + the video 0:17-0:24): the wing arms arch wide, elbows high, the claws set down far out
+    # to each side a little ahead of the head, the sails rising behind the arms
+    "planted": {"wrist": (48, 19, -50), "pole": (0.1, 1, -0.05), "claws": (0.45, -0.5, -0.75),
                 "fingers": [(-0.25, 0.38, 0.89), (-0.15, 0.72, 0.68), (-0.05, 0.93, 0.36), (0.1, 1, 0.0)]},
     # wide open (the reference's T-pose): the arm out, the fingers fanned back
     "spread": {"wrist": (70, 62, -16), "pole": (0, 0.3, 1), "claws": (0.4, 0.0, -1),
@@ -458,7 +464,7 @@ WING_POSES = {
     "slam": {"wrist": (26, 21, -66), "pole": (0.5, 1, 0.2), "claws": (0.2, -0.6, -0.8),
              "fingers": [(-0.25, 0.4, 0.88), (-0.15, 0.74, 0.66), (-0.05, 0.94, 0.33), (0.1, 1, 0.0)]},
     # the claws set down ahead of its head, the sails half raised behind (exploding breath)
-    "half": {"wrist": (32, 26, -56), "pole": (0.6, 1, 0.2), "claws": (0.3, -0.5, -0.8),
+    "half": {"wrist": (46, 20, -52), "pole": (0.3, 1, 0), "claws": (0.3, -0.5, -0.8),
              "fingers": [(-0.25, 0.3, 0.92), (-0.15, 0.55, 0.82), (-0.05, 0.75, 0.66), (0.05, 0.92, 0.4)]},
     # flight (Kevin: it does not unfold its arms, only the sails stretch out): the arm stays folded on the shoulder,
     # the sail stretched sideways (the rest layout) beats up and down
