@@ -179,30 +179,34 @@ def build(name):
     # along the sides of the head, in frenzy they rise straight up, curving forward at the tip, pink and glowing
     for sx, side in ((1, "left"), (-1, "right")):
         if gold(sx):
-            # Shagaru: a crown of horns (the great crescent rising from the brow and sweeping forward, two swept back
-            # behind it) and an eye on each side of the face
-            hy = 50 if shag else 46                                        # the chaotic one: the horn's root set lower
-            hb = m.bone(f"horn_{side}", "head", [4.5 * sx, hy, -46])
-            # Kevin: the horn curves round at its root, then rises straight up without bending, only a light curve forward
-            hb.cubes += chain([(4.5 if shag else 6) * sx, hy, -46], [(0.45 * sx, 0.55, 0.6), (0.15 * sx, 1, 0.12),
-                                                                    (0.05 * sx, 1, -0.06), (0.0, 1, -0.22)],
-                              [6, 11, 10, 8], [(3, 4), (3, 3), (2, 3), (1, 2)], HORN)
-            if not shag:
+            # Shagaru and the chaotic one's Shagaru side (Kevin + game capture): one great thick dark horn from the top of
+            # the skull, curving round at its root, then rising straight up with only a light curve forward
+            # Kevin: the horn grows where Gore's antenna is (the antennas became horns), the eye just under it
+            R0 = (3.5 * sx, 46.5, -53)
+            hb = m.bone(f"horn_{side}", "head", list(R0))
+            hb.cubes += chain(list(R0), [(0.5 * sx, 0.6, 0.45)], [4], [(5, 5)], HORN)                     # thick root
+            hb.cubes += chain([R0[0] + 2 * sx, R0[1] + 2.4, R0[2] + 1.8], [(0.2 * sx, 1, 0.1), (0.06 * sx, 1, -0.05),
+                                                                         (0.0, 1, -0.2), (0.0, 0.8, -0.5)],
+                              [9, 9, 8, 5], [(5, 5), (4, 4), (3, 3), (2, 2)], HORN)
+            if shag:
+                for kk2, (y, z) in enumerate(((47, -40), (44, -38), (41, -38), (38, -39))):      # the golden ruff
+                    head.cubes += chain([6.5 * sx, y, z], [(0.75 * sx, 0.1 * (y - 42) / 3, 0.6)], [6 - kk2 % 2],
+                                        [(2, 2)], SPIKE)
+            else:
                 # concept sheet: golden cracks from the horn's root along the side of the head and down the neck, joined
                 # to the cracks of the wing arm
                 CR = surf("spike", alt=True)
-                hb.cubes += chain([6.6 * sx, 45, -44], [(0.05 * sx, 0.6, 1), (0.1 * sx, 0.3, 1)], [5, 4], [(1, 1), (1, 1)], CR)
+                hb.cubes += chain([5.6 * sx, 46, -51], [(0.15 * sx, 0.1, 1), (0.1 * sx, 0.1, 1)], [6, 6], [(1, 1), (1, 1)], CR)
                 head.cubes += [seg((7.2 * sx, 44, -54), (7.6 * sx, 47, -38), 1, 1, CR),
                                seg((7.2 * sx, 41, -50), (7.6 * sx, 44, -38), 1, 1, CR)]
                 n1.cubes.append(seg((7.9 * sx, 47, -26), (7.9 * sx, 44, -34), 1, 1, CR))
                 n2.cubes.append(seg((7.4 * sx, 46, -32), (7.4 * sx, 44, -39), 1, 1, CR))
-            for (y, z, d, L) in (((50, -40, (0.45 * sx, 0.45, 1), 11), (48, -37, (0.6 * sx, 0.15, 1), 9)) if shag else ()):
-                hb.cubes += chain([5.5 * sx, y, z], [d, (d[0] * 0.7, d[1] - 0.25, d[2])], [L, L * 0.6],
-                                  [(2, 3), (1, 2)], HORN)
+            # the eye (game capture): a small slanted orange slit, deep under a heavy brow ridge
             eb = m.bone(f"eye_{side}", "head", [5.6 * sx, 43, -53])
-            eb.cubes.append(box(*xs(5.4, 6.4, sx), 42, 45, -56, -51, surf("eye", glow="eye")))
+            eb.cubes.append(seg((6.0 * sx, 42.6, -55.5), (6.4 * sx, 44.2, -50.5), 1, 1, surf("eye", glow="eye")))
+            head.cubes.append(seg((6.4 * sx, 45.6, -56.5), (7.0 * sx, 46.6, -49), 2, 2, PLATE))         # brow ridge
             m.bone(f"lid_{side}", f"eye_{side}", [5.6 * sx, 43, -53],
-                   cubes=[box(*xs(5.6, 6.6, sx), 42, 45, -56, -51, surf("lid"), inflate=0.2)])
+                   cubes=[seg((6.2 * sx, 42.6, -55.5), (6.6 * sx, 44.2, -50.5), 2, 2, surf("lid"))])
             continue
         ab = m.bone(f"antenna_{side}", "head", [3 * sx, 46, -54])
         if frenzy:

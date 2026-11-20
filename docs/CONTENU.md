@@ -498,6 +498,10 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   de la corne le long de la tête et du cou jusqu'au bras ; corne sombre à la racine plus basse. Les cornes (Chaos et
   Shagaru) s'arrondissent à la racine puis montent droit avec un léger arrondi vers l'avant ; cornes du Shagaru plus
   sombres. Gore Magala : l'antenne n'apparaît plus du tout au calme, elle sort en se dressant à l'activation.
+- 3.8.2 (Shagaru et côté Shagaru du Chaos, capture du jeu) : une grande corne sombre et épaisse de chaque côté Shagaru,
+  plantée à la place de l'antenne du Gore (les antennes sont devenues des cornes), qui s'arrondit à la racine puis monte
+  droit ; yeux en petite fente orangée inclinée sous la corne, enfoncés sous une arcade ; collerette de pointes dorées
+  derrière la tête et gueule violette du Shagaru.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

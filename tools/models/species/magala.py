@@ -87,7 +87,8 @@ GORE_G_SHINY = dict(GORE_SHINY, **{
 SHAGARU_G = dict(SHAGARU, **{
     "scale": rgb("#DCDDD0"), "scale_dark": rgb("#8E989C"), "scale_light": rgb("#F6F6EC"), "belly": rgb("#ECEBDD"),
     "belly_dark": rgb("#C4C4B2"), "plate": rgb("#CDB878"), "plate_light": rgb("#F4E8B8"),
-    "horn": rgb("#6A5C46"), "horn_tip": rgb("#C8B48A"),                  # Kevin: the antennas became darker horns
+    "horn": rgb("#3E3A30"), "horn_tip": rgb("#77705A"),                  # Kevin: the antennas became dark horns
+    "mouth": rgb("#7A3A8A"), "eye": rgb("#FFB050"), "eye_glow": rgb("#FF9030"), "pupil": rgb("#5A1A0A"),
     "_mscale": True, "_feather": True, "scale_rim": rgb("#FFF4D0"), "net": rgb("#D8B050"), "keel_sheen": rgb("#FFE8A0"),
     "net_glow": rgb("#FFE070"), "scale_glow": rgb("#FFE070"),
     "gfur": rgb("#D6D4AE"), "gfur_tip": rgb("#F6F2DA"), "under": rgb("#E4E6C8"), "under_dark": rgb("#A4A47A"),
@@ -107,6 +108,7 @@ CHAOS_ARM = dict(GORE_G, **{"scale": rgb("#3A3826"), "scale_dark": rgb("#16150F"
 CHAOS_ARM_SHINY = dict(GORE_G_SHINY, **{"scale": rgb("#3A4048"), "scale_dark": rgb("#1C2026"), "scale_rim": rgb("#A8D8F8"),
                                         "spike": rgb("#6A90B8"), "spike_tip": rgb("#D8F0FF"), "_mscale": True})
 CHAOS_R = dict(GORE_G, **{"_goldband": True, "gb": rgb("#D8C060"), "gb_dark": rgb("#8A7430"), "_alt": CHAOS_ARM,
+                          "eye": rgb("#FFB050"), "eye_glow": rgb("#FF9030"), "lid": rgb("#22202E"),
                           "horn": rgb("#3E3630"), "horn_tip": rgb("#5E5248")})
 CHAOS_R_SHINY = dict(GORE_G_SHINY, **{"_goldband": True, "gb": rgb("#C8DCF0"), "gb_dark": rgb("#6A7E96"),
                                       "_alt": CHAOS_ARM_SHINY, "horn": rgb("#3A4048"), "horn_tip": rgb("#98A8B8")})
