@@ -457,6 +457,9 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   les voiles s'étendent sur les côtés et battent. Membres et corps arrondis (sections octogonales), voile écailleuse
   (coutures sombres, violettes en Furie). Technique : la voile est découpée en bandes, chacune tournée entre ses
   deux bords, pour rester continue dans toutes les poses.
+- 3.5.0 (Gore Magala, d'après la vidéo comparative Wilds / Sunbreak de Kevin) : voiles en cape de fourrure
+  duveteuse (mèches de fourrure anthracite à reflets argentés superposées sur l'extérieur), dessous écailleux
+  bleu-gris pâle visible quand elles s'ouvrent ; corps et membres moins cubiques (sections à 12 pans).
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

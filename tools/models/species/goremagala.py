@@ -79,22 +79,25 @@ def web(p0, p1, wdir, width, paint, sunk=0.5):
     return Cube([x - 0.5, y - sunk, z - width / 2], [1, max(1, int(round(L + sunk))), width], paint,
                 rotation=frame_rot(v, wdir), pivot=list(p0))
 
-def rbox(x0, x1, y0, y1, z0, z1, paint, k=0.22):
-    """a rounded box (octagonal section, long along z): a tall narrow core and a wide flat one"""
+def rbox(x0, x1, y0, y1, z0, z1, paint, k=0.3):
+    """a rounded box long along z: three stacked cores (a 12-sided section) instead of one block"""
     w, h = x1 - x0, y1 - y0
     dx, dy = max(1, round(k * w)), max(1, round(k * h))
-    return [M.box(x0 + dx, x1 - dx, y0, y1, z0, z1, paint), M.box(x0, x1, y0 + dy, y1 - dy, z0, z1, paint)]
+    return [M.box(x0 + dx, x1 - dx, y0, y1, z0, z1, paint), M.box(x0, x1, y0 + dy, y1 - dy, z0, z1, paint),
+            M.box(x0 + dx / 2, x1 - dx / 2, y0 + dy / 2, y1 - dy / 2, z0, z1, paint)]
 
-def rboxv(x0, x1, y0, y1, z0, z1, paint, k=0.22):
-    """a rounded box standing upright (octagonal section in x/z)"""
+def rboxv(x0, x1, y0, y1, z0, z1, paint, k=0.3):
+    """a rounded box standing upright (12-sided section in x/z)"""
     w, d = x1 - x0, z1 - z0
     dx, dz = max(1, round(k * w)), max(1, round(k * d))
-    return [M.box(x0 + dx, x1 - dx, y0, y1, z0, z1, paint), M.box(x0, x1, y0, y1, z0 + dz, z1 - dz, paint)]
+    return [M.box(x0 + dx, x1 - dx, y0, y1, z0, z1, paint), M.box(x0, x1, y0, y1, z0 + dz, z1 - dz, paint),
+            M.box(x0 + dx / 2, x1 - dx / 2, y0, y1, z0 + dz / 2, z1 - dz / 2, paint)]
 
 def rseg(p0, p1, w, paint):
-    """a rounded limb segment (octagonal section): two crossed boxes"""
-    w2 = w - 2 * max(1, round(0.2 * w))
-    return [M.seg(p0, p1, w, w2, paint), M.seg(p0, p1, w2, w, paint)]
+    """a rounded limb segment: three crossed boxes (a 12-sided section)"""
+    w2 = w - 2 * max(1, round(0.25 * w))
+    w3 = (w + w2) // 2 if (w + w2) % 2 == 0 else w - 1
+    return [M.seg(p0, p1, w, w2, paint), M.seg(p0, p1, w2, w, paint), M.seg(p0, p1, w3, w3, paint)]
 
 def build(name):
     from modelgen import Model, Cube
@@ -235,6 +238,14 @@ def build(name):
                 p0 = [O[i] + 3 * d[i] for i in range(3)]
                 p1 = [O[i] + L * d[i] for i in range(3)]
                 bone.cubes.append(web(p0, p1, _cross(nrm, d), wdt, mem))
+                nv = [v * sx for v in _norm(nrm)]                          # the outer side (fur), see magala.surf
+                for q in (0.45, 0.78):                                     # fur tufts shingled on the outside
+                    if _h(kk, j * 3 + int(q * 10), 17) < 0.75:
+                        Lq = L * (0.22 + 0.12 * _h(kk, j, int(q * 20)))
+                        s0 = [O[i] + L * q * d[i] + 0.9 * nv[i] for i in range(3)]
+                        tilt = _norm([d[i] + 0.22 * nv[i] for i in range(3)])
+                        s1 = [s0[i] + Lq * tilt[i] for i in range(3)]
+                        bone.cubes.append(web(s0, s1, _cross(nrm, d), max(2, int(round(wdt * 0.6))), FUR))
                 if tatters and _h(kk, j, 9) < 0.6:                         # torn fur tatters past the trailing edge
                     Lt = 2 + 5 * _h(kk, j, 5)
                     off = (_h(kk, j, 7) - 0.5) * wdt * 0.6

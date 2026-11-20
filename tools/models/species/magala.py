@@ -75,11 +75,13 @@ GORE_G = dict(GORE, **{               # Gore Magala only: pink-tipped frenzy hor
     "claw": rgb("#3A1A22"), "claw_tip": rgb("#B4525E"), "keel_sheen": rgb("#5C68C8"),
     "antenna": rgb("#5E2E8A"), "antenna_tip": rgb("#F07AB4"), "scale_rim": rgb("#7484A8"), "net": rgb("#8A4AD0"),
     "net_glow": rgb("#C070FF"), "scale_glow": rgb("#B060FF"),
-    "membrane": rgb("#2E2A3C"), "membrane_dark": rgb("#0E0C14"), "_mscale": True})
+    "membrane": rgb("#2E2A3C"), "membrane_dark": rgb("#0E0C14"), "_mscale": True,
+    "gfur": rgb("#1C1B22"), "gfur_tip": rgb("#62646F"), "under": rgb("#7A8898"), "under_dark": rgb("#3A4452")})
 GORE_G_SHINY = dict(GORE_SHINY, **{
     "claw": rgb("#2A2E34"), "claw_tip": rgb("#C8D4DA"), "keel_sheen": rgb("#6AB0B4"),
     "antenna": rgb("#2A6E74"), "antenna_tip": rgb("#A8FFF0"), "scale_rim": rgb("#7A8890"), "net": rgb("#3A9A9E"),
-    "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0"), "_mscale": True})
+    "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0"), "_mscale": True,
+    "gfur": rgb("#33373D"), "gfur_tip": rgb("#8C9AA2"), "under": rgb("#A8B8C4"), "under_dark": rgb("#56646E")})
 CHAOS = dict(GORE, _R=SHAGARU)
 CHAOS_SHINY = dict(GORE_SHINY, _R=SHAGARU_SHINY)
 PALETTES = {"goremagala": (GORE_G, GORE_G_SHINY),
@@ -192,7 +194,21 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
         if kind == "gmembrane":                                           # Gore: fur cape, net of veins in frenzy
             strand = _h(math.floor((z + x) * 1.4), 5)
             low = max(0.0, min(1.0, (34 - y) / 18))
-            if P.get("_mscale"):                                          # Gore (3.4): a scaly sail, dark seams
+            if P.get("_mscale") and face in ("east", "west"):             # Gore (3.5): fur cape outside, pale scales under
+                outer = (face == "west") == (x > 0)
+                a, b = _ab(face, p)
+                if outer:
+                    fib = _h(math.floor(a * 1.6), math.floor(b * 0.45), 11)  # fibres along the strip
+                    col = mix(P["gfur"], P["gfur_tip"], 0.12 + 0.45 * fib ** 2)
+                    if fr and _h(math.floor(a), math.floor(b / 5), 21) > 0.86:
+                        col = mix(col, P["frenzy"], 0.45)
+                    return col, n * 0.4
+                e, t, sid = _diamond(a, b, 1.8)
+                col = mix(P["under_dark"], P["under"], 0.3 + 0.7 * t)
+                if e:
+                    col = mix(col, P["net"] if fr else P["under_dark"], 0.8 if fr else 0.6)
+                return col, n * 0.3
+            if P.get("_mscale"):                                          # Gore: edges of the strips
                 a, b = _ab(face, p)
                 seam = _net(a, b) < 0.75
                 col = mix(P["membrane_dark"], P["membrane"], 0.6 + 0.4 * strand)
@@ -230,6 +246,13 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
         if kind == "spike":
             t = _along(p, c)
             return mix(P["spike"], P["spike_tip"], t ** 1.3), n * 0.5
+        if kind == "fur" and P.get("_mscale"):
+            t = _along(p, c)
+            fib = _h(math.floor((x + z) * 2.1), math.floor(y * 0.5), 13)
+            col = mix(P["gfur"], P["gfur_tip"], min(1.0, 0.1 + 0.6 * t ** 1.4 + 0.25 * fib))
+            if fr and fib > 0.85:
+                col = mix(col, P["frenzy"], 0.45)
+            return col, n * 0.4
         if kind in ("membrane", "fur"):
             if kind == "membrane" and _vein(y, z):
                 return P["vein"], n * 0.3
