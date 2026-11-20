@@ -232,6 +232,8 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0, al
                 if outer and P.get("_feather"):                       # Shagaru: feather-like scales on both sides
                     e, t, sid = _diamond(a, b, 1.6)
                     col = mix(P["gfur"], P["gfur_tip"], 0.2 + 0.7 * t)
+                    if int(_along(p, c) * 9) % 2:                         # bands across the sail (Sunbreak intro)
+                        col = mix(col, P["under_dark"], 0.3)
                     if e:
                         col = mix(col, P["under_dark"], 0.55)
                     return col, n * 0.3

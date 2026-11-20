@@ -259,15 +259,34 @@ def build(name):
         else:
             fb.cubes += chain([3.5 * sx, 37.5, -58], [(0.05 * sx, -0.7, 0.6), (0.0, -0.4, 1)], [4, 3],
                               [(1, 2), (1, 1)], surf("fang"))
-    # ------------------------------------------------------------------ front legs: tall columns under the chest
+    # ------------------------------------------------------------------ front legs (3.9.0, Kevin: legs redone)
+    # muscular and jointed rather than columns: a heavy rounded shoulder, the upper arm going down and slightly back to
+    # an elbow with a spur, the forearm forward-down to the wrist, a broad hand with four splayed toes and hooked claws
+    def toes(bone, cx, cy, cz, sx, n=4, spread=3.0, L=(4, 4), w=(3, 2)):
+        for k in range(n):
+            off = (k - (n - 1) / 2) * spread
+            d = (0.12 * (k - (n - 1) / 2) * sx, 0.15, -1)
+            bone.cubes += chain([cx + off * sx, cy, cz], [d, (d[0], -0.35, -1)], list(L), [(w[0], w[0]), (w[1], w[1])], SL)
+            tip = [cx + off * sx + d[0] * sum(L), cy + 0.15 * L[0] - 0.35 * L[1], cz - sum(L)]
+            bone.cubes += chain(tip, [(d[0], -0.5, -1), (0, -1, -0.35)], [3, 2], [(2, 2), (1, 1)], M.CLAW)
+        bone.cubes += chain([cx + 4 * sx, cy + 2, cz + 9], [(0.4 * sx, -0.4, 0.6)], [3], [(1, 2)], M.CLAW)   # dewclaw
     for sx, side in ((1, "left"), (-1, "right")):
-        A0, A1, A2 = mx((13, 36, -21), sx), mx((15, 17, -24), sx), mx((16, 4, -22), sx)
-        m.bone(f"arm_{side}", "chest", list(A0), cubes=[*rseg(A0, A1, 9, SL), *rboxv(*xs(7, 18, sx), 26, 42, -28, -14, SC)])
-        m.bone(f"arm_{side}_low", f"arm_{side}", list(A1), cubes=[
-            *rseg(A1, A2, 7, SL), box(*xs(11, 17, sx), 14, 20, -28, -22, PLATE)])          # knee plate
-        foot = m.bone(f"arm_{side}_foot", f"arm_{side}_low", list(A2), cubes=rbox(*xs(11, 21, sx), 0, 5, -32, -18, SL))
-        for dx in (-3, 0, 3):
-            foot.cubes += chain([(16 + dx) * sx, 2.5, -32], [(0, 0.2, -1), (0, -0.7, -1)], [4, 3], [(2, 2), (1, 1)], M.CLAW)
+        A0, A1, A2 = mx((13, 37, -20), sx), mx((14, 20, -16), sx), mx((15, 6, -25), sx)
+        up = m.bone(f"arm_{side}", "chest", list(A0), cubes=[
+            *rboxv(*xs(7, 19, sx), 27, 43, -28, -12, SC),                 # the shoulder's mass
+            *rseg(A0, A1, 10, SL),
+            box(*xs(17, 20, sx), 24, 38, -24, -14, PLATE)])               # an armour plate on the outside of the shoulder
+        for k, y in enumerate((38, 33, 28)):
+            up.cubes.append(shingle(18 * sx, y, -18 + k, 4, 6, sx, tilt=10, roll=80))
+        low = m.bone(f"arm_{side}_low", f"arm_{side}", list(A1), cubes=[*rseg(A1, A2, 8, SL)])
+        low.cubes += chain([A1[0], A1[1] + 1, A1[2] + 3.5], [(0.1 * sx, 0.2, 1), (0.05 * sx, -0.3, 1)], [4, 3],
+                           [(2, 3), (1, 2)], SPIKE)                       # the elbow spur
+        for q in (0.3, 0.55, 0.8):                                         # spiky scales down the back of the forearm
+            P0 = [A1[i] + (A2[i] - A1[i]) * q for i in range(3)]
+            low.cubes += chain([P0[0], P0[1], P0[2] + 3.5], [(0.2 * sx, -0.2, 1)], [3], [(1, 2)], SPIKE)
+        foot = m.bone(f"arm_{side}_foot", f"arm_{side}_low", list(A2), cubes=[
+            *rbox(*xs(10, 20, sx), 0, 7, -30, -19, SL)])
+        toes(foot, 15 * sx, 4, -30, sx)
     # ------------------------------------------------------------------ the wings: webs folded on the shoulders
     for sx, side in ((1, "left"), (-1, "right")):
         S, E, W = mx(S_, sx), mx(E_, sx), mx(W_, sx)
@@ -384,16 +403,20 @@ def build(name):
         for jj in range(UPPER_SUBS):
             sector(m.bone(f"wing_{side}_a{jj}", "chest", list(S)), b0, UPPER_BODY_LEN, a0, UP_LEN - 3, 7,
                    jj / UPPER_SUBS, (jj + 1) / UPPER_SUBS, O=S)
-    # ------------------------------------------------------------------ hind legs: tall columns
+    # ------------------------------------------------------------------ hind legs (3.9.0): a big rounded thigh, the
+    # knee forward, the shin back to a spurred hock, a long metatarsus forward-down, a clawed foot
     for sx, side in ((1, "left"), (-1, "right")):
-        m.bone(f"leg_{side}", "torso", list(mx((11, 38, 20), sx)), cubes=rbox(*xs(5, 17, sx), 20, 44, 10, 30, SC))
-        K, Hk = mx((11, 20, 22), sx), mx((11, 7, 26), sx)
-        m.bone(f"leg_{side}_shin", f"leg_{side}", list(K), cubes=rseg(K, Hk, 8, SL))
-        Ft = mx((11, 2, 22), sx)
+        Hp, K, Hk, Ft = mx((11, 39, 18), sx), mx((12.5, 24, 10), sx), mx((12.5, 13, 27), sx), mx((12.5, 4, 20), sx)
+        thigh = m.bone(f"leg_{side}", "torso", list(Hp), cubes=[
+            *rbox(*xs(4, 18, sx), 26, 45, 6, 30, SC), *rseg(Hp, K, 11, SL)])
+        for k, y in enumerate((42, 36, 30)):
+            thigh.cubes.append(shingle(17.5 * sx, y, 14 + 3 * k, 5, 7, sx, tilt=10, roll=80))
+        shin = m.bone(f"leg_{side}_shin", f"leg_{side}", list(K), cubes=rseg(K, Hk, 8, SL))
+        shin.cubes += chain([Hk[0], Hk[1] + 1, Hk[2] + 2.5], [(0.1 * sx, 0.3, 1), (0.05 * sx, -0.2, 1)], [4, 3],
+                            [(2, 3), (1, 2)], SPIKE)                      # the hock spur
         foot = m.bone(f"leg_{side}_foot", f"leg_{side}_shin", list(Hk), cubes=[
-            *rseg(Hk, Ft, 6, SL), *rbox(*xs(6, 16, sx), 0, 5, 12, 28, SL)])
-        for dx in (-3, 0, 3):
-            foot.cubes += chain([(11 + dx) * sx, 2.5, 12], [(0, 0.2, -1), (0, -0.7, -1)], [4, 3], [(2, 2), (1, 1)], M.CLAW)
+            *rseg(Hk, Ft, 6, SL), *rbox(*xs(7, 18, sx), 0, 6, 14, 24, SL)])
+        toes(foot, 12.5 * sx, 3.5, 14, sx, L=(3, 3))
     # ------------------------------------------------------------------ the long tail: spikes on the sides, top and below
     prev, z, y = "torso", 28, 43
     for k, (L, w) in enumerate([(18, 13), (18, 10), (18, 7), (18, 4)]):
@@ -610,6 +633,10 @@ WING_POSES = {
     # flight (Kevin: it does not unfold its arms, only the sails stretch out): the arm stays folded on the shoulder,
     # the sail stretched sideways (the rest layout) beats up and down
     # lying (sleep, faint): the arm folded, the sail draped out over the ground on each side like a blanket
+    # Shagaru's Bright Eclipse (Sunbreak intro): hanging upright in the air, the wing hands raised above its head, the
+    # sails spread wide as a star facing the player (in the body's frame: hands far forward, sails in its x-z plane)
+    "eclipse": {"wrist": (36, 62, -64), "pole": (0.3, 1, 0.2), "claws": (0.2, 0.3, -1),
+                "fingers": [(0.0, 0.02, 1), (0.42, 0.02, 0.9), (0.77, 0.0, 0.64), (0.97, -0.02, 0.25)]},
     "lie": {"keep_arm": True, "fingers": [[t[i] - W_[i] for i in range(3)] for t in
                                          [(6, 62, 50), (26, 52, 58), (40, 44, 50), (50, 38, 34)]]},
     "fly_up": {"keep_arm": True, "fingers": [_rotz(d, 26) for d in REST_DIRS]},
@@ -851,6 +878,29 @@ def anims(name, m):
          "chest": {"rotation": track(lambda t: [-4 * o(t), yaw(t) * 0.1, 0], L, 48)},
          "body": {"position": track(lambda t: [0, 0.5 * o(t), 2 * o(t)], L, 48)}})
     S["special"] = anim(L, sp)
+    if name == "shagarumagala":
+        # special: Bright Eclipse (Sunbreak intro, 2.6 s): it springs up into the air and hangs upright, belly to the
+        # foe, the wing hands raised over its head and the sails spread as a great star, roars down, then lands
+        L = 2.6
+        rise = seq({0: 0, .25: 0, .75: 1, 1.95: 1, 2.45: 0, 2.6: 0})
+        crouch = seq({0: 0, .2: 1, .35: 0, 2.45: 0, 2.52: 0.6, 2.6: 0})
+        roar = seq({0: 0, .8: 0, 1.0: 1, 1.8: 1, 2.0: 0, 2.6: 0})
+        S["special"] = anim(L, merge(
+            ripple(wings(lambda t: [("eclipse", rise(t))], L, 32), L, amp=2, period=0.6),
+            flex(lambda t, j: rise(t) * (4 + 2 * math.sin(t * 9 - j)), L, 32),
+            {"magala": {"position": track(lambda t: [0, 64 * rise(t) - 3 * crouch(t), 6 * rise(t)], L, 32),
+                        "rotation": track(lambda t: [-72 * rise(t), 0, 0], L, 32)}},
+            {"neck1": {"rotation": track(lambda t: [44 * rise(t) - 10 * roar(t), 0, 0], L, 32)},
+             "neck2": {"rotation": track(lambda t: [14 * rise(t), 0, 0], L, 32)},
+             "head": {"rotation": track(lambda t: [12 * rise(t) - 6 * roar(t), 3 * math.sin(t * 40) * roar(t), 0], L, 52)},
+             "jaw": {"rotation": track(lambda t: [2 + 40 * roar(t), 0, 0], L, 32)}},
+            {f"arm_{s}": {"rotation": track(lambda t: [30 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            {f"arm_{s}_low": {"rotation": track(lambda t: [-40 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            {f"leg_{s}": {"rotation": track(lambda t: [30 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            {f"leg_{s}_shin": {"rotation": track(lambda t: [20 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            {f"leg_{s}_foot": {"rotation": track(lambda t: [40 * rise(t), 0, 0], L, 32)} for s, sx in SIDES},
+            {f"tail{k}": {"rotation": track(lambda t, k=k: [(30 if k == 1 else 22) * rise(t), 6 * math.sin(t * 3 - k) * rise(t), 0],
+                                            L, 32)} for k in range(1, 5)}))                # the tail curls back under it
 
     # status (1.3 s): half opens its wings and shakes them to scatter its scales, head high
     L = 1.3

@@ -507,6 +507,12 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   plaques sous la mâchoire, longue moustache pâle de chaque côté ; yeux orangés juste sous les cornes.
 - 3.8.4 (sculpture de la tête du Shagaru) : masque central qui descend d'entre les cornes jusqu'à un bec crochu, yeux
   ronds orange-rouge en haut des côtés de la face sous l'arcade, couronne de grosses pointes sombres derrière les cornes.
+- 3.9.0 (vidéo d'intro du Shagaru dans Sunbreak, et pattes revues pour les trois) : pattes articulées et musclées au lieu
+  de colonnes : épaule massive avec plaque d'armure, coude avec ergot, avant-bras qui avance vers le poignet, écailles
+  à pointes sur l'arrière, main large à quatre doigts écartés et griffes crochues (plus un ergot) ; cuisse ronde,
+  genou en avant, tibia vers un jarret à éperon, long métatarse, pied griffu. Shagaru : attaque spéciale « Éclipse
+  Éclatante » (il s'élève et plane à la verticale, ventre face à l'adversaire, mains des ailes levées au-dessus de
+  la tête, voiles déployées en grande étoile, rugit puis se repose), voiles à bandes d'écailles.
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps
