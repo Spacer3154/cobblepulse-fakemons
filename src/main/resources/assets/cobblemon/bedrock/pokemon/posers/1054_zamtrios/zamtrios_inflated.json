@@ -12,6 +12,25 @@
     0
   ],
   "rootBone": "zamtrios",
+  "firstPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.5,
+      0
+    ]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [
+      0,
+      1.6,
+      4.5
+    ],
+    "seat_1_reverse": [
+      0,
+      1.6,
+      4.5
+    ]
+  },
   "animations": {
     "cry": "q.bedrock_stateful('zamtrios_inflated', 'cry')",
     "faint": "q.bedrock_primary('zamtrios_inflated', 'faint', q.curve('one'))",
@@ -38,6 +57,7 @@
         "PROFILE"
       ],
       "isBattle": false,
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
         "q.bedrock('zamtrios_inflated', 'ground_idle')"
@@ -47,6 +67,7 @@
       "poseTypes": [
         "WALK"
       ],
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
         "q.bedrock('zamtrios_inflated', 'ground_walk')"
@@ -56,6 +77,7 @@
       "poseTypes": [
         "FLOAT"
       ],
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
         "q.bedrock('zamtrios_inflated', 'water_idle')"
@@ -65,8 +87,58 @@
       "poseTypes": [
         "SWIM"
       ],
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
+        "q.bedrock('zamtrios_inflated', 'water_swim')"
+      ]
+    },
+    "mount_idle": {
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
+      "isBattle": false,
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios_inflated', 'ground_idle')"
+      ]
+    },
+    "mount_run": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "condition": "q.has_entity && q.is_ridden && q.is_sprinting",
+      "animations": [
+        "q.bedrock('zamtrios_inflated', 'ground_walk')"
+      ]
+    },
+    "mount_walk": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('zamtrios_inflated', 'ground_walk')"
+      ]
+    },
+    "mount_float": {
+      "poseTypes": [
+        "FLOAT"
+      ],
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
+        "q.bedrock('zamtrios_inflated', 'water_idle')"
+      ]
+    },
+    "mount_swim": {
+      "poseTypes": [
+        "SWIM"
+      ],
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
         "q.bedrock('zamtrios_inflated', 'water_swim')"
       ]
     },

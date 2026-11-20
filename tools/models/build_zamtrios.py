@@ -310,6 +310,9 @@ def poser(group, geo_bones):
     return {
         "portraitScale": s, "portraitTranslation": [tx, ty, 0], "profileScale": qs, "profileTranslation": [qx, qy, 0],
         "rootBone": "zamtrios",
+        # Kevin (3.10.1): a mount (land and water)
+        "firstPersonCameraOffset": {"seat_1": [0, 0.5, 0]},
+        "thirdPersonCameraOffset": {"seat_1": [0, 1.6, 4.5], "seat_1_reverse": [0, 1.6, 4.5]},
         "animations": {"cry": f"q.bedrock_stateful('{group}', 'cry')",
                        "faint": f"q.bedrock_primary('{group}', 'faint', q.curve('one'))",
                        "physical": prim("physical"), "special": prim("special"), "status": prim("status")},
@@ -317,10 +320,24 @@ def poser(group, geo_bones):
             "battle-standing": {"poseTypes": ["STAND"], "isBattle": True,
                                 "animations": ["q.look('head')", q("battle_idle")]},
             "standing": {"poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"], "isBattle": False,
-                         "animations": ["q.look('head')", q("ground_idle")]},
-            "walking": {"poseTypes": ["WALK"], "animations": ["q.look('head')", q("ground_walk")]},
-            "floating": {"poseTypes": ["FLOAT"], "animations": ["q.look('head')", q("water_idle")]},
-            "swimming": {"poseTypes": ["SWIM"], "animations": ["q.look('head')", q("water_swim")]},
+                         "condition": "!q.is_ridden", "animations": ["q.look('head')", q("ground_idle")]},
+            "walking": {"poseTypes": ["WALK"], "condition": "!q.is_ridden",
+                        "animations": ["q.look('head')", q("ground_walk")]},
+            "floating": {"poseTypes": ["FLOAT"], "condition": "!q.is_ridden",
+                         "animations": ["q.look('head')", q("water_idle")]},
+            "swimming": {"poseTypes": ["SWIM"], "condition": "!q.is_ridden",
+                         "animations": ["q.look('head')", q("water_swim")]},
+            # ridden: it runs on land when its rider sprints, swims otherwise as usual
+            "mount_idle": {"poseTypes": ["STAND", "NONE"], "isBattle": False, "condition": "q.has_entity && q.is_ridden",
+                           "animations": ["q.look('head')", q("ground_idle")]},
+            "mount_run": {"poseTypes": ["WALK"], "condition": "q.has_entity && q.is_ridden && q.is_sprinting",
+                          "animations": [q("ground_walk" if group == "zamtrios_inflated" else "ground_run")]},
+            "mount_walk": {"poseTypes": ["WALK"], "condition": "q.has_entity && q.is_ridden",
+                           "animations": ["q.look('head')", q("ground_walk")]},
+            "mount_float": {"poseTypes": ["FLOAT"], "condition": "q.has_entity && q.is_ridden",
+                            "animations": [q("water_idle")]},
+            "mount_swim": {"poseTypes": ["SWIM"], "condition": "q.has_entity && q.is_ridden",
+                           "animations": [q("water_swim")]},
             "sleep": {"poseTypes": ["SLEEP"], "animations": [q("sleep")]}}}
 
 tops, layers = {}, {}

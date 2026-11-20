@@ -231,6 +231,22 @@
      ]
     },
     {
+     "name": "locator_seat_1",
+     "pivot": [
+      0,
+      59,
+      -4
+     ],
+     "parent": "body",
+     "locators": {
+      "seat_1": [
+       0,
+       59,
+       -4
+      ]
+     }
+    },
+    {
      "name": "mane",
      "pivot": [
       0,

@@ -29,6 +29,30 @@ def tops(sid):
     return json.load(open(os.path.join(HERE, f"{sid}_tops.json")))
 
 
+# mounts (Kevin, 3.10.1): the three Magalas (land and air) and Zamtrios (land and water); seats are the models'
+# seat_1 locators, sounds as Cobblemon's own mounts (wind and saddle in the air, water at the surface and under it)
+def _snd(loc, players, **extra):
+    d = {"muffleEnabled": True, "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+         "playForNonPassengers": not players, "playForPassengers": players,
+         "soundLocation": loc, "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"}
+    d.update(extra)
+    return d
+AIR_SOUNDS = [_snd("cobblemon:ride.loop.wind.stereo", True), _snd("cobblemon:ride.loop.wind.mono", False),
+              _snd("cobblemon:ride.loop.leather.stereo", True), _snd("cobblemon:ride.loop.leather.mono", False)]
+WATER_SOUNDS = [_snd("cobblemon:ride.loop.water_surface.stereo", True),
+                _snd("cobblemon:ride.loop.water_surface.mono", False, submerged=False),
+                _snd("cobblemon:ride.loop.underwater.stereo", True, submerged=True)]
+def _stats(acc, jump, skill, speed, stamina):
+    return {"ACCELERATION": acc, "JUMP": jump, "SKILL": skill, "SPEED": speed, "STAMINA": stamina}
+def riding(land, air=None, water=None):
+    b = {"LAND": {"key": "cobblemon:land/horse", "rideSounds": [], "stats": _stats(*land)}}
+    if air:
+        b["AIR"] = {"key": "cobblemon:air/bird", "rideSounds": AIR_SOUNDS, "stats": _stats(*air)}
+    if water:
+        b["LIQUID"] = {"key": "cobblemon:liquid/submarine", "rideSounds": WATER_SOUNDS, "hitboxBreachPercentage": 0.75,
+                       "stats": _stats(*water)}
+    return {"behaviours": b, "seats": [{"locator": "seat_1"}]}
+
 def scale_for(height_dm, top_px):
     return round(height_dm / 10 / (top_px / 16), 2)
 
@@ -402,6 +426,7 @@ species_file("zamtrios", {
                    "swim": {"canSwimInWater": True, "canBreatheUnderwater": True, "canSwimInLava": False,
                             "swimSpeed": 0.42}},
         "combat": {"willDefendOwner": True, "willDefendSelf": True, "willFlee": False}},
+    "riding": riding(("25-45", "20-35", "30-50", "25-40", "50-75"), water=("50-75", "40-60", "50-75", "55-80", "60-85")),
     "drops": {"amount": 2, "entries": [
         {"item": "minecraft:packed_ice", "quantityRange": "1-4"}, {"item": "minecraft:cod", "quantityRange": "0-2"},
         {"item": "cobblemon:never_melt_ice", "percentage": 15.0}]},
@@ -536,6 +561,7 @@ species_file("goremagala", {
     "shoulderMountable": False, "baseScale": GM_SCALE,
     "hitbox": {"width": 2.2, "height": round(t["top_base"] / 16, 2), "fixed": False},
     "behaviour": magala_behaviour("day", True),
+    "riding": riding(("40-60", "40-60", "30-55", "45-65", "55-80"), air=("55-80", "50-75", "50-80", "65-90", "60-90")),
     "drops": {"amount": 3, "entries": [
         {"item": "minecraft:black_dye", "quantityRange": "1-3"}, {"item": "minecraft:phantom_membrane", "quantityRange": "0-2"},
         {"item": "minecraft:bone", "quantityRange": "0-2"}, {"item": "cobblemon:spell_tag", "percentage": 6.0},
@@ -622,6 +648,7 @@ species_file("chaoticgoremagala", {
     "shoulderMountable": False, "baseScale": scale_for(CG_HEIGHT, t["top_base"]),
     "hitbox": {"width": 2.3, "height": round(t["top_base"] / 16, 2), "fixed": False},
     "behaviour": magala_behaviour("day", False),
+    "riding": riding(("45-65", "45-65", "25-50", "50-70", "55-80"), air=("65-90", "55-80", "45-75", "70-95", "60-90")),
     "drops": {"amount": 3, "entries": [
         {"item": "minecraft:black_dye", "quantityRange": "1-2"}, {"item": "minecraft:gold_nugget", "quantityRange": "1-3"},
         {"item": "minecraft:phantom_membrane", "quantityRange": "0-2"}, {"item": "cobblemon:dragon_fang", "percentage": 8.0},
@@ -652,6 +679,7 @@ species_file("shagarumagala", {
     "shoulderMountable": False, "baseScale": scale_for(SM_HEIGHT, t["top_base"]),
     "hitbox": {"width": 2.3, "height": round(t["top_base"] / 16, 2), "fixed": False},
     "behaviour": magala_behaviour("night", True),
+    "riding": riding(("45-65", "45-65", "40-65", "45-65", "60-85"), air=("60-85", "55-80", "60-90", "75-100", "70-100")),
     "lightingData": {"lightLevel": 9, "liquidGlowMode": "LAND"},
     "drops": {"amount": 3, "entries": [
         {"item": "minecraft:gold_nugget", "quantityRange": "2-5"}, {"item": "minecraft:glowstone_dust", "quantityRange": "1-3"},

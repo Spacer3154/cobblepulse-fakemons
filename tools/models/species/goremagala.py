@@ -124,6 +124,9 @@ def build(name):
         *rbox(-14, 14, 44, 56, -26, -12, SC)])                               # shoulder hump (wing roots)
     m.bone("torso", "body", [0, 40, 12], cubes=[
         *rbox(-10, 10, 30, 52, -7, 30, gs(BELLY)), sbox(7, 52, 55, -5, 26, SC)])
+    # Kevin (3.10.1): a mount; the rider sits on the back just behind the shoulder hump, between the folded wings
+    SEAT = (0, 59, -4)
+    m.bone("locator_seat_1", "body", list(SEAT), locators={"seat_1": list(SEAT)})
     def btop(z):
         return 57 if z < -6 else 55 if z < 26 else 52
     mane = m.bone("mane", "body", [0, 56, -10])                             # plates down the spine, fur mane
@@ -1072,6 +1075,7 @@ def anims(name, m):
         return anim(T, d, loop=True)
     S["air_idle"] = fly(1.6, 4, 1.5)
     S["air_fly"] = fly(1.0, 16, 2.5)
+    S["mount_air_idle"] = fly(1.6, 4, 1.5)                # ridden: a level hover (3.10.1)
     if name == "shagarumagala":
         # air_idle (Kevin, 3.10: the official render's pose): hovering upright, belly to the foe, the wing hands raised
         # over its head and the sails spread behind it as a great star; the front legs hang folded, the hind legs and
@@ -1133,13 +1137,28 @@ def poser(name, group):
             "animations": {"cry": f"q.bedrock_stateful('{group}', 'cry')",
                            "faint": f"q.bedrock_primary('{group}', 'faint', q.curve('one'))",
                            "physical": prim("physical"), "special": prim("special"), "status": prim("status")},
+            # Kevin (3.10.1): a mount (land and air); camera well back, it is big
+            "firstPersonCameraOffset": {"seat_1": [0, 0.5, 0]},
+            "thirdPersonCameraOffset": {"seat_1": [0, 2.2, 7.5], "seat_1_reverse": [0, 2.2, 7.5]},
             "poses": {
                 "battle-standing": {"poseTypes": ["STAND"], "isBattle": True,
                                     "animations": ["q.look('head')", q("battle_idle")]},
-                "standing": {"poseTypes": ["STAND", "NONE", "FLOAT"], "isBattle": False,
+                "standing": {"poseTypes": ["STAND", "NONE", "FLOAT"], "isBattle": False, "condition": "!q.is_ridden",
                              "animations": ["q.look('head')", q("ground_idle")]},
                 "portrait": {"poseTypes": ["PORTRAIT", "PROFILE"], "animations": [q("portrait_idle")]},
-                "walking": {"poseTypes": ["WALK", "SWIM"], "animations": ["q.look('head')", q("ground_walk")]},
-                "hovering": {"poseTypes": ["HOVER"], "animations": ["q.look('head')", q("air_idle")]},
-                "flying": {"poseTypes": ["FLY"], "animations": ["q.look('head')", q("air_fly")]},
+                "walking": {"poseTypes": ["WALK", "SWIM"], "condition": "!q.is_ridden",
+                            "animations": ["q.look('head')", q("ground_walk")]},
+                "hovering": {"poseTypes": ["HOVER"], "condition": "!q.is_ridden",
+                             "animations": ["q.look('head')", q("air_idle")]},
+                "flying": {"poseTypes": ["FLY"], "condition": "!q.is_ridden", "animations": ["q.look('head')", q("air_fly")]},
+                # ridden: the head follows the rider's view a little, the hover stays level (Shagaru's upright star
+                # hover would stand the rider on end)
+                "mount_idle": {"poseTypes": ["STAND", "NONE", "FLOAT"], "isBattle": False,
+                               "condition": "q.has_entity && q.is_ridden && !q.in_air",
+                               "animations": ["q.look('head')", q("ground_idle")]},
+                "mount_walk": {"poseTypes": ["WALK", "SWIM"], "condition": "q.has_entity && q.is_ridden",
+                               "animations": ["q.look('head')", q("ground_walk")]},
+                "mount_hovering": {"poseTypes": ["HOVER"], "condition": "q.has_entity && q.is_ridden",
+                                   "animations": ["q.look('head')", q("mount_air_idle")]},
+                "mount_fly": {"poseTypes": ["FLY"], "condition": "q.has_entity && q.is_ridden", "animations": [q("air_fly")]},
                 "sleep": {"poseTypes": ["SLEEP"], "animations": [q("sleep")]}}}

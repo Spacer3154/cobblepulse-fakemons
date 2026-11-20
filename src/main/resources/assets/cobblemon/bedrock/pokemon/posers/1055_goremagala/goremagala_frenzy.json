@@ -5,10 +5,10 @@
     1.59,
     0
   ],
-  "profileScale": 0.11,
+  "profileScale": 0.19,
   "profileTranslation": [
-    -0.03,
-    1.57,
+    0.16,
+    1.46,
     0
   ],
   "rootBone": "magala",
@@ -18,6 +18,25 @@
     "physical": "q.bedrock_primary('goremagala_frenzy', 'physical', q.curve('symmetrical_wide'))",
     "special": "q.bedrock_primary('goremagala_frenzy', 'special', q.curve('symmetrical_wide'))",
     "status": "q.bedrock_primary('goremagala_frenzy', 'status', q.curve('symmetrical_wide'))"
+  },
+  "firstPersonCameraOffset": {
+    "seat_1": [
+      0,
+      0.5,
+      0
+    ]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [
+      0,
+      2.2,
+      7.5
+    ],
+    "seat_1_reverse": [
+      0,
+      2.2,
+      7.5
+    ]
   },
   "poses": {
     "battle-standing": {
@@ -37,6 +56,7 @@
         "FLOAT"
       ],
       "isBattle": false,
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
         "q.bedrock('goremagala_frenzy', 'ground_idle')"
@@ -56,6 +76,7 @@
         "WALK",
         "SWIM"
       ],
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
         "q.bedrock('goremagala_frenzy', 'ground_walk')"
@@ -65,6 +86,7 @@
       "poseTypes": [
         "HOVER"
       ],
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
         "q.bedrock('goremagala_frenzy', 'air_idle')"
@@ -74,8 +96,52 @@
       "poseTypes": [
         "FLY"
       ],
+      "condition": "!q.is_ridden",
       "animations": [
         "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'air_fly')"
+      ]
+    },
+    "mount_idle": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "FLOAT"
+      ],
+      "isBattle": false,
+      "condition": "q.has_entity && q.is_ridden && !q.in_air",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'ground_idle')"
+      ]
+    },
+    "mount_walk": {
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'ground_walk')"
+      ]
+    },
+    "mount_hovering": {
+      "poseTypes": [
+        "HOVER"
+      ],
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('goremagala_frenzy', 'mount_air_idle')"
+      ]
+    },
+    "mount_fly": {
+      "poseTypes": [
+        "FLY"
+      ],
+      "condition": "q.has_entity && q.is_ridden",
+      "animations": [
         "q.bedrock('goremagala_frenzy', 'air_fly')"
       ]
     },

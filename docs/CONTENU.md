@@ -396,6 +396,9 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   Animations revues avec un sol opaque : les pattes arrière et la queue ne passent plus sous terre pendant la
   morsure et le jet de glace (la tête se cabre au lieu du corps, la queue se lève), le plaquage de la forme Gonflée
   bascule moins vers l'avant.
+- 3.10.1 : **monture** (Kevin). Une place (`seat_1`) sur la plaque des épaules, juste devant la nageoire dorsale (dans
+  les trois modèles : normal, armure, gonflé). Au sol `cobblemon:land/horse` (lent, endurant ; il court quand le
+  cavalier sprinte), dans l'eau `cobblemon:liquid/submarine` (rapide et endurant, sons d'eau officiels).
 
 ## Gore Magala (n° 1055, Ténèbres / Dragon, légendaire)
 - 4,2 m, 230 kg, total 580 (PV 95, Att 115, Déf 85, Att Spé 115, Déf Spé 85, Vit 85), +1 Att +1 Att Spé. Talents
@@ -524,6 +527,13 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   tête et crache une boule de lumière, puis secoue ses voiles), gueule entrouverte qui siffle en combat, vol sur place
   dressé, mains levées au-dessus de la tête et voiles en étoile (pose du rendu officiel) ; Éclipse Éclatante : pattes
   avant plus basses, un peu repliées. Shiny : les mêmes écailles lisses, en platine.
+- 3.10.1 (Kevin) : les trois sont des **montures** (au sol `cobblemon:land/horse`, en vol `cobblemon:air/bird` avec
+  les sons de vent officiels), une place (`seat_1`) sur le dos juste derrière la bosse des épaules, entre les ailes
+  repliées ; caméra reculée (ils sont grands). Monté, il plane à l'horizontale (le vol sur place dressé du Shagaru
+  mettrait le cavalier debout). Statistiques : Gore équilibré, Chaos le plus rapide à l'accélération, Shagaru le
+  meilleur en vol (vitesse et endurance). Correctif : dans le résumé, le Pokédex et le wiki, les trois paraissaient
+  minuscules et décalés (le cadrage était calculé sur les ailes déployées du modèle au repos) ; il est maintenant
+  calculé sur la pose du portrait, ailes repliées (près de deux fois plus grands).
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

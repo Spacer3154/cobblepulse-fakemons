@@ -46,6 +46,8 @@ def lift(m, dy=LIFT, keep=("zamtrios", "specialfx1", "balloon")):
         if b.name in keep:
             continue
         b.pivot[1] += dy
+        if b.locators:                                    # the rider's seat rides up with it
+            b.locators = {k: [v[0], v[1] + dy, v[2]] for k, v in b.locators.items()}
         for c in b.cubes:
             c.origin[1] += dy
             if c.pivot is not None:
@@ -508,6 +510,9 @@ def build(form):
                    sbox(10, 54, 57, 3, 15, SKIN_TOP), sbox(8, 47, 49, 17, 27, SKIN_TOP),
                    sbox(17, 24, 48, -12, 0, SKIN), sbox(16, 24, 46, 4, 14, SKIN)]          # flanks bulging
     body.cubes += dorsal()
+    # Kevin (3.10.1): a mount (land and water); the rider sits on the shoulder plate just in front of the dorsal fin
+    SEAT = (0, 60, -14)
+    m.bone("locator_seat_1", "body", list(SEAT), locators={"seat_1": list(SEAT)})
     # crest teeth along the spine (before and after the fin), two rows of large scale plates on each side
     def btop(z):
         return 55 if z < -14 else 60 if z < 2 else 57 if z < 16 else 49 if z < 28 else 41

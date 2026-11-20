@@ -125,19 +125,29 @@ def auto_frame(bones, fill=16.0, below=1.5, names=("head", "jaw")):
     ty = round((FRAME / 2 - below + 2.22) / 13 - 1.5 * ps + ps * cy / 16, 2)
     return ps, tx, ty
 
-def auto_profile(bones, height_fill=21.0, width_fill=58.0):
+def auto_profile(bones, height_fill=21.0, width_fill=58.0, pose=None):
     """profileScale/Translation: feet on the same line as Cobblemon's own models (ty + 1.5*ps = 1.74), model scaled
-    to fit the 66 px summary box, centred horizontally."""
+    to fit the 66 px summary box, centred horizontally. pose: the profile animation's pose ({bone: {rotation,
+    position, scale}}, render3d.pose_at) when the geometry's rest layout differs from it (the Magala line's wings
+    rest stretched out but the profile shows them folded)."""
     set_mode("profile")
     pts = []
-    M = mats(bones)
+    if pose is not None:
+        from render3d import bone_mats
+        M = bone_mats(bones, pose)
+    else:
+        M = mats(bones)
     for b in bones:
         for c in b.get("cubes", []):
             o, s_ = c["origin"], c["size"]
+            cm = M[b["name"]]
+            if pose is not None and c.get("rotation"):
+                pv = c.get("pivot", b.get("pivot", [0, 0, 0]))
+                cm = compose(cm, translate(*pv), rot_m(c["rotation"]), translate(*[-q for q in pv]))
             for dx in (0, s_[0]):
                 for dy in (0, s_[1]):
                     for dz in (0, s_[2]):
-                        pts.append(apply(M[b["name"]], (o[0] + dx, o[1] + dy, o[2] + dz)))
+                        pts.append(apply(cm, (o[0] + dx, o[1] + dy, o[2] + dz)))
     v = [view(p) for p in pts]
     h = max(p[1] for p in pts)
     wx = max(q[0] for q in v) - min(q[0] for q in v)

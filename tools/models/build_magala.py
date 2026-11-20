@@ -30,7 +30,8 @@ def emit(name):
     bones = geo["minecraft:geometry"][0]["bones"]
     portrait_sim.set_mode("portrait")
     s, tx, ty = portrait_sim.auto_frame(bones, fill=11.0, below=0.5, names=mod.FRAME_BONES)
-    qs, qx, qy = portrait_sim.auto_profile(bones)
+    from render3d import pose_at                       # the profile (summary, Pokédex) shows portrait_idle: wings
+    qs, qx, qy = portrait_sim.auto_profile(bones, pose=pose_at(an["portrait_idle"], 0.0))   # folded, not the rest fan
     ps = dict({"portraitScale": s, "portraitTranslation": [tx, ty, 0], "profileScale": qs,
                "profileTranslation": [qx, qy, 0]}, **ps)
     anim = {"format_version": "1.8.0", "animations": clean_molang({f"animation.{name}.{k}": v for k, v in an.items()})}
