@@ -484,6 +484,13 @@ textures en 1024x512 / 256x256 au lieu de 64/128 (le modèle fourni fait plus de
   visible dans Blockbench et en jeu).
 - 3.7.1 (Gore Magala) : les voiles en mur ne se séparent plus du corps : leur bord intérieur va du poignet au haut du
   dos, et elles se tendent du dos jusqu'au grand os en diagonale (combat, attaque physique, souffle).
+- 3.8.0 (Gore Magala du Chaos et Shagaru Magala, d'après les images de Kevin) : refaits sur le modèle du Gore Magala
+  (même corps, membres arrondis, ailes à voiles, grand os souple, mêmes animations : mur de voiles en combat, vol,
+  K.O., sommeil). Shagaru : corps blanc-gris à touches dorées, couronne de cornes (grand croissant + deux cornes
+  rabattues), deux yeux (clignent, se ferment au sommeil et au K.O.), voiles en étoile couvertes d'écailles plumeuses
+  vert-crème, bords hérissés de pointes dorées, griffes violet-rose. Chaos : moitié gauche Gore en Furie (fourrure
+  noire, lueur violette, antenne magenta dressée, croc ouvert), moitié droite Shagaru (corne en croissant, œil, voile
+  dorée en étoile). Tailles recalées sur le nouveau modèle (hauteur et hitbox inchangées en jeu).
 
 ## Gore Magala du Chaos (n° 1056, Ténèbres / Dragon, légendaire)
 - 4,4 m, 245 kg, total 620 (PV 95, Att 150, Déf 80, Att Spé 110, Déf Spé 75, Vit 110), +3 Att. Talents **Corps

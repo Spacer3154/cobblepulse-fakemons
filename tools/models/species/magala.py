@@ -83,12 +83,25 @@ GORE_G_SHINY = dict(GORE_SHINY, **{
     "antenna": rgb("#2A6E74"), "antenna_tip": rgb("#A8FFF0"), "scale_rim": rgb("#7A8890"), "net": rgb("#3A9A9E"),
     "net_glow": rgb("#60FFF0"), "scale_glow": rgb("#50F0E0"), "_mscale": True,
     "gfur": rgb("#33373D"), "gfur_tip": rgb("#8C9AA2"), "under": rgb("#A8B8C4"), "under_dark": rgb("#56646E")})
-CHAOS = dict(GORE, _R=SHAGARU)
-CHAOS_SHINY = dict(GORE_SHINY, _R=SHAGARU_SHINY)
+# Shagaru (3.8.0, on Gore's model): pale gold body, sails of feather-like scales (sage-cream), purple-pink claws
+SHAGARU_G = dict(SHAGARU, **{
+    "scale": rgb("#DCDDD0"), "scale_dark": rgb("#8E989C"), "scale_light": rgb("#F6F6EC"), "belly": rgb("#ECEBDD"),
+    "belly_dark": rgb("#C4C4B2"), "plate": rgb("#CDB878"), "plate_light": rgb("#F4E8B8"),
+    "_mscale": True, "_feather": True, "scale_rim": rgb("#FFF4D0"), "net": rgb("#D8B050"), "keel_sheen": rgb("#FFE8A0"),
+    "net_glow": rgb("#FFE070"), "scale_glow": rgb("#FFE070"),
+    "gfur": rgb("#D6D4AE"), "gfur_tip": rgb("#F6F2DA"), "under": rgb("#E4E6C8"), "under_dark": rgb("#A4A47A"),
+    "claw": rgb("#5A2A4A"), "claw_tip": rgb("#E6A8D0"), "spike": rgb("#C8A848"), "spike_tip": rgb("#FFF0B8")})
+SHAGARU_G_SHINY = dict(SHAGARU_SHINY, **{
+    "_mscale": True, "_feather": True, "scale_rim": rgb("#F4FAFF"), "net": rgb("#7AA8D8"), "keel_sheen": rgb("#C8E4FF"),
+    "net_glow": rgb("#90E0FF"), "scale_glow": rgb("#90E0FF"),
+    "gfur": rgb("#C8D4E0"), "gfur_tip": rgb("#F2F8FF"), "under": rgb("#DCE6F0"), "under_dark": rgb("#8A9AAE"),
+    "claw": rgb("#3A3A5A"), "claw_tip": rgb("#B8C8F0")})
+CHAOS = dict(GORE_G, _R=SHAGARU_G)
+CHAOS_SHINY = dict(GORE_G_SHINY, _R=SHAGARU_G_SHINY)
 PALETTES = {"goremagala": (GORE_G, GORE_G_SHINY),
             "goremagala_frenzy": (dict(GORE_G, _frenzy=True), dict(GORE_G_SHINY, _frenzy=True)),
             "chaoticgoremagala": (dict(CHAOS, _frenzy=True), dict(CHAOS_SHINY, _frenzy=True)),
-            "shagarumagala": (SHAGARU, SHAGARU_SHINY)}
+            "shagarumagala": (SHAGARU_G, SHAGARU_G_SHINY)}
 
 # ---------------------------------------------------------------------------------------------------- painting
 LIGHT = {"up": 1.12, "north": 1.0, "south": 0.92, "east": 0.96, "west": 0.96, "down": 0.72}
@@ -198,6 +211,12 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
             if P.get("_mscale") and face in ("east", "west"):             # Gore (3.5): fur cape outside, pale scales under
                 outer = (face == "west") == (x > 0)
                 a, b = _ab(face, p)
+                if outer and P.get("_feather"):                       # Shagaru: feather-like scales on both sides
+                    e, t, sid = _diamond(a, b, 1.6)
+                    col = mix(P["gfur"], P["gfur_tip"], 0.2 + 0.7 * t)
+                    if e:
+                        col = mix(col, P["under_dark"], 0.55)
+                    return col, n * 0.3
                 if outer:
                     fib = _h(math.floor(a * 1.6), math.floor(b * 0.45), 11)  # fibres along the strip
                     col = mix(P["gfur"], P["gfur_tip"], 0.12 + 0.45 * fib ** 2)
@@ -314,7 +333,7 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
                     continue
                 px[X, Y] = P["eye_glow"][:3] + (255,)
             elif glow == "gscale":                                        # frenzy: the upper scales' rims glow
-                if not pal.get("_fglow") or (belly_below is not None and y < belly_below and face != "up"):
+                if not pal.get("_fglow") or P is not pal or (belly_below is not None and y < belly_below and face != "up"):
                     continue
                 if not (face == "up" or y > 50):
                     continue
@@ -323,7 +342,7 @@ def surf(kind, *, belly_below=None, ragged=0, glow=None, S=2.5, ragged_end=0):
                 if rim:
                     px[X, Y] = P["scale_glow"][:3] + (150,)
             elif glow == "net":
-                if not pal.get("_fglow"):
+                if not pal.get("_fglow") or P is not pal:
                     continue
                 if ragged and face in ("east", "west", "north", "south") and j >= fh - ragged:
                     continue
@@ -589,7 +608,7 @@ def _gore():
     return G
 
 def build(name):
-    if name.startswith("goremagala"):
+    if name.startswith("goremagala") or name in ("chaoticgoremagala", "shagarumagala"):
         return _gore().build(name)
     gold = name == "shagarumagala"
     chaos = name == "chaoticgoremagala"
@@ -817,7 +836,7 @@ def raise_claws(f, sx):
 BONES = {}
 
 def anims(name, m):
-    if name.startswith("goremagala"):
+    if name.startswith("goremagala") or name in ("chaoticgoremagala", "shagarumagala"):
         return _gore().anims(name, m)
     BONES[name] = {b.name for b in m.bones}
     gold = name == "shagarumagala"
@@ -1087,7 +1106,7 @@ def gore_anims(S, claws):
     S["special"] = anim(L, sp)
 
 def poser(name, group):
-    if name.startswith("goremagala"):
+    if name.startswith("goremagala") or name in ("chaoticgoremagala", "shagarumagala"):
         return _gore().poser(name, group)
     q = lambda a: f"q.bedrock('{group}', '{a}')"
     prim = lambda a: f"q.bedrock_primary('{group}', '{a}', q.curve('symmetrical_wide'))"
