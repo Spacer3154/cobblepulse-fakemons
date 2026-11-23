@@ -43,6 +43,30 @@ if cob:
                 dump.append(f"== {n}: {e}")
     write("cobblemon-grounded-javap.txt", "\n".join(dump))
     rep.append(f"cobblemon jar {cob[0]}: {len(pres)} presets, {len(tags)} block tags, {len(cls)} spawn classes")
+    # starters (3.10.2): the starter config classes, where Cobblemon loads them, and any starter data in the jar
+    st = [n for n in names if n.endswith(".class") and re.search(r"(?i)starter", n)]
+    sdump = [f"== classes\n" + "\n".join(sorted(st))]
+    for n in sorted(st) + ["com/cobblemon/mod/common/Cobblemon.class"]:
+        if n not in names:
+            continue
+        if n.endswith("Cobblemon.class") or re.search(r"config/starter/|StarterHandler|CobblemonStarterHandler", n):
+            p = os.path.join(tmp, n.replace("/", "_"))
+            open(p, "wb").write(z.read(n))
+            out = subprocess.run(["javap", "-c", "-p", p], capture_output=True, text=True).stdout
+            if n.endswith("Cobblemon.class"):            # only the starter parts of the big class
+                keep, lines = [], out.splitlines()
+                for i, l in enumerate(lines):
+                    if re.search(r"(?i)starter", l):
+                        keep += lines[max(0, i - 6):i + 6] + ["--"]
+                out = "\n".join(keep)
+            sdump.append(f"== {n}\n{out}")
+    data = [n for n in names if re.search(r"(?i)starter", n) and not n.endswith(".class")]
+    sdump.append("== data files\n" + "\n".join(data))
+    for n in data[:10]:
+        if n.endswith(".json"):
+            sdump.append(f"== {n}\n" + z.read(n).decode("utf-8", "replace")[:6000])
+    write("cobblemon-starters.txt", "\n\n".join(sdump))
+    rep.append(f"starters: {len(st)} classes, {len(data)} data files")
 try:
     vs = json.loads(get("https://api.modrinth.com/v2/project/biomes-o-plenty/version"
                         "?loaders=%5B%22fabric%22%5D&game_versions=%5B%221.21.1%22%5D"))
