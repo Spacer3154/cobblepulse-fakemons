@@ -49,7 +49,7 @@ if cob:
     for n in sorted(st) + ["com/cobblemon/mod/common/Cobblemon.class"]:
         if n not in names:
             continue
-        if n.endswith("Cobblemon.class") or re.search(r"config/starter/|StarterHandler|CobblemonStarterHandler", n):
+        if n.endswith("Cobblemon.class") or re.search(r"config/starter/|StarterHandler|CobblemonStarterHandler|StarterDataLoader", n):
             p = os.path.join(tmp, n.replace("/", "_"))
             open(p, "wb").write(z.read(n))
             out = subprocess.run(["javap", "-c", "-p", p], capture_output=True, text=True).stdout

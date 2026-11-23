@@ -24,6 +24,13 @@ apparitions, Pokédex, Showdown, recette…) et les ressources (modèles, textur
 - 6 capacités + 4 talents en JavaScript Showdown
 - 34 fichiers d'apparition (22 espèces + 12 hordes et Alphas) et 12 groupes de biomes (voir « Apparitions »)
 - Pokédex régional « Normandie », ajouté au Pokédex national
+- **Starters de Normandie** (3.10.2, Kevin) : Pomdraco (Plante), Drakflam (Feu) et Meuhgousse (Eau), niveau 10
+  comme les starters officiels, dans un onglet « Normandie » placé en tête de l'écran de choix du starter ; les
+  onglets officiels (Kanto → Paldea, Spécial) restent. Ajoutés par le mod au démarrage du serveur et après chaque
+  `/reload` (classe `NormandyStarters`), sans rien changer dans `config/cobblemon/starters.json` ni doublon si
+  l'entrée y a été mise à la main. Si un datapack ajoute un jour ses propres catégories de starters, Cobblemon
+  n'affiche plus que celles-ci (et l'auto-test du mod le signale). Les joueurs qui ont déjà choisi leur starter ne
+  revoient pas l'écran.
 - Catégorie **Monster Hunter** : Deviljho (méga : Deviljho Carnage, Deviljhonite), Glavenus (méga : Glavenus
   Lame-Chaos, Glavenusite), Zamtrios et la lignée Magala (3.1.0), voir plus bas ; Pokédex « Monster Hunter » ajouté
   au national

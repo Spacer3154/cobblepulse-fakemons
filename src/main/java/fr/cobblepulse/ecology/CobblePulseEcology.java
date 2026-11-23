@@ -28,7 +28,8 @@ import java.util.Optional;
 /**
  * CobblePulse-Ecology (anciennement Normandy Fakemons) : le contenu (especes, modeles, apparitions, Showdown...) est
  * dans les ressources du jar ; le code enregistre les vrais objets du mod, a commencer par les mega-gemmes
- * (Deviljhonite, Glavenusite), et la forme Armure de Glace de Zamtrios dans les biomes geles (ZamtriosClimate).
+ * (Deviljhonite, Glavenusite), la forme Armure de Glace de Zamtrios dans les biomes geles (ZamtriosClimate) et les
+ * starters de Normandie dans le choix du starter (NormandyStarters).
  *
  * Une mega-gemme est reconnue par Mega Showdown grace a deux composants de donnees poses par defaut sur l'objet :
  * mega_showdown:registry_type_component = "mega" et mega_showdown:registry_location_component = l'entree du registre
@@ -95,6 +96,7 @@ public final class CobblePulseEcology implements ModInitializer {
         });
 
         ZamtriosClimate.register();
+        NormandyStarters.register();                       // avant selfCheck : meme evenement, enregistre en premier
         ServerLifecycleEvents.SERVER_STARTED.register(CobblePulseEcology::selfCheck);
         LOG.info("CobblePulse-Ecology : {} mega-gemme(s) enregistree(s)", MEGA_STONES.size());
     }
@@ -158,9 +160,14 @@ public final class CobblePulseEcology implements ModInitializer {
             else species++;
             if (verbose) LOG.info("SELFTEST species {} loaded={}", sid, sp != null);
         }
+        // starters de Normandie dans le choix du starter (NormandyStarters)
+        List<String> starterTabs = new ArrayList<>();
+        String starterProblem = NormandyStarters.check(starterTabs);
+        if (starterProblem != null) problems.add(starterProblem);
+        if (verbose) LOG.info("SELFTEST starters {} tabs={}", starterProblem == null ? "ok" : starterProblem, starterTabs);
         if (problems.isEmpty()) {
-            LOG.info("CobblePulse-Ecology OK : {}/{} especes, {} mega-gemme(s), {} recette(s) chargee(s)", species, SPECIES.length,
-                    MEGA_STONES.size(), recipes);
+            LOG.info("CobblePulse-Ecology OK : {}/{} especes, {} mega-gemme(s), {} recette(s) chargee(s), starters de Normandie",
+                    species, SPECIES.length, MEGA_STONES.size(), recipes);
         } else {
             for (String p : problems) LOG.error("CobblePulse-Ecology : {}", p);
         }
