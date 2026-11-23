@@ -1,0 +1,506 @@
+== data/adorn/tags/block/benches.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_bench","required":false},{"id":"adorn:cobblemon/saccharine_bench","required":false}]}
+
+== data/adorn/tags/block/chairs.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_chair","required":false},{"id":"adorn:cobblemon/saccharine_chair","required":false}]}
+
+== data/adorn/tags/block/coffee_tables.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_coffee_table","required":false},{"id":"adorn:cobblemon/saccharine_coffee_table","required":false}]}
+
+== data/adorn/tags/block/drawers.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_drawer","required":false},{"id":"adorn:cobblemon/saccharine_drawer","required":false}]}
+
+== data/adorn/tags/block/kitchen_counters.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_kitchen_counter","required":false},{"id":"adorn:cobblemon/saccharine_kitchen_counter","required":false}]}
+
+== data/adorn/tags/block/kitchen_cupboards.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_kitchen_cupboard","required":false},{"id":"adorn:cobblemon/saccharine_kitchen_cupboard","required":false}]}
+
+== data/adorn/tags/block/kitchen_sinks.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_kitchen_sink","required":false},{"id":"adorn:cobblemon/saccharine_kitchen_sink","required":false}]}
+
+== data/adorn/tags/block/tables.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_table","required":false},{"id":"adorn:cobblemon/saccharine_table","required":false}]}
+
+== data/adorn/tags/block/wooden_platforms.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_platform","required":false},{"id":"adorn:cobblemon/saccharine_platform","required":false}]}
+
+== data/adorn/tags/block/wooden_posts.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_post","required":false},{"id":"adorn:cobblemon/saccharine_post","required":false}]}
+
+== data/adorn/tags/block/wooden_shelves.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_shelf","required":false},{"id":"adorn:cobblemon/saccharine_shelf","required":false}]}
+
+== data/adorn/tags/block/wooden_steps.json
+{"replace":false,"values":[{"id":"adorn:cobblemon/apricorn_step","required":false},{"id":"adorn:cobblemon/saccharine_step","required":false}]}
+
+== data/c/tags/block/budding_blocks.json
+{"replace":false,"values":["cobblemon:deepslate_crystal_core"]}
+
+== data/c/tags/block/buds.json
+{"replace":false,"values":["cobblemon:small_budding_tumblestone","cobblemon:small_budding_black_tumblestone","cobblemon:small_budding_sky_tumblestone","cobblemon:medium_budding_tumblestone","cobblemon:medium_budding_black_tumblestone","cobblemon:medium_budding_sky_tumblestone","cobblemon:large_budding_tumblestone","cobblemon:large_budding_black_tumblestone","cobblemon:large_budding_sky_tumblestone","#cobblemon:type_gem_clusters"]}
+
+== data/c/tags/block/chests.json
+{"replace":false,"values":["#cobblemon:gilded_chests"]}
+
+== data/c/tags/block/clusters.json
+{"replace":false,"values":["cobblemon:tumblestone_cluster","cobblemon:black_tumblestone_cluster","cobblemon:sky_tumblestone_cluster","#cobblemon:type_gem_clusters"]}
+
+== data/c/tags/block/fence_gates/wooden.json
+{"replace":false,"values":["cobblemon:apricorn_fence_gate","cobblemon:saccharine_fence_gate"]}
+
+== data/c/tags/block/fences/wooden.json
+{"replace":false,"values":["cobblemon:apricorn_fence","cobblemon:saccharine_fence"]}
+
+== data/c/tags/block/ore_rates/singular.json
+{"replace":false,"values":["cobblemon:fire_stone_ore","cobblemon:deepslate_fire_stone_ore","cobblemon:nether_fire_stone_ore","cobblemon:water_stone_ore","cobblemon:deepslate_water_stone_ore","cobblemon:thunder_stone_ore","cobblemon:deepslate_thunder_stone_ore","cobblemon:leaf_stone_ore","cobblemon:deepslate_leaf_stone_ore","cobblemon:moon_stone_ore","cobblemon:deepslate_moon_stone_ore","cobblemon:dripstone_moon_stone_ore","cobblemon:sun_stone_ore","cobblemon:deepslate_sun_stone_ore","cobblemon:terracotta_sun_stone_ore","cobblemon:shiny_stone_ore","cobblemon:deepslate_shiny_stone_ore","cobblemon:dawn_stone_ore","cobblemon:deepslate_dawn_stone_ore","cobblemon:dusk_stone_ore","cobblemon:deepslate_dusk_stone_ore","cobblemon:ice_stone_ore","cobblemon:deepslate_ice_stone_ore"]}
+
+== data/c/tags/block/ores.json
+{"replace":false,"values":["#cobblemon:fire_stone_ores","#cobblemon:water_stone_ores","#cobblemon:thunder_stone_ores","#cobblemon:leaf_stone_ores","#cobblemon:moon_stone_ores","#cobblemon:sun_stone_ores","#cobblemon:shiny_stone_ores","#cobblemon:dawn_stone_ores","#cobblemon:dusk_stone_ores","#cobblemon:ice_stone_ores"]}
+
+== data/c/tags/block/ores_in_ground/deepslate.json
+{"replace":false,"values":["cobblemon:deepslate_fire_stone_ore","cobblemon:deepslate_water_stone_ore","cobblemon:deepslate_thunder_stone_ore","cobblemon:deepslate_leaf_stone_ore","cobblemon:deepslate_moon_stone_ore","cobblemon:deepslate_sun_stone_ore","cobblemon:deepslate_shiny_stone_ore","cobblemon:deepslate_dawn_stone_ore","cobblemon:deepslate_dusk_stone_ore","cobblemon:deepslate_ice_stone_ore"]}
+
+== data/c/tags/block/ores_in_ground/netherrack.json
+{"replace":false,"values":["cobblemon:nether_fire_stone_ore"]}
+
+== data/c/tags/block/ores_in_ground/stone.json
+{"replace":false,"values":["cobblemon:fire_stone_ore","cobblemon:water_stone_ore","cobblemon:thunder_stone_ore","cobblemon:leaf_stone_ore","cobblemon:moon_stone_ore","cobblemon:sun_stone_ore","cobblemon:shiny_stone_ore","cobblemon:dawn_stone_ore","cobblemon:dusk_stone_ore","cobblemon:ice_stone_ore"]}
+
+== data/c/tags/block/storage_blocks.json
+{"replace":false,"values":["cobblemon:tumblestone_block","cobblemon:black_tumblestone_block","cobblemon:sky_tumblestone_block","#cobblemon:evolution_stone_blocks","cobblemon:hearty_grain_bale"]}
+
+== data/c/tags/block/stripped_logs.json
+{"replace":false,"values":["cobblemon:stripped_apricorn_log","cobblemon:stripped_saccharine_log"]}
+
+== data/c/tags/block/stripped_woods.json
+{"replace":false,"values":["cobblemon:stripped_apricorn_wood","cobblemon:stripped_saccharine_wood"]}
+
+== data/cobblemon/tags/block/all_hanging_signs.json
+{"values":["#cobblemon:ceiling_hanging_signs","#cobblemon:wall_hanging_signs"]}
+
+== data/cobblemon/tags/block/all_saplings.json
+{"values":["#cobblemon:apricorn_saplings","#cobblemon:saccharine_sapling"]}
+
+== data/cobblemon/tags/block/all_signs.json
+{"values":["#cobblemon:signs","#cobblemon:all_hanging_signs"]}
+
+== data/cobblemon/tags/block/ancient_city_blocks.json
+{"replace":false,"values":["minecraft:chiseled_deepslate","minecraft:cobbled_deepslate_wall","minecraft:cracked_deepslate_bricks","minecraft:cracked_deepslate_tiles","minecraft:deepslate_brick_slab","minecraft:deepslate_brick_stairs","minecraft:deepslate_brick_wall","minecraft:deepslate_bricks","minecraft:deepslate_tile_slab","minecraft:deepslate_tile_stairs","minecraft:deepslate_tile_wall","minecraft:deepslate_tiles","minecraft:polished_basalt","minecraft:polished_deepslate","minecraft:polished_deepslate_slab","minecraft:polished_deepslate_wall"]}
+
+== data/cobblemon/tags/block/apricorn_leaves.json
+{"values":["cobblemon:apricorn_leaves"]}
+
+== data/cobblemon/tags/block/apricorn_logs.json
+{"replace":false,"values":["cobblemon:apricorn_log","cobblemon:apricorn_wood","cobblemon:stripped_apricorn_log","cobblemon:stripped_apricorn_wood"]}
+
+== data/cobblemon/tags/block/apricorn_saplings.json
+{"replace":false,"values":["cobblemon:black_apricorn_sapling","cobblemon:blue_apricorn_sapling","cobblemon:green_apricorn_sapling","cobblemon:pink_apricorn_sapling","cobblemon:red_apricorn_sapling","cobblemon:white_apricorn_sapling","cobblemon:yellow_apricorn_sapling"]}
+
+== data/cobblemon/tags/block/apricorns.json
+{"replace":false,"values":["cobblemon:black_apricorn","cobblemon:blue_apricorn","cobblemon:green_apricorn","cobblemon:pink_apricorn","cobblemon:red_apricorn","cobblemon:white_apricorn","cobblemon:yellow_apricorn"]}
+
+== data/cobblemon/tags/block/berries.json
+{"replace":false,"values":["cobblemon:cheri_berry","cobblemon:chesto_berry","cobblemon:pecha_berry","cobblemon:rawst_berry","cobblemon:aspear_berry","cobblemon:oran_berry","cobblemon:persim_berry","cobblemon:razz_berry","cobblemon:bluk_berry","cobblemon:nanab_berry","cobblemon:wepear_berry","cobblemon:pinap_berry","cobblemon:leppa_berry","cobblemon:lum_berry","cobblemon:figy_berry","cobblemon:wiki_berry","cobblemon:mago_berry","cobblemon:aguav_berry","cobblemon:iapapa_berry","cobblemon:sitrus_berry","cobblemon:touga_berry","cobblemon:cornn_berry","cobblemon:magost_berry","cobblemon:rabuta_berry","cobblemon:nomel_berry","cobblemon:enigma_berry","cobblemon:pomeg_berry","cobblemon:kelpsy_berry","cobblemon:qualot_berry","cobblemon:hondew_berry","cobblemon:grepa_berry","cobblemon:tamato_berry","cobblemon:spelon_berry","cobblemon:pamtre_berry","cobblemon:watmel_berry","cobblemon:durin_berry","cobblemon:belue_berry","cobblemon:kee_berry","cobblemon:maranga_berry","cobblemon:hopo_berry","cobblemon:liechi_berry","cobblemon:ganlon_berry","cobblemon:salac_berry","cobblemon:petaya_berry","cobblemon:apicot_berry","cobblemon:lansat_berry","cobblemon:starf_berry","cobblemon:micle_berry","cobblemon:custap_berry","cobblemon:jaboca_berry","cobblemon:rowap_berry","cobblemon:babiri_berry","cobblemon:charti_berry","cobblemon:chilan_berry","cobblemon:chople_berry","cobblemon:coba_berry","cobblemon:colbur_berry","cobblemon:haban_berry","cobblemon:kasib_berry","cobblemon:kebia_berry","cobblemon:occa_berry","cobblemon:passho_berry","cobblemon:payapa_berry","cobblemon:rindo_berry","cobblemon:roseli_berry","cobblemon:shuca_berry","cobblemon:tanga_berry","cobblemon:wacan_berry","cobblemon:yache_berry","cobblemon:eggant_berry"]}
+
+== data/cobblemon/tags/block/berry_replaceable.json
+{"values":["minecraft:air","minecraft:fern","minecraft:dead_bush","minecraft:fire","minecraft:soul_fire","minecraft:snow","minecraft:vine","minecraft:glow_lichen","minecraft:light","minecraft:tall_grass","minecraft:large_fern","minecraft:structure_void","minecraft:void_air","minecraft:cave_air","#minecraft:leaves"]}
+
+== data/cobblemon/tags/block/berry_soil.json
+{"values":["minecraft:farmland",{"id":"#c:farmland","required":false},{"id":"#c:farmlands","required":false},{"id":"aether:aether_farmland","required":false},{"id":"farmersdelight:rich_soil_farmland","required":false},{"id":"supplementaries:planter","required":false}]}
+
+== data/cobblemon/tags/block/berry_wild_soil.json
+{"values":["#minecraft:dirt","#minecraft:sand","#minecraft:terracotta","#cobblemon:snow_block"]}
+
+== data/cobblemon/tags/block/black_tumblestone_bricks.json
+{"values":["cobblemon:black_tumblestone_bricks","cobblemon:chiseled_black_tumblestone_bricks"]}
+
+== data/cobblemon/tags/block/black_tumblestones.json
+{"values":["cobblemon:small_budding_black_tumblestone","cobblemon:medium_budding_black_tumblestone","cobblemon:large_budding_black_tumblestone","cobblemon:black_tumblestone_cluster","cobblemon:black_tumblestone_block","cobblemon:polished_black_tumblestone","cobblemon:polished_black_tumblestone_stairs","cobblemon:polished_black_tumblestone_slab","cobblemon:polished_black_tumblestone_wall","cobblemon:chiseled_polished_black_tumblestone","cobblemon:black_tumblestone_bricks","cobblemon:black_tumblestone_brick_stairs","cobblemon:black_tumblestone_brick_slab","cobblemon:black_tumblestone_brick_wall","cobblemon:chiseled_black_tumblestone_bricks","cobblemon:smooth_black_tumblestone","cobblemon:smooth_black_tumblestone_stairs","cobblemon:smooth_black_tumblestone_slab"]}
+
+== data/cobblemon/tags/block/blue_flowers.json
+{"replace":false,"values":["minecraft:blue_orchid","minecraft:cornflower","cobblemon:wistensu","cobblemon:wistensu_vine",{"id":"aether_redux:pink_prismatic_petals","required":false},{"id":"aether_redux:mixed_prismatic_petals","required":false},{"id":"aether_redux:teal_prismatic_petals","required":false},{"id":"biomesoplenty:blue_hydrangea","required":false},{"id":"biomesoplenty:blue_hydrangea_bottom","required":false},{"id":"biomesoplenty:blue_hydrangea_top","required":false},{"id":"biomesoplenty:icy_iris","required":false},{"id":"blue_skies:moonlit_bloom","required":false},{"id":"blue_skies:nightcress","required":false},{"id":"botania:blue_double_flower","required":false},{"id":"botania:blue_floating_flower","required":false},{"id":"botania:blue_mystical_flower","required":false},{"id":"botania:blue_shiny_flower","required":false},{"id":"botania:cyan_double_flower","required":false},{"id":"botania:cyan_floating_flower","required":false},{"id":"botania:cyan_mystical_flower","required":false},{"id":"botania:cyan_shiny_flower","required":false},{"id":"botania:floating_hydroangeas","required":false},{"id":"botania:floating_labellia","required":false},{"id":"botania:floating_manastar","required":false},{"id":"botania:floating_marimorphosis","required":false},{"id":"botania:floating_marimorphosis_chibi","required":false},{"id":"botania:floating_spectrolus","required":false},{"id":"botania:floating_tangleberrie","required":false},{"id":"botania:floating_tangleberrie_chibi","required":false},{"id":"botania:hydroangeas","required":false},{"id":"botania:hydroangeas_motif","required":false},{"id":"botania:labellia","required":false},{"id":"botania:light_blue_double_flower","required":false},{"id":"botania:light_blue_floating_flower","required":false},{"id":"botania:light_blue_mystical_flower","required":false},{"id":"botania:light_blue_shiny_flower","required":false},{"id":"botania:manastar","required":false},{"id":"botania:marimorphosis","required":false},{"id":"botania:marimorphosis_chibi","required":false},{"id":"botania:spectrolus","required":false},{"id":"botania:tangleberrie","required":false},{"id":"botania:tangleberrie_chibi","required":false},{"id":"etcetera:bouquet","required":false},{"id":"goodending:pastel_wildflowers","required":false},{"id":"goodending:twilight_wildflowers","required":false},{"id":"mythicbotany:aquapanthus","required":false},{"id":"mythicbotany:aquapanthus_floating","required":false},{"id":"mythicbotany:raindeletia","required":false},{"id":"mythicbotany:raindeletia_floating","required":false},{"id":"outer_end:azure_bud","required":false},{"id":"wilderwild:blue_giany_glory_of_the_snow","required":false}]}
+
+== data/cobblemon/tags/block/campfire_pots.json
+{"replace":false,"values":["cobblemon:campfire_pot_black","cobblemon:campfire_pot_blue","cobblemon:campfire_pot_green","cobblemon:campfire_pot_pink","cobblemon:campfire_pot_red","cobblemon:campfire_pot_white","cobblemon:campfire_pot_yellow","cobblemon:campfire"]}
+
+== data/cobblemon/tags/block/ceiling_hanging_signs.json
+{"values":["cobblemon:apricorn_hanging_sign","cobblemon:saccharine_hanging_sign"]}
+
+== data/cobblemon/tags/block/concrete_blocks.json
+{"replace":false,"values":["minecraft:white_concrete","minecraft:orange_concrete","minecraft:magenta_concrete","minecraft:light_blue_concrete","minecraft:yellow_concrete","minecraft:lime_concrete","minecraft:pink_concrete","minecraft:gray_concrete","minecraft:light_gray_concrete","minecraft:cyan_concrete","minecraft:purple_concrete","minecraft:blue_concrete","minecraft:brown_concrete","minecraft:green_concrete","minecraft:red_concrete","minecraft:black_concrete"]}
+
+== data/cobblemon/tags/block/crops.json
+{"replace":false,"values":["cobblemon:revival_herb","cobblemon:vivichoke_seeds","cobblemon:medicinal_leek","#cobblemon:mints","#cobblemon:terrain_seeds"]}
+
+== data/cobblemon/tags/block/dawn_stone_ores.json
+{"values":["cobblemon:dawn_stone_ore","cobblemon:deepslate_dawn_stone_ore"]}
+
+== data/cobblemon/tags/block/dead_coral.json
+{"replace":false,"values":["minecraft:dead_tube_coral","minecraft:dead_brain_coral","minecraft:dead_bubble_coral","minecraft:dead_fire_coral","minecraft:dead_horn_coral","minecraft:dead_tube_coral_block","minecraft:dead_brain_coral_block","minecraft:dead_bubble_coral_block","minecraft:dead_fire_coral_block","minecraft:dead_horn_coral_block"]}
+
+== data/cobblemon/tags/block/desert_pyramid_blocks.json
+{"replace":false,"values":["minecraft:chiseled_sandstone","minecraft:orange_terracotta"]}
+
+== data/cobblemon/tags/block/dripstone_growable.json
+{"replace":false,"values":["dripstone_block","cobblemon:dripstone_moon_stone_ore"]}
+
+== data/cobblemon/tags/block/dripstone_replaceables.json
+{"replace":false,"values":["dripstone_block"]}
+
+== data/cobblemon/tags/block/dusk_stone_ores.json
+{"values":["cobblemon:dusk_stone_ore","cobblemon:deepslate_dusk_stone_ore"]}
+
+== data/cobblemon/tags/block/end_city_blocks.json
+{"replace":false,"values":["minecraft:end_stone_bricks","minecraft:purpur_block","minecraft:purpur_pillar","minecraft:purpur_slab","minecraft:purpur_stairs"]}
+
+== data/cobblemon/tags/block/evolution_stone_blocks.json
+{"replace":false,"values":["cobblemon:dawn_stone_block","cobblemon:dusk_stone_block","cobblemon:fire_stone_block","cobblemon:ice_stone_block","cobblemon:leaf_stone_block","cobblemon:moon_stone_block","cobblemon:shiny_stone_block","cobblemon:sun_stone_block","cobblemon:thunder_stone_block","cobblemon:water_stone_block"]}
+
+== data/cobblemon/tags/block/fire_stone_ores.json
+{"values":["cobblemon:fire_stone_ore","cobblemon:deepslate_fire_stone_ore","cobblemon:nether_fire_stone_ore"]}
+
+== data/cobblemon/tags/block/flowers.json
+{"replace":false,"values":["#minecraft:flowers","#cobblemon:small_flowers","#cobblemon:saccharine_leaves"]}
+
+== data/cobblemon/tags/block/fossil_machine_parts.json
+{"values":["cobblemon:restoration_tank","cobblemon:monitor","cobblemon:fossil_analyzer"]}
+
+== data/cobblemon/tags/block/galarica_nut_may_place_on.json
+{"replace":false,"values":["#minecraft:sand","#minecraft:dirt","minecraft:farmland"]}
+
+== data/cobblemon/tags/block/galarica_nuts.json
+{"values":["cobblemon:galarica_nut_bush","cobblemon:galarica_cuff","cobblemon:galarica_wreath"]}
+
+== data/cobblemon/tags/block/gemstones.json
+{"replace":false,"values":["minecraft:amethyst_block","minecraft:budding_amethyst","#minecraft:crystal_sound_blocks","#minecraft:diamond_ores","#minecraft:emerald_ores","#cobblemon:type_gem_blocks","#cobblemon:type_gem_clusters",{"id":"#c:amethyst_ores","required":false},{"id":"#c:diamond_ores","required":false},{"id":"#c:emerald_ores","required":false},{"id":"#c:peridot_ores","required":false},{"id":"#c:ruby_ores","required":false},{"id":"#c:sapphire_ores","required":false},{"id":"#c:topaz_ores","required":false}]}
+
+== data/cobblemon/tags/block/gilded_chests.json
+{"replace":false,"values":["cobblemon:gilded_chest","cobblemon:yellow_gilded_chest","cobblemon:green_gilded_chest","cobblemon:blue_gilded_chest","cobblemon:pink_gilded_chest","cobblemon:white_gilded_chest","cobblemon:black_gilded_chest"]}
+
+== data/cobblemon/tags/block/glazed_terracotta_blocks.json
+{"replace":false,"values":["minecraft:black_glazed_terracotta","minecraft:blue_glazed_terracotta","minecraft:brown_glazed_terracotta","minecraft:cyan_glazed_terracotta","minecraft:gray_glazed_terracotta","minecraft:green_glazed_terracotta","minecraft:light_blue_glazed_terracotta","minecraft:light_gray_glazed_terracotta","minecraft:lime_glazed_terracotta","minecraft:magenta_glazed_terracotta","minecraft:orange_glazed_terracotta","minecraft:pink_glazed_terracotta","minecraft:purple_glazed_terracotta","minecraft:red_glazed_terracotta","minecraft:white_glazed_terracotta","minecraft:yellow_glazed_terracotta"]}
+
+== data/cobblemon/tags/block/habitat_mimics.json
+{"values":["#minecraft:logs","#minecraft:dirt","#minecraft:base_stone_overworld","#minecraft:base_stone_nether","#minecraft:planks","#minecraft:sand","#minecraft:stone_bricks","#minecraft:terracotta","#minecraft:wool","minecraft:snow_block","minecraft:cobblestone","minecraft:polished_deepslate","minecraft:bricks","minecraft:mossy_cobblestone","minecraft:moss_block","minecraft:bookshelf","minecraft:loom","minecraft:note_block","minecraft:coal_block","minecraft:iron_block","minecraft:gold_block","minecraft:diamond_block","minecraft:emerald_block","minecraft:lapis_block","minecraft:redstone_block","minecraft:netherite_block","minecraft:obsidian","minecraft:crying_obsidian","minecraft:glowstone","minecraft:blue_ice","minecraft:packed_ice","minecraft:ice","minecraft:sandstone","minecraft:red_sandstone","minecraft:cut_sandstone","minecraft:smooth_sandstone","minecraft:black_concrete","minecraft:white_concrete","minecraft:lime_concrete","minecraft:cyan_concrete","minecraft:purple_concrete","minecraft:light_blue_concrete","minecraft:yellow_concrete","minecraft:red_concrete","minecraft:end_stone","minecraft:nether_bricks","minecraft:cracked_nether_bricks","minecraft:chiseled_nether_bricks","minecraft:warped_hyphae","minecraft:crimson_hyphae","minecraft:nether_wart_block","minecraft:warped_wart_block","minecraft:warped_nylium","minecraft:crimson_nylium","minecraft:nether_quartz_ore","minecraft:netherrack","minecraft:bone_block","minecraft:end_stone","minecraft:quartz_block","minecraft:chiseled_quartz_block","minecraft:quartz_bricks","minecraft:quartz_pillar","minecraft:smooth_quartz","minecraft:smooth_basalt","minecraft:polished_basalt","minecraft:packed_mud","minecraft:dripstone_block","minecraft:amethyst_block","minecraft:calcite","minecraft:raw_iron_block","minecraft:raw_gold_block","minecraft:raw_copper_block","minecraft:copper_ore","minecraft:soul_soil","minecraft:tube_coral_block","minecraft:brain_coral_block","minecraft:bubble_coral_block","minecraft:fire_coral_block","minecraft:horn_coral_block","minecraft:dead_tube_coral_block","minecraft:dead_brain_coral_block","minecraft:dead_bubble_coral_block","minecraft:dead_fire_coral_block","minecraft:dead_horn_coral_block","minecraft:gravel","minecraft:mangrove_roots","minecraft:muddy_mangrove_roots","minecraft:bamboo_block","minecraft:stripped_bamboo_block","minecraft:bamboo_mosaic","minecraft:smooth_stone","minecraft:polished_granite","minecraft:polished_andesite","minecraft:polished_diorite","minecraft:cobbled_deepslate","minecraft:chiseled_deepslate","minecraft:deepslate_tiles","minecraft:cracked_deepslate_tiles","minecraft:chiseled_tuff","minecraft:polished_tuff","minecraft:tuff_bricks","minecraft:chiseled_tuff_bricks","minecraft:mud_bricks","minecraft:chiseled_sandstone","minecraft:chiseled_red_sandstone","minecraft:prismarine_bricks","minecraft:dark_prismarine","minecraft:red_nether_bricks","minecraft:gilded_blackstone","minecraft:polished_blackstone_bricks","minecraft:polished_blackstone_bricks","minecraft:chiseled_polished_blackstone","minecraft:polished_blackstone","minecraft:cracked_polished_blackstone_bricks","minecraft:end_stone_bricks","minecraft:purpur_block","minecraft:purpur_pillar","minecraft:copper_block","minecraft:chiseled_copper","minecraft:copper_grate","minecraft:cut_copper","minecraft:exposed_copper","minecraft:exposed_chiseled_copper","minecraft:exposed_copper_grate","minecraft:exposed_cut_copper","minecraft:weathered_copper","minecraft:weathered_chiseled_copper","minecraft:weathered_copper_grate","minecraft:weathered_cut_copper","minecraft:oxidized_copper","minecraft:oxidized_chiseled_copper","minecraft:oxidized_copper_grate","minecraft:oxidized_cut_copper","minecraft:reinforced_deepslate","minecraft:white_wool","minecraft:light_gray_wool","minecraft:gray_wool","minecraft:black_wool","minecraft:brown_wool","minecraft:red_wool","minecraft:orange_wool","minecraft:yellow_wool","minecraft:lime_wool","minecraft:green_wool","minecraft:cyan_wool","minecraft:light_blue_wool","minecraft:blue_wool","minecraft:purple_wool","minecraft:magenta_wool","minecraft:pink_wool","minecraft:white_concrete_powder","minecraft:light_gray_concrete_powder","minecraft:gray_concrete_powder","minecraft:black_concrete_powder","minecraft:brown_concrete_powder","minecraft:red_concrete_powder","minecraft:orange_concrete_powder","minecraft:yellow_concrete_powder","minecraft:lime_concrete_powder","minecraft:green_concrete_powder","minecraft:cyan_concrete_powder","minecraft:light_blue_concrete_powder","minecraft:blue_concrete_powder","minecraft:purple_concrete_powder","minecraft:magenta_concrete_powder","minecraft:pink_concrete_powder","minecraft:white_stained_glass","minecraft:light_gray_stained_glass","minecraft:gray_stained_glass","minecraft:black_stained_glass","minecraft:brown_stained_glass","minecraft:red_stained_glass","minecraft:orange_stained_glass","minecraft:yellow_stained_glass","minecraft:lime_stained_glass","minecraft:green_stained_glass","minecraft:cyan_stained_glass","minecraft:light_blue_stained_glass","minecraft:blue_stained_glass","minecraft:purple_stained_glass","minecraft:magenta_stained_glass","minecraft:pink_stained_glass","minecraft:glass","minecraft:tinted_glass","minecraft:white_glazed_terracotta","minecraft:light_gray_glazed_terracotta","minecraft:gray_glazed_terracotta","minecraft:black_glazed_terracotta","minecraft:brown_glazed_terracotta","minecraft:red_glazed_terracotta","minecraft:orange_glazed_terracotta","minecraft:yellow_glazed_terracotta","minecraft:lime_glazed_terracotta","minecraft:green_glazed_terracotta","minecraft:cyan_glazed_terracotta","minecraft:light_blue_glazed_terracotta","minecraft:blue_glazed_terracotta","minecraft:purple_glazed_terracotta","minecraft:magenta_glazed_terracotta","minecraft:pink_glazed_terracotta","minecraft:clay","minecraft:coal_ore","minecraft:deepslate_coal_ore","minecraft:iron_ore","minecraft:deepslate_iron_ore","minecraft:copper_ore","minecraft:deepslate_copper_ore","minecraft:gold_ore","minecraft:deepslate_gold_ore","minecraft:redstone_ore","minecraft:deepslate_redstone_ore","minecraft:emerald_ore","minecraft:deepslate_emerald_ore","minecraft:lapis_ore","minecraft:deepslate_lapis_ore","minecraft:diamond_ore","minecraft:deepslate_diamond_ore","minecraft:nether_gold_ore","minecraft:ancient_debris","minecraft:budding_amethyst","minecraft:mushroom_stem","minecraft:oak_leaves","minecraft:spruce_leaves","minecraft:birch_leaves","minecraft:jungle_leaves","minecraft:acacia_leaves","minecraft:dark_oak_leaves","minecraft:mangrove_leaves","minecraft:cherry_leaves","minecraft:azalea_leaves","minecraft:flowering_azalea_leaves","minecraft:brown_mushroom_block","minecraft:red_mushroom_block","minecraft:dried_kelp_block","minecraft:sponge","minecraft:wet_sponge","minecraft:melon","minecraft:pumpkin","minecraft:carved_pumpkin","minecraft:hay_block","minecraft:bee_nest","minecraft:honeycomb_block","minecraft:slime_block","minecraft:honey_block","minecraft:bedrock","minecraft:crafting_table","minecraft:redstone_lamp","minecraft:fletching_table","minecraft:smithing_table","minecraft:jukebox","minecraft:beacon","minecraft:lodestone","minecraft:beehive","minecraft:suspicious_sand","minecraft:suspicious_gravel","minecraft:chiseled_bookshelf","minecraft:barrel","minecraft:respawn_anchor","cobblemon:disc_shelf","minecraft:target","minecraft:piston","minecraft:sticky_piston","minecraft:dispenser","minecraft:dropper","minecraft:crafter","minecraft:furnace","minecraft:observer","minecraft:tnt","cobblemon:relic_coin_sack","cobblemon:hearty_grain_bale","cobblemon:tatami_block","cobblemon:tumblestone_block","cobblemon:black_tumblestone_block","cobblemon:sky_tumblestone_block","cobblemon:saccharine_leaves","cobblemon:apricorn_leaves","cobblemon:normal_gem_block","cobblemon:fire_gem_block","cobblemon:water_gem_block","cobblemon:grass_gem_block","cobblemon:electric_gem_block","cobblemon:ice_gem_block","cobblemon:fighting_gem_block","cobblemon:poison_gem_block","cobblemon:ground_gem_block","cobblemon:flying_gem_block","cobblemon:psychic_gem_block","cobblemon:bug_gem_block","cobblemon:rock_gem_block","cobblemon:ghost_gem_block","cobblemon:dragon_gem_block","cobblemon:dark_gem_block","cobblemon:steel_gem_block","cobblemon:fairy_gem_block","cobblemon:polished_tumblestone","cobblemon:chiseled_polished_tumblestone","cobblemon:tumblestone_bricks","cobblemon:chiseled_tumblestone_bricks","cobblemon:smooth_tumblestone","cobblemon:polished_black_tumblestone","cobblemon:chiseled_polished_black_tumblestone","cobblemon:black_tumblestone_bricks","cobblemon:chiseled_black_tumblestone_bricks","cobblemon:smooth_black_tumblestone","cobblemon:polished_sky_tumblestone","cobblemon:chiseled_polished_sky_tumblestone","cobblemon:sky_tumblestone_bricks","cobblemon:chiseled_sky_tumblestone_bricks","cobblemon:smooth_sky_tumblestone","cobblemon:dawn_stone_ore","cobblemon:dusk_stone_ore","cobblemon:fire_stone_ore","cobblemon:nether_fire_stone_ore","cobblemon:ice_stone_ore","cobblemon:leaf_stone_ore","cobblemon:moon_stone_ore","cobblemon:dripstone_moon_stone_ore","cobblemon:shiny_stone_ore","cobblemon:sun_stone_ore","cobblemon:terracotta_sun_stone_ore","cobblemon:thunder_stone_ore","cobblemon:water_stone_ore","cobblemon:deepslate_dawn_stone_ore","cobblemon:deepslate_dusk_stone_ore","cobblemon:deepslate_fire_stone_ore","cobblemon:deepslate_ice_stone_ore","cobblemon:deepslate_leaf_stone_ore","cobblemon:deepslate_moon_stone_ore","cobblemon:deepslate_shiny_stone_ore","cobblemon:deepslate_sun_stone_ore","cobblemon:deepslate_thunder_stone_ore","cobblemon:deepslate_water_stone_ore","cobblemon:dawn_stone_block","cobblemon:dusk_stone_block","cobblemon:fire_stone_block","cobblemon:ice_stone_block","cobblemon:leaf_stone_block","cobblemon:moon_stone_block","cobblemon:shiny_stone_block","cobblemon:sun_stone_block","cobblemon:thunder_stone_block","cobblemon:water_stone_block"]}
+
+== data/cobblemon/tags/block/hearty_grains_land_plantable.json
+{"values":["minecraft:mud","minecraft:muddy_mangrove_roots","minecraft:farmland"]}
+
+== data/cobblemon/tags/block/hearty_grains_water_plantable.json
+{"values":["minecraft:farmland","#minecraft:dirt","#minecraft:sand","#c:gravels"]}
+
+== data/cobblemon/tags/block/ice_stone_ores.json
+{"values":["cobblemon:ice_stone_ore","cobblemon:deepslate_ice_stone_ore"]}
+
+== data/cobblemon/tags/block/jungle_pyramid_blocks.json
+{"replace":false,"values":["minecraft:chiseled_stone_bricks","minecraft:mossy_cobblestone"]}
+
+== data/cobblemon/tags/block/leaf_stone_ores.json
+{"values":["cobblemon:leaf_stone_ore","cobblemon:deepslate_leaf_stone_ore"]}
+
+== data/cobblemon/tags/block/machines.json
+{"values":["cobblemon:healing_machine","cobblemon:pc","cobblemon:pasture","cobblemon:restoration_tank","cobblemon:monitor","cobblemon:damaged_monitor","cobblemon:fossil_analyzer","cobblemon:tm_machine"]}
+
+== data/cobblemon/tags/block/mansion_bedroom_blocks.json
+{"replace":false,"values":["minecraft:blue_carpet","minecraft:cyan_carpet","minecraft:light_blue_carpet","minecraft:purple_carpet","minecraft:red_wool","minecraft:white_wool"]}
+
+== data/cobblemon/tags/block/mansion_blocks.json
+{"replace":false,"values":["minecraft:birch_planks","minecraft:cobblestone_stairs","minecraft:cobblestone_wall","minecraft:dark_oak_planks"]}
+
+== data/cobblemon/tags/block/mansion_dining_blocks.json
+{"replace":false,"values":["minecraft:birch_planks","minecraft:cobblestone_stairs","minecraft:cobblestone_wall","minecraft:dark_oak_planks"]}
+
+== data/cobblemon/tags/block/medicinal_leek_plantable.json
+{"values":["minecraft:water","#minecraft:slabs","#minecraft:trapdoors","#minecraft:leaves","minecraft:mangrove_roots"]}
+
+== data/cobblemon/tags/block/mint_leaf_litters.json
+{"values":["cobblemon:red_mint_leaf_litter","cobblemon:blue_mint_leaf_litter","cobblemon:cyan_mint_leaf_litter","cobblemon:pink_mint_leaf_litter","cobblemon:green_mint_leaf_litter","cobblemon:white_mint_leaf_litter"]}
+
+== data/cobblemon/tags/block/mints.json
+{"replace":false,"values":["cobblemon:red_mint","cobblemon:blue_mint","cobblemon:cyan_mint","cobblemon:pink_mint","cobblemon:green_mint","cobblemon:white_mint"]}
+
+== data/cobblemon/tags/block/moon_stone_ores.json
+{"values":["cobblemon:moon_stone_ore","cobblemon:deepslate_moon_stone_ore","cobblemon:dripstone_moon_stone_ore"]}
+
+== data/cobblemon/tags/block/natural.json
+{"replace":false,"values":["minecraft:big_dripleaf","minecraft:lily_pad","minecraft:moss_block","minecraft:moss_carpet","minecraft:sculk","minecraft:snow_block","#minecraft:animals_spawnable_on","#minecraft:crystal_sound_blocks","#minecraft:base_stone_nether","#minecraft:base_stone_overworld","#minecraft:coal_ores","#minecraft:copper_ores","#minecraft:coral_blocks","#minecraft:diamond_ores","#minecraft:dirt","#minecraft:emerald_ores","#minecraft:sculk_replaceable","#minecraft:gold_ores","#minecraft:ice","#minecraft:iron_ores","#minecraft:lapis_ores","#minecraft:nylium","#minecraft:redstone_ores","#minecraft:sand","#minecraft:snow","#minecraft:terracotta","#minecraft:valid_spawn","#cobblemon:type_gem_blocks",{"id":"#c:coral_blocks","required":false},{"id":"#c:dirts","required":false},{"id":"#c:end_stones","required":false},{"id":"#c:gems","required":false},{"id":"#c:gravels","required":false},{"id":"#c:netherracks","required":false},{"id":"#c:ores","required":false},{"id":"#c:sands","required":false},{"id":"#c:stones","required":false}]}
+
+== data/cobblemon/tags/block/nether_structure_blocks.json
+{"replace":false,"values":["minecraft:blackstone_slab","minecraft:blackstone_stairs","minecraft:blackstone_wall","minecraft:chiseled_polished_blackstone","minecraft:cracked_polished_blackstone_bricks","minecraft:gilded_blackstone","minecraft:nether_brick_fence","minecraft:nether_brick_stairs","minecraft:nether_bricks","minecraft:polished_basalt","minecraft:polished_blackstone_brick_stairs","minecraft:polished_blackstone_bricks"]}
+
+== data/cobblemon/tags/block/ocean_ruin_blocks.json
+{"replace":false,"values":["minecraft:chiseled_sandstone","minecraft:chiseled_stone_bricks","minecraft:cracked_stone_bricks","minecraft:cut_sandstone","minecraft:mossy_cobblestone","minecraft:mossy_stone_bricks","minecraft:polished_granite","minecraft:stone_bricks"]}
+
+== data/cobblemon/tags/block/orange_flowers.json
+{"replace":false,"values":["minecraft:orange_tulip","minecraft:torchflower",{"id":"aether_redux:aurum","required":false},{"id":"biomemakeover:marigold","required":false},{"id":"biomemakeover:moth_blossom","required":false},{"id":"biomesoplenty:burning_blossom","required":false},{"id":"biomesoplenty:orange_cosmos","required":false},{"id":"blue_skies:blaze_bud","required":false},{"id":"botania:entropinnyum","required":false},{"id":"botania:floating_entropinnyum","required":false},{"id":"botania:floating_pollidisiac","required":false},{"id":"botania:floating_spectrolus","required":false},{"id":"botania:floating_tigerseye","required":false},{"id":"botania:floating_thermalily","required":false},{"id":"botania:orange_double_flower","required":false},{"id":"botania:orange_floating_flower","required":false},{"id":"botania:orange_mystical_flower","required":false},{"id":"botania:orange_shiny_flower","required":false},{"id":"botania:pollidisiac","required":false},{"id":"botania:spectrolus","required":false},{"id":"botania:tigerseye","required":false},{"id":"botania:thermalily","required":false},{"id":"deep_aether:golden_flower","required":false},{"id":"goodending:spicy_wildflowers","required":false}]}
+
+== data/cobblemon/tags/block/oricorio_flowers.json
+{"values":["cobblemon:lobaila","cobblemon:pomohana","cobblemon:pauvillea","cobblemon:wistensu","cobblemon:wistensu_vine"]}
+
+== data/cobblemon/tags/block/pillager_outpost_blocks.json
+{"replace":false,"values":["minecraft:cobblestone","minecraft:cobblestone_slab","minecraft:cobblestone_stairs","minecraft:cobblestone_wall","minecraft:dark_oak_fence","minecraft:dark_oak_slab","minecraft:dark_oak_stairs","minecraft:mossy_cobblestone","minecraft:mossy_cobblestone_slab","minecraft:mossy_cobblestone_stairs","minecraft:mossy_cobblestone_wall","#minecraft:logs","#minecraft:planks"]}
+
+== data/cobblemon/tags/block/pink_flowers.json
+{"replace":false,"values":["minecraft:allium","minecraft:lilac","minecraft:peony","minecraft:pink_tulip","cobblemon:pauvillea","cobblemon:lucibell","cobblemon:mistleaf",{"id":"aether_redux:iridia","required":false},{"id":"aether_redux:pink_prismatic_petals","required":false},{"id":"aether_redux:mixed_prismatic_petals","required":false},{"id":"aether_redux:sweet_blossom","required":false},{"id":"ancient_aether:highland_viola","required":false},{"id":"biomemakeover:foxglove","required":false},{"id":"biomesoplenty:pink_daffodil","required":false},{"id":"biomesoplenty:pink_hibiscus","required":false},{"id":"biomesoplenty:wildflower","required":false},{"id":"blue_skies:blush_blossom","required":false},{"id":"blue_skies:briskbloom","required":false},{"id":"blue_skies:camellia","required":false},{"id":"blue_skies:midday_bayhop","required":false},{"id":"botania:floating_hyacidus","required":false},{"id":"botania:floating_jaded_amaranthus","required":false},{"id":"botania:floating_jiyuulia","required":false},{"id":"botania:floating_jiyuulia_chibi","required":false},{"id":"botania:floating_marimorphosis","required":false},{"id":"botania:floating_marimorphosis_chibi","required":false},{"id":"botania:floating_rafflowsia","required":false},{"id":"botania:floating_rosa_arcana","required":false},{"id":"botania:hyacidus","required":false},{"id":"botania:jaded_amaranthus","required":false},{"id":"botania:jiyuulia","required":false},{"id":"botania:jiyuulia_chibi","required":false},{"id":"botania:magenta_double_flower","required":false},{"id":"botania:magenta_floating_flower","required":false},{"id":"botania:magenta_mystical_flower","required":false},{"id":"botania:magenta_shiny_flower","required":false},{"id":"botania:marimorphosis","required":false},{"id":"botania:marimorphosis_chibi","required":false},{"id":"botania:pink_double_flower","required":false},{"id":"botania:pink_floating_flower","required":false},{"id":"botania:pink_mystical_flower","required":false},{"id":"botania:pink_shiny_flower","required":false},{"id":"botania:rafflowsia","required":false},{"id":"botania:rosa_arcana","required":false},{"id":"deep_aether:aerlavender","required":false},{"id":"deep_aether:radiant_orchid","required":false},{"id":"deep_aether:tall_aerlavender","required":false},{"id":"enlightened_end:open_odd_roots","required":false},{"id":"etcetera:bouquet","required":false},{"id":"farmersdelight:wild_onions","required":false},{"id":"overweight_farming:allium_bush","required":false}]}
+
+== data/cobblemon/tags/block/plaques.json
+{"values":["cobblemon:white_plaque","cobblemon:light_gray_plaque","cobblemon:gray_plaque","cobblemon:black_plaque","cobblemon:brown_plaque","cobblemon:red_plaque","cobblemon:orange_plaque","cobblemon:yellow_plaque","cobblemon:lime_plaque","cobblemon:green_plaque","cobblemon:cyan_plaque","cobblemon:light_blue_plaque","cobblemon:blue_plaque","cobblemon:purple_plaque","cobblemon:magenta_plaque","cobblemon:pink_plaque"]}
+
+== data/cobblemon/tags/block/potted_berries.json
+{"replace":false,"values":["cobblemon:potted_cheri_berry","cobblemon:potted_chesto_berry","cobblemon:potted_pecha_berry","cobblemon:potted_rawst_berry","cobblemon:potted_aspear_berry","cobblemon:potted_oran_berry","cobblemon:potted_persim_berry","cobblemon:potted_razz_berry","cobblemon:potted_bluk_berry","cobblemon:potted_nanab_berry","cobblemon:potted_wepear_berry","cobblemon:potted_pinap_berry","cobblemon:potted_leppa_berry","cobblemon:potted_lum_berry","cobblemon:potted_figy_berry","cobblemon:potted_wiki_berry","cobblemon:potted_mago_berry","cobblemon:potted_aguav_berry","cobblemon:potted_iapapa_berry","cobblemon:potted_sitrus_berry","cobblemon:potted_touga_berry","cobblemon:potted_cornn_berry","cobblemon:potted_magost_berry","cobblemon:potted_rabuta_berry","cobblemon:potted_nomel_berry","cobblemon:potted_enigma_berry","cobblemon:potted_pomeg_berry","cobblemon:potted_kelpsy_berry","cobblemon:potted_qualot_berry","cobblemon:potted_hondew_berry","cobblemon:potted_grepa_berry","cobblemon:potted_tamato_berry","cobblemon:potted_spelon_berry","cobblemon:potted_pamtre_berry","cobblemon:potted_watmel_berry","cobblemon:potted_durin_berry","cobblemon:potted_belue_berry","cobblemon:potted_kee_berry","cobblemon:potted_maranga_berry","cobblemon:potted_hopo_berry","cobblemon:potted_liechi_berry","cobblemon:potted_ganlon_berry","cobblemon:potted_salac_berry","cobblemon:potted_petaya_berry","cobblemon:potted_apicot_berry","cobblemon:potted_lansat_berry","cobblemon:potted_starf_berry","cobblemon:potted_micle_berry","cobblemon:potted_custap_berry","cobblemon:potted_jaboca_berry","cobblemon:potted_rowap_berry","cobblemon:potted_babiri_berry","cobblemon:potted_charti_berry","cobblemon:potted_chilan_berry","cobblemon:potted_chople_berry","cobblemon:potted_coba_berry","cobblemon:potted_colbur_berry","cobblemon:potted_haban_berry","cobblemon:potted_kasib_berry","cobblemon:potted_kebia_berry","cobblemon:potted_occa_berry","cobblemon:potted_passho_berry","cobblemon:potted_payapa_berry","cobblemon:potted_rindo_berry","cobblemon:potted_roseli_berry","cobblemon:potted_shuca_berry","cobblemon:potted_tanga_berry","cobblemon:potted_wacan_berry","cobblemon:potted_yache_berry","cobblemon:potted_eggant_berry"]}
+
+== data/cobblemon/tags/block/red_flowers.json
+{"replace":false,"values":["minecraft:poppy","minecraft:red_tulip","minecraft:rose_bush","cobblemon:lobaila",{"id":"ancient_aether:sakura_blossoms","required":false},{"id":"ancient_aether:trapped_sakura_blossoms","required":false},{"id":"biomesoplenty:rose","required":false},{"id":"blue_skies:flare_floret","required":false},{"id":"botania:bellethorn","required":false},{"id":"botania:bellethorn_chibi","required":false},{"id":"botania:exoflame","required":false},{"id":"botania:floating_bellethorn","required":false},{"id":"botania:floating_bellethorn_chibi","required":false},{"id":"botania:floating_exoflame","required":false},{"id":"botania:floating_kekimurus","required":false},{"id":"botania:floating_manastar","required":false},{"id":"botania:floating_munchdew","required":false},{"id":"botania:floating_orechid_ignem","required":false},{"id":"botania:floating_pollidisiac","required":false},{"id":"botania:floating_spectrolus","required":false},{"id":"botania:kekimurus","required":false},{"id":"botania:manastar","required":false},{"id":"botania:munchdew","required":false},{"id":"botania:orechid_ignem","required":false},{"id":"botania:pollidisiac","required":false},{"id":"botania:red_double_flower","required":false},{"id":"botania:red_floating_flower","required":false},{"id":"botania:red_mystical_flower","required":false},{"id":"botania:red_shiny_flower","required":false},{"id":"botania:spectrolus","required":false},{"id":"etcetera:bouquet","required":false},{"id":"goodending:balmy_wildflowers","required":false},{"id":"mythicbotany:petrunia","required":false},{"id":"mythicbotany:petrunia_floating","required":false},{"id":"twilightforest:thorn_rose","required":false},{"id":"wilderwild:milkweed","required":false}]}
+
+== data/cobblemon/tags/block/red_tumblestone_bricks.json
+{"values":["cobblemon:tumblestone_bricks","cobblemon:chiseled_tumblestone_bricks"]}
+
+== data/cobblemon/tags/block/red_tumblestones.json
+{"values":["cobblemon:small_budding_tumblestone","cobblemon:medium_budding_tumblestone","cobblemon:large_budding_tumblestone","cobblemon:tumblestone_cluster","cobblemon:tumblestone_block","cobblemon:polished_tumblestone","cobblemon:polished_tumblestone_stairs","cobblemon:polished_tumblestone_slab","cobblemon:polished_tumblestone_wall","cobblemon:chiseled_polished_tumblestone","cobblemon:tumblestone_bricks","cobblemon:tumblestone_brick_stairs","cobblemon:tumblestone_brick_slab","cobblemon:tumblestone_brick_wall","cobblemon:chiseled_tumblestone_bricks","cobblemon:smooth_tumblestone","cobblemon:smooth_tumblestone_stairs","cobblemon:smooth_tumblestone_slab"]}
+
+== data/cobblemon/tags/block/redstone_blocks.json
+{"replace":false,"values":["minecraft:activator_rail","minecraft:comparator","minecraft:daylight_detector","minecraft:detector_rail","minecraft:dispenser","minecraft:dropper","minecraft:hopper","minecraft:observer","minecraft:piston","minecraft:powered_rail","minecraft:redstone_block","minecraft:redstone_lamp","minecraft:redstone_torch","minecraft:redstone_wire","minecraft:repeater","minecraft:sticky_piston",{"id":"#c:redstone_blocks","required":false}]}
+
+== data/cobblemon/tags/block/roots.json
+{"replace":false,"values":["cobblemon:big_root","cobblemon:energy_root"]}
+
+== data/cobblemon/tags/block/roots_spreadable.json
+{"comments":["We don't manually tag stones because the platform specific ones already handle vanilla for us","Fabric dirt extends vanilla and some mods use only that instead"],"replace":false,"values":["#minecraft:dirt","minecraft:stone","minecraft:infested_stone","minecraft:andesite","minecraft:diorite","minecraft:granite","minecraft:deepslate","minecraft:infested_deepslate","minecraft:tuff","minecraft:cobblestone","minecraft:mossy_cobblestone","minecraft:infested_cobblestone","minecraft:cobbled_deepslate",{"id":"#c:dirt","required":false},{"id":"#c:stone","required":false},{"id":"#c:cobblestone","required":false},{"id":"#forge:stone","required":false},{"id":"#forge:cobblestone/normal","required":false},{"id":"#forge:cobblestone/mossy","required":false},{"id":"#forge:cobblestone/infested","required":false},{"id":"#forge:cobblestone/deepslate","required":false}]}
+
+== data/cobblemon/tags/block/ruined_portal_blocks.json
+{"replace":false,"values":["minecraft:crying_obsidian","minecraft:netherrack","minecraft:obsidian"]}
+
+== data/cobblemon/tags/block/saccharine_leaves.json
+{"replace":false,"values":["cobblemon:saccharine_leaves"]}
+
+== data/cobblemon/tags/block/saccharine_logs.json
+{"replace":false,"values":["cobblemon:saccharine_log","cobblemon:saccharine_log_slathered","cobblemon:saccharine_wood","cobblemon:stripped_saccharine_log","cobblemon:stripped_saccharine_wood"]}
+
+== data/cobblemon/tags/block/saccharine_sapling.json
+{"replace":false,"values":["cobblemon:saccharine_sapling"]}
+
+== data/cobblemon/tags/block/saccharine_trees.json
+{"replace":false,"values":["cobblemon:saccharine_leaves","cobblemon:saccharine_log","cobblemon:saccharine_wood","cobblemon:stripped_saccharine_log","cobblemon:stripped_saccharine_wood"]}
+
+== data/cobblemon/tags/block/sees_sky.json
+{"replace":false,"values":["#minecraft:replaceable","#minecraft:leaves","#minecraft:climbable","#minecraft:fences","#minecraft:fence_gates","minecraft:ice","#cobblemon:oricorio_flowers","#cobblemon:terrain_plants"]}
+
+== data/cobblemon/tags/block/shiny_stone_ores.json
+{"values":["cobblemon:shiny_stone_ore","cobblemon:deepslate_shiny_stone_ore"]}
+
+== data/cobblemon/tags/block/signs.json
+{"values":["#cobblemon:standing_signs","#cobblemon:wall_signs"]}
+
+== data/cobblemon/tags/block/sky_tumblestone_bricks.json
+{"values":["cobblemon:sky_tumblestone_bricks","cobblemon:chiseled_sky_tumblestone_bricks"]}
+
+== data/cobblemon/tags/block/sky_tumblestones.json
+{"values":["cobblemon:small_budding_sky_tumblestone","cobblemon:medium_budding_sky_tumblestone","cobblemon:large_budding_sky_tumblestone","cobblemon:sky_tumblestone_cluster","cobblemon:sky_tumblestone_block","cobblemon:polished_sky_tumblestone","cobblemon:polished_sky_tumblestone_stairs","cobblemon:polished_sky_tumblestone_slab","cobblemon:polished_sky_tumblestone_wall","cobblemon:chiseled_polished_sky_tumblestone","cobblemon:sky_tumblestone_bricks","cobblemon:sky_tumblestone_brick_stairs","cobblemon:sky_tumblestone_brick_slab","cobblemon:sky_tumblestone_brick_wall","cobblemon:chiseled_sky_tumblestone_bricks","cobblemon:smooth_sky_tumblestone","cobblemon:smooth_sky_tumblestone_stairs","cobblemon:smooth_sky_tumblestone_slab"]}
+
+== data/cobblemon/tags/block/small_flowers.json
+{"replace":false,"values":["cobblemon:pep_up_flower","cobblemon:pomohana"]}
+
+== data/cobblemon/tags/block/snow_block.json
+{"replace":false,"values":["minecraft:snow_block"]}
+
+== data/cobblemon/tags/block/standing_signs.json
+{"values":["cobblemon:apricorn_sign","cobblemon:saccharine_sign"]}
+
+== data/cobblemon/tags/block/sun_stone_ores.json
+{"values":["cobblemon:sun_stone_ore","cobblemon:deepslate_sun_stone_ore","cobblemon:terracotta_sun_stone_ore"]}
+
+== data/cobblemon/tags/block/tall_flowers.json
+{"replace":false,"values":["cobblemon:lobaila","cobblemon:mistleaf","cobblemon:lucibell"]}
+
+== data/cobblemon/tags/block/terrain_plants.json
+{"values":["cobblemon:voltaconia","cobblemon:verdroot","cobblemon:mistleaf","cobblemon:lucibell"]}
+
+== data/cobblemon/tags/block/terrain_seeds.json
+{"values":["cobblemon:electric_seed","cobblemon:grassy_seed","cobblemon:misty_seed","cobblemon:psychic_seed"]}
+
+== data/cobblemon/tags/block/thunder_stone_ores.json
+{"values":["cobblemon:thunder_stone_ore","cobblemon:deepslate_thunder_stone_ore"]}
+
+== data/cobblemon/tags/block/trail_ruins_blocks.json
+{"replace":false,"values":["#minecraft:terracotta","#cobblemon:glazed_terracotta_blocks","minecraft:bricks","minecraft:mud_bricks","minecraft:suspicious_gravel"]}
+
+== data/cobblemon/tags/block/trash.json
+{"replace":false,"values":["minecraft:composter","cobblemon:damaged_monitor",{"id":"etcetera:prickly_can","required":false},{"id":"farmersdelight:organic_compost","required":false},{"id":"manatrashcan:mana_trashcan","required":false},{"id":"nethersdelight:soul_compost","required":false},{"id":"overweight_farming:vegetable_compost","required":false},{"id":"rats:trash_can","required":false},{"id":"rats:garbage_pile","required":false},{"id":"rats:cursed_garbage","required":false},{"id":"rats:purified_garbage","required":false},{"id":"rats:pied_garbage","required":false},{"id":"rats:compressed_garbage","required":false},{"id":"trashcans:item_trash_can","required":false},{"id":"trashcans:liquid_trash_can","required":false},{"id":"trashcans:energy_trash_can","required":false},{"id":"trashcans:ultimate_trash_can","required":false}]}
+
+== data/cobblemon/tags/block/trees.json
+{"replace":false,"values":["#minecraft:leaves","#minecraft:logs","#minecraft:overworld_natural_logs",{"id":"#c:leaves","required":false},{"id":"#c:logs","required":false}]}
+
+== data/cobblemon/tags/block/tumblestone_bricks.json
+{"values":["#cobblemon:red_tumblestone_bricks","#cobblemon:black_tumblestone_bricks","#cobblemon:sky_tumblestone_bricks"]}
+
+== data/cobblemon/tags/block/tumblestone_heat_source.json
+{"values":["minecraft:lava","minecraft:magma_block"]}
+
+== data/cobblemon/tags/block/type_gem_blocks.json
+{"values":["cobblemon:normal_gem_block","cobblemon:fire_gem_block","cobblemon:water_gem_block","cobblemon:electric_gem_block","cobblemon:grass_gem_block","cobblemon:ice_gem_block","cobblemon:fighting_gem_block","cobblemon:poison_gem_block","cobblemon:ground_gem_block","cobblemon:flying_gem_block","cobblemon:psychic_gem_block","cobblemon:bug_gem_block","cobblemon:rock_gem_block","cobblemon:ghost_gem_block","cobblemon:dragon_gem_block","cobblemon:dark_gem_block","cobblemon:steel_gem_block","cobblemon:fairy_gem_block"]}
+
+== data/cobblemon/tags/block/type_gem_clusters.json
+{"values":["cobblemon:normal_gem_cluster","cobblemon:fire_gem_cluster","cobblemon:water_gem_cluster","cobblemon:electric_gem_cluster","cobblemon:grass_gem_cluster","cobblemon:ice_gem_cluster","cobblemon:fighting_gem_cluster","cobblemon:poison_gem_cluster","cobblemon:ground_gem_cluster","cobblemon:flying_gem_cluster","cobblemon:psychic_gem_cluster","cobblemon:bug_gem_cluster","cobblemon:rock_gem_cluster","cobblemon:ghost_gem_cluster","cobblemon:dragon_gem_cluster","cobblemon:dark_gem_cluster","cobblemon:steel_gem_cluster","cobblemon:fairy_gem_cluster"]}
+
+== data/cobblemon/tags/block/wall_hanging_signs.json
+{"values":["cobblemon:apricorn_wall_hanging_sign","cobblemon:saccharine_wall_hanging_sign"]}
+
+== data/cobblemon/tags/block/wall_signs.json
+{"values":["cobblemon:apricorn_wall_sign","cobblemon:saccharine_wall_sign"]}
+
+== data/cobblemon/tags/block/water_stone_ores.json
+{"values":["cobblemon:water_stone_ore","cobblemon:deepslate_water_stone_ore"]}
+
+== data/cobblemon/tags/block/weather_rocks.json
+{"values":["cobblemon:damp_rock","cobblemon:heat_rock","cobblemon:icy_rock","cobblemon:smooth_rock"]}
+
+== data/cobblemon/tags/block/white_flowers.json
+{"replace":false,"values":["minecraft:azure_bluet","minecraft:lily_of_the_valley","minecraft:oxeye_daisy","minecraft:white_tulip","cobblemon:pep_up_flower",{"id":"aether:white_flower","required":false},{"id":"aether_redux:frostbud","required":false},{"id":"aether_redux:gilded_white_flower","required":false},{"id":"biomemakeover:buttonbush","required":false},{"id":"biomesoplenty:glowflower","required":false},{"id":"blue_skies:crystal_flower","required":false},{"id":"blue_skies:snowbloom","required":false},{"id":"botania:floating_dandelifeon","required":false},{"id":"botania:floating_kekimurus","required":false},{"id":"botania:floating_pure_daisy","required":false},{"id":"botania:floating_spectrolus","required":false},{"id":"botania:spectrolus","required":false},{"id":"botania:white_double_flower","required":false},{"id":"botania:white_floating_flower","required":false},{"id":"botania:white_mystical_flower","required":false},{"id":"botania:white_shiny_flower","required":false},{"id":"botania:pure_daisy","required":false},{"id":"botania:fallen_kanade","required":false},{"id":"botania:floating_fallen_kanade","required":false},{"id":"botania:spectranthemum","required":false},{"id":"botania:floating_spectranthemum","required":false},{"id":"botania:kekimurus","required":false},{"id":"botania:dandelifeon","required":false},{"id":"deep_aether:enchanted_blossom","required":false},{"id":"farmersdelight:wild_carrots","required":false},{"id":"miners_delight:gossypium","required":false},{"id":"miners_delight:wild_cave_carrots","required":false},{"id":"wilderwild:alba_giany_glory_of_the_snow","required":false},{"id":"wilderwild:datura","required":false}]}
+
+== data/cobblemon/tags/block/yellow_flowers.json
+{"replace":false,"values":["minecraft:dandelion","minecraft:sunflower","cobblemon:pomohana",{"id":"biomesoplenty:goldenrod","required":false},{"id":"botania:daffomill","required":false},{"id":"botania:endoflame","required":false},{"id":"botania:floating_daffomill","required":false},{"id":"botania:floating_endoflame","required":false},{"id":"botania:floating_gourmaryllis","required":false},{"id":"botania:floating_labellia","required":false},{"id":"botania:floating_marimorphosis","required":false},{"id":"botania:floating_marimorphosis_chibi","required":false},{"id":"botania:floating_rafflowsia","required":false},{"id":"botania:floating_solegnolia","required":false},{"id":"botania:floating_solegnolia_chibi","required":false},{"id":"botania:floating_spectrolus","required":false},{"id":"botania:gourmaryllis","required":false},{"id":"botania:labellia","required":false},{"id":"botania:marimorphosis","required":false},{"id":"botania:marimorphosis_chibi","required":false},{"id":"botania:rafflowsia","required":false},{"id":"botania:solegnolia","required":false},{"id":"botania:solegnolia_chibi","required":false},{"id":"botania:spectrolus","required":false},{"id":"botania:yellow_double_flower","required":false},{"id":"botania:yellow_floating_flower","required":false},{"id":"botania:yellow_mystical_flower","required":false},{"id":"botania:yellow_shiny_flower","required":false},{"id":"etcetera:bouquet","required":false},{"id":"farmersdelight:wild_cabbages","required":false},{"id":"goodending:balmy_wildflowers","required":false},{"id":"goodending:pastel_wildflowers","required":false},{"id":"mythicbotany:feysythia","required":false},{"id":"mythicbotany:feysythia_floating","required":false}]}
+
+== data/minecraft/tags/block/all_hanging_signs.json
+{"replace":false,"values":["#cobblemon:all_hanging_signs"]}
+
+== data/minecraft/tags/block/all_signs.json
+{"replace":false,"values":["#cobblemon:all_signs"]}
+
+== data/minecraft/tags/block/bee_growables.json
+{"replace":false,"values":["#cobblemon:crops","#cobblemon:apricorns","#cobblemon:saccharine_leaves","cobblemon:galarica_nut_bush"]}
+
+== data/minecraft/tags/block/buttons.json
+{"values":["cobblemon:eject_button"]}
+
+== data/minecraft/tags/block/campfires.json
+{"replace":false,"values":["cobblemon:campfire"]}
+
+== data/minecraft/tags/block/ceiling_hanging_signs.json
+{"replace":false,"values":["#cobblemon:ceiling_hanging_signs"]}
+
+== data/minecraft/tags/block/climbable.json
+{"values":["cobblemon:wistensu","cobblemon:wistensu_vine"]}
+
+== data/minecraft/tags/block/combination_step_sound_blocks.json
+{"replace":false,"values":["cobblemon:tatami_mat"]}
+
+== data/minecraft/tags/block/crystal_sound_blocks.json
+{"replace":false,"values":["#cobblemon:type_gem_blocks"]}
+
+== data/minecraft/tags/block/drip_stone_replaceables.json
+{"replace":false,"values":["dripstone_block"]}
+
+== data/minecraft/tags/block/fall_damage_resetting.json
+{"replace":false,"values":["cobblemon:galarica_nut_bush"]}
+
+== data/minecraft/tags/block/fence_gates.json
+{"replace":false,"values":["cobblemon:apricorn_fence_gate","cobblemon:saccharine_fence_gate"]}
+
+== data/minecraft/tags/block/fences.json
+{"replace":false,"values":["cobblemon:apricorn_fence","cobblemon:saccharine_fence"]}
+
+== data/minecraft/tags/block/flower_pots.json
+{"replace":false,"values":["cobblemon:potted_pep_up_flower","cobblemon:potted_red_apricorn_sapling","cobblemon:potted_yellow_apricorn_sapling","cobblemon:potted_green_apricorn_sapling","cobblemon:potted_blue_apricorn_sapling","cobblemon:potted_pink_apricorn_sapling","cobblemon:potted_black_apricorn_sapling","cobblemon:potted_white_apricorn_sapling","cobblemon:potted_saccharine_sapling","cobblemon:potted_red_mint","cobblemon:potted_blue_mint","cobblemon:potted_cyan_mint","cobblemon:potted_pink_mint","cobblemon:potted_green_mint","cobblemon:potted_white_mint","#cobblemon:potted_berries"]}
+
+== data/minecraft/tags/block/flowers.json
+{"replace":false,"values":["cobblemon:pep_up_flower","#cobblemon:oricorio_flowers"]}
+
+== data/minecraft/tags/block/guarded_by_piglins.json
+{"replace":false,"values":["cobblemon:gilded_chest","cobblemon:black_gilded_chest","cobblemon:blue_gilded_chest","cobblemon:green_gilded_chest","cobblemon:pink_gilded_chest","cobblemon:white_gilded_chest","cobblemon:yellow_gilded_chest","cobblemon:relic_coin_pouch","cobblemon:relic_coin_sack","cobblemon:gimmighoul_chest"]}
+
+== data/minecraft/tags/block/inside_step_sound_blocks.json
+{"replace":false,"values":["cobblemon:small_budding_tumblestone","cobblemon:small_budding_black_tumblestone","cobblemon:small_budding_sky_tumblestone","#cobblemon:type_gem_clusters","#cobblemon:mint_leaf_litters","cobblemon:pomohana","cobblemon:pauvillea"]}
+
+== data/minecraft/tags/block/leaves.json
+{"replace":false,"values":["cobblemon:apricorn_leaves","cobblemon:saccharine_leaves"]}
+
+== data/minecraft/tags/block/logs.json
+{"replace":false,"values":["#cobblemon:apricorn_logs","#cobblemon:saccharine_logs"]}
+
+== data/minecraft/tags/block/logs_that_burn.json
+{"replace":false,"values":["#cobblemon:apricorn_logs","#cobblemon:saccharine_logs"]}
+
+== data/minecraft/tags/block/maintains_farmland.json
+{"replace":false,"values":["#cobblemon:berries","#cobblemon:crops"]}
+
+== data/minecraft/tags/block/mineable/axe.json
+{"replace":false,"values":["#cobblemon:apricorns","cobblemon:pasture","cobblemon:gilded_chest","cobblemon:blue_gilded_chest","cobblemon:yellow_gilded_chest","cobblemon:pink_gilded_chest","cobblemon:black_gilded_chest","cobblemon:white_gilded_chest","cobblemon:green_gilded_chest","cobblemon:gimmighoul_chest","cobblemon:lectern","cobblemon:campfire","cobblemon:ring_target"]}
+
+== data/minecraft/tags/block/mineable/hoe.json
+{"replace":false,"values":["cobblemon:apricorn_leaves","cobblemon:saccharine_leaves","cobblemon:hearty_grain_bale","cobblemon:tatami_block","cobblemon:tatami_mat"]}
+
+== data/minecraft/tags/block/mineable/pickaxe.json
+{"replace":false,"values":["cobblemon:dawn_stone_ore","cobblemon:dusk_stone_ore","cobblemon:fire_stone_ore","cobblemon:ice_stone_ore","cobblemon:leaf_stone_ore","cobblemon:moon_stone_ore","cobblemon:shiny_stone_ore","cobblemon:sun_stone_ore","cobblemon:thunder_stone_ore","cobblemon:water_stone_ore","cobblemon:deepslate_dawn_stone_ore","cobblemon:deepslate_dusk_stone_ore","cobblemon:deepslate_fire_stone_ore","cobblemon:deepslate_ice_stone_ore","cobblemon:deepslate_leaf_stone_ore","cobblemon:deepslate_moon_stone_ore","cobblemon:deepslate_shiny_stone_ore","cobblemon:deepslate_sun_stone_ore","cobblemon:deepslate_thunder_stone_ore","cobblemon:deepslate_water_stone_ore","cobblemon:dripstone_moon_stone_ore","cobblemon:nether_fire_stone_ore","cobblemon:terracotta_sun_stone_ore","cobblemon:healing_machine","cobblemon:pc","cobblemon:tm_machine","cobblemon:disc_shelf","cobblemon:restoration_tank","cobblemon:monitor","cobblemon:damaged_monitor","cobblemon:fossil_analyzer","cobblemon:tumblestone_block","cobblemon:polished_tumblestone","cobblemon:polished_tumblestone_stairs","cobblemon:polished_tumblestone_slab","cobblemon:polished_tumblestone_wall","cobblemon:chiseled_polished_tumblestone","cobblemon:tumblestone_bricks","cobblemon:tumblestone_brick_stairs","cobblemon:tumblestone_brick_slab","cobblemon:tumblestone_brick_wall","cobblemon:chiseled_tumblestone_bricks","cobblemon:smooth_tumblestone","cobblemon:smooth_tumblestone_stairs","cobblemon:smooth_tumblestone_slab","cobblemon:black_tumblestone_block","cobblemon:polished_black_tumblestone","cobblemon:polished_black_tumblestone_stairs","cobblemon:polished_black_tumblestone_slab","cobblemon:polished_black_tumblestone_wall","cobblemon:chiseled_polished_black_tumblestone","cobblemon:black_tumblestone_bricks","cobblemon:black_tumblestone_brick_stairs","cobblemon:black_tumblestone_brick_slab","cobblemon:black_tumblestone_brick_wall","cobblemon:chiseled_black_tumblestone_bricks","cobblemon:smooth_black_tumblestone","cobblemon:smooth_black_tumblestone_stairs","cobblemon:smooth_black_tumblestone_slab","cobblemon:sky_tumblestone_block","cobblemon:polished_sky_tumblestone","cobblemon:polished_sky_tumblestone_stairs","cobblemon:polished_sky_tumblestone_slab","cobblemon:polished_sky_tumblestone_wall","cobblemon:chiseled_polished_sky_tumblestone","cobblemon:sky_tumblestone_bricks","cobblemon:sky_tumblestone_brick_stairs","cobblemon:sky_tumblestone_brick_slab","cobblemon:sky_tumblestone_brick_wall","cobblemon:chiseled_sky_tumblestone_bricks","cobblemon:smooth_sky_tumblestone","cobblemon:smooth_sky_tumblestone_stairs","cobblemon:smooth_sky_tumblestone_slab","cobblemon:small_budding_tumblestone","cobblemon:medium_budding_tumblestone","cobblemon:large_budding_tumblestone","cobblemon:tumblestone_cluster","cobblemon:small_budding_black_tumblestone","cobblemon:medium_budding_black_tumblestone","cobblemon:large_budding_black_tumblestone","cobblemon:black_tumblestone_cluster","cobblemon:small_budding_sky_tumblestone","cobblemon:medium_budding_sky_tumblestone","cobblemon:large_budding_sky_tumblestone","cobblemon:sky_tumblestone_cluster","cobblemon:deepslate_crystal_core","#cobblemon:type_gem_blocks","#cobblemon:type_gem_clusters","cobblemon:dawn_stone_block","cobblemon:dusk_stone_block","cobblemon:fire_stone_block","cobblemon:ice_stone_block","cobblemon:leaf_stone_block","cobblemon:moon_stone_block","cobblemon:shiny_stone_block","cobblemon:sun_stone_block","cobblemon:thunder_stone_block","cobblemon:water_stone_block","cobblemon:display_case","cobblemon:white_plaque","cobblemon:light_gray_plaque","cobblemon:gray_plaque","cobblemon:black_plaque","cobblemon:brown_plaque","cobblemon:red_plaque","cobblemon:orange_plaque","cobblemon:yellow_plaque","cobblemon:lime_plaque","cobblemon:green_plaque","cobblemon:cyan_plaque","cobblemon:light_blue_plaque","cobblemon:blue_plaque","cobblemon:purple_plaque","cobblemon:magenta_plaque","cobblemon:pink_plaque","cobblemon:magnet","cobblemon:eject_button"]}
+
+== data/minecraft/tags/block/needs_iron_tool.json
+{"replace":false,"values":["cobblemon:dawn_stone_ore","cobblemon:dusk_stone_ore","cobblemon:fire_stone_ore","cobblemon:ice_stone_ore","cobblemon:leaf_stone_ore","cobblemon:moon_stone_ore","cobblemon:shiny_stone_ore","cobblemon:sun_stone_ore","cobblemon:thunder_stone_ore","cobblemon:water_stone_ore","cobblemon:deepslate_dawn_stone_ore","cobblemon:deepslate_dusk_stone_ore","cobblemon:deepslate_fire_stone_ore","cobblemon:deepslate_ice_stone_ore","cobblemon:deepslate_leaf_stone_ore","cobblemon:deepslate_moon_stone_ore","cobblemon:deepslate_shiny_stone_ore","cobblemon:deepslate_sun_stone_ore","cobblemon:deepslate_thunder_stone_ore","cobblemon:deepslate_water_stone_ore","cobblemon:dripstone_moon_stone_ore","cobblemon:terracotta_sun_stone_ore","cobblemon:dawn_stone_block","cobblemon:dusk_stone_block","cobblemon:fire_stone_block","cobblemon:ice_stone_block","cobblemon:leaf_stone_block","cobblemon:moon_stone_block","cobblemon:shiny_stone_block","cobblemon:sun_stone_block","cobblemon:thunder_stone_block","cobblemon:water_stone_block","cobblemon:deepslate_crystal_core","#cobblemon:type_gem_blocks","#cobblemon:type_gem_clusters"]}
+
+== data/minecraft/tags/block/needs_stone_tool.json
+{"replace":false,"values":[]}
+
+== data/minecraft/tags/block/overworld_natural_logs.json
+{"replace":false,"values":["cobblemon:apricorn_log","cobblemon:saccharine_log"]}
+
+== data/minecraft/tags/block/piglin_repellents.json
+{"values":["cobblemon:soul_campfire"]}
+
+== data/minecraft/tags/block/planks.json
+{"replace":false,"values":["cobblemon:apricorn_planks","cobblemon:saccharine_planks"]}
+
+== data/minecraft/tags/block/saplings.json
+{"replace":false,"values":["cobblemon:black_apricorn_sapling","cobblemon:blue_apricorn_sapling","cobblemon:green_apricorn_sapling","cobblemon:pink_apricorn_sapling","cobblemon:red_apricorn_sapling","cobblemon:white_apricorn_sapling","cobblemon:yellow_apricorn_sapling","cobblemon:saccharine_sapling"]}
+
+== data/minecraft/tags/block/signs.json
+{"replace":false,"values":["#cobblemon:signs"]}
+
+== data/minecraft/tags/block/slabs.json
+{"replace":false,"values":["cobblemon:polished_tumblestone_slab","cobblemon:polished_black_tumblestone_slab","cobblemon:polished_sky_tumblestone_slab","cobblemon:tumblestone_brick_slab","cobblemon:black_tumblestone_brick_slab","cobblemon:sky_tumblestone_brick_slab","cobblemon:smooth_tumblestone_slab","cobblemon:smooth_black_tumblestone_slab","cobblemon:smooth_sky_tumblestone_slab"]}
+
+== data/minecraft/tags/block/small_flowers.json
+{"replace":false,"values":["#cobblemon:small_flowers"]}
+
+== data/minecraft/tags/block/stairs.json
+{"replace":false,"values":["cobblemon:polished_tumblestone_stairs","cobblemon:polished_black_tumblestone_stairs","cobblemon:polished_sky_tumblestone_stairs","cobblemon:tumblestone_brick_stairs","cobblemon:black_tumblestone_brick_stairs","cobblemon:sky_tumblestone_brick_stairs","cobblemon:smooth_tumblestone_stairs","cobblemon:smooth_black_tumblestone_stairs","cobblemon:smooth_sky_tumblestone_stairs"]}
+
+== data/minecraft/tags/block/standing_signs.json
+{"replace":false,"values":["#cobblemon:standing_signs"]}
+
+== data/minecraft/tags/block/sword_efficient.json
+{"replace":false,"values":["cobblemon:galarica_nut_bush","#cobblemon:oricorio_flowers","#cobblemon:terrain_plants"]}
+
+== data/minecraft/tags/block/tall_flowers.json
+{"replace":false,"values":["#cobblemon:tall_flowers"]}
+
+== data/minecraft/tags/block/vibration_resonators.json
+{"replace":false,"values":["#cobblemon:type_gem_blocks"]}
+
+== data/minecraft/tags/block/wall_hanging_signs.json
+{"replace":false,"values":["#cobblemon:wall_hanging_signs"]}
+
+== data/minecraft/tags/block/wall_signs.json
+{"replace":false,"values":["#cobblemon:wall_signs"]}
+
+== data/minecraft/tags/block/walls.json
+{"replace":false,"values":["cobblemon:polished_tumblestone_wall","cobblemon:polished_black_tumblestone_wall","cobblemon:polished_sky_tumblestone_wall","cobblemon:tumblestone_brick_wall","cobblemon:black_tumblestone_brick_wall","cobblemon:sky_tumblestone_brick_wall"]}
+
+== data/minecraft/tags/block/wooden_buttons.json
+{"replace":false,"values":["cobblemon:apricorn_button","cobblemon:saccharine_button"]}
+
+== data/minecraft/tags/block/wooden_doors.json
+{"replace":false,"values":["cobblemon:apricorn_door","cobblemon:saccharine_door"]}
+
+== data/minecraft/tags/block/wooden_fences.json
+{"replace":false,"values":["cobblemon:apricorn_fence","cobblemon:saccharine_fence"]}
+
+== data/minecraft/tags/block/wooden_pressure_plates.json
+{"replace":false,"values":["cobblemon:apricorn_pressure_plate","cobblemon:saccharine_pressure_plate"]}
+
+== data/minecraft/tags/block/wooden_slabs.json
+{"replace":false,"values":["cobblemon:apricorn_slab","cobblemon:saccharine_slab"]}
+
+== data/minecraft/tags/block/wooden_stairs.json
+{"replace":false,"values":["cobblemon:apricorn_stairs","cobblemon:saccharine_stairs"]}
+
+== data/minecraft/tags/block/wooden_trapdoors.json
+{"replace":false,"values":["cobblemon:apricorn_trapdoor","cobblemon:saccharine_trapdoor"]}

@@ -1,0 +1,867 @@
+== com/cobblemon/mod/common/Cobblemon$areaSpawnablePositionResolver$1.class
+Compiled from "Cobblemon.java"
+public final class com.cobblemon.mod.common.Cobblemon$areaSpawnablePositionResolver$1 implements com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver {
+  com.cobblemon.mod.common.Cobblemon$areaSpawnablePositionResolver$1();
+    Code:
+       0: aload_0
+       1: invokespecial #27                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public java.util.List<com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePosition> resolve(com.cobblemon.mod.common.api.spawning.spawner.Spawner, java.util.List<? extends com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawnablePositionCalculator<?>>, com.cobblemon.mod.common.api.spawning.SpawningZone);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #37                 // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePositionResolver.resolve:(Lcom/cobblemon/mod/common/api/spawning/spawner/Spawner;Ljava/util/List;Lcom/cobblemon/mod/common/api/spawning/SpawningZone;)Ljava/util/List;
+       7: areturn
+}
+
+== com/cobblemon/mod/common/api/spawning/condition/GroundedSpawningCondition$Companion.class
+Compiled from "GroundedSpawningCondition.java"
+public final class com.cobblemon.mod.common.api.spawning.condition.GroundedSpawningCondition$Companion {
+  private com.cobblemon.mod.common.api.spawning.condition.GroundedSpawningCondition$Companion();
+    Code:
+       0: aload_0
+       1: invokespecial #28                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public com.cobblemon.mod.common.api.spawning.condition.GroundedSpawningCondition$Companion(kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: aload_0
+       1: invokespecial #32                 // Method "<init>":()V
+       4: return
+}
+
+== com/cobblemon/mod/common/api/spawning/condition/GroundedSpawningCondition.class
+Compiled from "GroundedSpawningCondition.java"
+public class com.cobblemon.mod.common.api.spawning.condition.GroundedSpawningCondition extends com.cobblemon.mod.common.api.spawning.condition.GroundedTypeSpawningCondition<com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition> {
+  public static final com.cobblemon.mod.common.api.spawning.condition.GroundedSpawningCondition$Companion Companion;
+
+  public static final java.lang.String NAME;
+
+  public com.cobblemon.mod.common.api.spawning.condition.GroundedSpawningCondition();
+    Code:
+       0: aload_0
+       1: invokespecial #37                 // Method com/cobblemon/mod/common/api/spawning/condition/GroundedTypeSpawningCondition."<init>":()V
+       4: return
+
+  public java.lang.Class<com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition> spawnablePositionClass();
+    Code:
+       0: ldc           #41                 // class com/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition
+       2: areturn
+
+  static {};
+    Code:
+       0: new           #29                 // class com/cobblemon/mod/common/api/spawning/condition/GroundedSpawningCondition$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #45                 // Method com/cobblemon/mod/common/api/spawning/condition/GroundedSpawningCondition$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #47                 // Field Companion:Lcom/cobblemon/mod/common/api/spawning/condition/GroundedSpawningCondition$Companion;
+      11: return
+}
+
+== com/cobblemon/mod/common/api/spawning/condition/GroundedTypeSpawningCondition.class
+Compiled from "GroundedTypeSpawningCondition.java"
+public abstract class com.cobblemon.mod.common.api.spawning.condition.GroundedTypeSpawningCondition<T extends com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition> extends com.cobblemon.mod.common.api.spawning.condition.AreaTypeSpawningCondition<T> {
+  private java.util.List<com.cobblemon.mod.common.api.conditional.RegistryLikeCondition<net.minecraft.class_2248>> neededBaseBlocks;
+
+  public com.cobblemon.mod.common.api.spawning.condition.GroundedTypeSpawningCondition();
+    Code:
+       0: aload_0
+       1: invokespecial #51                 // Method com/cobblemon/mod/common/api/spawning/condition/AreaTypeSpawningCondition."<init>":()V
+       4: return
+
+  public final java.util.List<com.cobblemon.mod.common.api.conditional.RegistryLikeCondition<net.minecraft.class_2248>> getNeededBaseBlocks();
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+       4: areturn
+
+  public final void setNeededBaseBlocks(java.util.List<com.cobblemon.mod.common.api.conditional.RegistryLikeCondition<net.minecraft.class_2248>>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+       5: return
+
+  protected boolean fits(T);
+    Code:
+       0: aload_1
+       1: ldc           #60                 // String spawnablePosition
+       3: invokestatic  #66                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: checkcast     #68                 // class com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition
+      11: invokespecial #71                 // Method com/cobblemon/mod/common/api/spawning/condition/AreaTypeSpawningCondition.fits:(Lcom/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition;)Z
+      14: ifne          21
+      17: iconst_0
+      18: goto          191
+      21: aload_0
+      22: invokevirtual #75                 // Method getMinHeight:()Ljava/lang/Integer;
+      25: ifnull        51
+      28: aload_1
+      29: checkcast     #68                 // class com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition
+      32: invokevirtual #79                 // Method com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition.getHeight:()I
+      35: aload_0
+      36: invokevirtual #75                 // Method getMinHeight:()Ljava/lang/Integer;
+      39: dup
+      40: invokestatic  #83                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      43: invokevirtual #88                 // Method java/lang/Integer.intValue:()I
+      46: if_icmpge     51
+      49: iconst_0
+      50: ireturn
+      51: aload_0
+      52: invokevirtual #91                 // Method getMaxHeight:()Ljava/lang/Integer;
+      55: ifnull        81
+      58: aload_1
+      59: checkcast     #68                 // class com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition
+      62: invokevirtual #79                 // Method com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition.getHeight:()I
+      65: aload_0
+      66: invokevirtual #91                 // Method getMaxHeight:()Ljava/lang/Integer;
+      69: dup
+      70: invokestatic  #83                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      73: invokevirtual #88                 // Method java/lang/Integer.intValue:()I
+      76: if_icmple     81
+      79: iconst_0
+      80: ireturn
+      81: aload_0
+      82: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+      85: ifnull        189
+      88: aload_0
+      89: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+      92: dup
+      93: invokestatic  #83                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      96: checkcast     #93                 // class java/lang/Iterable
+      99: astore_2
+     100: iconst_0
+     101: istore_3
+     102: aload_2
+     103: instanceof    #95                 // class java/util/Collection
+     106: ifeq          125
+     109: aload_2
+     110: checkcast     #95                 // class java/util/Collection
+     113: invokeinterface #98,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+     118: ifeq          125
+     121: iconst_1
+     122: goto          184
+     125: aload_2
+     126: invokeinterface #102,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     131: astore        4
+     133: aload         4
+     135: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     140: ifeq          183
+     143: aload         4
+     145: invokeinterface #111,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     150: astore        5
+     152: aload         5
+     154: checkcast     #113                // class com/cobblemon/mod/common/api/conditional/RegistryLikeCondition
+     157: astore        6
+     159: iconst_0
+     160: istore        7
+     162: aload         6
+     164: aload_1
+     165: checkcast     #115                // class com/cobblemon/mod/common/api/spawning/position/FlooredSpawnablePosition
+     168: invokevirtual #119                // Method com/cobblemon/mod/common/api/spawning/position/FlooredSpawnablePosition.getBaseBlockHolder:()Lnet/minecraft/class_6880;
+     171: invokeinterface #122,  2          // InterfaceMethod com/cobblemon/mod/common/api/conditional/RegistryLikeCondition.fits:(Lnet/minecraft/class_6880;)Z
+     176: ifeq          133
+     179: iconst_0
+     180: goto          184
+     183: iconst_1
+     184: ifeq          189
+     187: iconst_0
+     188: ireturn
+     189: iconst_1
+     190: ireturn
+     191: ireturn
+
+  public void copyFrom(com.cobblemon.mod.common.api.spawning.condition.SpawningCondition<?>, com.cobblemon.mod.common.util.Merger);
+    Code:
+       0: aload_1
+       1: ldc           #134                // String other
+       3: invokestatic  #66                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #135                // String merger
+       9: invokestatic  #66                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: invokespecial #137                // Method com/cobblemon/mod/common/api/spawning/condition/AreaTypeSpawningCondition.copyFrom:(Lcom/cobblemon/mod/common/api/spawning/condition/SpawningCondition;Lcom/cobblemon/mod/common/util/Merger;)V
+      18: aload_1
+      19: instanceof    #2                  // class com/cobblemon/mod/common/api/spawning/condition/GroundedTypeSpawningCondition
+      22: ifeq          64
+      25: aload_0
+      26: aload_2
+      27: aload_0
+      28: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+      31: checkcast     #95                 // class java/util/Collection
+      34: aload_1
+      35: checkcast     #2                  // class com/cobblemon/mod/common/api/spawning/condition/GroundedTypeSpawningCondition
+      38: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+      41: checkcast     #95                 // class java/util/Collection
+      44: invokeinterface #143,  3          // InterfaceMethod com/cobblemon/mod/common/util/Merger.merge:(Ljava/util/Collection;Ljava/util/Collection;)Ljava/util/Collection;
+      49: dup
+      50: ifnull        59
+      53: invokestatic  #149                // Method kotlin/collections/CollectionsKt.toMutableList:(Ljava/util/Collection;)Ljava/util/List;
+      56: goto          61
+      59: pop
+      60: aconst_null
+      61: putfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+      64: return
+
+  public boolean isValid();
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+       4: ifnull        106
+       7: aload_0
+       8: getfield      #55                 // Field neededBaseBlocks:Ljava/util/List;
+      11: dup
+      12: invokestatic  #83                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      15: checkcast     #93                 // class java/lang/Iterable
+      18: astore_2
+      19: iconst_0
+      20: istore_3
+      21: aload_2
+      22: instanceof    #95                 // class java/util/Collection
+      25: ifeq          44
+      28: aload_2
+      29: checkcast     #95                 // class java/util/Collection
+      32: invokeinterface #98,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+      37: ifeq          44
+      40: iconst_0
+      41: goto          99
+      44: aload_2
+      45: invokeinterface #102,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      50: astore        4
+      52: aload         4
+      54: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      59: ifeq          98
+      62: aload         4
+      64: invokeinterface #111,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      69: astore        5
+      71: aload         5
+      73: checkcast     #113                // class com/cobblemon/mod/common/api/conditional/RegistryLikeCondition
+      76: astore        6
+      78: iconst_0
+      79: istore        7
+      81: aload         6
+      83: ifnonnull     90
+      86: iconst_1
+      87: goto          91
+      90: iconst_0
+      91: ifeq          52
+      94: iconst_1
+      95: goto          99
+      98: iconst_0
+      99: ifeq          106
+     102: iconst_1
+     103: goto          107
+     106: iconst_0
+     107: istore_1
+     108: aload_0
+     109: invokespecial #157                // Method com/cobblemon/mod/common/api/spawning/condition/AreaTypeSpawningCondition.isValid:()Z
+     112: ifeq          123
+     115: iload_1
+     116: ifne          123
+     119: iconst_1
+     120: goto          124
+     123: iconst_0
+     124: ireturn
+
+  public boolean fits(com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePosition);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #124                // class com/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition
+       5: invokevirtual #164                // Method fits:(Lcom/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition;)Z
+       8: ireturn
+
+  public boolean fits(com.cobblemon.mod.common.api.spawning.position.SpawnablePosition);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #124                // class com/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition
+       5: invokevirtual #164                // Method fits:(Lcom/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition;)Z
+       8: ireturn
+}
+
+== com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePositionResolver$DefaultImpls.class
+Compiled from "AreaSpawnablePositionResolver.java"
+public final class com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver$DefaultImpls {
+  public static java.util.List<com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePosition> resolve(com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver, com.cobblemon.mod.common.api.spawning.spawner.Spawner, java.util.List<? extends com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawnablePositionCalculator<?>>, com.cobblemon.mod.common.api.spawning.SpawningZone);
+    Code:
+       0: aload_1
+       1: ldc           #26                 // String spawner
+       3: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #33                 // String spawnablePositionCalculators
+       9: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #34                 // String zone
+      15: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: aload_3
+      22: invokestatic  #37                 // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePositionResolver.access$resolve$jd:(Lcom/cobblemon/mod/common/api/spawning/position/AreaSpawnablePositionResolver;Lcom/cobblemon/mod/common/api/spawning/spawner/Spawner;Ljava/util/List;Lcom/cobblemon/mod/common/api/spawning/SpawningZone;)Ljava/util/List;
+      25: areturn
+}
+
+== com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePositionResolver.class
+Compiled from "AreaSpawnablePositionResolver.java"
+public interface com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver {
+  public default java.util.List<com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePosition> resolve(com.cobblemon.mod.common.api.spawning.spawner.Spawner, java.util.List<? extends com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawnablePositionCalculator<?>>, com.cobblemon.mod.common.api.spawning.SpawningZone);
+    Code:
+       0: aload_1
+       1: ldc           #42                 // String spawner
+       3: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #49                 // String spawnablePositionCalculators
+       9: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #50                 // String zone
+      15: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: new           #36                 // class net/minecraft/class_2338$class_2339
+      21: dup
+      22: iconst_1
+      23: iconst_2
+      24: iconst_3
+      25: invokespecial #54                 // Method net/minecraft/class_2338$class_2339."<init>":(III)V
+      28: astore        4
+      30: new           #56                 // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput
+      33: dup
+      34: aload_1
+      35: aload         4
+      37: checkcast     #38                 // class net/minecraft/class_2338
+      40: aload_3
+      41: invokespecial #59                 // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput."<init>":(Lcom/cobblemon/mod/common/api/spawning/spawner/Spawner;Lnet/minecraft/class_2338;Lcom/cobblemon/mod/common/api/spawning/SpawningZone;)V
+      44: astore        5
+      46: new           #61                 // class java/util/ArrayList
+      49: dup
+      50: invokespecial #64                 // Method java/util/ArrayList."<init>":()V
+      53: checkcast     #66                 // class java/util/List
+      56: astore        6
+      58: aload_3
+      59: invokevirtual #72                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseX:()I
+      62: istore        7
+      64: aload_3
+      65: invokevirtual #75                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseY:()I
+      68: istore        8
+      70: aload_3
+      71: invokevirtual #78                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseZ:()I
+      74: istore        9
+      76: iload         7
+      78: aload_3
+      79: invokevirtual #72                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseX:()I
+      82: aload_3
+      83: invokevirtual #83                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getLength:()I
+      86: iadd
+      87: if_icmpge     684
+      90: iload         8
+      92: aload_3
+      93: invokevirtual #75                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseY:()I
+      96: aload_3
+      97: invokevirtual #86                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getHeight:()I
+     100: iadd
+     101: if_icmpge     666
+     104: iload         9
+     106: aload_3
+     107: invokevirtual #78                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseZ:()I
+     110: aload_3
+     111: invokevirtual #89                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getWidth:()I
+     114: iadd
+     115: if_icmpge     654
+     118: aload         4
+     120: iload         7
+     122: iload         8
+     124: iload         9
+     126: invokevirtual #93                 // Method net/minecraft/class_2338$class_2339.method_10103:(III)Lnet/minecraft/class_2338$class_2339;
+     129: pop
+     130: aload         4
+     132: checkcast     #38                 // class net/minecraft/class_2338
+     135: invokestatic  #99                 // Method com/cobblemon/mod/common/util/BlockPosExtensionsKt.toVec3d:(Lnet/minecraft/class_2338;)Lnet/minecraft/class_243;
+     138: astore        10
+     140: aload_3
+     141: invokevirtual #103                // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getNearbyEntityPositions:()Ljava/util/List;
+     144: checkcast     #105                // class java/lang/Iterable
+     147: astore        11
+     149: iconst_0
+     150: istore        12
+     152: aload         11
+     154: instanceof    #107                // class java/util/Collection
+     157: ifeq          177
+     160: aload         11
+     162: checkcast     #107                // class java/util/Collection
+     165: invokeinterface #111,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     170: ifeq          177
+     173: iconst_1
+     174: goto          265
+     177: aload         11
+     179: invokeinterface #117,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     184: astore        13
+     186: aload         13
+     188: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     193: ifeq          264
+     196: aload         13
+     198: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     203: astore        14
+     205: aload         14
+     207: checkcast     #113                // class net/minecraft/class_243
+     210: astore        15
+     212: iconst_0
+     213: istore        16
+     215: aload         15
+     217: aload         10
+     219: checkcast     #128                // class net/minecraft/class_2374
+     222: getstatic     #134                // Field com/cobblemon/mod/common/Cobblemon.INSTANCE:Lcom/cobblemon/mod/common/Cobblemon;
+     225: invokevirtual #138                // Method com/cobblemon/mod/common/Cobblemon.getConfig:()Lcom/cobblemon/mod/common/config/CobblemonConfig;
+     228: invokevirtual #144                // Method com/cobblemon/mod/common/config/CobblemonConfig.getMinimumDistanceBetweenEntities:()D
+     231: invokevirtual #148                // Method net/minecraft/class_243.method_24802:(Lnet/minecraft/class_2374;D)Z
+     234: ifeq          256
+     237: aload         15
+     239: aload_3
+     240: invokevirtual #152                // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getCause:()Lcom/cobblemon/mod/common/api/spawning/SpawnCause;
+     243: invokevirtual #158                // Method com/cobblemon/mod/common/api/spawning/SpawnCause.getEntity:()Lnet/minecraft/class_1297;
+     246: invokestatic  #162                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     249: ifne          256
+     252: iconst_1
+     253: goto          257
+     256: iconst_0
+     257: ifeq          186
+     260: iconst_0
+     261: goto          265
+     264: iconst_1
+     265: ifeq          648
+     268: aload_2
+     269: checkcast     #105                // class java/lang/Iterable
+     272: astore        12
+     274: nop
+     275: iconst_0
+     276: istore        13
+     278: aload         12
+     280: invokeinterface #117,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     285: astore        14
+     287: aload         14
+     289: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     294: ifeq          463
+     297: aload         14
+     299: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     304: astore        15
+     306: aload         15
+     308: checkcast     #164                // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator
+     311: astore        16
+     313: iconst_0
+     314: istore        17
+     316: aload         16
+     318: aload         5
+     320: invokeinterface #168,  2          // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator.fits:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;)Z
+     325: ifeq          454
+     328: aload         5
+     330: invokevirtual #172                // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getSpawner:()Lcom/cobblemon/mod/common/api/spawning/spawner/Spawner;
+     333: invokeinterface #175,  1          // InterfaceMethod com/cobblemon/mod/common/api/spawning/spawner/Spawner.getInfluences:()Ljava/util/List;
+     338: checkcast     #105                // class java/lang/Iterable
+     341: astore        18
+     343: iconst_0
+     344: istore        19
+     346: aload         18
+     348: instanceof    #107                // class java/util/Collection
+     351: ifeq          371
+     354: aload         18
+     356: checkcast     #107                // class java/util/Collection
+     359: invokeinterface #111,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     364: ifeq          371
+     367: iconst_1
+     368: goto          447
+     371: aload         18
+     373: invokeinterface #117,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     378: astore        20
+     380: aload         20
+     382: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     387: ifeq          446
+     390: aload         20
+     392: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     397: astore        21
+     399: aload         21
+     401: checkcast     #177                // class com/cobblemon/mod/common/api/spawning/influence/SpawningInfluence
+     404: astore        22
+     406: iconst_0
+     407: istore        23
+     409: aload         22
+     411: aload         5
+     413: invokevirtual #181                // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getWorld:()Lnet/minecraft/class_3218;
+     416: aload         5
+     418: invokevirtual #185                // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getPosition:()Lnet/minecraft/class_2338;
+     421: aload         16
+     423: checkcast     #187                // class com/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator
+     426: invokeinterface #191,  4          // InterfaceMethod com/cobblemon/mod/common/api/spawning/influence/SpawningInfluence.isAllowedPosition:(Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lcom/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator;)Z
+     431: ifne          438
+     434: iconst_1
+     435: goto          439
+     438: iconst_0
+     439: ifeq          380
+     442: iconst_0
+     443: goto          447
+     446: iconst_1
+     447: ifeq          454
+     450: iconst_1
+     451: goto          455
+     454: iconst_0
+     455: ifeq          287
+     458: aload         15
+     460: goto          464
+     463: aconst_null
+     464: checkcast     #164                // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator
+     467: astore        11
+     469: aload         11
+     471: ifnull        648
+     474: aload         11
+     476: aload         5
+     478: checkcast     #193                // class com/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionInput
+     481: invokeinterface #197,  2          // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator.calculate:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionInput;)Lcom/cobblemon/mod/common/api/spawning/position/SpawnablePosition;
+     486: checkcast     #199                // class com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition
+     489: astore        12
+     491: aload         12
+     493: ifnull        648
+     496: aload_3
+     497: aload         12
+     499: checkcast     #201                // class com/cobblemon/mod/common/api/spawning/position/SpawnablePosition
+     502: invokevirtual #204                // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getInfluences:(Lcom/cobblemon/mod/common/api/spawning/position/SpawnablePosition;)Ljava/util/List;
+     505: astore        13
+     507: aload         13
+     509: invokeinterface #205,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     514: astore        14
+     516: aload         14
+     518: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     523: ifeq          566
+     526: aload         14
+     528: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     533: checkcast     #177                // class com/cobblemon/mod/common/api/spawning/influence/SpawningInfluence
+     536: astore        15
+     538: aload         12
+     540: invokevirtual #206                // Method com/cobblemon/mod/common/api/spawning/position/AreaSpawnablePosition.getInfluences:()Ljava/util/List;
+     543: aload         15
+     545: invokeinterface #210,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     550: pop
+     551: aload         15
+     553: aload         12
+     555: checkcast     #201                // class com/cobblemon/mod/common/api/spawning/position/SpawnablePosition
+     558: invokeinterface #214,  2          // InterfaceMethod com/cobblemon/mod/common/api/spawning/influence/SpawningInfluence.affectSpawnablePosition:(Lcom/cobblemon/mod/common/api/spawning/position/SpawnablePosition;)V
+     563: goto          516
+     566: aload_1
+     567: invokeinterface #175,  1          // InterfaceMethod com/cobblemon/mod/common/api/spawning/spawner/Spawner.getInfluences:()Ljava/util/List;
+     572: invokeinterface #205,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     577: astore        14
+     579: aload         14
+     581: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     586: ifeq          616
+     589: aload         14
+     591: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     596: checkcast     #177                // class com/cobblemon/mod/common/api/spawning/influence/SpawningInfluence
+     599: astore        15
+     601: aload         15
+     603: aload         12
+     605: checkcast     #201                // class com/cobblemon/mod/common/api/spawning/position/SpawnablePosition
+     608: invokeinterface #214,  2          // InterfaceMethod com/cobblemon/mod/common/api/spawning/influence/SpawningInfluence.affectSpawnablePosition:(Lcom/cobblemon/mod/common/api/spawning/position/SpawnablePosition;)V
+     613: goto          579
+     616: aload         6
+     618: aload         12
+     620: invokeinterface #210,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     625: pop
+     626: new           #36                 // class net/minecraft/class_2338$class_2339
+     629: dup
+     630: iconst_1
+     631: iconst_2
+     632: iconst_3
+     633: invokespecial #54                 // Method net/minecraft/class_2338$class_2339."<init>":(III)V
+     636: astore        4
+     638: aload         5
+     640: aload         4
+     642: checkcast     #38                 // class net/minecraft/class_2338
+     645: invokevirtual #218                // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.setPosition:(Lnet/minecraft/class_2338;)V
+     648: iinc          9, 1
+     651: goto          104
+     654: iinc          8, 1
+     657: aload_3
+     658: invokevirtual #78                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseZ:()I
+     661: istore        9
+     663: goto          90
+     666: iinc          7, 1
+     669: aload_3
+     670: invokevirtual #75                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseY:()I
+     673: istore        8
+     675: aload_3
+     676: invokevirtual #78                 // Method com/cobblemon/mod/common/api/spawning/SpawningZone.getBaseZ:()I
+     679: istore        9
+     681: goto          76
+     684: aload         6
+     686: areturn
+
+  public static java.util.List access$resolve$jd(com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver, com.cobblemon.mod.common.api.spawning.spawner.Spawner, java.util.List, com.cobblemon.mod.common.api.spawning.SpawningZone);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #253                // InterfaceMethod resolve:(Lcom/cobblemon/mod/common/api/spawning/spawner/Spawner;Ljava/util/List;Lcom/cobblemon/mod/common/api/spawning/SpawningZone;)Ljava/util/List;
+       7: areturn
+}
+
+== com/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition.class
+Compiled from "GroundedSpawnablePosition.java"
+public class com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition extends com.cobblemon.mod.common.api.spawning.position.FlooredSpawnablePosition {
+  public com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition(com.cobblemon.mod.common.api.spawning.SpawnCause, net.minecraft.class_3218, net.minecraft.class_2338, int, int, boolean, java.util.List<com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence>, int, java.util.List<? extends net.minecraft.class_2680>, com.cobblemon.mod.common.api.spawning.SpawningZone);
+    Code:
+       0: aload_1
+       1: ldc           #41                 // String cause
+       3: invokestatic  #47                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #48                 // String world
+       9: invokestatic  #47                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #49                 // String position
+      15: invokestatic  #47                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         7
+      20: ldc           #50                 // String influences
+      22: invokestatic  #47                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         9
+      27: ldc           #51                 // String nearbyBlocks
+      29: invokestatic  #47                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: aload         10
+      34: ldc           #52                 // String zone
+      36: invokestatic  #47                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: aload_0
+      40: aload_1
+      41: aload_2
+      42: aload_3
+      43: iload         4
+      45: iload         5
+      47: iload         6
+      49: aload         7
+      51: iload         8
+      53: aload         9
+      55: aload         10
+      57: invokespecial #54                 // Method com/cobblemon/mod/common/api/spawning/position/FlooredSpawnablePosition."<init>":(Lcom/cobblemon/mod/common/api/spawning/SpawnCause;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;IIZLjava/util/List;ILjava/util/List;Lcom/cobblemon/mod/common/api/spawning/SpawningZone;)V
+      60: return
+}
+
+== com/cobblemon/mod/common/api/spawning/position/calculators/GroundedSpawnablePositionCalculator.class
+Compiled from "GroundedSpawnablePositionCalculator.java"
+public final class com.cobblemon.mod.common.api.spawning.position.calculators.GroundedSpawnablePositionCalculator implements com.cobblemon.mod.common.api.spawning.position.calculators.FlooredSpawnablePositionCalculator<com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition> {
+  public static final com.cobblemon.mod.common.api.spawning.position.calculators.GroundedSpawnablePositionCalculator INSTANCE;
+
+  private static final java.lang.String name;
+
+  private static final kotlin.jvm.functions.Function1<net.minecraft.class_2680, java.lang.Boolean> baseCondition;
+
+  private static final kotlin.jvm.functions.Function1<net.minecraft.class_2680, java.lang.Boolean> surroundingCondition;
+
+  private com.cobblemon.mod.common.api.spawning.position.calculators.GroundedSpawnablePositionCalculator();
+    Code:
+       0: aload_0
+       1: invokespecial #52                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public java.lang.String getName();
+    Code:
+       0: getstatic     #55                 // Field name:Ljava/lang/String;
+       3: areturn
+
+  public kotlin.jvm.functions.Function1<net.minecraft.class_2680, java.lang.Boolean> getBaseCondition();
+    Code:
+       0: getstatic     #58                 // Field baseCondition:Lkotlin/jvm/functions/Function1;
+       3: areturn
+
+  public kotlin.jvm.functions.Function1<net.minecraft.class_2680, java.lang.Boolean> getSurroundingCondition();
+    Code:
+       0: getstatic     #60                 // Field surroundingCondition:Lkotlin/jvm/functions/Function1;
+       3: areturn
+
+  public com.cobblemon.mod.common.api.spawning.position.GroundedSpawnablePosition calculate(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput);
+    Code:
+       0: aload_1
+       1: ldc           #61                 // String input
+       3: invokestatic  #67                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: invokevirtual #73                 // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getCause:()Lcom/cobblemon/mod/common/api/spawning/SpawnCause;
+      10: astore_2
+      11: aload_1
+      12: invokevirtual #77                 // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getWorld:()Lnet/minecraft/class_3218;
+      15: astore_3
+      16: aload_1
+      17: invokevirtual #81                 // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getPosition:()Lnet/minecraft/class_2338;
+      20: invokevirtual #86                 // Method net/minecraft/class_2338.method_10062:()Lnet/minecraft/class_2338;
+      23: dup
+      24: ldc           #88                 // String immutable(...)
+      26: invokestatic  #91                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      29: astore        4
+      31: aload_0
+      32: checkcast     #93                 // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator
+      35: aload_1
+      36: iconst_0
+      37: iconst_2
+      38: aconst_null
+      39: invokestatic  #97                 // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator.getLight$default:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator;Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;IILjava/lang/Object;)I
+      42: istore        5
+      44: aload_0
+      45: checkcast     #93                 // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator
+      48: aload_1
+      49: iconst_0
+      50: iconst_2
+      51: aconst_null
+      52: invokestatic  #100                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator.getSkyLight$default:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator;Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;IILjava/lang/Object;)I
+      55: istore        6
+      57: aload_0
+      58: aload_1
+      59: invokevirtual #104                // Method getCanSeeSky:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;)Z
+      62: istore        7
+      64: aload_1
+      65: invokevirtual #108                // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getSpawner:()Lcom/cobblemon/mod/common/api/spawning/spawner/Spawner;
+      68: invokeinterface #114,  1          // InterfaceMethod com/cobblemon/mod/common/api/spawning/spawner/Spawner.copyInfluences:()Ljava/util/List;
+      73: astore        8
+      75: aload_0
+      76: checkcast     #93                 // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator
+      79: aload_1
+      80: aload_0
+      81: invokevirtual #116                // Method getSurroundingCondition:()Lkotlin/jvm/functions/Function1;
+      84: getstatic     #121                // Field com/cobblemon/mod/common/Cobblemon.INSTANCE:Lcom/cobblemon/mod/common/Cobblemon;
+      87: invokevirtual #125                // Method com/cobblemon/mod/common/Cobblemon.getConfig:()Lcom/cobblemon/mod/common/config/CobblemonConfig;
+      90: invokevirtual #131                // Method com/cobblemon/mod/common/config/CobblemonConfig.getMaxVerticalSpace:()I
+      93: iconst_0
+      94: iconst_1
+      95: iconst_0
+      96: bipush        40
+      98: aconst_null
+      99: invokestatic  #135                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator.getHeight$default:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator;Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;Lkotlin/jvm/functions/Function1;IIIIILjava/lang/Object;)I
+     102: istore        9
+     104: aload_1
+     105: invokevirtual #139                // Method com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput.getZone:()Lcom/cobblemon/mod/common/api/spawning/SpawningZone;
+     108: astore        10
+     110: aload_0
+     111: checkcast     #93                 // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator
+     114: aload_1
+     115: iconst_0
+     116: iconst_0
+     117: bipush        6
+     119: aconst_null
+     120: invokestatic  #143                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator.getNearbyBlocks$default:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawnablePositionCalculator;Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;IIILjava/lang/Object;)Ljava/util/List;
+     123: astore        11
+     125: new           #145                // class com/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition
+     128: dup
+     129: aload_2
+     130: aload_3
+     131: aload         4
+     133: iload         5
+     135: iload         6
+     137: iload         7
+     139: aload         8
+     141: iload         9
+     143: aload         11
+     145: aload         10
+     147: invokespecial #148                // Method com/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition."<init>":(Lcom/cobblemon/mod/common/api/spawning/SpawnCause;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;IIZLjava/util/List;ILjava/util/List;Lcom/cobblemon/mod/common/api/spawning/SpawningZone;)V
+     150: areturn
+
+  public boolean fits(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #151                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.fits:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;)Z
+       5: ireturn
+
+  public int getDepth(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput, kotlin.jvm.functions.Function1<? super net.minecraft.class_2680, java.lang.Boolean>, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iload_3
+       4: invokespecial #158                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getDepth:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;Lkotlin/jvm/functions/Function1;I)I
+       7: ireturn
+
+  public int getHeight(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput, kotlin.jvm.functions.Function1<? super net.minecraft.class_2680, java.lang.Boolean>, int, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iload_3
+       4: iload         4
+       6: iload         5
+       8: iload         6
+      10: invokespecial #167                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getHeight:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;Lkotlin/jvm/functions/Function1;IIII)I
+      13: ireturn
+
+  public int getHorizontalSpace(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput, kotlin.jvm.functions.Function1<? super net.minecraft.class_2680, java.lang.Boolean>, int, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iload_3
+       4: iload         4
+       6: iload         5
+       8: iload         6
+      10: invokespecial #170                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getHorizontalSpace:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;Lkotlin/jvm/functions/Function1;IIII)I
+      13: ireturn
+
+  public int getLight(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #175                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getLight:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;I)I
+       6: ireturn
+
+  public int getSkyLight(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #178                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getSkyLight:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;I)I
+       6: ireturn
+
+  public boolean getCanSeeSky(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #179                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getCanSeeSky:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;)Z
+       5: ireturn
+
+  public int getSkySpaceAbove(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #183                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getSkySpaceAbove:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;)I
+       5: ireturn
+
+  public java.util.List<net.minecraft.class_2680> getNearbyBlocks(com.cobblemon.mod.common.api.spawning.position.calculators.AreaSpawningInput, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: invokespecial #190                // InterfaceMethod com/cobblemon/mod/common/api/spawning/position/calculators/FlooredSpawnablePositionCalculator.getNearbyBlocks:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;II)Ljava/util/List;
+       7: areturn
+
+  public com.cobblemon.mod.common.api.spawning.position.SpawnablePosition calculate(com.cobblemon.mod.common.api.spawning.position.calculators.SpawnablePositionInput);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #69                 // class com/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput
+       5: invokevirtual #193                // Method calculate:(Lcom/cobblemon/mod/common/api/spawning/position/calculators/AreaSpawningInput;)Lcom/cobblemon/mod/common/api/spawning/position/GroundedSpawnablePosition;
+       8: checkcast     #195                // class com/cobblemon/mod/common/api/spawning/position/SpawnablePosition
+      11: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/cobblemon/mod/common/api/spawning/position/calculators/GroundedSpawnablePositionCalculator
+       3: dup
+       4: invokespecial #198                // Method "<init>":()V
+       7: putstatic     #200                // Field INSTANCE:Lcom/cobblemon/mod/common/api/spawning/position/calculators/GroundedSpawnablePositionCalculator;
+      10: ldc           #202                // String grounded
+      12: putstatic     #55                 // Field name:Ljava/lang/String;
+      15: getstatic     #205                // Field com/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator.Companion:Lcom/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator$Companion;
+      18: invokevirtual #208                // Method com/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator$Companion.isSolidCondition:()Lkotlin/jvm/functions/Function1;
+      21: putstatic     #58                 // Field baseCondition:Lkotlin/jvm/functions/Function1;
+      24: getstatic     #205                // Field com/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator.Companion:Lcom/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator$Companion;
+      27: invokevirtual #211                // Method com/cobblemon/mod/common/api/spawning/position/calculators/SpawnablePositionCalculator$Companion.isAirCondition:()Lkotlin/jvm/functions/Function1;
+      30: putstatic     #60                 // Field surroundingCondition:Lkotlin/jvm/functions/Function1;
+      33: return
+}

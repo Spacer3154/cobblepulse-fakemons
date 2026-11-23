@@ -1,0 +1,65 @@
+== data/cobblemon/spawn_detail_presets/ancient_city.json
+{"condition":{"maxY":62,"neededNearbyBlocks":["#cobblemon:ancient_city_blocks"],"structures":["minecraft:ancient_city"]}}
+
+== data/cobblemon/spawn_detail_presets/derelict.json
+{"anticondition":{"neededBaseBlocks":["#cobblemon:natural"]},"condition":{"canSeeSky":false,"maxLight":0}}
+
+== data/cobblemon/spawn_detail_presets/desert_pyramid.json
+{"anticondition":{"neededBaseBlocks":["minecraft:blue_terracotta","minecraft:orange_terracotta"]},"condition":{"minY":48,"neededBaseBlocks":["minecraft:sandstone"],"neededNearbyBlocks":["#cobblemon:desert_pyramid_blocks"]}}
+
+== data/cobblemon/spawn_detail_presets/foliage.json
+{"condition":{"neededNearbyBlocks":["#minecraft:leaves","#c:leaves"]}}
+
+== data/cobblemon/spawn_detail_presets/jungle_pyramid.json
+{"condition":{"minY":48,"neededBaseBlocks":["minecraft:cobblestone","minecraft:mossy_cobblestone"],"neededNearbyBlocks":["#cobblemon:jungle_pyramid_blocks"]}}
+
+== data/cobblemon/spawn_detail_presets/lava.json
+{"condition":{"fluid":"#minecraft:lava"}}
+
+== data/cobblemon/spawn_detail_presets/mansion.json
+{"condition":{"minY":62,"neededBaseBlocks":["minecraft:birch_planks","minecraft:double_smooth_stone_slab","minecraft:oak_planks","minecraft:polished_andesite","#minecraft:wool","#minecraft:wool_carpets"],"neededNearbyBlocks":["#cobblemon:mansion_blocks"],"structures":["minecraft:mansion","minecraft:woodland_mansion"]}}
+
+== data/cobblemon/spawn_detail_presets/mansion_bedrooms.json
+{"condition":{"minY":62,"neededBaseBlocks":["minecraft:birch_planks","minecraft:double_smooth_stone_slab","minecraft:oak_planks","minecraft:polished_andesite","#minecraft:wool","#minecraft:wool_carpets"],"neededNearbyBlocks":["#cobblemon:mansion_bedroom_blocks"],"structures":["minecraft:mansion","minecraft:woodland_mansion"]}}
+
+== data/cobblemon/spawn_detail_presets/mansion_dining.json
+{"condition":{"minY":62,"neededBaseBlocks":["minecraft:birch_planks","minecraft:double_smooth_stone_slab","minecraft:oak_planks","minecraft:polished_andesite","#minecraft:wool","#minecraft:wool_carpets"],"neededNearbyBlocks":["#cobblemon:mansion_dining_blocks"],"structures":["minecraft:mansion","minecraft:woodland_mansion"]}}
+
+== data/cobblemon/spawn_detail_presets/natural.json
+{"anticondition":{"neededBaseBlocks":["minecraft:farmland"]},"condition":{"neededBaseBlocks":["#cobblemon:natural"]}}
+
+== data/cobblemon/spawn_detail_presets/nether_fossil.json
+{"condition":{"neededNearbyBlocks":["minecraft:bone_block"],"structures":["minecraft:nether_fossil"]}}
+
+== data/cobblemon/spawn_detail_presets/redstone.json
+{"anticondition":{"neededBaseBlocks":["#cobblemon:redstone_blocks"]},"condition":{"neededNearbyBlocks":["#minecraft:redstone_ores","#cobblemon:redstone_blocks","#c:redstone_ores"]}}
+
+== data/cobblemon/spawn_detail_presets/ruined_portal.json
+{"condition":{"neededNearbyBlocks":["#cobblemon:ruined_portal_blocks"],"structures":["#minecraft:ruined_portal"]}}
+
+== data/cobblemon/spawn_detail_presets/saccharine_tree.json
+{"condition":{"neededNearbyBlocks":["cobblemon:saccharine_leaves","cobblemon:saccharine_log","cobblemon:saccharine_wood","cobblemon:stripped_saccharine_log","cobblemon:stripped_saccharine_wood"]}}
+
+== data/cobblemon/spawn_detail_presets/salt.json
+{"condition":{"biomes":["biomesoplenty:hot_springs","biomesoplenty:wasteland","biomesoplenty:wasteland_steppe","terralith:amethyst_canyon","terralith:amethyst_rainforest","terralith:skylands_winter","terralith:yellowstone","wythers:calcite_caverns","wythers:calcite_coast","wythers:mediterranean_island_thermal_spring","wythers:salt_lakes_pink","wythers:salt_lakes_turquoise","wythers:salt_lakes_white","wythers:thermal_taiga"]}}
+
+== data/cobblemon/spawn_detail_presets/stronghold.json
+{"condition":{"maxY":62,"neededBaseBlocks":["#minecraft:stone_bricks"],"neededNearbyBlocks":["minecraft:cracked_stone_bricks","minecraft:mossy_stone_bricks"]}}
+
+== data/cobblemon/spawn_detail_presets/trail_ruins.json
+{"condition":{"minY":32,"neededBaseBlocks":["#minecraft:convertable_to_mud","#minecraft:sand","#minecraft:trail_ruins_replaceable","#cobblemon:trail_ruins_blocks","minecraft:cobblestone","minecraft:stone","minecraft:stone_bricks"],"neededNearbyBlocks":["#cobblemon:trail_ruins_blocks"],"structures":["minecraft:trail_ruins"]}}
+
+== data/cobblemon/spawn_detail_presets/treetop.json
+{"condition":{"neededBaseBlocks":["#cobblemon:trees"]}}
+
+== data/cobblemon/spawn_detail_presets/urban.json
+{"anticondition":{"structures":["#minecraft:village","minecraft:trail_ruins"]},"condition":{"neededNearbyBlocks":["#cobblemon:concrete_blocks"]}}
+
+== data/cobblemon/spawn_detail_presets/water.json
+{"condition":{"fluid":"#minecraft:water"}}
+
+== data/cobblemon/spawn_detail_presets/webs.json
+{"condition":{"biomes":["biomesoplenty:spider_nest","terralith:cave/infested_caves","wythers:forbidden_forest","wythers:phantasmal_forest","wythers:phantasmal_swamp"]}}
+
+== data/cobblemon/spawn_detail_presets/wild.json
+{"anticondition":{"neededNearbyBlocks":["#cobblemon:concrete_blocks"],"structures":["#minecraft:village"]}}

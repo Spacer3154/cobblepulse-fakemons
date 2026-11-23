@@ -1,0 +1,128 @@
+Loaded {
+  moves: [
+    'eclairsouverain',
+    'flambeedeaudevie',
+    'hachepince',
+    'jetdemout',
+    'laitfeerique',
+    'queuelame',
+    'sillageardent',
+    'soufflecarnage'
+  ],
+  abilities: [
+    'aureoleroyale',
+    'combustiondistillee',
+    'gardiendesmarees',
+    'goldenfrenzy',
+    'lameduchaos',
+    'ragebrulante',
+    'sabotsdobsidienne'
+  ]
+}
+PASS  move eclairsouverain runs
+PASS  move flambeedeaudevie runs
+PASS  move hachepince runs
+PASS  move jetdemout runs
+PASS  move laitfeerique runs
+PASS  move queuelame runs
+PASS  move sillageardent runs
+PASS  move soufflecarnage runs
+PASS  Jet de Mout BP normal = 85
+PASS  Jet de Mout BP under rain = 110
+PASS  Jet de Mout BP on grassy terrain = 110
+PASS  Sillage Ardent neutral vs pure Water
+PASS  Sillage Ardent resisted by Water/Rock (Rock only)
+PASS  Lait Feerique heals 15%  -> +26 (want ~26) 78/175
+PASS  Lait Feerique cures status
+PASS  Lait Feerique cures status even near full HP
+PASS  jetdemout: 5 PP, max 8  -> pp 5, max 8
+PASS  sillageardent: 5 PP, max 8  -> pp 5, max 8
+PASS  laitfeerique: 5 PP, max 8  -> pp 5, max 8
+PASS  Hache-Pince critRatio 2 (+1 stage)
+PASS  Hache-Pince ignoreDefensive
+PASS  Flambee super effective vs Vaporeon
+PASS  Flambee super effective vs Sandaconda
+PASS  Flambee super effective vs Quagsire
+PASS  Flambee 4x vs Water/Ground  -> typeMod=2
+PASS  Eclair Souverain recoil
+PASS  Eclair Souverain SpA -1
+PASS  Combustion Distillee: no burn damage  -> 175 -> 175
+PASS  Combustion Distillee: SpA x1.5 when burned  -> 120 -> 180
+PASS  Combustion Distillee: SpA x1.5 after a Fire hit  -> 225 -> 337
+PASS  Gardien des Marees suppresses weather
+PASS  Gardien des Marees damage x1.3  -> 100 -> 130
+PASS  Sabots: no Stealth Rock / Spikes damage on switch-in  -> 185/185
+PASS  Sabots: Sticky Web blocked  -> spe=0
+PASS  Sabots: immune to Fire moves
+PASS  Aureole Royale: foe Atk -1 on entry
+PASS  Aureole Royale: Electric immunity + Spe +1  -> hp 145/145 spe 1
+
+ALL CHECKS PASSED
+PASS  base abilities = Thick Fat / Reckless / H: Toxic Boost
+PASS  item megaStone maps Deviljho -> Deviljho-Mega
+PASS  Deviljho can mega evolve  -> Deviljho-Mega
+PASS  -mega message
+PASS  now Deviljho-Mega with Rage Brulante
+PASS  no error in log
+PASS  Intimidate blocked
+PASS  Screech blocked (Def unchanged)  -> def 0
+PASS  super-effective hit: +1 Atk  -> atk 1
+PASS  critical hit (resisted): +1 Atk  -> atk 1
+PASS  neutral non-crit hit: no boost  -> atk 0
+PASS  own Draco Meteor still lowers its Sp. Atk
+PASS  vs Blissey (huge Sp. Def): physical  -> Physical
+PASS  lowers Defense
+PASS  runs
+PASS  vs Skarmory (huge Def): special  -> Special
+PASS  Dragon, 85 BP, 100 acc, 10 PP
+ALL CHECKS PASSED
+PASS  base abilities = Sharpness / H: Anger Shell
+PASS  Fire/Steel, mega Fire/Dragon
+PASS  item megaStone maps Glavenus -> Glavenus-Mega
+PASS  Glavenus can mega evolve  -> Glavenus-Mega
+PASS  -mega message
+PASS  now Glavenus-Mega with Lame du Chaos
+PASS  no error in log
+PASS  Queue-Lame: Steel, physical, 80 BP, 100 acc, 5 PP, slicing + contact
+PASS  vs Venusaur (Grass, weak to Fire): super effective  -> dmg 54
+PASS  vs Scizor (4x weak to Fire): super effective  -> dmg 96
+PASS  vs Vaporeon (resists Steel and Fire): resisted  -> dmg 16
+PASS  vs Snorlax: neutral  -> dmg 31
+PASS  Sharpness (Incisif) boosts Queue-Lame ~x1.5  -> 31 -> 46
+PASS  Lame du Chaos boosts slicing moves ~x1.7  -> 22 -> 37
+PASS  Lame du Chaos: non-slicing moves unchanged  -> 19 -> 19
+PASS  Lame du Chaos: Slash (Normal) super effective on Golem (Rock/Ground)  -> dmg 42
+PASS  without it: Slash resisted by Golem  -> dmg 6
+PASS  Lame du Chaos: Flamethrower (not slicing) still resisted by Golem  -> dmg 12
+PASS  Lame du Chaos keeps Queue-Lame's own effectiveness (Vaporeon resists)  -> dmg 19
+ALL CHECKS PASSED
+PASS  Zamtrios: Water/Ice, abilities Fur Coat / Strong Jaw / H: Swift Swim
+PASS  Zamtrios formes: Armor (world + battle) and Inflated (battle only)
+PASS  Gore Magala: Dark/Dragon, genderless; Frenzy is battle only
+PASS  Shagaru Magala: Dragon/Fairy, only Golden Frenzy and H: Multiscale
+PASS  BSTs 515 / 580 / 620 / 650
+PASS  Zamtrios: a non-Ice move keeps the normal forme
+PASS  Zamtrios: an Ice move (Ice Fang) -> Ice Armor forme  -> Zamtrios-Armor
+PASS    ... it keeps its own ability (Strong Jaw)  -> strongjaw
+PASS    ... Armor stats: higher Defense, lower Speed  -> {"atk":140,"def":145,"spa":90,"spd":105,"spe":60}
+PASS    ... detailschange sent (Cobblemon -> FormeChangeEvent "armor")
+PASS  Zamtrios: Stockpile -> Inflated forme  -> Zamtrios-Inflated
+PASS    ... an Ice move does not bring the armour back once inflated
+PASS    ... no error in the log
+PASS  Zamtrios: at half HP or less -> Inflated  -> 6/180 Zamtrios-Inflated
+PASS    ... still Inflated after switching out and back in (permanent forme change)  -> Zamtrios-Inflated
+PASS    ... no error in the log
+PASS  Zamtrios sent out armoured (frozen biome) stays Armor and still has the handlers
+PASS  Gore Magala: above half HP, normal forme  -> 170/170
+PASS  Gore Magala: at half HP or less -> Frenzy (Mode Furie)  -> 22/170 Gore Magala-Frenzy
+PASS    ... keeps Infiltrator  -> infiltrator
+PASS    ... detailschange "Gore Magala-Frenzy"
+PASS    ... no error in the log
+PASS  Golden Frenzy: Dragon moves ~x1.25  -> 30 -> 37
+PASS  Golden Frenzy: Fairy moves ~x1.25  -> 33 -> 42
+PASS  Golden Frenzy: other moves unchanged  -> 21 -> 21
+PASS  Golden Frenzy: Poison moves hurt it ~x1.25  -> 128 -> 159
+PASS  Golden Frenzy: poison damage x1.25  -> {"d":22,"max":180} -> {"d":27,"max":180}
+PASS  Golden Frenzy: Moonblast secondary effect twice as likely (light move)  -> 0.30 -> 0.60
+PASS  Multiscale available as H
+ALL CHECKS PASSED

@@ -1,0 +1,66 @@
+	- cobblepulse_ecology 3.10.2
+[15:08:20] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/cobblepulse-fakemons/cobblepulse-fakemons/run-server/libraries/net/fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[15:08:29] [main/INFO]: Note: Cobblemon data registries are only loaded once per server instance as Pokémon species are not safe to reload.
+[15:08:29] [main/INFO]: Registered the cobblemon:species_features registry
+[15:08:29] [main/INFO]: Registered the cobblemon:global_species_features registry
+[15:08:29] [main/INFO]: Registered the cobblemon:species_feature_assignments registry
+[15:08:29] [main/INFO]: Registered the cobblemon:species registry
+[15:08:29] [main/INFO]: Registered the cobblemon:species_additions registry
+[15:08:30] [main/INFO]: CobblePulse-Ecology : 2 mega-gemme(s) enregistree(s)
+[15:08:36] [main/INFO]: Loaded 1053 Pokémon species
+[15:08:43] [Worker-Main-1/WARN]: Unable to read property: facing with value: up for blockstate: {Name:"mega_showdown:wishing_star_crystal",Properties:{facing:"up",waterlogged:"false"}}
+[15:08:50] [Server thread/INFO]: CobblePulse-Ecology : starters de Normandie ajoutes (pomdraco, drakflam, meuhgousse)
+[15:08:50] [Server thread/INFO]: SELFTEST item cobblepulse_ecology:deviljhonite components=true mega_entry_loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST item cobblepulse_ecology:glavenusite components=true mega_entry_loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST item normandy_fakemons:deviljhonite components=true mega_entry_loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST recipe normandy:deviljhonite loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST recipe normandy:glavenusite loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST battle_form normandy:zamtrios_armor loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST battle_form normandy:zamtrios_inflated loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST battle_form normandy:goremagala_frenzy loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species pomdraco loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species arboverger loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species cidrac loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species drakflam loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species vikinav loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species drakkarthor loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species meuhgousse loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species bovecume loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species normanguer loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species etreroch loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species archeolithe loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species gargoylbatre loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species rousselin loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species roussinage loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species homarbleu loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species noroimard loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species bolvados loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species cruchevados loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species alchibec loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species archangelis loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species sleipcheron loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species guillopard loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species deviljho loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species glavenus loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species zamtrios loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species goremagala loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species chaoticgoremagala loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST species shagarumagala loaded=true
+[15:08:50] [Server thread/INFO]: SELFTEST starters ok tabs=[Kanto(-110), Johto(-109), Hoenn(-108), Sinnoh(-107), Unova(-106), Kalos(-105), Alola(-104), Galar(-103), Hisui Bias(-102), Paldea(-101), Special(-100), Normandie(-120), source=config]
+[15:08:50] [Server thread/INFO]: CobblePulse-Ecology OK : 28/28 especes, 2 mega-gemme(s), 2 recette(s) chargee(s), starters de Normandie
+[15:08:50] [Server thread/INFO]: SELFTEST SUMMARY cobblepulse_ecology PASS (0 probleme(s))
+[15:09:02] [Server thread/INFO]: Summoned new Deviljhonite
+[15:09:04] [Server thread/INFO]: Summoned new Glavenusite
+[15:09:06] [Server thread/INFO]: Summoned new Deviljhonite
+[15:09:28] [Server thread/INFO]: Gore Magala du Chaos has the following entity data: "cobblemon:chaoticgoremagala"
+[15:09:28] [Server thread/INFO]: Shagaru Magala has the following entity data: "cobblemon:shagarumagala"
+[15:09:30] [Server thread/INFO]: Gore Magala du Chaos has the following entity data: "normal"
+[15:09:30] [Server thread/INFO]: Shagaru Magala has the following entity data: "normal"
+[15:09:32] [Server thread/INFO]: Gore Magala du Chaos has the following entity data: [{blocks_traveled: 0, "cobblemon:feature_id": "blocks_traveled"}, {dynamax_level: 0, "cobblemon:feature_id": "dynamax_level"}]
+[15:09:32] [Server thread/INFO]: Shagaru Magala has the following entity data: [{blocks_traveled: 0, "cobblemon:feature_id": "blocks_traveled"}, {dynamax_level: 0, "cobblemon:feature_id": "dynamax_level"}]
+[15:09:36] [Server thread/INFO]: [Not Secure] [Server] ZAMTRIOS CLIMATE CHECK: x=22 snowy_plains (normal -> armor), x=40 (armor -> normal); wild Pokemon despawn in a few seconds without players
+[15:09:39] [Server thread/INFO]: SELFTEST zamtrios_form normal -> armor at 22, 65, 0 (now [female, zamtrios-armor])
+[15:09:41] [Server thread/INFO]: SELFTEST zamtrios_form armor -> normal at 40, 62, 0 (now [male, zamtrios-normal])
+[15:09:42] [Server thread/INFO]: Zamtrios has the following entity data: [40.5d, 62.0d, 0.5d]
+[15:09:44] [Server thread/INFO]: Zamtrios has the following entity data: {zamtrios_form: "normal", "cobblemon:feature_id": "zamtrios_form"}
+[15:09:46] [Server thread/INFO]: Zamtrios has the following entity data: {zamtrios_form: "normal", "cobblemon:feature_id": "zamtrios_form"}
